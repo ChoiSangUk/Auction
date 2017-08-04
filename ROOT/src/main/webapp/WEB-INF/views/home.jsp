@@ -6,6 +6,6 @@
 <title></title>
 </head>
 <body>
-강박송이입니다.dd
+강박송이입니다.
 </body>
 </html>
