@@ -1,5 +1,5 @@
 package com.kpsl.auction.domain;
 
-public class Restrict {
+public class RestrictVo {
 
 }
