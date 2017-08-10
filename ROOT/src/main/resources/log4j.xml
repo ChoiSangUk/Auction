@@ -16,7 +16,7 @@
 	</appender>
 	 
 	<!-- Application Loggers -->
-	<logger name="com.cafe24.auction" additivity="false">
+	<logger name="com.kpsl.auction" additivity="false">
 		<level value="debug" />
 		<appender-ref ref="console"/>
 	</logger>
