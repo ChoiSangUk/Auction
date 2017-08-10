@@ -1,4 +1,4 @@
-package com.kpsl.auction.controller;
+package com.kpsl.auction.user.controller;
 
 import org.springframework.stereotype.Controller;
 
