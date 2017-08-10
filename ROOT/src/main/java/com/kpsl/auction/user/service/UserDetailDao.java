@@ -1,5 +1,5 @@
 package com.kpsl.auction.user.service;
 
-public class UserDetailDao {
+public interface UserDetailDao {
 
 }

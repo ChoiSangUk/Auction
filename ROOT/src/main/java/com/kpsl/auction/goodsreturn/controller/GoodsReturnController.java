@@ -1,4 +1,4 @@
-package com.kpsl.auction.controller;
+package com.kpsl.auction.goodsreturn.controller;
 
 import org.springframework.stereotype.Controller;
 
