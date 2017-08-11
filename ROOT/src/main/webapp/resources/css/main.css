@@ -17,6 +17,15 @@ footer {
 	min-height: 200px;
 }
 
+.navMenu li a{
+	color: #000000 !important;
+	background-color: #ffffff !important;
+}
+
+.navMenu li a:hover, .navMenu li.active a {
+	background-color: #368aff !important;
+}
+
 #mainMenu {
 	background-color: #ffffff;
 }
