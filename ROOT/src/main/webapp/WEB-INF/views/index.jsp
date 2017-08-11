@@ -39,7 +39,8 @@
 		<div class="col-sm-12 text-center">
 			<h1>경매시스템</h1>
 			<br>
-			<p>기존의 경매시스템에서 신뢰성을 높이기위해.........</p>
+			<p>경매를 통하여 모든 물품을 판매해주고 거래의 신뢰성을 높이기 위해<br>
+			보증금을 두어 판매와 구매의 신뢰성을 높이는 목적으로 진행된 프로젝트입니다.</p>
 			<br>
 			<h1>개발환경</h1>
 			<h3>OS</h3>
@@ -57,8 +58,10 @@
 			<h3>개발 툴</h3>
 			<p>- Spring Tool Suite 3.8.4, HeidiSQL, Maven 2.5.1, log4j 1.2.15 </p>
 			<br>
-			<h1><a href="${pageContext.request.contextPath}/resources/img/erd.jpg" target="_blank">
-			ERD 보기</a></h1>
+			<h2><a href="${pageContext.request.contextPath}/resources/img/logicalErd.png" target="_blank">
+			논리 ERD&nbsp;&nbsp;</a>
+			<a href="${pageContext.request.contextPath}/resources/img/physicalErd.png" target="_blank">
+			물리 ERD</a></h2>
 		</div>
 	</div>
 </div>

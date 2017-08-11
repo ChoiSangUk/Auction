@@ -30,6 +30,11 @@ h4 {
 	margin-bottom: 30px;
 }
 
+a:link {text-decoration: none; color: #000000;}
+a:visited {text-decoration: none; color: #000000;}
+a:active {text-decoration: none; color: #000000;}
+a:hover {text-decoration: underline; color: #f4511e;}
+
 .container-fluid {
 	padding: 60px 50px;
 }

@@ -9,11 +9,10 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 
 </head>
 <body>
- <c:import url="/resources/module/top.jsp" charEncoding="UTF-8"/>
 
+<c:import url="/resources/module/top.jsp" charEncoding="UTF-8"/>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
@@ -78,6 +77,6 @@
 	</div>
 </div>
 <br>
- <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8"/>
+<c:import url="/resources/module/footer.jsp" charEncoding="UTF-8"/>
 </body>
 </html>
