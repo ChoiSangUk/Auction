@@ -17,7 +17,7 @@ footer {
 	min-height: 200px;
 }
 
-.navMenu li a{
+.navMenu li a {
 	color: #000000 !important;
 	background-color: #ffffff !important;
 }
@@ -26,9 +26,18 @@ footer {
 	background-color: #368aff !important;
 }
 
+#topMenu {
+	color: #ffffff !important;
+}
+
+#topMenu li a{
+	color: #ffffff !important;
+}
+
 #mainMenu {
 	background-color: #ffffff;
 }
+
 /* Hide the carousel text when the screen is less than 600 pixels wide */
 @media ( max-width : 600px) {
 	.carousel-caption {
