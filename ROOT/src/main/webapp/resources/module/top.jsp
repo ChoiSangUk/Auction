@@ -13,16 +13,19 @@
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid" id="topMenu">
 		<div class="navbar-header">
+			<!-- 화면 축소시 화면리스트 버튼 생성 -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      	</button>
 			<a class="navbar-brand" id="time"></a>
 		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
+		<div class="collapse navbar-collapse" id="topNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">Auction 설명서</a></li>
-				<li><a>│</a></li>
 				<li><a href="#">로그인</a></li>
-				<li><a>│</a></li>
 				<li><a href="#">회원가입 </a></li>
-				<li><a>│</a></li>
 				<li><a href="#">마이페이지</a></li>
 			</ul>
 		</div>
@@ -31,9 +34,15 @@
 <nav class="navbar navbar-inverse" id="mainMenu">
 	<div class="container-fluid">
 		<div class="navbar-header">
+			<!-- 화면 축소시 화면리스트 버튼 생성 -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      	</button>
 			<a class="navbar-brand" href="#">Auction</a>
 		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
+		<div class="collapse navbar-collapse" id="mainNavbar">
 			<ul class="nav navMenu navbar-nav navbar-left">
 				<li><a data-toggle="tab" href="ss">온라인 경매</a></li>
 				<li><a data-toggle="tab" href="dd">물품등록</a></li>
