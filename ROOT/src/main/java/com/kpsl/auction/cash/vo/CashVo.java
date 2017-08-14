@@ -1,8 +1,8 @@
-package com.kpsl.auction.goodsdelivery.vo;
+package com.kpsl.auction.cash.vo;
 /************************
  * 	물품배송VO				*
  ************************/
-public class GoodsDeliveryVo {
+public class CashVo {
 	private String goodsDeliveryCode;
 	private String goodsPaymentCode;
 	private String goodsDeliveryAddr;
