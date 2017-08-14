@@ -44,9 +44,9 @@
 		</div>
 		<div class="collapse navbar-collapse" id="mainNavbar">
 			<ul class="nav navMenu navbar-nav navbar-left">
-				<li><a data-toggle="tab" href="ss">온라인 경매</a></li>
-				<li><a data-toggle="tab" href="dd">물품등록</a></li>
-				<li><a data-toggle="tab" href="aa">고객센터</a></li>
+				<li><a href="ss">온라인 경매</a></li>
+				<li><a href="dd">물품등록</a></li>
+				<li><a href="aa">고객센터</a></li>
 			</ul>
 		</div>
 	</div>
