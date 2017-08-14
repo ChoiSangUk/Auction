@@ -22,7 +22,8 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#projectInfo">프로젝트 소개</a></li>
 				<li><a href="#teamMemberInfo">팀원소개</a></li>
-				<li><a href="${pageContext.request.contextPath}/main">프로젝트 시작하기</a></li>
+				<li><a href="${pageContext.request.contextPath}/main">메인페이지 바로가기</a></li>
+				<li><a href="${pageContext.request.contextPath}/admin/adminLogin">관리자페이지 바로가기</a></li>
 			</ul>
 		</div>
 	</div>

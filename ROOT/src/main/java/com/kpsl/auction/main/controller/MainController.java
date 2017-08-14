@@ -16,10 +16,25 @@ public class MainController {
 		log.info("로그확인");
 		return "index";
 	}
+	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main(Model model) {
 		
 		log.info("로그확인");
 		return "main";
+	}
+	
+	@RequestMapping(value = "/admin/adminLogin", method = RequestMethod.GET)
+	public String adminLogin(Model model) {
+		
+		log.info("adminLogin 확인");
+		return "/admin/admin_login";
+	}
+	
+	@RequestMapping(value = "/admin/adminMain", method = RequestMethod.POST)
+	public String adminMain(Model model) {
+		/** 회원테이블에서 관리자아이디 받아서 비교하고 성공했을때 로그인구현 추가*/
+		log.info("adminMain 확인");
+		return "/admin/admin_main";
 	}
 }
