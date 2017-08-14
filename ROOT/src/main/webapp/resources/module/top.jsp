@@ -24,8 +24,8 @@
 		<div class="collapse navbar-collapse" id="topNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">Auction 설명서</a></li>
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입 </a></li>
+				<li><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/userJoin">회원가입 </a></li>
 				<li><a href="#">마이페이지</a></li>
 			</ul>
 		</div>
@@ -40,7 +40,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>                        
 	      	</button>
-			<a class="navbar-brand" href="#">Auction</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/main">Auction</a>
 		</div>
 		<div class="collapse navbar-collapse" id="mainNavbar">
 			<ul class="nav navMenu navbar-nav navbar-left">

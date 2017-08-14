@@ -23,7 +23,7 @@ public class MainController {
 		log.info("로그확인");
 		return "main";
 	}
-	
+
 	@RequestMapping(value = "/admin/adminLogin", method = RequestMethod.GET)
 	public String adminLogin(Model model) {
 		
