@@ -28,7 +28,7 @@ public class AdUnitPriceController {
 		return "/admin/ad/admin_ad_management";
 	}
 	
-	@RequestMapping(value = "/ad/adminAdManagement", method = RequestMethod.GET)
+	@RequestMapping(value = "/ad/adminAdUnitUpdateForm", method = RequestMethod.GET)
 	public String adUnitPriceModify(Model model) {
 		/** 업데이트폼에 들어갈 변수들 받아서 보내주는 기능 추가 예정*/
 		log.info("adUnitPriceModify 확인");
