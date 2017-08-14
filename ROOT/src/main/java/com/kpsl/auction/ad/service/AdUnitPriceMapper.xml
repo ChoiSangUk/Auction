@@ -1,1 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kpsl.auction.ad.service.AdUnitPriceMapper">
+	<resultMap type="com.kpsl.auction.ad.vo.AdUnitPriceVo" id="AdUnitPrice">
+		<id property="adUnitPirceCode" column="ad_unit_price_code"/>
+		<id property="adUnitPirceName" column="ad_unit_price_name"/>
+		<id property="adUnitPricePrice" column="ad_unit_price_price"/>
+		<id property="adUnitPriceState" column="ad_unit_price_state"/>
+	</resultMap>
+	<select id="getAdUnitPriceList" parameterType="java.util.Map" resultMap="AdUnitPrice">
+		SELECT ad_unit_price_code, 
+		ad_unit_price_name, 
+		ad_unit_price_price, 
+		ad_unit_price_state
+		FROM ad_unit_price_tb;
+	</select>
+</mapper>

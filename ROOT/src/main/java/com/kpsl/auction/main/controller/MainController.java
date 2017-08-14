@@ -1,7 +1,5 @@
 package com.kpsl.auction.main.controller;
 
-import java.util.Locale;
-
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +17,7 @@ public class MainController {
 		return "index";
 	}
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String main(Locale locale, Model model) {
+	public String main(Model model) {
 		
 		log.info("로그확인");
 		return "main";
