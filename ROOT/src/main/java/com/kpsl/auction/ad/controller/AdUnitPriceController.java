@@ -18,7 +18,7 @@ public class AdUnitPriceController {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@RequestMapping(value = "/board/boardAdUnitPrice", method = RequestMethod.GET)
+	@RequestMapping(value = "/ad/AdUnitPrice", method = RequestMethod.GET)
 	public String boardAdUnitPrice(Model model) {
 		
 		List<AdUnitPriceVo> list = adUnitPriceService.getAdUnitPirceList();
