@@ -10,8 +10,9 @@
 		<id property="adUnitPricePrice" column="ad_unit_price_price"/>
 		<id property="adUnitPriceState" column="ad_unit_price_state"/>
 	</resultMap>
-	<select id="getAdUnitPriceList" parameterType="java.util.Map" resultMap="AdUnitPrice">
+	<select id="selectAdUnitPriceList" parameterType="java.util.Map" resultMap="AdUnitPrice">
 		SELECT ad_unit_price_code, 
+		ad_unit_price_code,
 		ad_unit_price_name, 
 		ad_unit_price_price, 
 		ad_unit_price_state

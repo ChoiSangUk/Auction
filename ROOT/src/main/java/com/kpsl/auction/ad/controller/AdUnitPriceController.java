@@ -18,13 +18,20 @@ public class AdUnitPriceController {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@RequestMapping(value = "/ad/adUnitPrice", method = RequestMethod.GET)
-	public String boardAdUnitPrice(Model model) {
+	@RequestMapping(value = "/ad/adminAdManagement", method = RequestMethod.GET)
+	public String adUnitPriceList(Model model) {
 		
 		List<AdUnitPriceVo> list = adUnitPriceService.getAdUnitPirceList();
 		
 		model.addAttribute("list",list);
-		log.info("boardAdUnitPrice 로그확인"+"<---" + model);
-		return "ad/ad_unit_price";
+		log.info("boardAdUnitPrice 확인");
+		return "/admin/ad/admin_ad_management";
+	}
+	
+	@RequestMapping(value = "/ad/adminAdManagement", method = RequestMethod.GET)
+	public String adUnitPriceModify(Model model) {
+		/** 업데이트폼에 들어갈 변수들 받아서 보내주는 기능 추가 예정*/
+		log.info("adUnitPriceModify 확인");
+		return "admin/ad/admin_adUnit_updateForm";
 	}
 }

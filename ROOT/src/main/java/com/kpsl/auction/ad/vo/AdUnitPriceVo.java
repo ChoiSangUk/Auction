@@ -34,10 +34,4 @@ public class AdUnitPriceVo {
 	public void setAdUnitPriceState(String adUnitPriceState) {
 		this.adUnitPriceState = adUnitPriceState;
 	}
-	
-	@Override
-	public String toString() {
-		return "AdUnitPriceVo [adUnitPirceCode=" + adUnitPirceCode + ", adUnitPirceName=" + adUnitPirceName
-				+ ", adUnitPricePrice=" + adUnitPricePrice + ", adUnitPriceState=" + adUnitPriceState + "]";
-	}
 }

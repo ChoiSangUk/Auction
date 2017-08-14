@@ -22,7 +22,7 @@ public class AdUnitPriceDaoImpl implements AdUnitPriceDao {
 	public List<AdUnitPriceVo> selectAdUnitPriceList() {
 		log.info("selectAdUnitPriceList 확인");
 		
-		return sqlSessionTemplate.selectList(NS+"getAdUnitPriceList");
+		return sqlSessionTemplate.selectList(NS+"selectAdUnitPriceList");
 	}
 
 }
