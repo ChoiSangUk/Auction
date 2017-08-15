@@ -56,10 +56,5 @@ public class BidVo {
 		this.bidDate = bidDate;
 	}
 
-	@Override
-	public String toString() {
-		return "BidVo [bidCode=" + bidCode + ", userBuyerId=" + userBuyerId + ", auctionGoodsCode=" + auctionGoodsCode
-				+ ", userSellerID=" + userSellerId + ", bidPrice=" + bidPrice + ", bidDate=" + bidDate + "]";
-	}
 	
 }

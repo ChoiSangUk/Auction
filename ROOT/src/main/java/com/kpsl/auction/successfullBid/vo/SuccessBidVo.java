@@ -56,11 +56,5 @@ public class SuccessBidVo {
 		this.userSellerId = userSellerId;
 	}
 
-	@Override
-	public String toString() {
-		return "SuccessBidVo [successfulBidCode=" + successfulBidCode + ", bidCode=" + bidCode + ", userBuyerId="
-				+ userBuyerId + ", successfulBidDate=" + successfulBidDate + ", auctionGoodsCode=" + auctionGoodsCode
-				+ ", userSellerId=" + userSellerId + "]";
-	}
 	
 }

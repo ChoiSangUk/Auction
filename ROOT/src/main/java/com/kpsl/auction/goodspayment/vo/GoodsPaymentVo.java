@@ -65,13 +65,5 @@ public class GoodsPaymentVo {
 	public void setGoodsPaymentRemarks(String goodsPaymentRemarks) {
 		this.goodsPaymentRemarks = goodsPaymentRemarks;
 	}
-
-	@Override
-	public String toString() {
-		return "GoodsPaymentVo [goodsPaymentCode=" + goodsPaymentCode + ", successfulBidCode=" + successfulBidCode
-				+ ", goodsPaymentDate=" + goodsPaymentDate + ", goodsPaymentPrice=" + goodsPaymentPrice
-				+ ", goodsPaymentFees=" + goodsPaymentFees + ", goodsPaymentState=" + goodsPaymentState
-				+ ", goodsPaymentRemarks=" + goodsPaymentRemarks + "]";
-	}
 	
 }
