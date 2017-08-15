@@ -74,12 +74,5 @@ public class BidDepositVo {
 		this.bidDepositDate = bidDepositDate;
 	}
 
-	@Override
-	public String toString() {
-		return "BidDepositVo [bidDepositCode=" + bidDepositCode + ", bidCode=" + bidCode + ", userBuyerId="
-				+ userBuyerId + ", auctionGoodsCode=" + auctionGoodsCode + ", userSellerId=" + userSellerId
-				+ ", bidDepositPrice=" + bidDepositPrice + ", bidDepositState=" + bidDepositState + ", bidDepositDate="
-				+ bidDepositDate + "]";
-	}
 
 }
