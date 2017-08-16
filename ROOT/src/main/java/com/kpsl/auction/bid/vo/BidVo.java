@@ -55,6 +55,5 @@ public class BidVo {
 	public void setBidDate(String bidDate) {
 		this.bidDate = bidDate;
 	}
-
 	
 }
