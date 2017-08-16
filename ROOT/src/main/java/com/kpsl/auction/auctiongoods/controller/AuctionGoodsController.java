@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
+@Controller
 public class AuctionGoodsController {
 	@Autowired
-	AuctionGoodsService auctionGoodsService;
+	private AuctionGoodsService auctionGoodsService;
 	
 	@RequestMapping(value = "/auctiongoods/selectauctiongoods", method = RequestMethod.GET)
 		public String selectAuctionGoods(Model model) {
