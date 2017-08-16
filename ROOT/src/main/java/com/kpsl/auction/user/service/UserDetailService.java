@@ -9,4 +9,5 @@ import com.kpsl.auction.user.vo.UserVo;
 public interface UserDetailService {
 	int setUserBuyer(UserDetailVo userDetailVo);
 	int setUser(UserVo userVo);
+	int setUserSeller(UserDetailVo userDetailVo);
 }

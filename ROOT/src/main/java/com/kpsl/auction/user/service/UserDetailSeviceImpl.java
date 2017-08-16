@@ -27,4 +27,12 @@ public class UserDetailSeviceImpl implements UserDetailService {
 		return userDetailDao.insertUser(userVo);
 	}
 
+
+
+	@Override
+	public int setUserSeller(UserDetailVo userDetailVo) {
+		// 판매자회원가입
+		return userDetailDao.insertUserSeller(userDetailVo);
+	}
+
 }

@@ -57,6 +57,40 @@
 		
 	
  	</insert>
+ 	<insert id="insertUserSeller" parameterType="com.kpsl.auction.user.vo.UserDetailVo">
+		INSERT INTO user_detail_tb(
+			user_id
+			, user_password
+			, user_level
+			, grade_code
+			, restrict_code
+			, user_name
+			, user_gender
+			, user_birth
+			, user_phone
+			, user_email
+			, user_postcode
+			, user_addr
+			, user_addrdetail
+			, user_totalcash)
+		VALUES (
+			#{userId}
+			, #{userPassword}
+			, '판매자'
+			, 'grade1'
+			, 'restrict1'
+			, #{userName}
+			, #{userGender}
+			, #{userBirth}
+			, #{userPhone}
+			, #{userEmail}
+			, #{userPostcode}
+			, #{userAddr}
+			, #{userAddrdetail}
+			, 0);
+		
+	
+ 	</insert>
  	<!-- 아이디를 삭제를해도 같은 아이디를 만들수없도록 하기위한 수단 -->
  	<insert id="insertUser" parameterType="com.kpsl.auction.user.vo.UserDetailVo">INSERT INTO user_tb(user_id) VALUES (#{userId})</insert>
  	

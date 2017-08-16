@@ -55,12 +55,19 @@ public class UserController {
 		log.info("회원가입약관");
 		return "/user/test";
 	}
-/*	@RequestMapping(value = "/user/userBuyerInsertForm", method = RequestMethod.GET)
-	public String buyerInsert(Locale locale, Model model) {
+	@RequestMapping(value = "/user/userSellerInsertForm", method = RequestMethod.GET)
+	public String sellerInsert(Locale locale, Model model) {
 		
-		log.info("구매자회원가입");
-		return "/user/user_buyer_insertForm";
-	}*/
+		log.info("판매자회원가입");
+		return "/user/user_seller_insertForm";
+	}
+	@RequestMapping(value = "/user/userSellerInsertForm", method = RequestMethod.POST)
+	public String sellerInsert(UserDetailVo userDetailVo,UserVo userVo) {
+		userDetailService.setUserSeller(userDetailVo);
+		userDetailService.setUser(userVo);
+		log.info("판매자회원가입액션");
+		return "redirect:/user/userLogin";
+	}
 	@RequestMapping(value = "/user/userBuyerInsertForm", method = RequestMethod.GET)
 	public String buyerInsert(Locale locale, Model model) {
 		
