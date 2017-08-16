@@ -9,4 +9,7 @@ public interface AdUnitPriceDao {
 	List<AdUnitPriceVo> selectAdUnitPriceList();
 	
 	AdUnitPriceVo selectAdUnitPriceByAdUnitPriceCode(String adUnitPriceCode);
+	
+	int updateAdUnitPrice(AdUnitPriceVo adUnitPriceVo); 
+	
 }

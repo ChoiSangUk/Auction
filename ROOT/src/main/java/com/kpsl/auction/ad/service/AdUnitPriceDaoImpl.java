@@ -32,5 +32,11 @@ public class AdUnitPriceDaoImpl implements AdUnitPriceDao {
 		
 		return sqlSessionTemplate.selectOne(NS+"selectAdUnitPriceByAdUnitPirceCode",adUnitPriceCode);
 	}
+
+	@Override
+	public int updateAdUnitPrice(AdUnitPriceVo adUnitPriceVo) {
+		log.info(adUnitPriceVo);
+		return sqlSessionTemplate.update(NS+"updateAdUnitPrice", adUnitPriceVo);
+	}
 	
 }

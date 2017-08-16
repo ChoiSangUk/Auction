@@ -22,4 +22,10 @@ public class AdUnitPriceServiceImpl implements AdUnitPriceService {
 
 		return adUnitPriceDao.selectAdUnitPriceByAdUnitPriceCode(adUnitPriceCode);
 	}
+
+	@Override
+	public int modifyAdUnitPrice(AdUnitPriceVo adUnitPriceVo) {
+
+		return adUnitPriceDao.updateAdUnitPrice(adUnitPriceVo);
+	}
 }

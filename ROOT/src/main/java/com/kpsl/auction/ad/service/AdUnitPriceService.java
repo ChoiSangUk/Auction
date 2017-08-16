@@ -14,4 +14,6 @@ public interface AdUnitPriceService {
 	/** 광고업데이트를 위한 인터페이스 */
 	AdUnitPriceVo getAdUnitPriceByAdUnitPriceCode(String adUnitPriceCode);
 	
+	int modifyAdUnitPrice(AdUnitPriceVo adUnitPriceVo);
+	
 }

@@ -38,4 +38,12 @@ public class AdUnitPriceController {
 		log.info(adUnitPriceVo);
 		return "/admin/ad/admin_adUnit_updateForm";
 	}
+	
+	@RequestMapping(value = "/ad/adminAdUnitUpdateForm", method = RequestMethod.POST)
+	public String adUnitPriceUpdate(AdUnitPriceVo adUnitPriceVo) {
+		
+		adUnitPriceService.modifyAdUnitPrice(adUnitPriceVo);
+		log.info("수정확인 확인");
+		return "redirect:/ad/adminAdManagement";
+	}
 }
