@@ -14,7 +14,7 @@ import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 public class AuctionGoodsController {
 	@Autowired
 	private AuctionGoodsService auctionGoodsService;
-	
+	// 테스트 용
 	@RequestMapping(value = "/auctiongoods/selectauctiongoods", method = RequestMethod.GET)
 		public String selectAuctionGoods(Model model) {
 		
@@ -23,5 +23,27 @@ public class AuctionGoodsController {
 		model.addAttribute("auctionGoods",auctionGoods);
 		 
 		return "/goods/auctiongoods";
+	}
+	
+	@RequestMapping(value = "/auctiongoods/auctiongoodslist", method = RequestMethod.GET)
+	public String auctionGoodsList(Model model) {
+	
+	AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods();
+	
+	model.addAttribute("auctionGoods",auctionGoods);
+	 
+	return "/auctiongoods/auctiongoods_list";
+	
+
+	}
+	
+	@RequestMapping(value = "/auctiongoods/ex", method = RequestMethod.GET)
+	public String ex(Model model) {
+	
+	AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods();
+	
+	model.addAttribute("auctionGoods",auctionGoods);
+	 
+	return "/ex_form";
 	}
 }
