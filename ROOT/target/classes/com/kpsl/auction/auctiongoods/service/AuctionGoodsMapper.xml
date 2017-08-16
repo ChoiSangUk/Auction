@@ -1,1 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper">
+  	<resultMap type="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo" id="AuctionGoods">
+		<id property="auctionGoodsCode" column="auction_goods_code"/>
+		<id property="userId" column="user_id"/>
+		<id property="smallCategoryCode" column="small_category_code"/>
+		<id property="middleCategoryCode" column="middle_category_code"/>
+		<id property="largeCategoryCode" column="large_category_code"/>
+		<id property="auctionGoodsName" column="auction_goods_name"/>
+		<id property="auctionGoodsSys" column="auction_goods_sys"/>
+		<id property="auctionGoodsBidSys" column="auction_goods_bid_sys"/>
+		<id property="auctionGoodsContents" column="auction_goods_contents"/>
+		<id property="auctionGoodsRegistDate" column="auction_goods_regist_date"/>
+		<id property="auctionGoodsTerm" column="auction_goods_term"/>
+		<id property="auctionGoodsStartDate" column="auction_goods_start_date"/>
+		<id property="auctionGoodsEndDate" column="auction_goods_end_date"/>
+		<id property="auctionGoodsStartPrice" column="auction_goods_start_price"/>
+		<id property="auctionGoodsBidUnit" column="auction_goods_bid_unit"/>
+		<id property="auctionGoodsInstantBuyState" column="auction_goods_instant_buy_state"/>
+		<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price"/>
+		<id property="auctionGoodsState" column="auction_goods_state"/>
+	</resultMap>
+	<select id="selectAuctionGoods" resultMap="AuctionGoods">
+		SELECT user_id 
+		FROM auction_goods_tb
+		WHERE auction_goods_code = 1 ;
+	</select>
+  </mapper>

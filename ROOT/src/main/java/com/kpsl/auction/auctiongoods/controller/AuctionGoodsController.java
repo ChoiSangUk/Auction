@@ -1,5 +1,25 @@
 package com.kpsl.auction.auctiongoods.controller;
 
-public class AuctionGoodsController {
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
+
+public class AuctionGoodsController {
+	@Autowired
+	AuctionGoodsService auctionGoodsService;
+	
+	@RequestMapping(value = "/auctiongoods/selectauctiongoods", method = RequestMethod.GET)
+		public String selectAuctionGoods(Model model) {
+		
+		AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods();
+		
+		model.addAttribute("auctionGoods",auctionGoods);
+		 
+		return "/goods/auctiongoods";
+	}
 }

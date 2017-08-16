@@ -45,6 +45,7 @@
             <list>
             	<!-- <value>classpath:com/kpsl/user/service/UserMapper.xml</value> -->
             	<value>classpath:com/kpsl/auction/ad/service/AdUnitPriceMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/auctiongoods/service/AuctionGoodsMapper.xml</value>
             	<!-- com.kpsl.auction.ad.service.AdUnitPriceMapper.xml -->
             </list>
         </property>

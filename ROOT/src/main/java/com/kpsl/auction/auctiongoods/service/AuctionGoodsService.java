@@ -1,5 +1,7 @@
 package com.kpsl.auction.auctiongoods.service;
 
-public interface AuctionGoodsService {
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
+public interface AuctionGoodsService {
+	public AuctionGoodsVo getAuctionGoods();
 }
