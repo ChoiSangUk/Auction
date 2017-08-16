@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.kpsl.auction.user.service.UserDao;
 import com.kpsl.auction.user.service.UserDetailDao;
 import com.kpsl.auction.user.service.UserDetailService;
+import com.kpsl.auction.user.service.UserService;
 import com.kpsl.auction.user.vo.UserDetailVo;
 import com.kpsl.auction.user.vo.UserVo;
 
@@ -21,6 +22,7 @@ public class UserController {
 	Logger log = Logger.getLogger(this.getClass());
 	@Autowired
     private UserDetailService userDetailService;
+	private UserService userService;
 
 	
 	
@@ -42,12 +44,25 @@ public class UserController {
 		log.info("판매자가입");
 		return "/user/user_sellerClause";
 	}
-	@RequestMapping(value = "/user/userLogin", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/user/userLogin", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 		
-		log.info("회원로그인");
+		log.info("회원로그인창");
 		return "/user/user_login";
-	}
+	}*/
+	@RequestMapping(value = "/user/userLogin", method = RequestMethod.POST)
+	public String login(Model model, UserDetailVo userDetailVo) {
+		UserDetailVo sessionUser = userService.getUserLogin(userDetailVo);
+		log.info("회원로그인");
+	        if(sessionUser==null){
+	        	log.info("회원로그인성공");
+	            return "/user/userLogin";
+	        }else{
+	        	log.info("회원로그인실패");
+	            model.addAttribute("UserId", sessionUser);
+	            return "redirect:/main";
+	        }
+	    }
 
 	@RequestMapping(value = "/user/test", method = RequestMethod.GET)
 	public String test(Locale locale, Model model) {

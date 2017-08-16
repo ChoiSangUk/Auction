@@ -7,7 +7,7 @@ import com.kpsl.auction.user.vo.UserDetailVo;
 import com.kpsl.auction.user.vo.UserVo;
 
 @Service
-public class UserDetailSeviceImpl implements UserDetailService {
+public class UserDetailServiceImpl implements UserDetailService {
 	@Autowired private UserDetailDao userDetailDao;
 
 	
