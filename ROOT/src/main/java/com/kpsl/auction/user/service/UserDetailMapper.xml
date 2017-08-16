@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kpsl.auction.user.service.UserDatailMapper">
+	<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
+		<result property="user_id" column="userId" />
+		<result property="user_password" column="userPassword" />
+		<result property="user_level" column="userLevel" />
+		<result property="grade_code" column="gradeCode" />
+		<result property="restrict_code" column="restrictCode" />
+		<result property="user_name" column="userName" />
+		<result property="user_gender" column="userGender" />
+		<result property="user_birth" column="userBirth" />
+		<result property="user_phone" column="userPhone" />
+		<result property="user_email" column="userEmail" />
+		<result property="user_postcode" column="userPostcode" />
+		<result property="user_addr" column="userAddr" />
+		<result property="user_addrdetail" column="userAddrdetail" />
+		<result property="user_totalcash" column="userTotalcash" />
+	</resultMap>
+	<resultMap type="com.kpsl.auction.user.vo.UserVo" id="user">
+		<result property="user_id" column="userId" />
+	</resultMap>
+
+	<insert id="insertUserBuyer" parameterType="com.kpsl.auction.user.vo.UserDetailVo">
+		INSERT INTO user_detail_tb(
+			user_id
+			, user_password
+			, user_level
+			, grade_code
+			, restrict_code
+			, user_name
+			, user_gender
+			, user_birth
+			, user_phone
+			, user_email
+			, user_postcode
+			, user_addr
+			, user_addrdetail
+			, user_totalcash)
+		VALUES (
+			#{userId}
+			, #{userPassword}
+			, '구매자'
+			, 'grade1'
+			, 'restrict1'
+			, #{userName}
+			, #{userGender}
+			, #{userBirth}
+			, #{userPhone}
+			, #{userEmail}
+			, #{userPostcode}
+			, #{userAddr}
+			, #{userAddrdetail}
+			, 0);
+			
+<!-- 		INSERT INTO 
+		user_tb (
+		user_id) 
+		VALUES (
+		#{userId}); -->
+ 	</insert>
+ 	
+</mapper>

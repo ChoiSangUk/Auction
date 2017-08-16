@@ -9,7 +9,7 @@ public class UserVo {
 	private String userId;
 
 	public String getUserId() {
-		System.out.println("UserVo:userId"+userId);
+		System.out.println("UserVo:userId == "+userId);
 		return userId;
 	}
 
@@ -17,9 +17,4 @@ public class UserVo {
 		this.userId = userId;
 	}
 
-	@Override
-	public String toString() {
-		return "UserVo [userId=" + userId + "]";
-	}
-	
 }

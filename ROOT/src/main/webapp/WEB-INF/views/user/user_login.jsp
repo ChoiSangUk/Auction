@@ -32,7 +32,7 @@
 		</div>
 	</div>
 	<div>
-	<a href="/user/userJoin">회원가입</a>
+	<a href="${pageContext.request.contextPath}/user/userJoin">회원가입</a>
 	<a href="#">아이디/비밀번호찾기</a>
 		<input type="submit" class="btn btn-default" value="로그인">
 	</div>

@@ -15,10 +15,11 @@ public class UserDetailVo {
 	private String userPhone;
 	private String userEmail;
 	private String userAddr;
+	private String userPostcode;
 	private String userAddrdetail;
 	private int userTotalcash;
 	public String getUserId() {
-		System.out.println("UserDetailVo: userId"+ userId);
+		System.out.println("UserDetailVo:userId == "+userId);
 		return userId;
 	}
 	public void setUserId(String userId) {
@@ -84,6 +85,12 @@ public class UserDetailVo {
 	public void setUserAddr(String userAddr) {
 		this.userAddr = userAddr;
 	}
+	public String getUserPostcode() {
+		return userPostcode;
+	}
+	public void setUserPostcode(String userPostcode) {
+		this.userPostcode = userPostcode;
+	}
 	public String getUserAddrdetail() {
 		return userAddrdetail;
 	}
@@ -96,14 +103,7 @@ public class UserDetailVo {
 	public void setUserTotalcash(int userTotalcash) {
 		this.userTotalcash = userTotalcash;
 	}
-	@Override
-	public String toString() {
-		return "UserDetailVo [userId=" + userId + ", userPassword=" + userPassword + ", userLevel=" + userLevel
-				+ ", gradeCode=" + gradeCode + ", restrictCode=" + restrictCode + ", userName=" + userName
-				+ ", userGender=" + userGender + ", userBirth=" + userBirth + ", userPhone=" + userPhone
-				+ ", userEmail=" + userEmail + ", userAddr=" + userAddr + ", userAddrdetail=" + userAddrdetail
-				+ ", userTotalcash=" + userTotalcash + "]";
-	}
-
+	
+	
 	
 }
