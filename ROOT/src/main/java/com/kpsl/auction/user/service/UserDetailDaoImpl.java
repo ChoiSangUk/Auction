@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kpsl.auction.user.vo.UserDetailVo;
+import com.kpsl.auction.user.vo.UserVo;
+
 
 @Repository
 public class UserDetailDaoImpl implements UserDetailDao {
@@ -18,5 +20,12 @@ public class UserDetailDaoImpl implements UserDetailDao {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.insert(NS+"insertUserBuyer", userDetailVo);
 	}
+
+	@Override
+	public int insertUser(UserVo userVo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert(NS+"insertUser", userVo);
+	}
+
 
 }

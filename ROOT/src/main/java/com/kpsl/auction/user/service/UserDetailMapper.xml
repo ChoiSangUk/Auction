@@ -54,12 +54,10 @@
 			, #{userAddr}
 			, #{userAddrdetail}
 			, 0);
-			
-<!-- 		INSERT INTO 
-		user_tb (
-		user_id) 
-		VALUES (
-		#{userId}); -->
+		
+	
  	</insert>
+ 	<!-- 아이디를 삭제를해도 같은 아이디를 만들수없도록 하기위한 수단 -->
+ 	<insert id="insertUser" parameterType="com.kpsl.auction.user.vo.UserDetailVo">INSERT INTO user_tb(user_id) VALUES (#{userId})</insert>
  	
 </mapper>
