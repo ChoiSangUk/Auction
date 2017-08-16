@@ -5,22 +5,22 @@ package com.kpsl.auction.ad.vo;
  ****************************/
 public class AdUnitPriceVo {
 	
-	private String adUnitPirceCode;
-	private String adUnitPirceName;
+	private String adUnitPriceCode;
+	private String adUnitPriceName;
 	private String adUnitPricePrice;
 	private String adUnitPriceState;
 	
-	public String getAdUnitPirceCode() {
-		return adUnitPirceCode;
+	public String getAdUnitPriceCode() {
+		return adUnitPriceCode;
 	}
-	public void setAdUnitPirceCode(String adUnitPirceCode) {
-		this.adUnitPirceCode = adUnitPirceCode;
+	public void setAdUnitPriceCode(String adUnitPriceCode) {
+		this.adUnitPriceCode = adUnitPriceCode;
 	}
-	public String getAdUnitPirceName() {
-		return adUnitPirceName;
+	public String getAdUnitPriceName() {
+		return adUnitPriceName;
 	}
-	public void setAdUnitPirceName(String adUnitPirceName) {
-		this.adUnitPirceName = adUnitPirceName;
+	public void setAdUnitPriceName(String adUnitPriceName) {
+		this.adUnitPriceName = adUnitPriceName;
 	}
 	public String getAdUnitPricePrice() {
 		return adUnitPricePrice;

@@ -18,11 +18,19 @@ public class AdUnitPriceDaoImpl implements AdUnitPriceDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	/** 광고단가 리스트를 조회하는 메서드 구현*/
+	/** 광고단가 리스트를 조회하는 메서드 */
 	public List<AdUnitPriceVo> selectAdUnitPriceList() {
 		log.info("selectAdUnitPriceList 확인");
 		
 		return sqlSessionTemplate.selectList(NS+"selectAdUnitPriceList");
 	}
 
+	@Override
+	/** 광고단가 업데이트를 위한 조회 */
+	public AdUnitPriceVo selectAdUnitPriceByAdUnitPriceCode(String adUnitPriceCode) {
+		log.info(adUnitPriceCode);
+		
+		return sqlSessionTemplate.selectOne(NS+"selectAdUnitPriceByAdUnitPirceCode",adUnitPriceCode);
+	}
+	
 }

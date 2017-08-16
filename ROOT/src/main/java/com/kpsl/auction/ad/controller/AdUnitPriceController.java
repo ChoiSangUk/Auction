@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kpsl.auction.ad.service.AdUnitPriceService;
 import com.kpsl.auction.ad.vo.AdUnitPriceVo;
@@ -29,9 +30,12 @@ public class AdUnitPriceController {
 	}
 	
 	@RequestMapping(value = "/ad/adminAdUnitUpdateForm", method = RequestMethod.GET)
-	public String adUnitPriceModify(Model model) {
-		/** 업데이트폼에 들어갈 변수들 받아서 보내주는 기능 추가 예정*/
-		log.info("adUnitPriceModify 확인");
+	public String adUnitPriceModify(Model model
+									, @RequestParam(value="adUnitPriceCode", required=true) String adUnitPriceCode) {
+		AdUnitPriceVo adUnitPriceVo = adUnitPriceService.getAdUnitPriceByAdUnitPriceCode(adUnitPriceCode);
+		model.addAttribute("ad", adUnitPriceVo);
+		log.info(adUnitPriceCode);
+		log.info(adUnitPriceVo);
 		return "/admin/ad/admin_adUnit_updateForm";
 	}
 }

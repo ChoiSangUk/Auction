@@ -17,4 +17,9 @@ public class AdUnitPriceServiceImpl implements AdUnitPriceService {
 		return adUnitPriceDao.selectAdUnitPriceList();
 	}
 
+	@Override
+	public AdUnitPriceVo getAdUnitPriceByAdUnitPriceCode(String adUnitPriceCode) {
+
+		return adUnitPriceDao.selectAdUnitPriceByAdUnitPriceCode(adUnitPriceCode);
+	}
 }

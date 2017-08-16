@@ -9,9 +9,9 @@
 			<h1>광고단가 수정 화면</h1>
 	    	<form class="form-horizontal" action="${pageContext.request.contextPath}" method="post">
 		   		<div class="form-group">
-		   			<label class="col-sm-1 control-label">속성명</label>
+		   			<label class="col-sm-1 control-label">광고단가코드</label>
 		   			<div class="col-sm-3">
-					<input  class="form-control" type="text" name="" value = "" readonly> <!-- 회원코드는 핸드폰뒷자리 중복일경우 +1 -->
+					<input  class="form-control" type="text" name="" value = "${ad.adUnitPriceCode}" readonly> <!-- 회원코드는 핸드폰뒷자리 중복일경우 +1 -->
 				</div>
 				</div>
 				<div class="form-group">
@@ -26,7 +26,7 @@
 					<input class="btn btn-default" type ="submit" value = "등록">
 					<input class="btn btn-default" type ="reset" value = "다시쓰기">
 				</div>
-			</form>    	
+			</form>
 		</div>
 	</div>
 </div>
