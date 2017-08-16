@@ -8,9 +8,11 @@ import com.kpsl.auction.user.vo.UserDetailVo;
 public class UserDetailSeviceImpl implements UserDetailService {
 	@Autowired private UserDetailDao userDetailDao;
 
+	
+	
 	@Override
 	public int setUserBuyer(UserDetailVo userDetailVo) {
-		// TODO Auto-generated method stub
+		// 구매자회원가입
 		return userDetailDao.insertUserBuyer(userDetailVo);
 	}
 
