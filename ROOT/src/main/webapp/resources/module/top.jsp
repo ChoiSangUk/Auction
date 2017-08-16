@@ -44,7 +44,14 @@
 		</div>
 		<div class="collapse navbar-collapse" id="mainNavbar">
 			<ul class="nav navMenu navbar-nav navbar-left">
-				<li><a href="ss">온라인 경매</a></li>
+				<li class="dropdown dropdown:hover ">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="ss">온라인 경매</a>
+				<ul class="dropdown-menu container depth2 down-style2">
+				<li><p>a</p><p>b</p><p>c</p></li>
+				 
+				</ul>
+				 
+				</li>
 				<li><a href="dd">물품등록</a></li>
 				<li><a href="aa">고객센터</a></li>
 			</ul>
