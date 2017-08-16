@@ -9,12 +9,10 @@
 		<h3 class="visible-lg visible-md visible-sm">전체</h3>
 		<ul class="row list-unstyled">
 			<li class="col-sm-4 col-md-3 active"  ><a href="#" type="text-decoration:none" >전체보기</a></li>
-			<c:forEach var="largeCategory" items="${largeCategoryList}" ></c:forEach> <!-- 미구현 -->
-			<li class="col-sm-4 col-md-3 "><a href="#">추천경매</a></li>
-			<li class="col-sm-4 col-md-3 "><a href="#">인기경매</a></li>
-			<li class="col-sm-4 col-md-3 "><a href="#">오늘마감</a></li>
-			<li class="col-sm-4 col-md-3 "><a href="#">미술품</a></li>
-			<li class="col-sm-4 col-md-3 "><a href="#">근현대생활사자료</a></li>
+			<c:forEach var="largeCategory" items="${largeCategory}" >
+			<li class="col-sm-4 col-md-3 "><a href="#">${largeCategory.largeCategoryName }</a></li>
+			</c:forEach> 
+			 
 			
 
 		</ul>

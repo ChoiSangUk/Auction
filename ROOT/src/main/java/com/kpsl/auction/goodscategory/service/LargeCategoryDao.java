@@ -1,5 +1,10 @@
 package com.kpsl.auction.goodscategory.service;
 
-public interface LargeCategoryDao {
+import java.util.List;
 
+import com.kpsl.auction.goodscategory.vo.LargeCategoryVo;
+
+public interface LargeCategoryDao {
+	public List<LargeCategoryVo> selectAllLargeCategory();
+	 
 }
