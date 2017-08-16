@@ -27,7 +27,7 @@
 						<td>${ad.adUnitPricePrice}</td>
 						<td>${ad.adUnitPriceState}</td>
 						<td>
-						<a href="${pageContext.request.contextPath}/admin/ad/adminAdUnitUpdateForm?send_cd=${ad.adUnitPirceCode}"><button>수정</button></a>
+						<a href="${pageContext.request.contextPath}/ad/adminAdUnitUpdateForm?send_cd=${ad.adUnitPirceCode}"><button>수정</button></a>
 						</td>
 					</tr>			
 				</tbody>		

@@ -32,6 +32,6 @@ public class AdUnitPriceController {
 	public String adUnitPriceModify(Model model) {
 		/** 업데이트폼에 들어갈 변수들 받아서 보내주는 기능 추가 예정*/
 		log.info("adUnitPriceModify 확인");
-		return "admin/ad/admin_adUnit_updateForm";
+		return "/admin/ad/admin_adUnit_updateForm";
 	}
 }
