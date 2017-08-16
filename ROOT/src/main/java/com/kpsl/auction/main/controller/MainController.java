@@ -37,4 +37,11 @@ public class MainController {
 		log.info("adminMain 확인");
 		return "/admin/admin_main";
 	}
+
+	@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.GET)
+	public String myPageMain() {
+		
+		log.info("myPageMain 확인");
+		return "/mypage/mypage_main";
+	}
 }

@@ -26,7 +26,7 @@
 				<li><a href="#">Auction 설명서</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/userJoin">회원가입 </a></li>
-				<li><a href="#">마이페이지</a></li>
+				<li><a href="${pageContext.request.contextPath}/mypage/mypageMain">마이페이지</a></li>
 			</ul>
 		</div>
 	</div>
@@ -43,15 +43,16 @@
 			<a class="navbar-brand" href="${pageContext.request.contextPath}/main">Auction</a>
 		</div>
 		<div class="collapse navbar-collapse" id="mainNavbar">
-			<ul class="nav navMenu navbar-nav navbar-left">
+			<ul class="nav navMenu navbar-nav navbar-left " >
 				<li class="dropdown dropdown:hover ">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="ss">온라인 경매</a>
-				<ul class="dropdown-menu container depth2 down-style2">
-				<li><p>a</p><p>b</p><p>c</p></li>
-				 
+				<a class="dropdown-toggle" data-toggle="dropdown/button" href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist">온라인 경매</a>
+				<ul class="dropdown-menu  depth2 down-style2 ">
+					<li>
+						<a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist">동양미술</a>
+					
+					</li>
 				</ul>
 				 
-				</li>
 				<li><a href="dd">물품등록</a></li>
 				<li><a href="aa">고객센터</a></li>
 			</ul>
