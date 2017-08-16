@@ -26,7 +26,7 @@
 				<li><a href="#">Auction 설명서</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/userJoin">회원가입 </a></li>
-				<li><a href="#">마이페이지</a></li>
+				<li><a href="${pageContext.request.contextPath}/mypage/mypageMain">마이페이지</a></li>
 			</ul>
 		</div>
 	</div>
