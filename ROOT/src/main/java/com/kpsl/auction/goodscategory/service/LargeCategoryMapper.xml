@@ -1,1 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.kpsl.auction.goodscategory.service.LargeCategoryMapper">
+  	<resultMap type="com.kpsl.auction.goodscategory.vo.LargeCategoryVo" id="LargeCategory">
+		<id property="largeCategoryCode" column="large_category_code"/>
+		<id property="largeCategoryName" column="large_category_name"/>
+		
+	</resultMap>
+	<!-- 대분류 카테고리를 "뽑아내기 위한 셀렉트 쿼리  -->
+	<select id="selectAllLargeCategory" resultMap="LargeCategory">
+		SELECT
+		large_category_code, 
+		large_category_name 
+		FROM large_category_tb;
+	</select>
+  </mapper>

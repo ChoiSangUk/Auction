@@ -22,7 +22,7 @@ public class AuctionGoodsController {
 		
 		model.addAttribute("auctionGoods",auctionGoods);
 		 
-		return "/goods/auctiongoods";
+		return "/auctiongoods/auctiongoods";
 	}
 	
 	@RequestMapping(value = "/auctiongoods/auctiongoodslist", method = RequestMethod.GET)
@@ -33,8 +33,6 @@ public class AuctionGoodsController {
 	model.addAttribute("auctionGoods",auctionGoods);
 	 
 	return "/auctiongoods/auctiongoods_list";
-	
-
 	}
 	
 	@RequestMapping(value = "/auctiongoods/ex", method = RequestMethod.GET)

@@ -1,1 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.kpsl.auction.bid.service.BidMapper">
+  	<resultMap type="com.kpsl.aution.bid.vo.BidVo" id="Bid">
+  		<id property="bidCode" column="bid_code"></id>
+  		<id property="userBuyerId" column="user_buyer_id"></id>
+		<id property="auctionGoodsCode" column="auction_goods_code"></id>
+   		<id property="userSellerId" column="user_seller_id"></id>
+  		<id property="bidPrice" column="bid_price"></id>
+  		<id property="bidDate" column="bid_date"></id>
+	</resultMap>
+	<select id="selectBidList" parameterType="java.util.Map" resultMap="Bid">
+		SELECT user_buyer_id,
+		  auction_goods_code,
+		  bid_price,
+		  bid_date
+		FROM bid_td;
+  	</select>
+  </mapper>
