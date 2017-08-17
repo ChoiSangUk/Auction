@@ -27,8 +27,6 @@
       <c:forEach var = "bid" items="${list}">
       <td>${bid.userBuyerId} </td>
       <td>${bid.bidPrice} </td>
-      <td>${bid.bidDate} </td>
-      
       </c:forEach>
     </tbody>
   </table>
