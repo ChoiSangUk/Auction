@@ -22,20 +22,6 @@
 		WHERE large_category_code=#{largeCategoryCode} ;
 	</select>
 	
-	<!-- 선택된 대분류 카테고리의 중분류 카테고리(값을 코드로 넘겨주었기 때문에 쓸모가 없어짐 ..) -->
-	<select id="selectMiddleCategoryFromLargeCategory" parameterType="String"
-		resultMap="MiddleCategory">
-		SELECT
-		middle_category_code,
-		large_category_code,
-		middle_category_name
-		FROM middle_category_tb
-		WHERE middle_category_state = 'o'
-		AND middle_category_tb.large_category_code =
-		( 
-		SELECT large_category_code
-		FROM large_category_tb
-		WHERE large_category_name = #{largeCategoryName}
-		);
-	</select>
+	
+	
 </mapper>
