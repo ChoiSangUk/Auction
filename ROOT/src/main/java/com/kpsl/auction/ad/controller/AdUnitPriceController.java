@@ -33,7 +33,7 @@ public class AdUnitPriceController {
 	// 광고단가 수정폼 요청
 	@RequestMapping(value = "/ad/adminAdUnitUpdateForm", method = RequestMethod.GET)
 	public String adUnitPriceModify(Model model
-											, @RequestParam(value="adUnitPriceCode", required=true) String adUnitPriceCode) {
+									, @RequestParam(value="adUnitPriceCode", required=true) String adUnitPriceCode) {
 		AdUnitPriceVo adUnitPriceVo = adUnitPriceService.getAdUnitPriceByAdUnitPriceCode(adUnitPriceCode);
 		model.addAttribute("ad", adUnitPriceVo);
 		log.info(adUnitPriceCode);

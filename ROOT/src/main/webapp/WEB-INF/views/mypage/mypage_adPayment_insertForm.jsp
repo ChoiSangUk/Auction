@@ -2,6 +2,19 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8"/>
+<!-- summernote css/js 추가 css는 적용이 깨져서 cdn주소로 대체 -->
+<link href="${pageContext.request.contextPath}/resources/css/summernote.css" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/summernote.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/js/summernote.js"></script>
+<!-- summernote-ko-KR 한글 추가 -->
+<script src="${pageContext.request.contextPath}/resources/font/summernote-ko-KR.js"></script>
+<style>
+.note-editor {	
+	width : 80%;
+	margin: auto;
+}
+</style>
+
 
 <div class="container-fluid text-center">
 	<div class="row content">
@@ -23,11 +36,13 @@
 				<div class="form-group">
      				<label class="col-sm-2 control-label">광고명</label>
      				<div class="col-sm-3">
-     				<c:forEach var="ad" items="${list}">
-					<select class="form-control" name="${ad.adUnitPriceCode}" id="sk" onchange="">
-						<option value="{ad.adUnitPriceName}">{ad.adUnitPriceName}</option>
-					</select>
+     				
+					<select class="form-control" name="adUnitPriceCode" id="sk" onchange="">
+					<c:forEach var="ad" items="${list}">
+						<option value="${ad.adUnitPriceCode}">${ad.adUnitPriceName}</option>
 					</c:forEach>
+					</select>
+					
 					</div>
 				</div>
 				
@@ -51,8 +66,10 @@
 					</div>
 				</div>
 				<div class="form-group">
-			   		<label class="col-sm-2 control-label"></label>&nbsp;&nbsp;&nbsp;
-					<input class="btn btn-default" type ="submit" value = "신청">
+				<textarea class="form-controll" id="summernote" name="img"></textarea>
+				</div>
+				<div class="form-group submit text-center">
+					<input class="btn btn-info" type ="submit" value = "신청">
 					<input class="btn btn-default" type ="reset" value = "다시쓰기">
 				</div>
 			</form>    	
@@ -60,4 +77,13 @@
 	</div>
 </div>
 
+<script>
+// summernote 불러오기 및 설정
+$(document).ready(function() {
+	$('#summernote').summernote({
+		height: 500,
+		lang: 'ko-KR'
+	});
+});
+</script>
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8"/>
