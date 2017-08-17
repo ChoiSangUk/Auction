@@ -10,7 +10,7 @@ import com.kpsl.auction.user.vo.UserVo;
 
 @Repository
 public class UserDetailDaoImpl implements UserDetailDao {
-	final String NS = "com.kpsl.auction.user.service.UserDatailMapper."; 
+	final String NS = "com.kpsl.auction.user.service.UserDetailMapper."; 
 	
 	@Autowired
     private SqlSessionTemplate sqlSessionTemplate;

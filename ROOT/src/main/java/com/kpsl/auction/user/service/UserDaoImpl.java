@@ -10,7 +10,7 @@ import com.kpsl.auction.user.vo.UserDetailVo;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-	final String NS ="com.kpsl.auction.user.service.UserDetailMapper.";
+	final String NS ="com.kpsl.auction.user.service.UserDetailMapper";
 	Logger log = Logger.getLogger(this.getClass());
 	
 	@Autowired 

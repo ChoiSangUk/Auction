@@ -59,16 +59,9 @@ public class UserController {
 		log.debug(userId+"<--- 로그인 아이디");
 		log.debug(userPassword+"<--- 로그인 비밀번호");
 		UserDetailVo userDetailVo = userService.getUserLogin(userId);
-		
+		model.addAttribute(userDetailVo);
 		log.debug(userDetailVo.getUserId());
-	        /*if(sessionUser==null){
-	        	log.info("회원로그인성공");
-	            return "/user/userLogin";
-	        }else{
-	        	log.info("회원로그인실패");
-	            model.addAttribute("UserId", sessionUser);
-	            return "redirect:/main";
-	        }*/
+	        
 			return "redirect:/main";
 	    }
 

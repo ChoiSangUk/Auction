@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kpsl.auction.user.service.UserDatailMapper">
+<mapper namespace="com.kpsl.auction.user.service.UserDetailMapper">
 	<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
 		<result property="user_id" column="userId" />
 		<result property="user_password" column="userPassword" />
