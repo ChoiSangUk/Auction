@@ -53,7 +53,7 @@
 					</li>
 				</ul>
 				 
-				<li><a href="dd">물품등록</a></li>
+				<li><a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert">물품등록</a></li>
 				<li><a href="aa">고객센터</a></li>
 			</ul>
 		</div>
