@@ -30,7 +30,7 @@ public class AdApplyController {
 		
 		model.addAttribute("list",list);
 		log.info("adApplyAdd 확인");
-		return "/mypage/mypage_adPayment_insertForm";
+		return "/mypage/mypage_adApply_insertForm";
 	}
 	// 광고 (액션) 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)
