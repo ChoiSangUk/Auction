@@ -38,6 +38,10 @@
 			<p>경매를 통하여 모든 물품을 판매해주고 거래의 신뢰성을 높이기 위해<br>
 			보증금을 두어 판매와 구매의 신뢰성을 높이는 목적으로 진행된 프로젝트입니다.</p>
 			<br>
+			<h1>github 주소</h1>
+			<a href="https://github.com/pjh3752/Auction/tree/AuctionBranch">
+			https://github.com/pjh3752/Auction/tree/AuctionBranch</a>
+			<br>
 			<h1>개발환경</h1>
 			<h3>OS</h3>
 			<p>- window7</p>
