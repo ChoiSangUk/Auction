@@ -10,17 +10,17 @@ import com.kpsl.auction.user.vo.UserDetailVo;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-	final String NS ="com.kpsl.auction.user.service.UserDetailMapper";
+	final String NS ="com.kpsl.auction.user.service.UserDetailMapper.";
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Autowired 
+	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
 	public UserDetailVo selectUserLogin(String userId) {
 		log.info("selectUserLogin 확인");
 		log.info(userId);
-		
+		log.info(sqlSessionTemplate.selectOne(NS+"selectUserLogin", userId));
 		return sqlSessionTemplate.selectOne(NS+"selectUserLogin", userId);
 	}
 }

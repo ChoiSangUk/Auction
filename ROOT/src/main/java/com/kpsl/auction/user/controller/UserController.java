@@ -21,11 +21,8 @@ import com.kpsl.auction.user.vo.UserVo;
 @Controller
 public class UserController {
 	Logger log = Logger.getLogger(this.getClass());
-	@Autowired
-    private UserDetailService userDetailService;
-	private UserService userService;
-
-	
+	@Autowired private UserService userService;
+	@Autowired private UserDetailService userDetailService;
 	
 	@RequestMapping(value = "/user/userJoin", method = RequestMethod.GET)
 	public String join(Locale locale, Model model) {
@@ -58,12 +55,14 @@ public class UserController {
 		//UserDetailVo sessionUser = userService.getUserLogin(userDetailVo);
 		log.debug(userId+"<--- 로그인 아이디");
 		log.debug(userPassword+"<--- 로그인 비밀번호");
+		
 		UserDetailVo userDetailVo = userService.getUserLogin(userId);
-		model.addAttribute(userDetailVo);
-		log.debug(userDetailVo.getUserId());
-	        
-			return "redirect:/main";
-	    }
+		model.addAttribute("user",userDetailVo);
+		log.info(userId);
+		log.info(userDetailVo.getUserId());
+		log.info(userDetailVo.getUserPassword());
+		return "redirect:/main";
+	}
 
 	@RequestMapping(value = "/user/test", method = RequestMethod.GET)
 	public String test(Locale locale, Model model) {

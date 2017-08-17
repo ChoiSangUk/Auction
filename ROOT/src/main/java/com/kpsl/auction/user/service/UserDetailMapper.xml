@@ -4,25 +4,45 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kpsl.auction.user.service.UserDetailMapper">
 	<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
-		<result property="user_id" column="userId" />
-		<result property="user_password" column="userPassword" />
-		<result property="user_level" column="userLevel" />
-		<result property="grade_code" column="gradeCode" />
-		<result property="restrict_code" column="restrictCode" />
-		<result property="user_name" column="userName" />
-		<result property="user_gender" column="userGender" />
-		<result property="user_birth" column="userBirth" />
-		<result property="user_phone" column="userPhone" />
-		<result property="user_email" column="userEmail" />
-		<result property="user_postcode" column="userPostcode" />
-		<result property="user_addr" column="userAddr" />
-		<result property="user_addrdetail" column="userAddrdetail" />
-		<result property="user_totalcash" column="userTotalcash" />
+		<id property="userId" column="user_id" />
+		<id property="userPassword" column="user_password" />
+		<id property="userLevel" column="user_level" />
+		<id property="gradeCode" column="grade_code" />
+		<id property="restrictCode" column="restrict_code" />
+		<id property="userName" column="user_name" />
+		<id property="userGender" column="user_gender" />
+		<id property="userBirth" column="user_birth" />
+		<id property="userPhone" column="user_phone" />
+		<id property="userEmail" column="user_email" />
+		<id property="userPostcode" column="user_postcode" />
+		<id property="userAddr" column="user_addr" />
+		<id property="userAddrdetail" column="user_addrdetail" />
+		<id property="userTotalcash" column="user_totalcash" />
 	</resultMap>
 	<resultMap type="com.kpsl.auction.user.vo.UserVo" id="user">
-		<result property="user_id" column="userId" />
+		<id property="user_id" column="userId" />
 	</resultMap>
-
+	
+	<!-- 로그인 -->
+ 	<select id="selectUserLogin" parameterType="String" resultMap="userDetail">
+ 		SELECT user_id
+ 		, user_password 
+ 		, user_level
+ 		, grade_code
+ 		, restrict_code
+ 		, user_name
+ 		, user_gender
+ 		, user_birth
+ 		, user_phone
+ 		, user_email
+ 		, user_postcode
+ 		, user_addr
+ 		, user_addrdetail
+ 		, user_totalcash
+ 		FROM user_detail_tb 
+ 		WHERE user_id=#{userId}   
+ 	</select>
+ 	
 	<insert id="insertUserBuyer" parameterType="com.kpsl.auction.user.vo.UserDetailVo">
 		INSERT INTO user_detail_tb(
 			user_id
@@ -91,19 +111,4 @@
 	</insert>
  	<!-- 아이디를 삭제를해도 같은 아이디를 만들수없도록 하기위한 수단 -->
  	<insert id="insertUser" parameterType="com.kpsl.auction.user.vo.UserDetailVo">INSERT INTO user_tb(user_id) VALUES (#{userId})</insert>
- 	<!-- 로그인 -->
- 	<select id="selectUserLogin" parameterType="String" resultMap="userDetail">
- 		SELECT user_id
- 		, user_password
- 		, user_level, grade_code
- 		, restrict_code, user_name
- 		, user_gender, user_birth
- 		, user_phone, user_email
- 		, user_postcode, user_addr
- 		, user_addrdetail
- 		, user_totalcash
-		FROM user_detail_tb
-        WHERE user_id=#{userId}
- 	</select>
- 	
 </mapper>

@@ -18,8 +18,8 @@ public class UserDetailVo {
 	private String userPostcode;
 	private String userAddrdetail;
 	private int userTotalcash;
+	
 	public String getUserId() {
-		System.out.println("UserDetailVo:userId == "+userId);
 		return userId;
 	}
 	public void setUserId(String userId) {
@@ -103,7 +103,4 @@ public class UserDetailVo {
 	public void setUserTotalcash(int userTotalcash) {
 		this.userTotalcash = userTotalcash;
 	}
-	
-	
-	
 }

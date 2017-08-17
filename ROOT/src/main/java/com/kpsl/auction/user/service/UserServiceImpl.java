@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDetailVo getUserLogin(String userId) {
 		log.info(userId);
-		
+		log.info(userDao.selectUserLogin(userId)+"<----ddd");
 		return userDao.selectUserLogin(userId);
 	}
 

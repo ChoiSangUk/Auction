@@ -37,7 +37,7 @@ public class AdUnitPriceController {
 		AdUnitPriceVo adUnitPriceVo = adUnitPriceService.getAdUnitPriceByAdUnitPriceCode(adUnitPriceCode);
 		model.addAttribute("ad", adUnitPriceVo);
 		log.info(adUnitPriceCode);
-		log.info(adUnitPriceVo);
+		log.info(adUnitPriceVo.getAdUnitPriceCode());
 		return "/admin/ad/admin_adUnit_updateForm";
 	}
 	
