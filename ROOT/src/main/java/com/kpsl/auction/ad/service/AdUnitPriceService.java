@@ -9,11 +9,11 @@ import com.kpsl.auction.ad.vo.AdUnitPriceVo;
 @Transactional
 public interface AdUnitPriceService {
 	
-	/** 광고단가리스트 인터페이스 */
+	// 광고단가리스트 인터페이스 
 	List<AdUnitPriceVo> getAdUnitPirceList();
-	/** 광고업데이트를 위한 인터페이스 */
+	// 광고단가 업데이트를 위한 조회 인터페이스 
 	AdUnitPriceVo getAdUnitPriceByAdUnitPriceCode(String adUnitPriceCode);
-	
+	// 광고단가 업데이트를 위한 업데이트 인터페이스
 	int modifyAdUnitPrice(AdUnitPriceVo adUnitPriceVo);
 	
 }

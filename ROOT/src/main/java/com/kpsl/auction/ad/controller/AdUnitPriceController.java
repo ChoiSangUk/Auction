@@ -19,6 +19,7 @@ public class AdUnitPriceController {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
+	// 광고 단가 리스트 요청
 	@RequestMapping(value = "/ad/adminAdManagement", method = RequestMethod.GET)
 	public String adUnitPriceList(Model model) {
 		
@@ -29,9 +30,10 @@ public class AdUnitPriceController {
 		return "/admin/ad/admin_ad_management";
 	}
 	
+	// 광고단가 수정폼 요청
 	@RequestMapping(value = "/ad/adminAdUnitUpdateForm", method = RequestMethod.GET)
 	public String adUnitPriceModify(Model model
-									, @RequestParam(value="adUnitPriceCode", required=true) String adUnitPriceCode) {
+											, @RequestParam(value="adUnitPriceCode", required=true) String adUnitPriceCode) {
 		AdUnitPriceVo adUnitPriceVo = adUnitPriceService.getAdUnitPriceByAdUnitPriceCode(adUnitPriceCode);
 		model.addAttribute("ad", adUnitPriceVo);
 		log.info(adUnitPriceCode);
@@ -39,8 +41,9 @@ public class AdUnitPriceController {
 		return "/admin/ad/admin_adUnit_updateForm";
 	}
 	
+	// 광고단가 수정(액션) 요청
 	@RequestMapping(value = "/ad/adminAdUnitUpdateForm", method = RequestMethod.POST)
-	public String adUnitPriceUpdate(AdUnitPriceVo adUnitPriceVo) {
+	public String adUnitPriceModify(AdUnitPriceVo adUnitPriceVo) {
 		
 		adUnitPriceService.modifyAdUnitPrice(adUnitPriceVo);
 		log.info("수정확인 확인");

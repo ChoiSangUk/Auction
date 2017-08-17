@@ -10,7 +10,7 @@
 		<id property="adUnitPricePrice" column="ad_unit_price_price"/>
 		<id property="adUnitPriceState" column="ad_unit_price_state"/>
 	</resultMap>
-	
+	<!-- 전체 광고단가 SELECT -->
 	<select id="selectAdUnitPriceList" parameterType="java.util.Map" resultMap="AdUnitPrice">
 		SELECT ad_unit_price_code, 
 		ad_unit_price_code,
@@ -20,6 +20,7 @@
 		FROM ad_unit_price_tb
 	</select>
 	
+	<!-- 광고단가 수정을 위한 SELECT -->
 	<select id="selectAdUnitPriceByAdUnitPirceCode" parameterType="String" resultMap="AdUnitPrice">
 		SELECT ad_unit_price_code, 
 		ad_unit_price_code,
@@ -30,6 +31,7 @@
 		WHERE ad_unit_price_code=#{adUnitPirceCode}
 	</select>
 	
+	<!-- 광고단가 수정을 위한 UPDATE -->
 	<update id="updateAdUnitPrice" parameterType="com.kpsl.auction.ad.vo.AdUnitPriceVo">
 		UPDATE ad_unit_price_tb
 			SET
