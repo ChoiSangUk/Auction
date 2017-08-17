@@ -82,7 +82,14 @@
 $(document).ready(function() {
 	$('#summernote').summernote({
 		height: 500,
-		lang: 'ko-KR'
+		lang: 'ko-KR',
+		callbacks: {
+		onImageUpload: function(files, editor, welEditable) {
+			for (var i = files.length - 1; i >= 0; i--) {
+				sendFile(files[i], this);
+				}
+			}
+		}
 	});
 });
 </script>
