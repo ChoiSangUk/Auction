@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kpsl.auction.user.service.UserDao;
 import com.kpsl.auction.user.service.UserDetailDao;
@@ -44,24 +45,31 @@ public class UserController {
 		log.info("판매자가입");
 		return "/user/user_sellerClause";
 	}
-/*	@RequestMapping(value = "/user/userLogin", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/userLogin", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 		
 		log.info("회원로그인창");
 		return "/user/user_login";
-	}*/
+	}
 	@RequestMapping(value = "/user/userLogin", method = RequestMethod.POST)
-	public String login(Model model, UserDetailVo userDetailVo) {
-		UserDetailVo sessionUser = userService.getUserLogin(userDetailVo);
-		log.info("회원로그인");
-	        if(sessionUser==null){
+	public String login(Model model
+						, @RequestParam(value="userId", required=true) String userId
+						, @RequestParam(value="userPassword", required=true) String userPassword){
+		//UserDetailVo sessionUser = userService.getUserLogin(userDetailVo);
+		log.debug(userId+"<--- 로그인 아이디");
+		log.debug(userPassword+"<--- 로그인 비밀번호");
+		UserDetailVo userDetailVo = userService.getUserLogin(userId);
+		
+		log.debug(userDetailVo.getUserId());
+	        /*if(sessionUser==null){
 	        	log.info("회원로그인성공");
 	            return "/user/userLogin";
 	        }else{
 	        	log.info("회원로그인실패");
 	            model.addAttribute("UserId", sessionUser);
 	            return "redirect:/main";
-	        }
+	        }*/
+			return "redirect:/main";
 	    }
 
 	@RequestMapping(value = "/user/test", method = RequestMethod.GET)
@@ -96,5 +104,6 @@ public class UserController {
 		log.info("구매자회원가입액션");
 		return "redirect:/user/userLogin";
 	}
+	
 
 }
