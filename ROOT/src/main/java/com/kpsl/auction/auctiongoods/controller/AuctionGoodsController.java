@@ -25,23 +25,14 @@ public class AuctionGoodsController {
 	private AuctionGoodsService auctionGoodsService;
 	@Autowired
 	private GoodsCategoryService goodsCategoryService;  
-	// 테스트 용
-	/*@RequestMapping(value = "/auctiongoods/selectauctiongoods", method = RequestMethod.GET)
-		public String selectAuctionGoods(Model model) {
-		
-		AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods();
-		
-		model.addAttribute("auctionGoods",auctionGoods);
-		 
-		return "/auctiongoods/auctiongoods";
-	}*/
+
 	
 	@RequestMapping(value = "/auctiongoods/auctiongoodslist", method = RequestMethod.GET)
 	public String auctionGoodsList(Model model) {
 	
-	AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods();
+	 
 	List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
-	model.addAttribute("auctionGoods",auctionGoods);
+	 
 	model.addAttribute("largeCategory", largeCategory);
 	 
 	return "/auctiongoods/auctiongoods_list";
@@ -52,30 +43,38 @@ public class AuctionGoodsController {
 	public String auctionGoodsListMiddle(Model model,
 			@RequestParam(value="largeCategoryCode", required=true) String largeCategoryCode ) {
 	
-	AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods();
+	 
 	List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
 	List<MiddleCategoryVo> middleCategoryList = goodsCategoryService.getMiddleCategoryList(largeCategoryCode);
-	model.addAttribute("auctionGoods",auctionGoods);
+	 
 	model.addAttribute("largeCategory", largeCategory);
 	model.addAttribute("middleCategoryList", middleCategoryList);
 	 
 	return "/auctiongoods/auctiongoods_list";
 	}
 	
+	//auctiongoods_list.jsp에서 대,중분류카테고리코드의 값을 받았을 때 소분류를 뿌려주기 위한 처리
 	@RequestMapping(value = "/auctiongoods/auctiongoodslist_small", method = RequestMethod.GET)
 	public String auctionGoodsListSmall(Model model,
 			@RequestParam(value="largeCategoryCode", required=true) String largeCategoryCode,
 			@RequestParam(value="middleCategoryCode", required=true) String middleCategoryCode) {
 	
-	AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods();
+	 
 	List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
 	List<MiddleCategoryVo> middleCategoryList = goodsCategoryService.getMiddleCategoryList(largeCategoryCode);
 	List<SmallCategoryVo> smallCategoryList = goodsCategoryService.getSmallCategoryList(largeCategoryCode, middleCategoryCode);
-	model.addAttribute("auctionGoods",auctionGoods);
+	 
 	model.addAttribute("largeCategory", largeCategory);
 	model.addAttribute("middleCategoryList", middleCategoryList);
 	model.addAttribute("smallCategoryList", smallCategoryList) ;
 	return "/auctiongoods/auctiongoods_list";
+	}
+	
+	@RequestMapping(value = "/auctiongoods/auctiongoodsinsert", method = RequestMethod.GET)
+	public String auctionGoodsInsert(Model model) {
+	 
+	 
+	return "/auctiongoods/auctiongoods_insertForm";
 	}
 	
 	 
