@@ -47,6 +47,7 @@
             	<value>classpath:com/kpsl/auction/ad/service/AdUnitPriceMapper.xml</value>
             	<value>classpath:com/kpsl/auction/auctiongoods/service/AuctionGoodsMapper.xml</value>
             	<value>classpath:com/kpsl/auction/goodscategory/service/LargeCategoryMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/goodscategory/service/MiddleCategoryMapper.xml</value>
             	<value>classpath:com/kpsl/auction/bid/service/BidMapper.xml</value>
             	<!-- com.kpsl.auction.ad.service.AdUnitPriceMapper.xml -->
             </list>

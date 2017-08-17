@@ -1,5 +1,10 @@
 package com.kpsl.auction.goodscategory.service;
 
-public interface MiddleCategoryDao {
+import java.util.List;
 
+import com.kpsl.auction.goodscategory.vo.MiddleCategoryVo;
+
+public interface MiddleCategoryDao {
+	public List<MiddleCategoryVo> selectMiddleCategoryList(String largeCategoryCode);
+	
 }
