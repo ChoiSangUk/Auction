@@ -15,6 +15,8 @@ import com.kpsl.auction.ad.service.AdUnitPriceService;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdUnitPriceVo;
 
+import sun.rmi.runtime.Log;
+
 
 @Controller
 public class AdApplyController {
@@ -36,9 +38,11 @@ public class AdApplyController {
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)
 	public String adApplyAdd(AdApplyVo adApplyVo
 							, @RequestParam(value="adUnitPriceCode", required=true) String adUnitPriceCode
-							, @RequestParam(value="auctionGoodsCode", required=false) String auctionGoodsCode) {
+							, @RequestParam(value="auctionGoodsCode", required=false) String auctionGoodsCode
+							, @RequestParam(value="adImageName", required=true) String adImageName) {
 		log.debug(adUnitPriceCode+"<-- 광고단가 코드 확인");
 		log.debug(auctionGoodsCode+"<-- 물품명코드 확인");
+		log.debug(adImageName+"<--- 광고이미지");
 		log.info("adApplyAdd 확인");
 		return "redirect:/mypage/mypageMain";
 	}

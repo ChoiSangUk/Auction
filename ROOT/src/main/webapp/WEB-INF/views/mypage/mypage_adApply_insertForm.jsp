@@ -70,7 +70,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<textarea class="form-controll" id="summernote" name="adImage"></textarea>
+					<textarea class="form-controll" id="summernote" name="adImageName"></textarea>
 				</div>
 				<div class="form-group submit text-center">
 					<input class="btn btn-info" type="submit" value="신청"> <input
@@ -87,16 +87,16 @@ $(document).ready(function() {
 	$('#summernote').summernote({
 		height : 500,
 		lang : 'ko-KR',
-		callbacks : {
+		/* callbacks : {
 			onImageUpload : function(files, editor, welEditable) {
 				for (var i = files.length - 1; i >= 0; i--) {
 					sendFile(files[i], this);
 				}
 			}
-		}
+		} */
 	});
 });
-function sendFile(file, el) {
+/* function sendFile(file, el) {
 	var form_data = new FormData();
 	form_data.append('file', file);	
 	$.ajax({
@@ -113,7 +113,7 @@ function sendFile(file, el) {
 			.append('<li><img src="'+url+'" width="480" height="auto"/></li>');
 		}
 	});
-}
+} */
 </script>
 
 
