@@ -4,21 +4,50 @@
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
 
 
-
+<!-- ---------------------------대분류 부분------------------------ -->
 	<div class="dp3-list visible-lg visible-md visible-sm">
-		<h3 class="visible-lg visible-md visible-sm">전체</h3>
+		<h3 class="visible-lg visible-md visible-sm">대분류 전체</h3><br>
 		<ul class="row list-unstyled">
 			<li class="col-sm-4 col-md-3 active"  ><a href="#" type="text-decoration:none" >전체보기</a></li>
 			<c:forEach var="largeCategory" items="${largeCategory}" >
-			<li class="col-sm-4 col-md-3 "><a href="#">${largeCategory.largeCategoryName }</a></li>
+			<li class="col-sm-4 col-md-3 ">
+			<a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist_middle?largeCategoryCode=${largeCategory.largeCategoryCode}">
+			${largeCategory.largeCategoryName}  <!-- 대분류 코드 값을 넣어 전달하여 중분류 선택  -->
+			</a>
+			</li>
 			</c:forEach> 
-			 
-			
-
 		</ul>
 	</div>
-
 <hr>
+<!-- ---------------------------대분류 부분 end------------------------ -->
+
+<!-- ---------------------------중분류 부분------------------------ -->
+<div class="dp3-list visible-lg visible-md visible-sm">
+		<h3 class="visible-lg visible-md visible-sm">중분류 전체</h3><br>
+		
+		<ul class="row list-unstyled">
+			<li class="col-sm-4 col-md-3 active"  ><a href="#" type="text-decoration:none" >전체보기</a></li>
+			<c:forEach var="middleCategory" items="${middleCategoryList}" >
+			<li class="col-sm-4 col-md-3 "><a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist_small?largeCategoryCode=${middleCategory.largeCategoryCode}&middleCategoryCode=${middleCategory.middleCategoryCode}">${middleCategory.middleCategoryName }</a></li>
+			</c:forEach> 
+		</ul>
+	</div>	
+	<hr>
+<!-- ---------------------------중분류 부분 end------------------------ -->
+
+<!-- ---------------------------소분류 부분------------------------ -->
+<div class="dp3-list visible-lg visible-md visible-sm">
+		<h3 class="visible-lg visible-md visible-sm">소분류 전체</h3><br>
+		
+		<ul class="row list-unstyled">
+			<li class="col-sm-4 col-md-3 active"  ><a href="#" type="text-decoration:none" >전체보기</a></li>
+			<c:forEach var="smallCategory" items="${smallCategoryList}" >
+			<li class="col-sm-4 col-md-3 "><a href="#">${smallCategory.smallCategoryName }</a></li>
+			</c:forEach> 
+		</ul>
+	</div>	
+<!-- ---------------------------소분류 부분 end------------------------ -->		
+
 <div class="container-fluid text-center">
 	<div class="row content">
 		<div class="col-sm-12 text-left">
