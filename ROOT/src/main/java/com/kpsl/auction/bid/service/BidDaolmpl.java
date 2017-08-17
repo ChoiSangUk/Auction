@@ -20,6 +20,7 @@ public class BidDaolmpl implements BidDao {
 	@Override
 	public List<BidVo> selectBidList(){
 		log.info("selectBidList 확인");
+		log.debug(sessionTemplate.selectList(NS+"selectBidList"));
 		return sessionTemplate.selectList(NS+"selectBidList");
 	}
 }

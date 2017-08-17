@@ -24,7 +24,7 @@
       <td>입찰자 명<td>
     	<td>입찰 금액<td>
       </tr>
-      <c:forEach var = "bid" items="${list }">
+      <c:forEach var = "bid" items="${list}">
       <td>${bid.userBuyerId} </td>
       <td>${bid.bidPrice} </td>
       <td>${bid.bidDate} </td>

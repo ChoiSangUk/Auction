@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.kpsl.auction.bid.service.BidMapper">
-  	<resultMap type="com.kpsl.aution.bid.vo.BidVo" id="Bid">
+  	<resultMap type="com.kpsl.auction.bid.vo.BidVo" id="Bid">
   		<id property="bidCode" column="bid_code"></id>
   		<id property="userBuyerId" column="user_buyer_id"></id>
 		<id property="auctionGoodsCode" column="auction_goods_code"></id>

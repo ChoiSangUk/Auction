@@ -23,12 +23,14 @@
 				<div class="form-group">
      				<label class="col-sm-2 control-label">광고명</label>
      				<div class="col-sm-3">
-					<select class="form-control" name="adUnitPriceCode" id="sk" onchange="">
-						<option value="">메인배너</option>
-						<option value="">실시간경매배너</option>
+     				<c:forEach var="ad" items="${list}">
+					<select class="form-control" name="${ad.adUnitPriceCode}" id="sk" onchange="">
+						<option value="{ad.adUnitPriceName}">{ad.adUnitPriceName}</option>
 					</select>
+					</c:forEach>
 					</div>
 				</div>
+				
 				<div class="form-group">
 		   			<label class="col-sm-2 control-label">광고신청일</label>
 		   			<div class="col-sm-3">
