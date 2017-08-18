@@ -22,9 +22,7 @@ public class BidController {
 	public String bidList(Model model){
 
 		List<BidVo> list = bidService.getBidList();
-
 		model.addAttribute("list",list);
-		
 		return "/bid/bid_form";
 	
 	}
