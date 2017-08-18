@@ -16,9 +16,6 @@ import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdUnitPriceVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
-import sun.rmi.runtime.Log;
-
-
 @Controller
 public class AdApplyController {
 	//@Autowired AdApplyService adApplyService;
