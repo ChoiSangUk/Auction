@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
-import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.goodscategory.service.GoodsCategoryService;
 import com.kpsl.auction.goodscategory.vo.LargeCategoryVo;
 import com.kpsl.auction.goodscategory.vo.MiddleCategoryVo;
@@ -21,8 +19,6 @@ import com.kpsl.auction.goodscategory.vo.SmallCategoryVo;
 @Controller
 public class AuctionGoodsController {
 	Logger log = Logger.getLogger(this.getClass());
-	@Autowired
-	private AuctionGoodsService auctionGoodsService;
 	@Autowired
 	private GoodsCategoryService goodsCategoryService;  
 
@@ -70,9 +66,16 @@ public class AuctionGoodsController {
 	return "/auctiongoods/auctiongoods_list";
 	}
 	
+	 
+	
+	//auctiongoodsinert  (물품등록 폼으로 이동)
 	@RequestMapping(value = "/auctiongoods/auctiongoodsinsert", method = RequestMethod.GET)
 	public String auctionGoodsInsert(Model model) {
+	
 	 
+	List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
+	 
+	model.addAttribute("largeCategory", largeCategory);
 	 
 	return "/auctiongoods/auctiongoods_insertForm";
 	}
