@@ -23,9 +23,16 @@
 		<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price"/>
 		<id property="auctionGoodsState" column="auction_goods_state"/>
 	</resultMap>
+	
 	<select id="selectAuctionGoods" resultMap="AuctionGoods">
 		SELECT user_id 
 		FROM auction_goods_tb
 		WHERE auction_goods_code = 1 ;
+	</select>
+	<!-- 광고신청을 위한 SELECT 쿼리문 -->
+	<select id="selectAuctionGoodsForAdApply">
+		SELECT auction_goods_code
+		FROM auction_goods_tb
+		WHERE auction_goods_regist_date > now()-INTERVAL 1 DAY AND user_id = ${userId};
 	</select>
   </mapper>
