@@ -30,7 +30,7 @@
 		WHERE auction_goods_code = 1 ;
 	</select>
 	<!-- 광고신청을 위한 SELECT 쿼리문 -->
-	<select id="selectAuctionGoodsListByUserId" parameterType="java.util.Map" resultMap="AuctionGoods">
+	<select id="selectAuctionGoodsListByUserId" parameterType="String" resultMap="AuctionGoods">
 		SELECT auction_goods_code,
 		 user_id, 
 		 small_category_code, 

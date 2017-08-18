@@ -19,4 +19,10 @@ public class AdApplyServiceImpl implements AdApplyService {
 		log.info("getAuctionGoodsListByUserId 호출 확인");
 		return adApplyDao.selectAuctionGoodsListForAdApply(userId);
 	}
+
+	@Override
+	public int addAdApply() {
+		
+		return 0;
+	}
 }

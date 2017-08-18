@@ -29,29 +29,23 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">물품명</label>
 					<div class="col-sm-3">
-						<select class="form-control" name="auctionGoods" id="sk"
-							onchange="">
-							<option value="">모니터</option>
-							<option value="">스피커</option>
+						<select class="form-control" name="auctionGoodsCode">
+							<c:forEach var="ag" items="${auctionGoodsList}">
+								<option value="${ag.auctionGoodsCode}">${ag.auctionGoodsName}</option>
+							</c:forEach>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">광고명</label>
 					<div class="col-sm-3">
-
-						<select class="form-control" name="adUnitPriceCode" id="sk"
-							onchange="">
+						<select class="form-control" name="adUnitPriceCode">
 							<c:forEach var="ad" items="${adUnitPriceList}">
 								<option value="${ad.adUnitPriceCode}">${ad.adUnitPriceName}</option>
 							</c:forEach>
 						</select>
-
 					</div>
 				</div>
-				<%-- <c:forEach var="ag" items="${auctionGoodsList}">
-					${ag.auctionGoodsCode}
-				</c:forEach> --%>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">광고신청일</label>
 					<div class="col-sm-3">
