@@ -1,1 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kpsl.auction.ad.service.AdImageMapper">
+	<resultMap type="com.kpsl.auction.ad.vo.AdImageVo" id="AdImageVo">
+		<id property="adImageCode" column="ad_image_code"/>
+		<id property="adApplyCode" column="ad_apply_code"/>
+		<id property="adImageName" column="ad_image_name"/>
+	</resultMap>
+	<!-- 키값을 먼저 조회하고 키값을 셋팅한 후 INSERT -->
+	<insert id="insertAdApply" parameterType="com.kpsl.auction.ad.vo.AdImageVo">		
+		<selectKey keyProperty="adApplyCode" resultType="string" order="BEFORE">
+			SELECT CONCAT("ai",MAX(substring(ad_image_code,3))+1) FROM ad_image_tb
+		</selectKey>
+		INSERT INTO ad_image_tb
+				(ad_image_code,
+				 ad_apply_code,
+				 ad_image_name)
+		VALUES (#{adImageCode}, 
+				#{adApplyCode},
+				#{adImageName})
+	</insert>
+</mapper>

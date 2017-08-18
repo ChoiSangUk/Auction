@@ -12,7 +12,7 @@ import com.kpsl.auction.ad.vo.AdUnitPriceVo;
 @Repository
 public class AdUnitPriceDaoImpl implements AdUnitPriceDao {
 	Logger log = Logger.getLogger(this.getClass());
-	final String NS = "com.kpsl.auction.ad.service.AdUnitPriceMapper.";
+	final String AdUnitPriceMapperNS = "com.kpsl.auction.ad.service.AdUnitPriceMapper.";
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
@@ -22,7 +22,7 @@ public class AdUnitPriceDaoImpl implements AdUnitPriceDao {
 	public List<AdUnitPriceVo> selectAdUnitPriceList() {
 		log.info("selectAdUnitPriceList 확인");
 		
-		return sqlSessionTemplate.selectList(NS+"selectAdUnitPriceList");
+		return sqlSessionTemplate.selectList(AdUnitPriceMapperNS+"selectAdUnitPriceList");
 	}
 
 	@Override
@@ -30,13 +30,13 @@ public class AdUnitPriceDaoImpl implements AdUnitPriceDao {
 	public AdUnitPriceVo selectAdUnitPriceByAdUnitPriceCode(String adUnitPriceCode) {
 		log.info(adUnitPriceCode);
 		
-		return sqlSessionTemplate.selectOne(NS+"selectAdUnitPriceByAdUnitPirceCode",adUnitPriceCode);
+		return sqlSessionTemplate.selectOne(AdUnitPriceMapperNS+"selectAdUnitPriceByAdUnitPirceCode",adUnitPriceCode);
 	}
 
 	@Override
 	public int updateAdUnitPrice(AdUnitPriceVo adUnitPriceVo) {
 		log.info(adUnitPriceVo);
-		return sqlSessionTemplate.update(NS+"updateAdUnitPrice", adUnitPriceVo);
+		return sqlSessionTemplate.update(AdUnitPriceMapperNS+"updateAdUnitPrice", adUnitPriceVo);
 	}
 	
 }

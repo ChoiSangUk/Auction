@@ -7,21 +7,31 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
 @Repository
 public class AdApplyDaoImpl implements AdApplyDao {
+	
 	Logger log = Logger.getLogger(this.getClass());
-	final String AGNS = "com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper.";
+	final String AuctionGoodsMapperNS = "com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper.";
+	final String AdApplyMapperNS = "com.kpsl.auction.ad.service.AdApplyMapper.";
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
 	public List<AuctionGoodsVo> selectAuctionGoodsListForAdApply(String userId) {
+		
 		log.info("selectAuctionGoodsListForAdApply 호출 확인");
 		log.info(userId+"<---AdApplyDao 아이디확인");
-		log.info(sqlSessionTemplate.selectList(AGNS+"selectAuctionGoodsListByUserId",userId));
-		return sqlSessionTemplate.selectList(AGNS+"selectAuctionGoodsListByUserId",userId);
+		
+		return sqlSessionTemplate.selectList(AuctionGoodsMapperNS+"selectAuctionGoodsListByUserId",userId);
+	}
+
+	@Override
+	public int insertAdApply(AdApplyVo adApplyVo) {
+		log.info("insertAdApply 호출 확인");
+		return sqlSessionTemplate.insert(AdApplyMapperNS+"insertAdApply",adApplyVo);
 	}
 }

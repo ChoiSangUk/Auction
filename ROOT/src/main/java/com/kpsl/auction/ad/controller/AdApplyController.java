@@ -37,19 +37,19 @@ public class AdApplyController {
 		List<AuctionGoodsVo> auctionGoodsList = adApplyService.getAuctionGoodsListByUserId(userId);
 		model.addAttribute("adUnitPriceList",adUnitPriceList);
 		model.addAttribute("auctionGoodsList",auctionGoodsList);
-		//log.info(auctionGoodsList);
+		
 		log.info("adApplyAdd 확인");
 		return "/mypage/mypage_adApply_insertForm";
 	}
 	// 광고 (액션) 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)
 	public String adApplyAdd(AdApplyVo adApplyVo
-							, @RequestParam(value="adUnitPriceCode", required=true) String adUnitPriceCode
-							, @RequestParam(value="auctionGoodsCode", required=false) String auctionGoodsCode
-							, @RequestParam(value="adImageName", required=true) String adImageName) {
+							, @RequestParam(value="adImageName", required=false) String adImageName) {
+		log.info(adApplyVo+"<---adApplyVo확인");
+		adApplyService.addAdApply(adApplyVo);
+		/*log.debug(adImageName+"<--- 광고이미지");
 		log.debug(adUnitPriceCode+"<-- 광고단가 코드 확인");
-		log.debug(auctionGoodsCode+"<-- 물품명코드 확인");
-		log.debug(adImageName+"<--- 광고이미지");
+		log.debug(auctionGoodsCode+"<-- 물품명코드 확인");*/
 		log.info("adApplyAdd 확인");
 		return "redirect:/mypage/mypageMain";
 	}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8"/>
 
@@ -38,7 +39,7 @@
 </div>
 
 <div class="container text-center">
-	<h3>실시간 경매배너 자리</h3>
+	<h3>실시간 경매배너 자리 ${user}</h3>
 	<br>
 	<div class="row">
 		<div class="col-sm-4">

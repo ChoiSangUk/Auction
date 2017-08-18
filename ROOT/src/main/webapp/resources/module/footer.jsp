@@ -27,5 +27,6 @@ $(function() {
         $("#time").text(NowTime);
     }, 1000);
 });
+
 </script>
 </html>

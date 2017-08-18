@@ -11,10 +11,10 @@ public class UserServiceImpl implements UserService {
 	Logger log = Logger.getLogger(this.getClass());
 	
 	@Override
-	public UserDetailVo getUserLogin(String userId) {
+	public UserDetailVo getUserLogin(String userId,String userPassword) {
 		log.info(userId);
-		log.info(userDao.selectUserLogin(userId)+"<----ddd");
-		return userDao.selectUserLogin(userId);
+		log.info(userDao.selectUserLogin(userId,userPassword)+"<----ddd");
+		return userDao.selectUserLogin(userId,userPassword);
 	}
 
 }

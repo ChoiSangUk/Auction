@@ -11,7 +11,7 @@
 		   		<div class="form-group">
 		   			<label class="col-sm-2 control-label">아이디</label>
 		   			<div class="col-sm-3">
-					<input type="text" id="userId" name="userId" class="form-control" placeholder="아이디">
+					<input type="text" id="userId" name="userId" class="form-control" placeholder="아이디" value="id002">
 					</div>
 				</div>
 				<div class="form-group">
@@ -19,7 +19,7 @@
 		   			<div class="col-sm-3">
 					<input type="password" id="userPassword" name="userPassword"
 					class="form-control" onkeyup="if(event.keyCode==13)doLogin();"
-					placeholder="비밀번호">
+					placeholder="비밀번호" value="pw002">
 					</div>
 				</div>
 				<div class="form-group">
@@ -34,7 +34,7 @@
 				</div>
 				<div class="form-group">
 			   		<label class="col-sm-2 control-label"></label>&nbsp;&nbsp;&nbsp;
-					<input class="btn btn-default" type ="submit" value = "등록">
+					<input class="btn btn-default" type ="submit" value = "로그인">
 					<input class="btn btn-default" type ="reset" value = "다시쓰기">
 				</div>
 			</form>    	
