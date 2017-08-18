@@ -8,7 +8,7 @@ public class AdApplyVo {
 	private String userId;
 	private String adApplyRegistDate;
 	private String adApplyStartDate;
-	private String adApply_end_date;
+	private String adApplyEndDate;
 	private String adApplyState;
 	
 	public String getAdApplyCode() {
@@ -47,11 +47,11 @@ public class AdApplyVo {
 	public void setAdApplyStartDate(String adApplyStartDate) {
 		this.adApplyStartDate = adApplyStartDate;
 	}
-	public String getAdApply_end_date() {
-		return adApply_end_date;
+	public String getAdApplyEndDate() {
+		return adApplyEndDate;
 	}
-	public void setAdApply_end_date(String adApply_end_date) {
-		this.adApply_end_date = adApply_end_date;
+	public void setAdApplyEndDate(String adApplyEndDate) {
+		this.adApplyEndDate = adApplyEndDate;
 	}
 	public String getAdApplyState() {
 		return adApplyState;

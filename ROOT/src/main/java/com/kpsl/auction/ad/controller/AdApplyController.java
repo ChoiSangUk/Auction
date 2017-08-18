@@ -44,8 +44,9 @@ public class AdApplyController {
 	// 광고 (액션) 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)
 	public String adApplyAdd(AdApplyVo adApplyVo
-							, @RequestParam(value="adImageName", required=true) String adImageName) {
+							, @RequestParam(value="adImageName", required=false) String adImageName) {
 		log.info(adApplyVo+"<---adApplyVo확인");
+		adApplyService.addAdApply(adApplyVo);
 		/*log.debug(adImageName+"<--- 광고이미지");
 		log.debug(adUnitPriceCode+"<-- 광고단가 코드 확인");
 		log.debug(auctionGoodsCode+"<-- 물품명코드 확인");*/

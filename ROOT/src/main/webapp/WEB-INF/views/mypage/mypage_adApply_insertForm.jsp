@@ -15,30 +15,34 @@
 }
 </style>
 
-
-<div class="container-fluid text-center">
-	<div class="row content">
-		<div class="col-sm-12 text-left">
-			<h1>광고신청 화면</h1>
+<div class="container-fluid text-left">
+	<div class="row title">
+		<div class="col-sm-12">
+		<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+		<a href="${pageContext.request.contextPath}/main">홈</a>
+		<span>></span>
+		<span>광고신청</span>
+		</div>
+	</div><br>
+	<div class="row content">	
+		<div class="col-sm-12">		
 			<!-- 물품광고신청 폼 -->
 			<form class="form-horizontal"
 				action="${pageContext.request.contextPath}/mypage/adApplyInsertForm"
 				method="post">
 				<input class="form-control" type="hidden" name="adApplyCode">
-				<input class="form-control" type="hidden" name="userId">
+				<input class="form-control" type="hidden" name="userId">				
 				<div class="form-group">
 					<label class="col-sm-2 control-label">물품명</label>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<select class="form-control" name="auctionGoodsCode">
 							<c:forEach var="ag" items="${auctionGoodsList}">
 								<option value="${ag.auctionGoodsCode}">${ag.auctionGoodsName}</option>
 							</c:forEach>
 						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">광고명</label>
-					<div class="col-sm-3">
+					</div>				
+					<label class="col-sm-1 control-label">광고명</label>
+					<div class="col-sm-2">
 						<select class="form-control" name="adUnitPriceCode">
 							<c:forEach var="ad" items="${adUnitPriceList}">
 								<option value="${ad.adUnitPriceCode}">${ad.adUnitPriceName}</option>
@@ -46,22 +50,14 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">광고신청일</label>
-					<div class="col-sm-3">
-						<input class="form-control" type="date" name="adApplyDate">
-					</div>
-				</div>
 				<!-- datepicker사용해서 광고가능한 스케줄 띄우기 -->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">광고 시작일</label>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<input class="form-control" type="date" name="adApplyStartDate">
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">광고 종료일</label>
-					<div class="col-sm-3">
+					<label class="col-sm-1 control-label">광고 종료일</label>
+					<div class="col-sm-2">
 						<input class="form-control" type="date" name="adApplyEndDate">
 					</div>
 				</div>
@@ -83,33 +79,10 @@ $(document).ready(function() {
 	$('#summernote').summernote({
 		height : 500,
 		lang : 'ko-KR',
-		/* callbacks : {
-			onImageUpload : function(files, editor, welEditable) {
-				for (var i = files.length - 1; i >= 0; i--) {
-					sendFile(files[i], this);
-				}
-			}
-		} */
 	});
 });
-/* function sendFile(file, el) {
-	var form_data = new FormData();
-	form_data.append('file', file);	
-	$.ajax({
-		data : form_data,
-		type : "POST",
-		url : '/adImage',
-		cache : false,
-		contentType : false,
-		enctype : 'multipart/form-data',
-		processData : false,
-		success : function(url) {
-			$(el).summernote('editor.insertImage', url);
-			$('#imageBoard > ul')
-			.append('<li><img src="'+url+'" width="480" height="auto"/></li>');
-		}
-	});
-} */
+
+
 </script>
 
 

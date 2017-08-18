@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
 @Service
@@ -21,8 +22,8 @@ public class AdApplyServiceImpl implements AdApplyService {
 	}
 
 	@Override
-	public int addAdApply() {
-		
-		return 0;
+	public int addAdApply(AdApplyVo adApplyVo) {
+		log.info("addAdApply 호출 확인");
+		return adApplyDao.insertAdApply(adApplyVo);
 	}
 }

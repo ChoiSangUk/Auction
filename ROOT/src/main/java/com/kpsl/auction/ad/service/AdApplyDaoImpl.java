@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
 @Repository
@@ -14,7 +15,7 @@ public class AdApplyDaoImpl implements AdApplyDao {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	final String AuctionGoodsMapperNS = "com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper.";
-	final String AdApplyMapperNS = "";
+	final String AdApplyMapperNS = "com.kpsl.auction.ad.service.AdApplyMapper.";
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
@@ -29,8 +30,8 @@ public class AdApplyDaoImpl implements AdApplyDao {
 	}
 
 	@Override
-	public int insertAdApply() {
-
-		return 0;
+	public int insertAdApply(AdApplyVo adApplyVo) {
+		log.info("insertAdApply 호출 확인");
+		return sqlSessionTemplate.insert(AdApplyMapperNS+"insertAdApply",adApplyVo);
 	}
 }
