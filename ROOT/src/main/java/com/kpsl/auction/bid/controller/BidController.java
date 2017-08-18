@@ -21,6 +21,9 @@ public class BidController {
 	@RequestMapping(value = "/bid/bidform", method = RequestMethod.GET)
 	public String bidList(Model model){
 
+		List<BidVo> list = bidService.getBidList();
+
+		model.addAttribute("list",list);
 		
 		return "/bid/bid_form";
 	

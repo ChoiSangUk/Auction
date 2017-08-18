@@ -1,34 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:import url="/resources/module/admin_top.jsp" charEncoding="UTF-8" /><html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:import url="/resources/module/admin_top.jsp" charEncoding="UTF-8" />
 
-<div class="container">
-  <h2>ÀÔÂûÃ¢</h2>
-  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ÀÔÂûÇ°¸í:</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>ÀÔÂû°¡°İ:</td>
-        <input type="int"><input type = "button" value = "ÀÔÂû¿Ï·á">
-        </tr>
-      <tr>
-        <th>ÀÔÂû ¸®½ºÆ®</th>
-      </tr>
-      <tr>
-      <td>ÀÔÂûÀÚ ¸í<td>
-    	<td>ÀÔÂû ±İ¾×<td>
-      </tr>
-      <c:forEach var = "bid" items="${list}">
-      <td>${bid.userBuyerId} </td>
-      <td>${bid.bidPrice} </td>
-      </c:forEach>
-    </tbody>
-  </table>
+<div class="container-fluid text-center">
+	<div class="row content">
+		<!-- ë©”ì¸í™”ë©´  -->
+		<div class="col-sm-12 text-left">
+			<h1>ì…ì°°ì°½</h1>
+			<div class="table-responsive">
+				<table class="table table-hover">
+
+					<thead>
+						<tr>
+							<h2>ì…ì°°í•˜ê¸°</h2>
+							<th>ì…ì°°í’ˆëª©:
+							<td>${auctionGoodsCode}</td>
+							</th>
+						</tr>
+						<tr>
+							<div>
+							<td>
+							<label for="boardPw">ì…ì°°ê°€ê²© :</label>
+							<input type="text"></input>
+							<a href="${pageContext.request.contextPath}/bid/bid"><button>ì…ì°°</button></a>
+							</td>
+							</div>
+					
+						</tr>
+						<tr>
+							<th>ì…ì°°ì</th>
+							<th>ì…ì°°ê°€ê²©</th>
+							<th>ì…ì°°ì‹œê°„</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="bid" items="${list}">
+							<tr>
+								<td>${bid.userBuyerId}</td>
+								<td>${bid.bidPrice}</td>
+								<td>${bid.bidDate}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
+
 <c:import url="/resources/module/admin_footer.jsp" charEncoding="UTF-8" />
