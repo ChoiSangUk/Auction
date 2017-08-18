@@ -10,8 +10,7 @@ import com.kpsl.auction.ad.vo.AdUnitPriceVo;
 
 @Service
 public class AdUnitPriceServiceImpl implements AdUnitPriceService {
-	Logger log = Logger.getLogger(this.getClass());
-	
+	Logger log = Logger.getLogger(this.getClass());	
 	@Autowired private AdUnitPriceDao adUnitPriceDao;
 	
 	@Override

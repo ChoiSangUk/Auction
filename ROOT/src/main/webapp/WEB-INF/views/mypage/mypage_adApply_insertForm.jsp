@@ -42,14 +42,16 @@
 
 						<select class="form-control" name="adUnitPriceCode" id="sk"
 							onchange="">
-							<c:forEach var="ad" items="${list}">
+							<c:forEach var="ad" items="${adUnitPriceList}">
 								<option value="${ad.adUnitPriceCode}">${ad.adUnitPriceName}</option>
 							</c:forEach>
 						</select>
 
 					</div>
 				</div>
-
+				<%-- <c:forEach var="ag" items="${auctionGoodsList}">
+					${ag.auctionGoodsCode}
+				</c:forEach> --%>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">광고신청일</label>
 					<div class="col-sm-3">

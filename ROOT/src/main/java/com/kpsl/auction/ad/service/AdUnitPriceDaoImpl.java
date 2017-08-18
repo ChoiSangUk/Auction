@@ -12,8 +12,8 @@ import com.kpsl.auction.ad.vo.AdUnitPriceVo;
 @Repository
 public class AdUnitPriceDaoImpl implements AdUnitPriceDao {
 	Logger log = Logger.getLogger(this.getClass());
-	
 	final String NS = "com.kpsl.auction.ad.service.AdUnitPriceMapper.";
+	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	

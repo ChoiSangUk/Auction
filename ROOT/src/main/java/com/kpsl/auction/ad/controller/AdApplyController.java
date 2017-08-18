@@ -14,6 +14,7 @@ import com.kpsl.auction.ad.service.AdApplyService;
 import com.kpsl.auction.ad.service.AdUnitPriceService;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdUnitPriceVo;
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
 import sun.rmi.runtime.Log;
 
@@ -22,15 +23,21 @@ import sun.rmi.runtime.Log;
 public class AdApplyController {
 	//@Autowired AdApplyService adApplyService;
 	@Autowired AdUnitPriceService adUnitPriceService;
+	@Autowired AdApplyService adApplyService;
+	
 	Logger log = Logger.getLogger(this.getClass());
 	
 	// 광고 신청 폼 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.GET)
-	public String adApplyAdd(Model model) {
+	public String adApplyAdd(Model model, String userId) {
 		
-		List<AdUnitPriceVo> list = adUnitPriceService.getAdUnitPirceList(); 
-		
-		model.addAttribute("list",list);
+		// 로그인 세션이 연결 안되있어서 임시로 값을 넣어둠
+		userId = "id002";
+		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList(); 
+		List<AuctionGoodsVo> auctionGoodsList = adApplyService.getAuctionGoodsListByUserId(userId);
+		model.addAttribute("adUnitPriceList",adUnitPriceList);
+		model.addAttribute("auctionGoodsList",auctionGoodsList);
+		//log.info(auctionGoodsList);
 		log.info("adApplyAdd 확인");
 		return "/mypage/mypage_adApply_insertForm";
 	}

@@ -25,14 +25,31 @@
 	</resultMap>
 	
 	<select id="selectAuctionGoods" resultMap="AuctionGoods">
-		SELECT user_id 
+		SELECT user_id
 		FROM auction_goods_tb
 		WHERE auction_goods_code = 1 ;
 	</select>
 	<!-- 광고신청을 위한 SELECT 쿼리문 -->
-	<select id="selectAuctionGoodsForAdApply" parameterType="String" resultMap="AuctionGoods">
-		SELECT auction_goods_code
+	<select id="selectAuctionGoodsListByUserId" parameterType="java.util.Map" resultMap="AuctionGoods">
+		SELECT auction_goods_code,
+		 user_id, 
+		 small_category_code, 
+		 middle_category_code, 
+		 large_category_code, 
+		 auction_goods_name, 
+		 auction_goods_sys, 
+		 auction_goods_bid_sys, 
+		 auction_goods_contents, 
+		 auction_goods_regist_date, 
+		 auction_goods_term, 
+		 auction_goods_start_date, 
+		 auction_goods_end_date, 
+		 auction_goods_start_price, 
+		 auction_goods_bid_unit, 
+		 auction_goods_instant_buy_state, 
+		 auction_goods_instant_buy_price, 
+		 auction_goods_state
 		FROM auction_goods_tb
-		WHERE auction_goods_regist_date > now()-INTERVAL 1 DAY AND user_id = ${userId};
+		WHERE auction_goods_regist_date > now()-INTERVAL 1 DAY AND user_id = #{userId};
 	</select>
   </mapper>
