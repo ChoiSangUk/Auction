@@ -1,5 +1,8 @@
 package com.kpsl.auction.user.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +20,12 @@ public class UserDaoImpl implements UserDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public UserDetailVo selectUserLogin(String userId) {
+	public UserDetailVo selectUserLogin(String userId,String userPassword) {
 		log.info("selectUserLogin 확인");
 		log.info(userId);
-		log.info(sqlSessionTemplate.selectOne(NS+"selectUserLogin", userId));
-		return sqlSessionTemplate.selectOne(NS+"selectUserLogin", userId);
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("userId", userId);
+		paramMap.put("userPassword", userPassword);
+		return sqlSessionTemplate.selectOne(NS+"selectUserLogin", paramMap);
 	}
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +25,19 @@
 		</div>
 		<div class="collapse navbar-collapse" id="topNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Auction 설명서</a></li>
-				<li><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></li>
-				<li><a href="${pageContext.request.contextPath}/user/userJoin">회원가입 </a></li>
-				<li><a href="${pageContext.request.contextPath}/mypage/mypageMain">마이페이지</a></li>
+				<c:if test="${userLoginInfo.userLevel eq null}">
+					<li><a href="#">Auction 설명서</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/userJoin">회원가입 </a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/mypageMain">마이페이지</a></li>
+				</c:if>
+			
+				<c:if test="${userLoginInfo.userLevel ne null}">
+					<li><a href="#">Auction 설명서</a></li>
+					<li><a href="logout">로그아웃</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/mypageMain">마이페이지</a></li>
+				</c:if>
+							 
 			</ul>
 		</div>
 	</div>
@@ -52,8 +63,9 @@
 					
 					</li>
 				</ul>
-				 
+				<c:if test="${userLoginInfo.userLevel eq '판매자'}"> 
 				<li><a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert">물품등록</a></li>
+				</c:if>
 				<li><a href="aa">고객센터</a></li>
 			</ul>
 		</div>

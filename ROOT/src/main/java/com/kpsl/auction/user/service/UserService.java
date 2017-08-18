@@ -6,5 +6,5 @@ import com.kpsl.auction.user.vo.UserDetailVo;
 
 @Transactional
 public interface UserService {
-	UserDetailVo getUserLogin(String userId);
+	UserDetailVo getUserLogin(String userId,String userPassword);
 }
