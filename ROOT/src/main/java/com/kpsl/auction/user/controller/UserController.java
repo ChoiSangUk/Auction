@@ -56,7 +56,9 @@ public class UserController {
 
 	// 세션테스트 화면
 	@RequestMapping("page1")
-	public String page1() {
+	public String page1(HttpSession session) {
+		log.debug(session.getAttribute("userLoginInfo"));
+		
 		return "/user/session_test1";
 	}
 	

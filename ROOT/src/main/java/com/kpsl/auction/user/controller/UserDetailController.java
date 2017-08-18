@@ -27,7 +27,7 @@ public class UserDetailController {
 		UserDetailVo loginUser = userService.getUserLogin(userDetailVo.getUserId(), userDetailVo.getUserPassword());
 		log.info(userDetailVo.getUserId());
 		log.info(userDetailVo.getUserPassword());
-
+		
 		if (loginUser != null) {
 			session.setAttribute("userLoginInfo", loginUser);
 			return "redirect:/main";
@@ -44,5 +44,4 @@ public class UserDetailController {
 		session.invalidate();
 		return "redirect:/main";
 	}
-	
 }

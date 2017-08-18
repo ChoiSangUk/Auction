@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="true" %>
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
 
 <style>
@@ -61,7 +62,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 				<div class="panel-body">				
 						<h4>
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						<strong>박주호님</strong>
+						<strong>${userLoginInfo.userName}님</strong>
 						</h4>
 					<div class="sm-box">판매등급은 ? 입니다.</div>
 					<a class="mypage-a btn btn-default" href="#">판매 혜택보기</a>
@@ -71,7 +72,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 				<div class="panel-body">
 					<div class="sm-box col-sm-12">
 						<span>잔여 금액 : </span>
-						<span>10000 원</span>
+						<span>${userLoginInfo.userTotalcash}</span>
 					</div>
 					<div class="col-sm-6">
 						<a class="btn btn-success" href="#">캐쉬 충전</a>
