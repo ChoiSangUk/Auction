@@ -44,11 +44,12 @@
             <list>          	
             	<value>classpath:com/kpsl/auction/user/service/UserDetailMapper.xml</value>            	
             	<value>classpath:com/kpsl/auction/ad/service/AdUnitPriceMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/ad/service/AdApplyMapper.xml</value>
             	<value>classpath:com/kpsl/auction/auctiongoods/service/AuctionGoodsMapper.xml</value>
             	<value>classpath:com/kpsl/auction/goodscategory/service/LargeCategoryMapper.xml</value>
             	<value>classpath:com/kpsl/auction/goodscategory/service/MiddleCategoryMapper.xml</value>
             	<value>classpath:com/kpsl/auction/goodscategory/service/SmallCategoryMapper.xml</value>
-            	<value>classpath:com/kpsl/auction/bid/service/BidMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/bid/service/BidMapper.xml</value>            	
             </list>
         </property>
     </bean>

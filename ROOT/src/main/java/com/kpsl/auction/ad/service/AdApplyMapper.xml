@@ -1,1 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kpsl.auction.ad.service.AdApplyMapper">
+	<resultMap type="com.kpsl.auction.ad.vo.AdApplyVo" id="AdApplyVo">
+		<id property="adApplyCode" column="ad_apply_code"/>
+		<id property="adUnitPriceCode" column="ad_unit_price_code"/>	
+		<id property="auctionGoodsCode" column="auction_goods_code"/>
+		<id property="userId" column="user_id"/>
+		<id property="adApplyRegistDate" column="ad_apply_regist_date"/>
+		<id property="adApplyStartDate" column="ad_apply_start_date"/>
+		<id property="adApply_end_date" column="ad_apply_end_date"/>
+		<id property="adApplyState" column="ad_apply_state"/>
+	</resultMap>
+	
+	
+</mapper>

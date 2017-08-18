@@ -1,8 +1,6 @@
 package com.kpsl.auction.ad.vo;
-/****************************
- * 광고 단가관리vo
- * 
- ****************************/
+
+// 광고단가 VO
 public class AdUnitPriceVo {
 	
 	private String adUnitPriceCode;
