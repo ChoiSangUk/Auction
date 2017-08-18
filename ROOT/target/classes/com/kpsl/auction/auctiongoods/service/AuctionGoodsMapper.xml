@@ -30,7 +30,7 @@
 		WHERE auction_goods_code = 1 ;
 	</select>
 	<!-- 광고신청을 위한 SELECT 쿼리문 -->
-	<select id="selectAuctionGoodsForAdApply">
+	<select id="selectAuctionGoodsForAdApply" parameterType="String" resultMap="AuctionGoods">
 		SELECT auction_goods_code
 		FROM auction_goods_tb
 		WHERE auction_goods_regist_date > now()-INTERVAL 1 DAY AND user_id = ${userId};
