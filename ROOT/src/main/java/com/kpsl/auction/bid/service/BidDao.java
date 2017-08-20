@@ -9,4 +9,7 @@ public interface BidDao {
 	/**입찰자 리스트 조회 하는 인터페이스**/
 	List<BidVo> selectBidList();
 	
+	/**입찰 버튼 클릭 시 입찰 **/
+	
+	
 }

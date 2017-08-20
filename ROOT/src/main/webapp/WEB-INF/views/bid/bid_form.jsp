@@ -23,7 +23,8 @@
 							<td>
 							<label for="boardPw">입찰가격 :</label>
 							<input type="text"></input>
-							<a href="${pageContext.request.contextPath}/bid/bid"><button>입찰</button></a>
+							<a href="${pageContext.request.contextPath}/bid/price=${bidPrice}"><button>입찰</button>
+							</a>
 							</td>
 							</div>
 					

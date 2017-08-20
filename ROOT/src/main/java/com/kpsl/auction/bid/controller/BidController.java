@@ -18,13 +18,21 @@ public class BidController {
 
 	Logger log = Logger.getLogger(this.getClass());
 	
+	//입찰자 리스트
 	@RequestMapping(value = "/bid/bidform", method = RequestMethod.GET)
 	public String bidList(Model model){
 
 		List<BidVo> list = bidService.getBidList();
 		model.addAttribute("list",list);
+		log.info("입찰자 리스트 ");
 		return "/bid/bid_form";
-	
+	}
+	//입찰자 입찰버튼 클릭시 
+		@RequestMapping(value = "/bid/price", method = RequestMethod.GET)
+		public String bidPrice(Model model){
+			log.info("입찰자 입찰");
+			return "/bid/bid_form";
+		
 	}
 }
 	

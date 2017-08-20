@@ -10,12 +10,11 @@ import com.kpsl.auction.bid.vo.BidVo;
 @Service
 public class BidServicelmpl implements BidService {
 	@Autowired private BidDao bidDao;
-	
+	//입찰자 리스트
 	@Override
 	public List<BidVo> getBidList(){
 	
 		return bidDao.selectBidList();
-		
 	}
-
+	
 }
