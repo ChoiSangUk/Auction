@@ -80,5 +80,19 @@ public class AuctionGoodsController {
 	return "/auctiongoods/auctiongoods_insertForm";
 	}
 	
+	//auctiongoods_list.jsp에서 대분류카테고리코드의 값을 받았을 때 중분류를 뿌려주기 위한 처리
+	@RequestMapping(value = "/auctiongoods/auctiongoodsinsert_middle", method = RequestMethod.GET)
+	public String auctionGoodsInsert_Middle(Model model,
+			@RequestParam(value = "largeCategoryCode", required = true) String largeCategoryCode) {
+
+		List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
+		List<MiddleCategoryVo> middleCategoryList = goodsCategoryService.getMiddleCategoryList(largeCategoryCode);
+
+		model.addAttribute("largeCategory", largeCategory);
+		model.addAttribute("middleCategoryList", middleCategoryList);
+
+		return "/auctiongoods/auctiongoods_insertForm";
+	}
+	
 	 
 }
