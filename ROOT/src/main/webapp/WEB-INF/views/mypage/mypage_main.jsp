@@ -66,12 +66,15 @@ a:hover {text-decoration: underline; color: #000000;} */
 					</h4>
 
 					<c:if test="${userLoginInfo.userLevel eq '판매자' }">
-						<div class="sm-box">판매등급은 ? 입니다.</div>
-						<a class="mypage-a btn btn-default" href="#">판매 혜택보기</a>
+						<div class="sm-box">판매등급은 ${grade.gradeName} 입니다.</div>
+						<a class="mypage-a btn btn-default" href="#">판매혜택보기</a>
+						<a class="mypage-a btn btn-default" href="#">회원등급안내</a>
 					</c:if>
 					<c:if test="${userLoginInfo.userLevel eq '구매자' }">
-						<div class="sm-box">구매등급은 ? 입니다.</div>
-						<a class="mypage-a btn btn-default" href="#">구매 혜택보기</a>
+						<div class="sm-box">구매등급은 ${grade.gradeName} 입니다.</div>
+						<a class="mypage-a btn btn-default" href="#">구매혜택보기</a>
+						<a class="mypage-a btn btn-default" href="#">회원등급안내</a>
+						<a class="mypage-a btn btn-default" href="#">판매자전환</a>
 					</c:if>
 
 				</div>
@@ -82,7 +85,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 						<span>잔여 금액 : </span> <span>${userLoginInfo.userTotalcash}</span>
 					</div>
 					<div class="col-sm-6">
-						<a class="btn btn-success" href="#">캐쉬 충전</a>
+						<a class="btn btn-success" href="${pageContext.request.contextPath}/mypage/myinfo/Cash">캐쉬 충전</a>
 					</div>
 					<div class="col-sm-6">
 						<a class="btn btn-success" href="#">캐쉬 출금</a>

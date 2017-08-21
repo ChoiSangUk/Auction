@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kpsl.auction.user.service.UserDao;
@@ -61,20 +61,8 @@ public class UserController {
 
 	// 세션테스트 화면
 	@RequestMapping("page1")
-	public String page1(HttpSession session,Model model) {
-		
-		
-		String userId = (String) session.getAttribute("userId");
-		log.info(userId+"<----- page1 확인");
-		
-		GradeVo gradeVo = userService.getUserGrade(userId);
-		log.info(gradeVo.getGradeName()+"<---- 확인");
-		
-		/*if(grade == null){
-		return "/user/session_test1";
-		}else{
-		session.setAttribute("grade", grade);
-		}*/
+	public String page1(HttpSession session) {
+						
 		return "/user/session_test1";
 	}
 	

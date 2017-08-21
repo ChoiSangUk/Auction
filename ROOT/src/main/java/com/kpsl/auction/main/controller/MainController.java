@@ -1,14 +1,22 @@
 package com.kpsl.auction.main.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kpsl.auction.user.service.UserService;
+import com.kpsl.auction.user.vo.GradeVo;
+
 @Controller
 public class MainController {
 	Logger log = Logger.getLogger(this.getClass());
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -37,11 +45,16 @@ public class MainController {
 		log.info("adminMain 확인");
 		return "/admin/admin_main";
 	}
-
 	@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.GET)
-	public String myPageMain() {
+	public String mypage(HttpSession session) {
+		String userId = (String) session.getAttribute("userId");
+		log.info(userId+"<----- page1 확인");
 		
-		log.info("myPageMain 확인");
+		GradeVo gradeVo = userService.getUserGrade(userId);
+		log.info(gradeVo.getGradeName()+"<---- 확인");
+		
+		
+		session.setAttribute("grade", gradeVo);
 		return "/mypage/mypage_main";
 	}
 }

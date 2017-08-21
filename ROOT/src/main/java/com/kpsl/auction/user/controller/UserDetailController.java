@@ -53,7 +53,5 @@ public class UserDetailController {
 		session.invalidate();
 		return "redirect:/main";
 	}
-	
-	
-	
+
 }
