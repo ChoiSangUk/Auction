@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.kpsl.auction.user.service.UserDao;
 import com.kpsl.auction.user.service.UserDaoImpl;
 import com.kpsl.auction.user.service.UserDetailService;
 import com.kpsl.auction.user.service.UserService;
@@ -28,7 +29,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	private UserDetailService userDetailService;
-	private UserDaoImpl userDaoImpl;
+	private UserDao userDao;
 
 	@RequestMapping(value = "/user/userJoin", method = RequestMethod.GET)
 	public String join(Locale locale, Model model) {
@@ -64,11 +65,12 @@ public class UserController {
 		
 		
 		String userId = (String) session.getAttribute("userId");
-		log.info(userId);
-/*		
-		GradeVo grade = userDaoImpl.selectUserGrade(userId);		
+		log.info(userId+"<----- page1 확인");
 		
-		if(grade == null){
+		GradeVo gradeVo = userService.getUserGrade(userId);
+		log.info(gradeVo.getGradeName()+"<---- 확인");
+		
+		/*if(grade == null){
 		return "/user/session_test1";
 		}else{
 		session.setAttribute("grade", grade);

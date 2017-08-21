@@ -32,7 +32,7 @@ public class UserDetailController {
 		String userId = userDetailVo.getUserId();
 		
 		
-		log.info(userId);
+		log.info(userId+"<---- login 확인");
 		log.info(userDetailVo.getUserPassword());
 		
 		

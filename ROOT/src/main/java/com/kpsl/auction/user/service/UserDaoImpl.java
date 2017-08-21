@@ -34,7 +34,8 @@ public class UserDaoImpl implements UserDao {
 	public GradeVo selectUserGrade(String userId) {
 		log.info("selectUserGrade 확인");
 		log.info(userId);
-		return sqlSessionTemplate.selectOne(NS+"selectUserGrade");
+		
+		return sqlSessionTemplate.selectOne(NS+"selectUserGrade",userId);
 	}
 
 
