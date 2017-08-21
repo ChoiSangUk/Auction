@@ -67,6 +67,11 @@
 						class="btn btn-default" type="reset" value="다시쓰기">
 				</div>
 			</form>
+			<c:forEach var="ad" items="${AdApplylist}">
+				${ad.adApplyCode}
+				${ad.auctionGoodsCode}				
+				${ad.adImageVo.adImageName}
+			</c:forEach>
 		</div>
 	</div>
 </div>

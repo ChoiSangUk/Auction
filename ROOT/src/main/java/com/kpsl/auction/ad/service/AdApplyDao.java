@@ -2,6 +2,7 @@ package com.kpsl.auction.ad.service;
 
 import java.util.List;
 
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageVo;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
@@ -16,4 +17,6 @@ public interface AdApplyDao {
 	int insertAdImage(AdImageVo adImageVo);
 	// 광고 신청 리스트 SELECT 메서드
 	List<AdApplyVo> selectAdApplyList();
+	// 광고 신청, 광고이미지 JOIN SELECT 메서드
+	List<AdApplyVo> selectAdApplyAndAdImageByAdApplyCode(String adApplyCode);
 }

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageVo;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
@@ -48,5 +49,12 @@ public class AdApplyDaoImpl implements AdApplyDao {
 	public List<AdApplyVo> selectAdApplyList() {
 		log.info("selectAdApplyList 호출 확인");
 		return sqlSessionTemplate.selectList(AdApplyMapperNS+"selectAdApply");
+	}
+
+	@Override
+	public List<AdApplyVo> selectAdApplyAndAdImageByAdApplyCode(String adApplyCode) {
+		log.info("selectAdApplyAndAdImageByAdApplyCode 호출 확인");
+		log.info(adApplyCode+"<--- selectAdApplyAndAdImageByAdApplyCode adApplyCode 확인");
+		return sqlSessionTemplate.selectList(AdApplyMapperNS+"selectAdApplyAndAdImageByAdApplyCode",adApplyCode);
 	}
 }

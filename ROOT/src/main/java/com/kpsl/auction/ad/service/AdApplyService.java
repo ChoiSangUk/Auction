@@ -2,6 +2,9 @@ package com.kpsl.auction.ad.service;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageVo;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
@@ -18,4 +21,6 @@ public interface AdApplyService {
 	int addAdImage(AdImageVo adImageVo);
 	// 광고신청 리스트DAO를 호출하기 위한 메서드
 	List<AdApplyVo> getAdApplyList();
+	// 광고신청,광고이미지 조인DAO를 호출하기 위한 메서드
+	List<AdApplyVo> getAdApplyAndAdImageByAdApplyCode(String adApplyCode);
 }

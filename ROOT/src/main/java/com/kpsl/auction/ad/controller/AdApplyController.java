@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kpsl.auction.ad.service.AdApplyService;
-import com.kpsl.auction.ad.service.AdImageServce;
 import com.kpsl.auction.ad.service.AdUnitPriceService;
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageVo;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.ad.vo.AdUnitPriceVo;
@@ -28,9 +28,14 @@ public class AdApplyController {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
+	// 광고상세정보 페이지 요청
 	@RequestMapping(value = "/ad/adminAdApplyDetail", method = RequestMethod.GET)
-	public String adApplyDetail(String adApplyCode) {
+	public String adApplyDetail(Model model,
+								@RequestParam(value="adApplyCode", required=true) String adApplyCode) {
+		log.info(adApplyCode+"<--- adApplyCode 확인");
+		List<AdApplyVo> AdApplylist =adApplyService.getAdApplyAndAdImageByAdApplyCode(adApplyCode);
 		
+		model.addAttribute("AdApplylist",AdApplylist);
 		log.info("adApplyDetail 확인");
 		return "/admin/ad/admin_adApply_detail";
 	}

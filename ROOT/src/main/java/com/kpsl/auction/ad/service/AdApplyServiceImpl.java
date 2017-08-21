@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageVo;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
@@ -51,5 +51,12 @@ public class AdApplyServiceImpl implements AdApplyService {
 	public List<AdApplyVo> getAdApplyList() {
 		log.info("getAdApplyList 호출 확인");
 		return adApplyDao.selectAdApplyList();
+	}
+
+	@Override
+	public List<AdApplyVo> getAdApplyAndAdImageByAdApplyCode(String adApplyCode) {
+		log.info(adApplyCode+"<--- getAdApplyAndAdImageByAdApplyCode adApplyCode 확인");
+		log.info("getAdApplyAndAdImageByAdApplyCode 호출 확인");
+		return adApplyDao.selectAdApplyAndAdImageByAdApplyCode(adApplyCode);
 	}
 }
