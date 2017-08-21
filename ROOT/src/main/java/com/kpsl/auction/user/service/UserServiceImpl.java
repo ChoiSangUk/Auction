@@ -12,8 +12,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public UserDetailVo getUserLogin(String userId,String userPassword) {
-		log.info(userId);
-		log.info(userDao.selectUserLogin(userId,userPassword)+"<----ddd");
+		log.info("UserServiceImpl"+userId);
 		return userDao.selectUserLogin(userId,userPassword);
 	}
 

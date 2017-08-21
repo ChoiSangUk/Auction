@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kpsl.auction.user.vo.GradeVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
 
 
@@ -28,4 +29,14 @@ public class UserDaoImpl implements UserDao {
 		paramMap.put("userPassword", userPassword);
 		return sqlSessionTemplate.selectOne(NS+"selectUserLogin", paramMap);
 	}
+
+	@Override
+	public GradeVo selectUserGrade(String userId) {
+		log.info("selectUserGrade 확인");
+		log.info(userId);
+		return sqlSessionTemplate.selectOne(NS+"selectUserGrade");
+	}
+
+
+
 }

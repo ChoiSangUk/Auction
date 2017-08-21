@@ -5,24 +5,40 @@
 <mapper namespace="com.kpsl.auction.user.service.UserDetailMapper">
 	<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
 		<id property="userId" column="user_id" />
-		<id property="userPassword" column="user_password" />
-		<id property="userLevel" column="user_level" />
+		<result property="userPassword" column="user_password" />
+		<result property="userLevel" column="user_level" />
+		<result property="gradeCode" column="grade_code" />
+		<result property="restrictCode" column="restrict_code" />
+		<result property="userName" column="user_name" />
+		<result property="userGender" column="user_gender" />
+		<result property="userBirth" column="user_birth" />
+		<result property="userPhone" column="user_phone" />
+		<result property="userEmail" column="user_email" />
+		<result property="userPostcode" column="user_postcode" />
+		<result property="userAddr" column="user_addr" />
+		<result property="userAddrdetail" column="user_addrdetail" />
+		<result property="userTotalcash" column="user_totalcash" />
+	</resultMap>
+	<resultMap type="com.kpsl.auction.user.vo.GradeVo" id="grade">
 		<id property="gradeCode" column="grade_code" />
-		<id property="restrictCode" column="restrict_code" />
-		<id property="userName" column="user_name" />
-		<id property="userGender" column="user_gender" />
-		<id property="userBirth" column="user_birth" />
-		<id property="userPhone" column="user_phone" />
-		<id property="userEmail" column="user_email" />
-		<id property="userPostcode" column="user_postcode" />
-		<id property="userAddr" column="user_addr" />
-		<id property="userAddrdetail" column="user_addrdetail" />
-		<id property="userTotalcash" column="user_totalcash" />
+		<result property="gradeName" column="grade_name" />
+		<result property="gradeRank" column="grade_rank" />
 	</resultMap>
 	<resultMap type="com.kpsl.auction.user.vo.UserVo" id="user">
 		<id property="user_id" column="userId" />
 	</resultMap>
-	
+	<!-- 회원등급 -->
+ <!-- Board -->
+   	<!-- usergrade -->
+	<select id="selectUserGrade" parameterType="String" resultMap="grade">
+
+		SELECT g.grade_name
+		FROM grade_tb AS g 
+		INNER JOIN user_detail_tb AS u 
+		ON u.grade_code = g.grade_code
+		WHERE u.user_id = #{userId};
+		
+	</select> 
 	<!-- 로그인 -->
  	<select id="selectUserLogin" parameterType="String" resultMap="userDetail">
  		SELECT user_id
@@ -63,7 +79,7 @@
 			#{userId}
 			, #{userPassword}
 			, '구매자'
-			, 'grade1'
+			, 'grade4'
 			, 'restrict1'
 			, #{userName}
 			, #{userGender}
@@ -98,7 +114,7 @@
 			#{userId}
 			, #{userPassword}
 			, '판매자'
-			, 'grade1'
+			, 'grade4'
 			, 'restrict1'
 			, #{userName}
 			, #{userGender}

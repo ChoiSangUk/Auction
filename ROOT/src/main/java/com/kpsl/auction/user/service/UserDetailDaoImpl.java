@@ -33,5 +33,4 @@ public class UserDetailDaoImpl implements UserDetailDao {
 		return sqlSessionTemplate.insert(NS+"insertUserSeller", userDetailVo);
 	}
 
-
 }

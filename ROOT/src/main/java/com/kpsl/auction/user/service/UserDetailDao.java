@@ -8,5 +8,6 @@ public interface UserDetailDao {
 	int insertUserBuyer(UserDetailVo userDetailVo);
 	int insertUserSeller(UserDetailVo userDetailVo);
 	int insertUser(UserVo userVo);
+
 	
 }
