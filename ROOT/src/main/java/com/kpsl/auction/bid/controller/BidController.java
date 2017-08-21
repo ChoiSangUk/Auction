@@ -28,13 +28,11 @@ public class BidController {
 		return "/bid/bid_form";
 	}
 	//입찰자 입찰버튼 클릭시 
-		@RequestMapping(value = "/bid/price", method = RequestMethod.GET)
-		public String bidPrice(Model model){
+		@RequestMapping(value = "/bid/price", method =RequestMethod.POST)
+		public String bidPrice(){
 			log.info("입찰자 입찰");
-			return "/bid/bid_form";
-		
+			return "redirect:/bid/bid_form";
+		 
 	}
 }
 	
-
-

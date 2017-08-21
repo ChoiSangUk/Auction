@@ -21,10 +21,11 @@
 						<tr>
 							<div>
 							<td>
-							<label for="boardPw">입찰가격 :</label>
-							<input type="text"></input>
-							<a href="${pageContext.request.contextPath}/bid/price=${bidPrice}"><button>입찰</button>
-							</a>
+							<label for="bidPrice">입찰가격 :</label>
+							<form action="${pageContext.request.contextPath}/bid/price"=${bid.bidPrice} method="post">
+							<input type = "int" value="${bid.bidPrice}"></input>
+							<input type = "submit" value = "입찰"></input>
+							</form>
 							</td>
 							</div>
 					
