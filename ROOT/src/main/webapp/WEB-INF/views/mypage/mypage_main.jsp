@@ -203,7 +203,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 				<a class="btn btn-blue btn-lg" href="#">문의게시판</a>
 			</div>
 			<div class="col-sm-2">
-				<a class="btn btn-blue btn-lg" href="#">물품광고</a>
+				<a class="btn btn-blue btn-lg" href="${pageContext.request.contextPath}/mypage/mypageAdInfo">물품광고</a>
 			</div>
 			<div class="col-sm-2">
 				<a class="btn btn-blue btn-lg" href="#">판매자수수료</a>

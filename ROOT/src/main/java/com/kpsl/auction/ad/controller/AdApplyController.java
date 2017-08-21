@@ -30,7 +30,7 @@ public class AdApplyController {
 		
 		// 로그인 세션이 연결 안되있어서 임시로 값을 넣어둠
 		userId = "id002";
-		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList(); 
+		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList();
 		List<AuctionGoodsVo> auctionGoodsList = adApplyService.getAuctionGoodsListByUserId(userId);
 		model.addAttribute("adUnitPriceList",adUnitPriceList);
 		model.addAttribute("auctionGoodsList",auctionGoodsList);
