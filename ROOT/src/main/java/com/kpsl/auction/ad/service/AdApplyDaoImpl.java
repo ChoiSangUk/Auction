@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kpsl.auction.ad.vo.AdApplyVo;
+import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
 @Repository
@@ -16,6 +17,7 @@ public class AdApplyDaoImpl implements AdApplyDao {
 	Logger log = Logger.getLogger(this.getClass());
 	final String AuctionGoodsMapperNS = "com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper.";
 	final String AdApplyMapperNS = "com.kpsl.auction.ad.service.AdApplyMapper.";
+	final String AdImageMapperNS = "com.kpsl.auction.ad.service.AdImageMapper.";
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
@@ -33,5 +35,12 @@ public class AdApplyDaoImpl implements AdApplyDao {
 	public int insertAdApply(AdApplyVo adApplyVo) {
 		log.info("insertAdApply 호출 확인");
 		return sqlSessionTemplate.insert(AdApplyMapperNS+"insertAdApply",adApplyVo);
+	}
+
+	@Override
+	public int insertAdImage(AdImageVo adImageVo) {
+		log.info("insertAdImage 호출 확인");
+		
+		return sqlSessionTemplate.insert(AdImageMapperNS+"insertAdImage",adImageVo);
 	}
 }

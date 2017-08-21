@@ -2,6 +2,8 @@ package com.kpsl.auction.ad.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kpsl.auction.ad.service.AdApplyService;
+import com.kpsl.auction.ad.service.AdImageServce;
 import com.kpsl.auction.ad.service.AdUnitPriceService;
 import com.kpsl.auction.ad.vo.AdApplyVo;
+import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.ad.vo.AdUnitPriceVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
@@ -24,12 +28,20 @@ public class AdApplyController {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
+	// 광고정보 및 정책 페이지 요청
+	@RequestMapping(value = "/mypage/mypageAdInfo", method = RequestMethod.GET)
+	public String adApplyInfo() {
+		
+		log.info("adApplyInfo 확인");
+		return "/mypage/mypage_ad_info";
+	}
 	// 광고 신청 폼 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.GET)
-	public String adApplyAdd(Model model, String userId) {
-		
+	public String adApplyAdd(Model model, String userId, HttpSession session) {
+		//session.getAttribute(userId);
 		// 로그인 세션이 연결 안되있어서 임시로 값을 넣어둠
 		userId = "id002";
+		
 		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList();
 		List<AuctionGoodsVo> auctionGoodsList = adApplyService.getAuctionGoodsListByUserId(userId);
 		model.addAttribute("adUnitPriceList",adUnitPriceList);
@@ -40,13 +52,12 @@ public class AdApplyController {
 	}
 	// 광고 (액션) 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)
-	public String adApplyAdd(AdApplyVo adApplyVo
-							, @RequestParam(value="adImageName", required=false) String adImageName) {
+	public String adApplyAdd(AdApplyVo adApplyVo ,AdImageVo adImageVo) {
 		log.info(adApplyVo+"<---adApplyVo확인");
-		adApplyService.addAdApply(adApplyVo);
-		/*log.debug(adImageName+"<--- 광고이미지");
-		log.debug(adUnitPriceCode+"<-- 광고단가 코드 확인");
-		log.debug(auctionGoodsCode+"<-- 물품명코드 확인");*/
+		log.info(adImageVo+"<----adImageVo 확인");
+		//adApplyService.addAdApply(adApplyVo);
+		//adApplyService.addAdImage(adImageVo);
+		adApplyService.adApplyTransaction(adApplyVo, adImageVo);
 		log.info("adApplyAdd 확인");
 		return "redirect:/mypage/mypageMain";
 	}

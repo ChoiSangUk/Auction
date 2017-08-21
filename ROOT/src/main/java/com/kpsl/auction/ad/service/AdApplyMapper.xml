@@ -17,7 +17,7 @@
 	<!-- 키값을 먼저 조회하고 키값을 셋팅한 후 INSERT -->
 	<insert id="insertAdApply" parameterType="com.kpsl.auction.ad.vo.AdApplyVo">		
 		<selectKey keyProperty="adApplyCode" resultType="string" order="BEFORE">
-			SELECT CONCAT("aa",MAX(substring(ad_apply_code,3))+1) FROM ad_apply_tb
+			SELECT CONCAT("aa",MAX(CAST(substring(ad_apply_code,3)+1 AS DECIMAL))) FROM ad_apply_tb
 		</selectKey>
 		INSERT INTO ad_apply_tb
 				(ad_apply_code,

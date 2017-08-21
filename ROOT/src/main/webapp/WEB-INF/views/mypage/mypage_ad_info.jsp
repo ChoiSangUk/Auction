@@ -6,6 +6,7 @@
 <div class="container-fluid text-left">
 	<div class="row title">
 		<h1>Auction 광고 소개 페이지</h1>
+		<a href="${pageContext.request.contextPath}/mypage/adApplyInsertForm">광고신청하러 가기</a>
 	</div>
 </div>
 
