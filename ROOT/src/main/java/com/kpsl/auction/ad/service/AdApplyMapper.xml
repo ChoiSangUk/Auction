@@ -15,19 +15,20 @@
 		<id property="adApplyState" column="ad_apply_state"/>
 	</resultMap>
 	<!-- 키값을 먼저 조회하고 키값을 셋팅한 후 INSERT -->
-	<insert id="insertAdApply" parameterType="com.kpsl.auction.ad.vo.AdApplyVo">		
+	<insert id="insertAdApply" parameterType="com.kpsl.auction.ad.vo.AdApplyVo"
+			useGeneratedKeys="true" keyProperty="adApplyCode">		
 		<selectKey keyProperty="adApplyCode" resultType="string" order="BEFORE">
 			SELECT CONCAT("aa",MAX(CAST(substring(ad_apply_code,3)+1 AS DECIMAL))) FROM ad_apply_tb
 		</selectKey>
 		INSERT INTO ad_apply_tb
-				(ad_apply_code,
-				 ad_unit_price_code,
-				 auction_goods_code, 
-				 user_id, 
-				 ad_apply_regist_date, 
-				 ad_apply_start_date, 
-				 ad_apply_end_date, 
-				 ad_apply_state)
+					(ad_apply_code,
+					 ad_unit_price_code,
+					 auction_goods_code, 
+					 user_id, 
+					 ad_apply_regist_date, 
+					 ad_apply_start_date, 
+					 ad_apply_end_date, 
+					 ad_apply_state)
 		VALUES (#{adApplyCode}, 
 				#{adUnitPriceCode}, 
 				#{auctionGoodsCode}, 
@@ -37,4 +38,17 @@
 				#{adApplyEndDate}, 
 				'승인대기')
 	</insert>
+	<!-- 전체 광고신청 리스트 SELECT쿼리 (등록순으로)-->
+	<select id="selectAdApply" resultMap="AdApplyVo">
+		SELECT  ad_apply_code, 
+				ad_unit_price_code, 
+				auction_goods_code, 
+				user_id, 
+				ad_apply_regist_date, 
+				ad_apply_start_date, 
+				ad_apply_end_date, 
+				ad_apply_state
+				FROM ad_apply_tb
+		ORDER BY ad_apply_regist_date
+	</select>
 </mapper>

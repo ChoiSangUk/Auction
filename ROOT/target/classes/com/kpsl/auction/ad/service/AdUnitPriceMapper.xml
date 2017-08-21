@@ -22,12 +22,12 @@
 	
 	<!-- 광고단가 수정을 위한 SELECT -->
 	<select id="selectAdUnitPriceByAdUnitPirceCode" parameterType="String" resultMap="AdUnitPrice">
-		SELECT ad_unit_price_code, 
-		ad_unit_price_code,
-		ad_unit_price_name, 
-		ad_unit_price_price, 
-		ad_unit_price_state
-		FROM ad_unit_price_tb
+		SELECT  ad_unit_price_code, 
+				ad_unit_price_code,
+				ad_unit_price_name, 
+				ad_unit_price_price, 
+				ad_unit_price_state
+				FROM ad_unit_price_tb
 		WHERE ad_unit_price_code=#{adUnitPirceCode}
 	</select>
 	

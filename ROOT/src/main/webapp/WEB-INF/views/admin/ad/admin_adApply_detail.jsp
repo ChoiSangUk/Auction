@@ -18,22 +18,13 @@
 </style>
 
 <div class="container-fluid text-left">
-	<div class="row title">
-		<div class="col-sm-12">
-		<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-		<a href="${pageContext.request.contextPath}/main">홈</a>
-		<span>></span>
-		<span>광고신청</span>
-		</div>
-	</div><br>
+	<h1>광고신청 상세 화면</h1>
 	<div class="row content">	
-		<div class="col-sm-12">		
+		<div class="col-sm-12">
 			<!-- 물품광고신청 폼 -->
-			<form class="form-horizontal"
-				action="${pageContext.request.contextPath}/mypage/adApplyInsertForm"
-				method="post">
+			<form class="form-horizontal" action="${pageContext.request.contextPath}/mypage/adApplyInsertForm" method="post">
 				<input class="form-control" type="hidden" name="adApplyCode">
-				<input class="form-control" type="hidden" name="userId">		
+				<input class="form-control" type="hidden" name="userId">
 				<div class="form-group">
 					<label class="col-sm-2 control-label">물품명</label>
 					<div class="col-sm-2">
@@ -61,6 +52,11 @@
 					<label class="col-sm-1 control-label">광고 종료일</label>
 					<div class="col-sm-2">
 						<input class="form-control" type="date" name="adApplyEndDate">
+					</div>
+					<label class="col-sm-1 control-label">광고신청 상태</label>
+					<div class="col-sm-2">
+						<label class="radio-inline"><input type="radio" name="adApplyState" checked="checked" value="승인대기">승인대기</label>
+						<label class="radio-inline"><input type="radio" name="adApplyState" value="승인완료">승인완료</label>
 					</div>
 				</div>
 				<div class="form-group">

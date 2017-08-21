@@ -12,8 +12,10 @@ public interface AdApplyService {
 	List<AuctionGoodsVo> getAuctionGoodsListByUserId(String userId);
 	// 광고신청 트랜잭션 처리를 위한 메서드
 	void adApplyTransaction(AdApplyVo adApplyVo, AdImageVo adImageVo);
-	// 광고신청DAO를 호출하기위한 메서드
+	// 광고신청DAO를 호출하기 위한 메서드
 	int addAdApply(AdApplyVo adApplyVo);
-	// 광고이미지 등록DAO를 호출하기위한 메서드
+	// 광고이미지 등록DAO를 호출하기 위한 메서드
 	int addAdImage(AdImageVo adImageVo);
+	// 광고신청 리스트DAO를 호출하기 위한 메서드
+	List<AdApplyVo> getAdApplyList();
 }

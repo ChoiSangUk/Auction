@@ -43,4 +43,10 @@ public class AdApplyDaoImpl implements AdApplyDao {
 		
 		return sqlSessionTemplate.insert(AdImageMapperNS+"insertAdImage",adImageVo);
 	}
+
+	@Override
+	public List<AdApplyVo> selectAdApplyList() {
+		log.info("selectAdApplyList 호출 확인");
+		return sqlSessionTemplate.selectList(AdApplyMapperNS+"selectAdApply");
+	}
 }

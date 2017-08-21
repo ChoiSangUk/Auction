@@ -18,7 +18,7 @@
 				(ad_image_code,
 				 ad_apply_code,
 				 ad_image_name)
-		VALUES ('ai1',
+		VALUES (#{adImageCode},
 				#{adApplyCode},
 				#{adImageName})
 	</insert>

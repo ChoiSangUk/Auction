@@ -19,10 +19,13 @@ public class AdApplyServiceImpl implements AdApplyService {
 	@Autowired private AdApplyDao adApplyDao;
 	
 	@Override
+	// adApplyVo에 셋팅된 adApplyCode를 겟팅후 adImageVo의 adApplyCode에 셋팅해준다.
 	public void adApplyTransaction(AdApplyVo adApplyVo, AdImageVo adImageVo) {
 		addAdApply(adApplyVo);
+		String adApplyCode = adApplyVo.getAdApplyCode();
+		adImageVo.setAdApplyCode(adApplyCode);
 		addAdImage(adImageVo);
-		log.info("트랜잭션 확인");
+		log.info("adApplyTransaction 확인");
 	}
 	
 	@Override
@@ -40,8 +43,13 @@ public class AdApplyServiceImpl implements AdApplyService {
 
 	@Override
 	public int addAdImage(AdImageVo adImageVo) {
-		log.info("adAdImage 호출 확인");	
+		log.info("adAdImage 호출 확인");
 		return adApplyDao.insertAdImage(adImageVo);
 	}
 
+	@Override
+	public List<AdApplyVo> getAdApplyList() {
+		log.info("getAdApplyList 호출 확인");
+		return adApplyDao.selectAdApplyList();
+	}
 }

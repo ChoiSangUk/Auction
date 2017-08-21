@@ -28,9 +28,26 @@ public class AdApplyController {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
+	@RequestMapping(value = "/ad/adminAdApplyDetail", method = RequestMethod.GET)
+	public String adApplyDetail(String adApplyCode) {
+		
+		log.info("adApplyDetail 확인");
+		return "/admin/ad/admin_adApply_detail";
+	}
+	
+	// 광고신청 리스트 페이지 요청
+	@RequestMapping(value = "/ad/adminAdApplySearch", method = RequestMethod.GET)
+	public String adApplyList(Model model) {
+		log.info("adApplyList 확인");
+		List<AdApplyVo> adApplyList = adApplyService.getAdApplyList();
+		model.addAttribute("adApplyList",adApplyList);
+		
+		return "/admin/ad/admin_adApply_search";
+	}
+	
 	// 광고정보 및 정책 페이지 요청
 	@RequestMapping(value = "/mypage/mypageAdInfo", method = RequestMethod.GET)
-	public String adApplyInfo() {
+	public String adApplyInfo(Model model) {
 		
 		log.info("adApplyInfo 확인");
 		return "/mypage/mypage_ad_info";
