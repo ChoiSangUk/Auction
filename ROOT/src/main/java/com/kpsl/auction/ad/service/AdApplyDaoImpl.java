@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceVo;
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
@@ -52,7 +52,7 @@ public class AdApplyDaoImpl implements AdApplyDao {
 	}
 
 	@Override
-	public AdApplyAndAdImageAndAdUnitPriceVo selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode(String adApplyCode) {
+	public AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode(String adApplyCode) {
 		log.info("selectAdApplyAndAdImageByAdApplyCode 호출 확인");
 		log.info(adApplyCode+"<--- selectAdApplyAndAdImageByAdApplyCode adApplyCode 확인");
 		return sqlSessionTemplate.selectOne(AdApplyMapperNS+"selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode",adApplyCode);
@@ -62,5 +62,11 @@ public class AdApplyDaoImpl implements AdApplyDao {
 	public int updateAdApply(AdApplyVo adApplyVo) {
 		log.info("updateAdApply 호출 확인");
 		return sqlSessionTemplate.update(AdApplyMapperNS+"updateAdApply",adApplyVo);
+	}
+
+	@Override
+	public List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId(String userId) {
+		log.info("selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId 호출 확인");
+		return sqlSessionTemplate.selectList(AdApplyMapperNS+"selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId",userId);
 	}
 }

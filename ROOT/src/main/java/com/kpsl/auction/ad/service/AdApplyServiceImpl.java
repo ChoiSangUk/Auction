@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceVo;
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
@@ -54,7 +54,7 @@ public class AdApplyServiceImpl implements AdApplyService {
 	}
 
 	@Override
-	public AdApplyAndAdImageAndAdUnitPriceVo getAdApplyDetail(String adApplyCode) {
+	public AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo getAdApplyDetail(String adApplyCode) {
 		log.info(adApplyCode+"<--- getAdApplyAndAdImageByAdApplyCode adApplyCode 확인");
 		log.info("getAdApplyAndAdImageByAdApplyCode 호출 확인");
 		return adApplyDao.selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode(adApplyCode);
@@ -64,5 +64,11 @@ public class AdApplyServiceImpl implements AdApplyService {
 	public int modifyAdApply(AdApplyVo adApplyVo) {
 		log.info("modifyAdApply 호출 확인");
 		return adApplyDao.updateAdApply(adApplyVo);
+	}
+
+	@Override
+	public List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> getMyAdApplyList(String userId) {
+		log.info("getMyAdApplyList 호출 확인");
+		return adApplyDao.selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId(userId);
 	}
 }

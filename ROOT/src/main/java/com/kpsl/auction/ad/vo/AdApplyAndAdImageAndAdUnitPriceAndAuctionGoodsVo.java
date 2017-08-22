@@ -1,11 +1,20 @@
 package com.kpsl.auction.ad.vo;
 
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
+
 // AdApply, AdImage, AdUnitPrice 조인을 위한 Vo
-public class AdApplyAndAdImageAndAdUnitPriceVo {
+public class AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo {
 	private AdApplyVo adApplyVo;
 	private AdImageVo adImageVo;
 	private AdUnitPriceVo adUnitPriceVo;
+	private AuctionGoodsVo auctionGoodsVo;
 	
+	public AuctionGoodsVo getAuctionGoodsVo() {
+		return auctionGoodsVo;
+	}
+	public void setAuctionGoodsVo(AuctionGoodsVo auctionGoodsVo) {
+		this.auctionGoodsVo = auctionGoodsVo;
+	}
 	public AdUnitPriceVo getAdUnitPriceVo() {
 		return adUnitPriceVo;
 	}
