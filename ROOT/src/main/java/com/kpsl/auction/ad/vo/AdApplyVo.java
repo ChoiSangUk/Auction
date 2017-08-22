@@ -10,14 +10,7 @@ public class AdApplyVo {
 	private String adApplyStartDate;
 	private String adApplyEndDate;
 	private String adApplyState;
-	private AdImageVo adImageVo;
 	
-	public AdImageVo getAdImageVo() {
-		return adImageVo;
-	}
-	public void setAdImageVo(AdImageVo adImageVo) {
-		this.adImageVo = adImageVo;
-	}
 	public String getAdApplyCode() {
 		return adApplyCode;
 	}

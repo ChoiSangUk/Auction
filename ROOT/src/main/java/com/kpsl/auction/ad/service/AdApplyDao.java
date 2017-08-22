@@ -18,5 +18,5 @@ public interface AdApplyDao {
 	// 광고 신청 리스트 SELECT 메서드
 	List<AdApplyVo> selectAdApplyList();
 	// 광고 신청, 광고이미지 JOIN SELECT 메서드
-	List<AdApplyVo> selectAdApplyAndAdImageByAdApplyCode(String adApplyCode);
+	AdApplyAndAdImageVo selectAdApplyAndAdImageByAdApplyCode(String adApplyCode);
 }

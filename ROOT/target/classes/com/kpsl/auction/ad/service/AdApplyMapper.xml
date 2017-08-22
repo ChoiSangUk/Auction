@@ -15,7 +15,7 @@
 		<id property="adApplyState" column="ad_apply_state"/>
 	</resultMap>
 	<resultMap type="com.kpsl.auction.ad.vo.AdApplyAndAdImageVo" id="AdApplyVoAndAdImageVo">
-    	<association property="adApplyVo">
+    	<association property="adApplyVo" javaType="com.kpsl.auction.ad.vo.AdApplyVo">
     		<id property="adApplyCode" column="ad_apply_code"/>
 			<id property="adUnitPriceCode" column="ad_unit_price_code"/>	
 			<id property="auctionGoodsCode" column="auction_goods_code"/>
@@ -25,13 +25,13 @@
 			<id property="adApplyEndDate" column="ad_apply_end_date"/>
 			<id property="adApplyState" column="ad_apply_state"/>
     	</association>
-    	<association property="adImageVo">
+    	<association property="adImageVo" javaType="com.kpsl.auction.ad.vo.AdImageVo">
     		<id property="adImageCode" column="ad_image_code"/>
 			<id property="adApplyCode" column="ad_apply_code"/>
 			<id property="adImageName" column="ad_image_name"/>
     	</association>
     </resultMap>
-    <resultMap type="com.kpsl.auction.ad.vo.AdApplyVo" id="AdApplyVos">
+    <!-- <resultMap type="com.kpsl.auction.ad.vo.AdApplyVo" id="AdApplyVos">
    		<id property="adApplyCode" column="ad_apply_code"/>
 		<id property="adUnitPriceCode" column="ad_unit_price_code"/>	
 		<id property="auctionGoodsCode" column="auction_goods_code"/>
@@ -45,7 +45,7 @@
 			<id property="adApplyCode" column="ad_apply_code"/>
 			<id property="adImageName" column="ad_image_name"/>
 		</collection>
-    </resultMap>
+    </resultMap> -->
 	<!-- 키값을 먼저 조회하고 키값을 셋팅한 후 INSERT -->
 	<insert id="insertAdApply" parameterType="com.kpsl.auction.ad.vo.AdApplyVo"
 			useGeneratedKeys="true" keyProperty="adApplyCode">
@@ -84,7 +84,7 @@
 		ORDER BY ad_apply_regist_date
 	</select>
 	<!-- 광고신청,광고이미지 JOIN -->
-	<select id="selectAdApplyAndAdImageByAdApplyCode" parameterType="String" resultMap="AdApplyVos">
+	<select id="selectAdApplyAndAdImageByAdApplyCode" parameterType="String" resultMap="AdApplyVoAndAdImageVo">
 	SELECT  aa.ad_apply_code, 
 			aa.ad_unit_price_code, 
 			aa.auction_goods_code, 

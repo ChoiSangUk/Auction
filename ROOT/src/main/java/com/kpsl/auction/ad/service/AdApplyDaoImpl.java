@@ -52,9 +52,9 @@ public class AdApplyDaoImpl implements AdApplyDao {
 	}
 
 	@Override
-	public List<AdApplyVo> selectAdApplyAndAdImageByAdApplyCode(String adApplyCode) {
+	public AdApplyAndAdImageVo selectAdApplyAndAdImageByAdApplyCode(String adApplyCode) {
 		log.info("selectAdApplyAndAdImageByAdApplyCode 호출 확인");
 		log.info(adApplyCode+"<--- selectAdApplyAndAdImageByAdApplyCode adApplyCode 확인");
-		return sqlSessionTemplate.selectList(AdApplyMapperNS+"selectAdApplyAndAdImageByAdApplyCode",adApplyCode);
+		return sqlSessionTemplate.selectOne(AdApplyMapperNS+"selectAdApplyAndAdImageByAdApplyCode",adApplyCode);
 	}
 }

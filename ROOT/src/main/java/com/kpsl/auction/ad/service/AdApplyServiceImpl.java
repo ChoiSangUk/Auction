@@ -54,7 +54,7 @@ public class AdApplyServiceImpl implements AdApplyService {
 	}
 
 	@Override
-	public List<AdApplyVo> getAdApplyAndAdImageByAdApplyCode(String adApplyCode) {
+	public AdApplyAndAdImageVo getAdApplyAndAdImageByAdApplyCode(String adApplyCode) {
 		log.info(adApplyCode+"<--- getAdApplyAndAdImageByAdApplyCode adApplyCode 확인");
 		log.info("getAdApplyAndAdImageByAdApplyCode 호출 확인");
 		return adApplyDao.selectAdApplyAndAdImageByAdApplyCode(adApplyCode);

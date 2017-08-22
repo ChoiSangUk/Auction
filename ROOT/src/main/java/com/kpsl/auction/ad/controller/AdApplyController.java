@@ -33,9 +33,13 @@ public class AdApplyController {
 	public String adApplyDetail(Model model,
 								@RequestParam(value="adApplyCode", required=true) String adApplyCode) {
 		log.info(adApplyCode+"<--- adApplyCode 확인");
-		List<AdApplyVo> AdApplylist =adApplyService.getAdApplyAndAdImageByAdApplyCode(adApplyCode);
+		AdApplyAndAdImageVo adApplyAndAdImageVo = adApplyService.getAdApplyAndAdImageByAdApplyCode(adApplyCode);	
+		AdApplyVo adApplyList = adApplyAndAdImageVo.getAdApplyVo();	
+		AdImageVo adImageList = adApplyAndAdImageVo.getAdImageVo();
 		
-		model.addAttribute("AdApplylist",AdApplylist);
+		model.addAttribute("adApplyList",adApplyList);
+		model.addAttribute("adImageList",adImageList);
+
 		log.info("adApplyDetail 확인");
 		return "/admin/ad/admin_adApply_detail";
 	}
