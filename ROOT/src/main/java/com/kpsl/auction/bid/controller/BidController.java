@@ -29,9 +29,12 @@ public class BidController {
 	}
 	//입찰자 입찰버튼 클릭시 
 		@RequestMapping(value = "/bid/price", method =RequestMethod.POST)
-		public String bidPrice(int model){
-			log.info(model);
-			log.info("입찰자 입찰기");
+		public String bidPrice(BidVo bidvo){
+			
+	/*		bidService.setBidPrice(bidvo);
+			log.info(bidvo);
+			*/
+			log.info("입찰자 입찰하기");
 			return "redirect:/bid/bidform";
 		 
 	}

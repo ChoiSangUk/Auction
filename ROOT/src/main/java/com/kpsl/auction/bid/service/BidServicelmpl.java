@@ -19,9 +19,9 @@ public class BidServicelmpl implements BidService {
 	}
 	//입찰하기
 	@Override
-	public int setBidPrice(Model model) {
-		
-		return bidDao.instertBidPrice(model);
+	public int setBidPrice(BidVo bidvo) {
+		// TODO Auto-generated method stub
+		return bidDao.instertBidPrice(bidvo);
 	}
 	
 }

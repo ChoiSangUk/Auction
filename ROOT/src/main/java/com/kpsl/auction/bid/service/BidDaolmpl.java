@@ -26,10 +26,11 @@ public class BidDaolmpl implements BidDao {
 	}
 	//입찰하기
 	@Override
-	public int instertBidPrice(Model model) {
+	public int instertBidPrice(BidVo bidvo) {
 		log.info("insertBidPrice 확인");
 		log.debug(sessionTemplate.insert(NS+"insertBidPrice"));
 		return sessionTemplate.insert(NS+"insertBidPrice");
+
 	}
 	
 }
