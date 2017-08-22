@@ -21,7 +21,7 @@
 		 	,bid_date
 		FROM bid_td;
   	</select>
-<!-- 	<insert id = "bidPrice" parameterType = "com.kpsl.auction.bid.service">
+	<insert id ="bidPrice" parameterType = "com.kpsl.auction.bid.vo.BidVo">
 	INSERT INTO bid_td
 	(bid_code
 	, user_buyer_id
@@ -36,5 +36,5 @@
 	, 'id002'
 	, #{bidPrice}
 	, NOW());
-	</insert> -->
+	</insert>
   </mapper>

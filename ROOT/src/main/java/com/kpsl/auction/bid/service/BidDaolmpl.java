@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import com.kpsl.auction.bid.vo.BidVo;
 
@@ -16,11 +17,19 @@ public class BidDaolmpl implements BidDao {
 	final String NS = "com.kpsl.auction.bid.service.BidMapper.";
 	@Autowired
 	private SqlSessionTemplate sessionTemplate;
-	
+	//입찰자 리스트
 	@Override
 	public List<BidVo> selectBidList(){
 		log.info("selectBidList 확인");
 		log.debug(sessionTemplate.selectList(NS+"selectBidList"));
 		return sessionTemplate.selectList(NS+"selectBidList");
 	}
+	//입찰하기
+	@Override
+	public int instertBidPrice(Model model) {
+		log.info("insertBidPrice 확인");
+		log.debug(sessionTemplate.insert(NS+"insertBidPrice"));
+		return sessionTemplate.insert(NS+"insertBidPrice");
+	}
+	
 }
