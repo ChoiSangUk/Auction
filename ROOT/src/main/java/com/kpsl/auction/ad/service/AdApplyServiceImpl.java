@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.kpsl.auction.ad.vo.AdApplyAndAdImageVo;
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceVo;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
@@ -54,9 +54,15 @@ public class AdApplyServiceImpl implements AdApplyService {
 	}
 
 	@Override
-	public AdApplyAndAdImageVo getAdApplyAndAdImageByAdApplyCode(String adApplyCode) {
+	public AdApplyAndAdImageAndAdUnitPriceVo getAdApplyDetail(String adApplyCode) {
 		log.info(adApplyCode+"<--- getAdApplyAndAdImageByAdApplyCode adApplyCode 확인");
 		log.info("getAdApplyAndAdImageByAdApplyCode 호출 확인");
-		return adApplyDao.selectAdApplyAndAdImageByAdApplyCode(adApplyCode);
+		return adApplyDao.selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode(adApplyCode);
+	}
+
+	@Override
+	public int modifyAdApply(AdApplyVo adApplyVo) {
+		log.info("modifyAdApply 호출 확인");
+		return adApplyDao.updateAdApply(adApplyVo);
 	}
 }

@@ -34,10 +34,10 @@
 	<!-- 광고단가 수정을 위한 UPDATE -->
 	<update id="updateAdUnitPrice" parameterType="com.kpsl.auction.ad.vo.AdUnitPriceVo">
 		UPDATE ad_unit_price_tb
-			SET
-				ad_unit_price_name = #{adUnitPriceName},
-				ad_unit_price_price = #{adUnitPricePrice},
-				ad_unit_price_state = #{adUnitPriceState}
+		SET
+			ad_unit_price_name = #{adUnitPriceName},
+			ad_unit_price_price = #{adUnitPricePrice},
+			ad_unit_price_state = #{adUnitPriceState}
 		WHERE ad_unit_price_code = #{adUnitPriceCode}
 	</update>
 </mapper>

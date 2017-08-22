@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kpsl.auction.ad.service.AdApplyService;
 import com.kpsl.auction.ad.service.AdUnitPriceService;
-import com.kpsl.auction.ad.vo.AdApplyAndAdImageVo;
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceVo;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.ad.vo.AdUnitPriceVo;
@@ -28,18 +28,26 @@ public class AdApplyController {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
+	// 광고상세정보 액션(수정) 요청
+	@RequestMapping(value = "/ad/adminAdApplyDetail", method = RequestMethod.POST)
+	public String adApplyDetail(AdApplyVo adApplyVo) {
+		adApplyService.modifyAdApply(adApplyVo);
+		log.info("adApplyDetail 액션확인");
+		return "redirect:/ad/adminAdApplySearch";
+	}
+	
 	// 광고상세정보 페이지 요청
 	@RequestMapping(value = "/ad/adminAdApplyDetail", method = RequestMethod.GET)
 	public String adApplyDetail(Model model,
 								@RequestParam(value="adApplyCode", required=true) String adApplyCode) {
 		log.info(adApplyCode+"<--- adApplyCode 확인");
-		AdApplyAndAdImageVo adApplyAndAdImageVo = adApplyService.getAdApplyAndAdImageByAdApplyCode(adApplyCode);	
-		AdApplyVo adApplyList = adApplyAndAdImageVo.getAdApplyVo();	
-		AdImageVo adImageList = adApplyAndAdImageVo.getAdImageVo();
-		
+		AdApplyAndAdImageAndAdUnitPriceVo adApplyAndAdImageAndAdUnitPriceVo = adApplyService.getAdApplyDetail(adApplyCode);	
+		AdApplyVo adApplyList = adApplyAndAdImageAndAdUnitPriceVo.getAdApplyVo();	
+		AdImageVo adImageList = adApplyAndAdImageAndAdUnitPriceVo.getAdImageVo();
+		AdUnitPriceVo adUnitPriceList = adApplyAndAdImageAndAdUnitPriceVo.getAdUnitPriceVo();
 		model.addAttribute("adApplyList",adApplyList);
 		model.addAttribute("adImageList",adImageList);
-
+		model.addAttribute("adUnitPriceList",adUnitPriceList);
 		log.info("adApplyDetail 확인");
 		return "/admin/ad/admin_adApply_detail";
 	}

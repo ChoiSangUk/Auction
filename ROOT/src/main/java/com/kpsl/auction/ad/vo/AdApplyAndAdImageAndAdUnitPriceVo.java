@@ -1,10 +1,17 @@
 package com.kpsl.auction.ad.vo;
 
-// AdApply와 AdImage 조인을 위한 Vo
-public class AdApplyAndAdImageVo {
+// AdApply, AdImage, AdUnitPrice 조인을 위한 Vo
+public class AdApplyAndAdImageAndAdUnitPriceVo {
 	private AdApplyVo adApplyVo;
 	private AdImageVo adImageVo;
+	private AdUnitPriceVo adUnitPriceVo;
 	
+	public AdUnitPriceVo getAdUnitPriceVo() {
+		return adUnitPriceVo;
+	}
+	public void setAdUnitPriceVo(AdUnitPriceVo adUnitPriceVo) {
+		this.adUnitPriceVo = adUnitPriceVo;
+	}
 	public AdApplyVo getAdApplyVo() {
 		return adApplyVo;
 	}

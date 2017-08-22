@@ -21,56 +21,52 @@
 	<h1>광고신청 상세 화면</h1>
 	<div class="row content">	
 		<div class="col-sm-12">
-			<!-- 물품광고신청 폼 -->
-			<form class="form-horizontal" action="${pageContext.request.contextPath}/mypage/adApplyInsertForm" method="post">
-				<input class="form-control" type="hidden" name="adApplyCode">
-				<input class="form-control" type="hidden" name="userId">
+			<!-- 광고신청 상세보기 폼 -->
+			<form class="form-horizontal" action="${pageContext.request.contextPath}/ad/adminAdApplyDetail" method="post">
 				<div class="form-group">
-					<label class="col-sm-2 control-label">물품명</label>
+					<label class="col-sm-2 control-label">광고신청코드</label>
 					<div class="col-sm-2">
-						<select class="form-control" name="auctionGoodsCode">
-							<c:forEach var="ag" items="${auctionGoodsList}">
-								<option value="${ag.auctionGoodsCode}">${ag.auctionGoodsName}</option>
-							</c:forEach>
-						</select>
+						<input class="form-control" type="text" name="adApplyCode" value="${adApplyList.adApplyCode}" readonly="readonly">
 					</div>				
 					<label class="col-sm-1 control-label">광고명</label>
 					<div class="col-sm-2">
-						<select class="form-control" name="adUnitPriceCode">
-							<c:forEach var="ad" items="${adUnitPriceList}">
-								<option value="${ad.adUnitPriceCode}">${ad.adUnitPriceName}</option>
-							</c:forEach>
-						</select>
+						<input class="form-control" type="text" name="adUnitPriceCode" value="${adUnitPriceList.adUnitPriceName}" readonly="readonly">
 					</div>
-				</div>
-				<!-- datepicker사용해서 광고가능한 스케줄 띄우기 -->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">광고 시작일</label>
+					<label class="col-sm-1 control-label">아이디</label>
 					<div class="col-sm-2">
-						<input class="form-control" type="date" name="adApplyStartDate">
-					</div>
-					<label class="col-sm-1 control-label">광고 종료일</label>
-					<div class="col-sm-2">
-						<input class="form-control" type="date" name="adApplyEndDate">
-					</div>
-					<label class="col-sm-1 control-label">광고신청 상태</label>
-					<div class="col-sm-2">
-						<label class="radio-inline"><input type="radio" name="adApplyState" checked="checked" value="승인대기">승인대기</label>
-						<label class="radio-inline"><input type="radio" name="adApplyState" value="승인완료">승인완료</label>
+						<input class="form-control" type="text" name="userId" value="${adApplyList.userId}" readonly="readonly">
 					</div>
 				</div>
 				<div class="form-group">
-					<textarea class="form-controll" id="summernote" name="adImageName"></textarea>
+					<label class="col-sm-2 control-label">광고등록일</label>
+					<div class="col-sm-2">
+						<input class="form-control" type="text" name="adApplyRegistDate" value="${adApplyList.adApplyRegistDate}" readonly="readonly">
+					</div>
+					<label class="col-sm-1 control-label">광고시작일</label>
+					<div class="col-sm-2">
+						<input class="form-control" type="text" name="adApplyStartDate" value="${adApplyList.adApplyStartDate}" readonly="readonly">
+					</div>
+					<label class="col-sm-1 control-label">광고종료일</label>
+					<div class="col-sm-2">
+						<input class="form-control" type="text" name="adApplyEndDate" value="${adApplyList.adApplyEndDate}" readonly="readonly">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">광고신청상태</label>
+					<div class="col-sm-2">
+						<input type="hidden" id="radioCheck" value="${adApplyList.adApplyState}">
+						<label class="radio-inline"><input type="radio" name="adApplyState" value="승인대기" id="stateWait">승인대기</label>
+						<label class="radio-inline"><input type="radio" name="adApplyState" value="승인완료" id="stateSuccess">승인완료</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<textarea class="form-controll" id="summernote" name="adImageName">${adImageList.adImageName}</textarea>
 				</div>
 				<div class="form-group submit text-center">
-					<input class="btn btn-info" type="submit" value="신청"> <input
-						class="btn btn-default" type="reset" value="다시쓰기">
+					<input class="btn btn-info" type="submit" value="수정">
+					<input class="btn btn-default" type="reset" value="다시쓰기">
 				</div>
 			</form>
-			<div>
-				${adApplyList.adApplyCode}
-				${adImageList.adImageCode}
-			</div>
 		</div>
 	</div>
 </div>
@@ -83,6 +79,13 @@ $(document).ready(function() {
 		lang : 'ko-KR',
 	});
 });
+
+var radioCheck = $('#radioCheck').val();
+if(radioCheck == '승인대기') {
+	$('#stateWait').attr("checked", true);
+} else {
+	$('#stateSuccess').attr("checked", true);
+}
 </script>
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8"/>

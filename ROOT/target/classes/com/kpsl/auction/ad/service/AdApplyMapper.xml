@@ -14,7 +14,8 @@
 		<id property="adApplyEndDate" column="ad_apply_end_date"/>
 		<id property="adApplyState" column="ad_apply_state"/>
 	</resultMap>
-	<resultMap type="com.kpsl.auction.ad.vo.AdApplyAndAdImageVo" id="AdApplyVoAndAdImageVo">
+	
+	<resultMap type="com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceVo" id="AdApplyAndAdImageAndAdUnitPriceVo">
     	<association property="adApplyVo" javaType="com.kpsl.auction.ad.vo.AdApplyVo">
     		<id property="adApplyCode" column="ad_apply_code"/>
 			<id property="adUnitPriceCode" column="ad_unit_price_code"/>	
@@ -30,22 +31,14 @@
 			<id property="adApplyCode" column="ad_apply_code"/>
 			<id property="adImageName" column="ad_image_name"/>
     	</association>
+    	<association property="adUnitPriceVo" javaType="com.kpsl.auction.ad.vo.AdUnitPriceVo">
+    		<id property="adUnitPriceCode" column="ad_unit_price_code"/>
+			<id property="adUnitPriceName" column="ad_unit_price_name"/>
+			<id property="adUnitPricePrice" column="ad_unit_price_price"/>
+			<id property="adUnitPriceState" column="ad_unit_price_state"/>
+    	</association>
     </resultMap>
-    <!-- <resultMap type="com.kpsl.auction.ad.vo.AdApplyVo" id="AdApplyVos">
-   		<id property="adApplyCode" column="ad_apply_code"/>
-		<id property="adUnitPriceCode" column="ad_unit_price_code"/>	
-		<id property="auctionGoodsCode" column="auction_goods_code"/>
-		<id property="userId" column="user_id"/>
-		<id property="adApplyRegistDate" column="ad_apply_regist_date"/>
-		<id property="adApplyStartDate" column="ad_apply_start_date"/>
-		<id property="adApplyEndDate" column="ad_apply_end_date"/>
-		<id property="adApplyState" column="ad_apply_state"/>
-		<collection property="adImageVo" ofType="com.kpsl.auction.ad.vo.AdImageVo">
-	   		<id property="adImageCode" column="ad_image_code"/>
-			<id property="adApplyCode" column="ad_apply_code"/>
-			<id property="adImageName" column="ad_image_name"/>
-		</collection>
-    </resultMap> -->
+    
 	<!-- 키값을 먼저 조회하고 키값을 셋팅한 후 INSERT -->
 	<insert id="insertAdApply" parameterType="com.kpsl.auction.ad.vo.AdApplyVo"
 			useGeneratedKeys="true" keyProperty="adApplyCode">
@@ -84,7 +77,7 @@
 		ORDER BY ad_apply_regist_date
 	</select>
 	<!-- 광고신청,광고이미지 JOIN -->
-	<select id="selectAdApplyAndAdImageByAdApplyCode" parameterType="String" resultMap="AdApplyVoAndAdImageVo">
+	<select id="selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode" parameterType="String" resultMap="AdApplyAndAdImageAndAdUnitPriceVo">
 	SELECT  aa.ad_apply_code, 
 			aa.ad_unit_price_code, 
 			aa.auction_goods_code, 
@@ -95,9 +88,20 @@
 			aa.ad_apply_state,
  			ai.ad_image_code, 
  			ai.ad_apply_code, 
- 			ai.ad_image_name
- 			FROM ad_apply_tb aa LEFT JOIN ad_image_tb ai 
+ 			ai.ad_image_name,
+ 			aup.ad_unit_price_name
+ 			FROM ad_apply_tb aa 
+ 			LEFT JOIN ad_image_tb ai 
  			ON aa.ad_apply_code = ai.ad_apply_code
+ 			LEFT JOIN ad_unit_price_tb aup
+ 			ON aa.ad_unit_price_code = aup.ad_unit_price_code
  			WHERE aa.ad_apply_code = #{adApplyCode}
 	</select>
+	
+	<update id="updateAdApply" parameterType="com.kpsl.auction.ad.vo.AdApplyVo">
+		UPDATE ad_apply_tb
+		SET
+			ad_apply_state = #{adApplyState}
+		WHERE ad_apply_code = #{adApplyCode}
+	</update>
 </mapper>

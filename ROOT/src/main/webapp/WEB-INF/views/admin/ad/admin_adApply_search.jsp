@@ -47,8 +47,8 @@
 							<tr>
 								<td>${ad.adApplyCode}</td>
 								<td>${ad.userId}</td>
-								<td>${ad.adApplyCode}</td>
 								<td>${ad.adApplyRegistDate}</td>
+								<td>${ad.adApplyStartDate}</td>
 								<td>${ad.adApplyEndDate}</td>
 								<td>${ad.adApplyState}</td>
 								<td><a
