@@ -89,8 +89,8 @@ public class AuctionGoodsController {
 	@ResponseBody
 	public String auctionGoodsInsert_Middle(Model model,
 			@RequestParam(value = "largeCategoryCode", required = true) String largeCategoryCode) {
-		
-		List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
+		log.info("auctionGoodsInsert_Middle에서 largeCategoryCode  :" + largeCategoryCode);
+		//List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
 		List<MiddleCategoryVo> middleCategoryList = goodsCategoryService.getMiddleCategoryList(largeCategoryCode);
 
 		Gson gson = new Gson();
@@ -104,7 +104,9 @@ public class AuctionGoodsController {
 			@RequestParam(value="largeCategoryCode", required=true) String largeCategoryCode,
 			@RequestParam(value = "middleCategoryCode", required = true) String middleCategoryCode) {
 		
-		List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
+		
+		log.info("auctionGoodsInsert_Small에서 largeCategoryCode :" + largeCategoryCode);
+		//List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
 		List<SmallCategoryVo> smallCategoryList = goodsCategoryService.getSmallCategoryList(largeCategoryCode,middleCategoryCode);
 
 		Gson gson = new Gson();
