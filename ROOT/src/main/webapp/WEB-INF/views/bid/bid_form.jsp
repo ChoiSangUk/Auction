@@ -20,15 +20,19 @@
 						</tr>
 						<tr>
 							<div>
-							<td>
-							<label for="bidPrice">입찰가격 :</label>
-							<form action="${pageContext.request.contextPath}/bid/price"=${bid.bidPrice} method="post">
-							<input type = "int" value="${bid.bidPrice}"></input>
-							<input type = "submit" value = "입찰"></input>
-							</form>
-							</td>
+								<td>
+									<form role="form" id="priceaddForm" action="${pageContext.request.contextPath}/bid/price" method="post">
+										<div class="form-group">
+											<label for="bidPrice">입찰금액</label>
+											 <input type="int" class="form-control" id="bidPrice" name="bidPrice" placeholder="입찰">
+											<button type="submit" class="btn btn-info">
+												입찰하기
+											</button>
+										</div>
+									</form>
+								</td>
 							</div>
-					
+
 						</tr>
 						<tr>
 							<th>입찰자</th>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.kpsl.auction.bid.vo.BidVo;
 
@@ -15,6 +16,12 @@ public class BidServicelmpl implements BidService {
 	public List<BidVo> getBidList(){
 	
 		return bidDao.selectBidList();
+	}
+	//입찰하기
+	@Override
+	public int setBidPrice(Model model) {
+		
+		return bidDao.instertBidPrice(model);
 	}
 	
 }
