@@ -27,12 +27,12 @@ body {
             </div>
             <div class="panel-body">
 				<!-- 로그인 폼 login_pro.jsp로 넘겨 로그인성공하면 index.jsp로 리다이렉트시킴 -->	
-                <form id="login-form" action="${pageContext.request.contextPath}/admin/adminMain" method = "post">
+                <form id="login-form" action="${pageContext.request.contextPath}/admin/adminLogin" method = "post">
                     <div>
-                        <input type="text" class="form-control" name="id" placeholder="Username" autofocus>
+                        <input type="text" class="form-control" name="userId" placeholder="Username" autofocus value="id001">
                     </div>
                     <div>
-                        <input type="password" class="form-control" name="pw" placeholder="Password">
+                        <input type="password" class="form-control" name="userPassword" placeholder="Password" value="pw001">
                     </div>
                     <div>
                         <button type="submit" class="form-control btn btn-primary">로그인</button>

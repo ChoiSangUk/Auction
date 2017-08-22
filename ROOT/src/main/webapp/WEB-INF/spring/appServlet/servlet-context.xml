@@ -31,6 +31,7 @@
 
 	<context:component-scan base-package="com.kpsl.auction" />
 	    <mvc:interceptors>
+	    
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean id="loggerInterceptor" class="com.kpsl.auction.logger.LoggerInterceptor"></bean>
@@ -56,6 +57,8 @@
         <!-- mybatis 세션생성후 쿼리를 실행시킬때 사용할 쿼리위치(메퍼)설정 -->
         <property name="mapperLocations">
             <list>          	
+            	<value>classpath:com/kpsl/auction/saleslog/service/SalesLogMapper.xml</value>  
+            	<value>classpath:com/kpsl/auction/cash/service/CashMapper.xml</value>         
             	<value>classpath:com/kpsl/auction/user/service/UserDetailMapper.xml</value>            	
             	<value>classpath:com/kpsl/auction/ad/service/AdUnitPriceMapper.xml</value>
             	<value>classpath:com/kpsl/auction/ad/service/AdApplyMapper.xml</value>

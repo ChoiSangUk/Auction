@@ -56,16 +56,10 @@
 		<a href="#">출금신청</a>
 	</div>
 
-	<form name="inputForm" id="inputForm" method="post" action="${pageContext.request.contextPath}/mypage/myinfo/Cash">
-		<input type="hidden" name="cmd" id="cmd" value="in"> <input
-			type="hidden" name="bankcode" id="bankcode" value=""> <input
-			type="hidden" name="payMethod" id="payMethod" value="normalAcct">
-		<input type="hidden" name="cashphone1" id="cashphone1" value="010">
-		<input type="hidden" name="cashphone2" id="cashphone2" value="9065">
-		<input type="hidden" name="cashphone3" id="cashphone3" value="0107">
-		<input type="hidden" name="deltype" id="deltype" value="20"> <input
-			type="hidden" name="pmtype" id="pmtype" value="10">
-		<!-- 조회 테이블 -->
+	<form name="inputForm" id="inputForm" method="post"
+		action="${pageContext.request.contextPath}/mypage/myinfo/Cash">
+		<input type="hidden" name="cmd" id="cmd" value="in">
+				<!-- 조회 테이블 -->
 		<div class="row mt50">
 			<div class="tableDefault mb30">
 				<table class="table-vertical">
@@ -74,7 +68,9 @@
 							<th>입금방법</th>
 							<td>
 								<div class="checkbox">
-									<label> <input type="radio" value="5" name="payck" checked=""> 무통장입금</label>
+									<label> <input type="radio" value="5" name="payck"
+										checked=""> 무통장입금
+									</label>
 								</div>
 							</td>
 						</tr>
@@ -101,19 +97,16 @@
 								</div>
 								<div class="form-inline">
 									<div class="input-group">
-										<input type="text" id="bankmoney" name="cashSum"
-											maxlength="10" class="form-control dpInblock w160 mr5"><span
-											class="mr10">원</span>
-										<p class="visible-xs">&nbsp;</p>
+										<input type="text" id="bankmoney" name="cashPrice" maxlength="10" class="form-control">*1000원 이상 신청가능
 										<button type="button" class="btn btn-dark-gray mr10">지우기</button>
 										<strong class="mr10 fcBlue" id="moneyTxt"></strong>
 									</div>
 									<p class="mb5 visible-xs"></p>
-									<span>*1000원 이상 신청가능</span>
+									<span>원</span>
 								</div>
 							</td>
 						</tr>
-						<tr >
+						<tr>
 							<th>은행명</th>
 							<td>
 								<div class="col-md-4 col-xs-12">
@@ -121,20 +114,21 @@
 
 										<option value="">선택하세요</option>
 
-										<option value="30">농협 [ 501075-52-087677 : 예금주 :  (주)강박송이 ]</option>
+										<option value="30">농협 [ 501075-52-087677 : 예금주 :
+											(주)강박송이 ]</option>
 
 									</select>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<th>입금<br class="visible-xs">c예정인
+							<th>입금<br class="visible-xs">예정인
 							</th>
 							<td>
 								<div class="form-inline">
 									<input type="text" name="moneysendname" id="moneysendname"
-										maxlength="20" value="이어진" class="form-control mr10">
-									<span>예) 홍길동</span>
+										maxlength="20" value="${userLoginInfo.userName}"
+										class="form-control mr10"> <span>예) 홍길동</span>
 								</div>
 							</td>
 						</tr>
@@ -146,11 +140,7 @@
 										<input type="checkbox" name="recvbankcode" value="Y"
 											checked=""> <input type="text"
 											class="form-control dpInblock w60" name="sms1" id="sms1"
-											maxlength="3" value="010"> <span>-</span> <input
-											type="text" class="form-control dpInblock w60" name="sms2"
-											id="sms2" maxlength="4" value="9065"> <span>-</span>
-										<input type="text" class="form-control dpInblock w60"
-											name="sms3" id="sms3" maxlength="4" value="0107">
+											maxlength="3" value="${userLoginInfo.userPhone}">
 									</div>
 									※ 수신이 가능한 휴대폰번호를 입력하세요.
 								</div>
@@ -170,9 +160,8 @@
 </div>
 <!-- 충전 누를시 충전하시겠습니까? Y/N 구현해야되-->
 <script type="text/javascript">
-function inputBankMoney(vl) {
-	$("#bankmoney").val(vl);
-}
-
+	function inputBankMoney(vl) {
+		$("#bankmoney").val(vl);
+	}
 </script>
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8" />

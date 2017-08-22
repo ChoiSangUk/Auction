@@ -1,5 +1,6 @@
 package com.kpsl.auction.user.service;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +9,7 @@ import com.kpsl.auction.user.vo.UserVo;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailService {
+	Logger log = Logger.getLogger(this.getClass());
 	@Autowired private UserDetailDao userDetailDao;
 
 	

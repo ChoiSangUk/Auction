@@ -19,7 +19,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Admin</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/admin/adminMain">Admin</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
@@ -35,12 +35,18 @@
 						<li><a href="${pageContext.request.contextPath}/ad/adminAdRefundPaymentSearch">광고환불결제 리스트</a></li>
 					</ul>
 				</li>
-				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">매입매출 관리</a>
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">매입매출 관리
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="${pageContext.request.contextPath}/saleslog/adminSalesLogList">매입/매출 리스트</a></li>
+						<li><a href="${pageContext.request.contextPath}#">매입/매출 검색</a></li>
+						<li><a href="${pageContext.request.contextPath}#">매입/매출 월별통계</a></li>
+					</ul>
 				<li><a href="${pageContext.request.contextPath}/main">경매사이트 바로가기</a>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-						Login</a></li>
+				<li><a href="${pageContext.request.contextPath}/admin/logout"><span class="glyphicon glyphicon-log-in"></span>
+						Logout</a></li>
 			</ul>
 		</div>
 	</div>

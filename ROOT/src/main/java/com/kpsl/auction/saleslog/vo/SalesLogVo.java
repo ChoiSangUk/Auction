@@ -8,12 +8,10 @@ public class SalesLogVo {
 	private String salesLogRelation;
 	private String salesLogDepositAndWithdrawal;
 	private String salesLogUserId;
-	private String salesLogPrice;
-	private int salesLogDate;
+	private int salesLogPrice;
+	private String salesLogDate;
 	private String salesLogRemarks;
-	
 	public String getSalesLogCode() {
-		System.out.println("SalesLogVo:salesLogCode"+salesLogCode);
 		return salesLogCode;
 	}
 	public void setSalesLogCode(String salesLogCode) {
@@ -43,16 +41,16 @@ public class SalesLogVo {
 	public void setSalesLogUserId(String salesLogUserId) {
 		this.salesLogUserId = salesLogUserId;
 	}
-	public String getSalesLogPrice() {
+	public int getSalesLogPrice() {
 		return salesLogPrice;
 	}
-	public void setSalesLogPrice(String salesLogPrice) {
+	public void setSalesLogPrice(int salesLogPrice) {
 		this.salesLogPrice = salesLogPrice;
 	}
-	public int getSalesLogDate() {
+	public String getSalesLogDate() {
 		return salesLogDate;
 	}
-	public void setSalesLogDate(int salesLogDate) {
+	public void setSalesLogDate(String salesLogDate) {
 		this.salesLogDate = salesLogDate;
 	}
 	public String getSalesLogRemarks() {
@@ -61,13 +59,6 @@ public class SalesLogVo {
 	public void setSalesLogRemarks(String salesLogRemarks) {
 		this.salesLogRemarks = salesLogRemarks;
 	}
-	@Override
-	public String toString() {
-		return "SalesLogVo [salesLogCode=" + salesLogCode + ", salesLogRelationCode=" + salesLogRelationCode
-				+ ", salesLogRelation=" + salesLogRelation + ", salesLogDepositAndWithdrawal="
-				+ salesLogDepositAndWithdrawal + ", salesLogUserId=" + salesLogUserId + ", salesLogPrice="
-				+ salesLogPrice + ", salesLogDate=" + salesLogDate + ", salesLogRemarks=" + salesLogRemarks + "]";
-	}
-	
+
 	
 }

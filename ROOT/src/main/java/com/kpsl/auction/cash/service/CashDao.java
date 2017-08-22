@@ -1,5 +1,7 @@
 package com.kpsl.auction.cash.service;
 
-public interface CashDao {
+import com.kpsl.auction.cash.vo.CashVo;
 
+public interface CashDao {
+	int insertCash(CashVo cashVo);
 }

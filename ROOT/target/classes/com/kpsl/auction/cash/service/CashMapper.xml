@@ -1,1 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kpsl.auction.cash.service.CashMapper">
+	<resultMap type="com.kpsl.auction.cash.vo.CashVo" id="cash">
+		<id property="cashCode" column="cash_code" />
+		<result property="userId" column="user_id" />
+		<result property="cashPrice" column="cash_price" />
+		<result property="cashDate" column="cash_date" />
+		<result property="cashState" column="cash_state" />
+	</resultMap>
+
+	<insert id="insertCash" parameterType="com.kpsl.auction.cash.vo.CashVo"
+			useGeneratedKeys="true" keyProperty="cashCode">
+		<selectKey keyProperty="cashCode" resultType="string"
+			order="BEFORE">
+			SELECT CONCAT("cash",MAX(CAST(substring(cash_code,5)+1 AS
+			DECIMAL))) FROM cash_tb
+		</selectKey>
+		INSERT INTO cash_tb
+		(cash_code, user_id, cash_price, cash_date,
+		cash_state)
+		VALUES (#{cashCode}, #{userId}, #{cashPrice}, NOW(),
+		'충전');
+	</insert>
+
+</mapper>
