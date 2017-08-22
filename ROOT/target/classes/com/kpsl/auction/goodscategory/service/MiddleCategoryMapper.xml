@@ -13,13 +13,15 @@
 
 	</resultMap>
 	
+	<!-- 일반 사용자가 쓸 것  -->
 	<select id="selectMiddleCategoryList" parameterType="String" resultMap="MiddleCategory">
 		SELECT
 		middle_category_code, 
 		large_category_code,
 		middle_category_name
 		FROM middle_category_tb
-		WHERE large_category_code=#{largeCategoryCode} ;
+		WHERE large_category_code=#{largeCategoryCode} 
+		AND middle_category_state="on" ;
 	</select>
 	
 	
