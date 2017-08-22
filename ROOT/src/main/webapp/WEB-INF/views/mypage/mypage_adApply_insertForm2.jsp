@@ -70,13 +70,6 @@
 						class="btn btn-default" type="reset" value="다시쓰기">
 				</div>
 			</form>
-			<div id="imageBoard">
-		      <ul>
-		        <c:forEach items="${files}" var="file">
-		          <li><img src="/image/${file}" width="480" height="auto"/></li>
-		        </c:forEach>
-		      </ul>
-		    </div>
 		</div>
 	</div>
 </div>
@@ -87,33 +80,8 @@ $(document).ready(function() {
 	$('#summernote').summernote({
 		height : 500,
 		lang : 'ko-KR',
-		callbacks: {
-			onImageUpload: function(files, editor, welEditable) {
-				for (var i = files.length - 1; i >= 0; i--) {
-					sendFile(files[i], this);
-				}
-			}
-		 }
 	});
 });
-function sendFile(file, el) {
-	var form_data = new FormData();
-	form_data.append('file', file);
-	$.ajax({
-		data: form_data,
-		type: "POST",
-		url: '/mypage/adApplyInsertForm',
-		cache: false,
-		contentType: false,
-		enctype: 'multipart/form-data',
-		processData: false,
-		success: function(url) {
-			console.log('ajax 성공');
-			$(el).summernote('editor.insertImage', url);
-			$('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
-		}
-	});
-}
 </script>
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8"/>

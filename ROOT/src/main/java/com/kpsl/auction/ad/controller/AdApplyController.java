@@ -2,6 +2,7 @@ package com.kpsl.auction.ad.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kpsl.auction.ad.service.AdApplyService;
 import com.kpsl.auction.ad.service.AdUnitPriceService;
@@ -19,6 +22,7 @@ import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdImageVo;
 import com.kpsl.auction.ad.vo.AdUnitPriceVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
+import com.kpsl.auction.util.UtilFile;
 
 @Controller
 public class AdApplyController {
@@ -108,15 +112,21 @@ public class AdApplyController {
 	}
 	// 광고 (액션) 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)
-	public String adApplyAdd(AdApplyVo adApplyVo ,AdImageVo adImageVo) {
-		
+	public String adApplyAdd(AdApplyVo adApplyVo ,AdImageVo adImageVo
+    						, @RequestParam("file") MultipartFile file,
+    						MultipartHttpServletRequest multipartRequest) {
+		//UtilFile utilFile = new UtilFile();
+		//String uploadPath = utilFile.fileUpload(multipartRequest, adImageName);
+		//log.info(uploadPath);
+		//log.info(uploadFile+"<----이미지확인");
+		log.info(file+"<----파일확인");
 		log.info("adApplyAdd 확인");
-		log.info(adApplyVo+"<---adApplyVo확인");
-		log.info(adImageVo+"<----adImageVo 확인");
+		//log.info(adApplyVo+"<---adApplyVo확인");
+		//log.info(adImageVo+"<----adImageVo 확인");
 		//adApplyService.addAdApply(adApplyVo);
 		//adApplyService.addAdImage(adImageVo);
-		adApplyService.adApplyTransaction(adApplyVo, adImageVo);
+		//adApplyService.adApplyTransaction(adApplyVo, adImageVo);
 		
-		return "redirect:/mypage/mypageMain";
+		return null;
 	}
 }

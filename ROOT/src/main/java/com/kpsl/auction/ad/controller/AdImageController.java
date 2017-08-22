@@ -14,13 +14,13 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class AdImageController {
 
-	Logger log = Logger.getLogger(this.getClass());
-/*	@RequestMapping(value = "/adImage", method = RequestMethod.POST)
+/*	Logger log = Logger.getLogger(this.getClass());
+	@RequestMapping(value = "/adImage", method = RequestMethod.POST)
 	public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
         try {
         	log.debug(file);
-            UploadFile uploadedFile = imageService.store(file);
-            return ResponseEntity.ok().body("/image/" + uploadedFile.getId());
+            //UploadFile uploadedFile = imageService.store(file);
+            //return ResponseEntity.ok().body("/image/" + uploadedFile.getId());
         	return null;
         } catch (Exception e) {
             e.printStackTrace();
