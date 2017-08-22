@@ -31,29 +31,21 @@ public class UtilFile {
             //배포할때에
             //path = getSaveLocation(request);
             //로컬에서 테스트할때에
-   path = "D:/git/Auction/ROOT/src/main/webapp/resources/files/";
-
-            System.out.println("UtilFile fileUpload fileName : " + fileName);
-            System.out.println("UtilFile fileUpload uploadPath : " + path);
+            path = "D:/git/Auction/ROOT/src/main/webapp/resources/files/";
             
             File file = new File(path);
             
-//          파일명이 중복으로 존재할 경우
+            // 파일명이 중복으로 존재할 경우
             if (fileName != null && !fileName.equals("")) {
                 if (file.exists()) {
-//                    파일명 앞에 업로드 시간 초단위로 붙여 파일명 중복을 방지
+                	// 파일명 앞에 업로드 시간 초단위로 붙여 파일명 중복을 방지
                     fileName = System.currentTimeMillis() + "_" + fileName;
                     
                     file = new File(path + fileName);
                 }
             }
             
-            System.out.println("UtilFile fileUpload final fileName : " + fileName);
-            System.out.println("UtilFile fileUpload file : " + file);
-            
             out = new FileOutputStream(file);
-            
-            System.out.println("UtilFile fileUpload out : " + out);
             
             out.write(bytes);
         } catch (Exception e) {
