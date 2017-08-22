@@ -30,7 +30,7 @@
 		<div class="col-sm-12">		
 			<!-- 물품광고신청 폼 -->
 			<form class="form-horizontal" action="${pageContext.request.contextPath}/mypage/adApplyInsertForm"
-				method="post" enctype="multipart/form-data">
+				method="post">
 				<input class="form-control" type="hidden" name="adApplyCode">
 				<input class="form-control" type="hidden" name="userId">		
 				<div class="form-group">
@@ -70,13 +70,13 @@
 						class="btn btn-default" type="reset" value="다시쓰기">
 				</div>
 			</form>
-			<div id="imageBoard">
+			<%-- <div id="imageBoard">
 		      <ul>
 		        <c:forEach items="${files}" var="file">
 		          <li><img src="/image/${file}" width="480" height="auto"/></li>
 		        </c:forEach>
 		      </ul>
-		    </div>
+		    </div> --%>
 		</div>
 	</div>
 </div>
@@ -87,16 +87,16 @@ $(document).ready(function() {
 	$('#summernote').summernote({
 		height : 500,
 		lang : 'ko-KR',
-		callbacks: {
+		/* callbacks: {
 			onImageUpload: function(files, editor, welEditable) {
 				for (var i = files.length - 1; i >= 0; i--) {
 					sendFile(files[i], this);
 				}
 			}
-		 }
+		 } */
 	});
 });
-function sendFile(file, el) {
+/* function sendFile(file, el) {
 	var form_data = new FormData();
 	form_data.append('file', file);
 	$.ajax({
@@ -113,7 +113,7 @@ function sendFile(file, el) {
 			$('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
 		}
 	});
-}
+} */
 </script>
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8"/>

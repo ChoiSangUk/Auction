@@ -113,20 +113,20 @@ public class AdApplyController {
 	// 광고 (액션) 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)
 	public String adApplyAdd(AdApplyVo adApplyVo ,AdImageVo adImageVo
-    						, @RequestParam("file") MultipartFile file,
-    						MultipartHttpServletRequest multipartRequest) {
+    						/*, @RequestParam("file") MultipartFile file,
+    						MultipartHttpServletRequest multipartRequest*/) {
 		//UtilFile utilFile = new UtilFile();
 		//String uploadPath = utilFile.fileUpload(multipartRequest, adImageName);
 		//log.info(uploadPath);
 		//log.info(uploadFile+"<----이미지확인");
-		log.info(file+"<----파일확인");
+		//log.info(file+"<----파일확인");
 		log.info("adApplyAdd 확인");
 		//log.info(adApplyVo+"<---adApplyVo확인");
 		//log.info(adImageVo+"<----adImageVo 확인");
 		//adApplyService.addAdApply(adApplyVo);
 		//adApplyService.addAdImage(adImageVo);
-		//adApplyService.adApplyTransaction(adApplyVo, adImageVo);
+		adApplyService.adApplyTransaction(adApplyVo, adImageVo);
 		
-		return null;
+		return "redirect:/mypage/mypageMain";
 	}
 }
