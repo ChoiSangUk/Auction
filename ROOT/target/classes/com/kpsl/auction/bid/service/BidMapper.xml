@@ -34,7 +34,7 @@
 	, 'id003'
 	, 'good3'
 	, 'id002'
-	,  #{bidPric}
+	,  #{bidPrice}
 	, NOW());
 	</insert>
   </mapper>
