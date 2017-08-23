@@ -62,12 +62,21 @@
 						<input class="form-control" type="date" name="adApplyEndDate">
 					</div>
 				</div>
+				<!-- 매인배너에 걸릴 이미지 -->
 				<div class="form-group">
-					<textarea class="form-controll" id="summernote" name="adImageName"></textarea>
+					<label class="col-sm-2 control-label">물품 이미지</label>
+					<div class="col-sm-2">
+						<input class="form-control" type="file" name="adImage">
+					</div>
+					<p><span class="glyphicon glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+					메인배너에 사용 될 이미지를 첨부해주세요! (그림의 사이즈는 1200x400으로 맞춰집니다)</p>
+				</div>
+				<div class="form-group">
+					<textarea class="form-controll" id="summernote" name=""></textarea>
 				</div>
 				<div class="form-group submit text-center">
-					<input class="btn btn-info" type="submit" value="신청"> <input
-						class="btn btn-default" type="reset" value="다시쓰기">
+					<input class="btn btn-default" type="submit" id="formSubmit" name="formSubmit" value="제출">
+					<input class="btn btn-default" type="reset" value="다시쓰기">
 				</div>
 			</form>
 		</div>
@@ -82,6 +91,23 @@ $(document).ready(function() {
 		lang : 'ko-KR'
 	});
 });
+/* $(document).ready(function() {
+$("#formSubmit").click(function() {
+	var formData = $('#summernote').find('p').text();
+	$.ajax({
+		type : "POST",
+		url : '/auction/mypage/adApplyInsertForm',
+		cache : false,
+		data : formData,
+		success : function(formData){
+			console.log(formData);
+		},
+		error : onError
+		});
+	});
+}); */
+
+
 </script>
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8"/>

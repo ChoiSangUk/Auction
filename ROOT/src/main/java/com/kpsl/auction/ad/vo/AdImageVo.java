@@ -4,7 +4,14 @@ public class AdImageVo {
 	private String adImageCode;
 	private String adApplyCode;
 	private String adImageName;
+	private String adImagePath;
 	
+	public String getAdImagePath() {
+		return adImagePath;
+	}
+	public void setAdImagePath(String adImagePath) {
+		this.adImagePath = adImagePath;
+	}
 	public String getAdImageCode() {
 		return adImageCode;
 	}

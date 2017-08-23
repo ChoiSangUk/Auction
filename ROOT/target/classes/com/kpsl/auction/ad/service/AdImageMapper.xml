@@ -8,6 +8,7 @@
 		<id property="adImageCode" column="ad_image_code"/>
 		<id property="adApplyCode" column="ad_apply_code"/>
 		<id property="adImageName" column="ad_image_name"/>
+		<id property="adImagePath" column="ad_image_path"/>
 	</resultMap>
 	<!-- 키값을 먼저 조회하고 키값을 셋팅한 후 INSERT -->
 	<insert id="insertAdImage" parameterType="com.kpsl.auction.ad.vo.AdImageVo">
@@ -17,9 +18,11 @@
 		INSERT INTO ad_image_tb
 				(ad_image_code,
 				 ad_apply_code,
-				 ad_image_name)
+				 ad_image_name,
+				 ad_image_path)
 		VALUES (#{adImageCode},
 				#{adApplyCode},
-				#{adImageName})
+				#{adImageName},
+				#{adImagePath})
 	</insert>
 </mapper>

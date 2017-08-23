@@ -1,6 +1,7 @@
 package com.kpsl.auction.ad.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -114,19 +115,14 @@ public class AdApplyController {
 	// 광고 (액션) 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)
 	public String adApplyAdd(AdApplyVo adApplyVo ,AdImageVo adImageVo
-    						, @RequestParam("files") MultipartFile files,
+    						, @RequestParam("adImage") MultipartFile adImage,
     						MultipartHttpServletRequest multipartRequest) {
-		UtilFile utilFile = new UtilFile();
-		String uploadPath = utilFile.fileUpload(multipartRequest, files);
-		//log.info(uploadPath);
-		//log.info(uploadFile+"<----이미지확인");
-		//log.info(file+"<----파일확인");
 		log.info("adApplyAdd 확인");
-		//log.info(adApplyVo+"<---adApplyVo확인");
-		//log.info(adImageVo+"<----adImageVo 확인");
-		//adApplyService.addAdApply(adApplyVo);
-		//adApplyService.addAdImage(adImageVo);
-		//adApplyService.adApplyTransaction(adApplyVo, adImageVo);
+		UtilFile utilFile = new UtilFile();
+		HashMap<String, String> adFile= utilFile.fileUpload(multipartRequest, adImage);
+		adImageVo.setAdImagePath(adFile.get("adImagePath"));
+		adImageVo.setAdImageName(adFile.get("adImageName"));		
+		adApplyService.adApplyTransaction(adApplyVo, adImageVo);
 		
 		return "redirect:/mypage/mypageMain";
 	}

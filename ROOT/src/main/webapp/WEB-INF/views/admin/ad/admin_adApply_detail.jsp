@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:import url="/resources/module/top.jsp" charEncoding="UTF-8"/>
+<c:import url="/resources/module/admin_top.jsp" charEncoding="UTF-8"/>
 <!-- summernote css/js 추가 css는 적용이 깨져서 cdn주소로 대체 -->
 <link href="${pageContext.request.contextPath}/resources/css/summernote.css" rel="stylesheet">
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/summernote.css" rel="stylesheet">
@@ -60,7 +60,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<textarea class="form-controll" id="summernote" name="adImageName">${adImageList.adImageName}</textarea>
+					<textarea class="form-controll" id="summernote" name="adImageName">
+					<img alt="" src="${pageContext.request.contextPath}/resources/files/${adImageList.adImageName}">
+					</textarea>			
 				</div>
 				<div class="form-group submit text-center">
 					<input class="btn btn-info" type="submit" value="수정">
