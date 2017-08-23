@@ -1,10 +1,8 @@
 package com.kpsl.auction.ad.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -34,6 +32,36 @@ public class AdApplyController {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
+	// 나의 광고신청 업데이트페이지 요청
+	@RequestMapping(value = "/mypage/adApplyUpdateForm", method = RequestMethod.GET)
+	public String myAdApplyModify(Model model, HttpSession session
+								,@RequestParam (value="adApplyCode", required=true) String adApplyCode) {
+		
+		log.info("myAdApplyModify 요청 확인");
+		log.info(adApplyCode+"<--- adApplyCode 확인");
+		
+		String userId = "id002";
+		List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> myApplyList = 
+				adApplyService.getMyAdApplyList(userId);
+		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList();
+		model.addAttribute("myApplyList",myApplyList);
+		model.addAttribute("adUnitPriceList",adUnitPriceList);
+		model.addAttribute("adApplyCode",adApplyCode);
+		
+		return "/mypage/mypage_adApply_updateForm";
+	}
+	// 나의 광고신청 업데이트(액션) 요청
+	@RequestMapping(value = "/mypage/adApplyUpdateForm", method = RequestMethod.POST)
+	public String myAdApplyModify(AdApplyVo adApplyVo) {
+		
+		log.info(adApplyVo.getAdApplyCode());
+		log.info(adApplyVo.getAuctionGoodsCode());
+		log.info("myAdApplyModify 요청(액션) 확인");
+		//adApplyService.modifyAdApply(adApplyVo);
+		
+		return "redirect:/mypage/adApplyList";
+	}
+	
 	// 나의 광고신청리스트 요청
 	@RequestMapping(value = "/mypage/adApplyList", method = RequestMethod.GET)
 	public String myAdApplyList(Model model, HttpSession session) {
@@ -41,8 +69,7 @@ public class AdApplyController {
 		log.info("myAdApplyList 요청 확인");
 		String userId = "id002";
 		List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> myApplyList = 
-				adApplyService.getMyAdApplyList(userId);
-		
+				adApplyService.getMyAdApplyList(userId);	
 		model.addAttribute("myApplyList",myApplyList);
 		
 		return "/mypage/mypage_adApply_list";		
@@ -53,7 +80,7 @@ public class AdApplyController {
 	public String adApplyDetail(AdApplyVo adApplyVo) {
 		
 		log.info("adApplyDetail 액션확인");
-		adApplyService.modifyAdApply(adApplyVo);	
+		adApplyService.modifyAdApply(adApplyVo);
 		
 		return "redirect:/ad/adminAdApplySearch";
 	}

@@ -13,8 +13,6 @@
 	width: 80%;
 	margin: auto;
 }
-
-
 </style>
 
 <div class="container-fluid text-left">
@@ -75,7 +73,7 @@
 					<textarea class="form-controll" id="summernote" name=""></textarea>
 				</div>
 				<div class="form-group submit text-center">
-					<input class="btn btn-default" type="submit" id="formSubmit" name="formSubmit" value="제출">
+					<input class="btn btn-info" type="submit" id="formSubmit" name="formSubmit" value="신청">
 					<input class="btn btn-default" type="reset" value="다시쓰기">
 				</div>
 			</form>

@@ -15,7 +15,7 @@
 	<div class="row title">
 		<h1>나의 광고신청 리스트</h1>
 		<!-- 광고신청 리스트 테이블 -->
-		<table class="table table-bordered">
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>광고명</th>
@@ -31,10 +31,34 @@
 					<td>${ad.adUnitPriceVo.adUnitPriceName}</td>
 					<td>${ad.auctionGoodsVo.auctionGoodsName}</td>
 					<td>${ad.adApplyVo.adApplyState}</td>
-					<td>수정</td>
-					<td>결제</td>
+					<c:set var="adApplyState" value="${ad.adApplyVo.adApplyState}" />
+					<c:choose>
+					<c:when test="${adApplyState eq '승인대기'}">
+					<td>
+					<a href="${pageContext.request.contextPath}/mypage/adApplyUpdateForm?adApplyCode=${ad.adApplyVo.adApplyCode}">
+					<button>수정</button>
+					</a>
+					</td>
+					</c:when>
+					<c:otherwise>
+					<td></td>
+					</c:otherwise>
+					</c:choose>
+					<c:set var="adApplyState" value="${ad.adApplyVo.adApplyState}" />
+					<c:choose>
+					<c:when test="${adApplyState eq '승인완료'}">
+					<td>
+					<a href="${pageContext.request.contextPath}">
+					<button>결제</button>
+					</a>
+					</td>
+					</c:when>
+					<c:otherwise>
+					<td></td>
+					</c:otherwise>
+					</c:choose>				
 				</tr>
-			</c:forEach>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>
