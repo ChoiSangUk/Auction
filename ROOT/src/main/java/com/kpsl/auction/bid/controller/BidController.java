@@ -24,19 +24,20 @@ public class BidController {
 
 		List<BidVo> list = bidService.getBidList();
 		model.addAttribute("list",list);
+		log.info(model);
+		log.info(list);
 		log.info("입찰자 리스트 ");
 		return "/bid/bid_form";
 	}
 	//입찰자 입찰버튼 클릭시 
 		@RequestMapping(value = "/bid/price", method =RequestMethod.POST)
 		public String bidPrice(BidVo bidvo){
-			
-	/*		bidService.setBidPrice(bidvo);
 			log.info(bidvo);
-			*/
+		
+			bidService.setBidPrice(bidvo);
+			
 			log.info("입찰자 입찰하기");
-			return "redirect:/bid/bidform";
-		 
+			return "redirect:/bid/bidform";	 
 	}
 }
 	

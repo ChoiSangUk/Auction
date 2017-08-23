@@ -15,7 +15,7 @@
 						<tr>
 							<h2>입찰하기</h2>
 							<th>입찰품목:
-							<td>${auctionGoodsCode}</td>
+							<td></td>
 							</th>
 						</tr>
 						<tr>
@@ -24,10 +24,8 @@
 									<form role="form" id="priceaddForm" action="${pageContext.request.contextPath}/bid/price" method="post">
 										<div class="form-group">
 											<label for="bidPrice">입찰금액</label>
-											 <input type="int" class="form-control" id="bidPrice" name="bidPrice" placeholder="입찰">
-											<button type="submit" class="btn btn-info">
-												입찰하기
-											</button>
+											 <input type="int" class="form-control" id="bidPrice" name="bidPrice" placeholder="금액">
+											<button type = "sumbit"> 입찰</button>
 										</div>
 									</form>
 								</td>

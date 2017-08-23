@@ -30,8 +30,7 @@ public class CashController {
 	public String cashInput(CashVo cashVo,HttpSession session) {
 		String userId = (String)session.getAttribute("userId");
 		cashVo.setUserId(userId);
-		
-		
+	
 		cashService.setCash(cashVo);
 			
 		return "redirect:/mypage/mypageMain";
