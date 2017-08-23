@@ -30,6 +30,7 @@
     		<id property="adImageCode" column="ad_image_code"/>
 			<id property="adApplyCode" column="ad_apply_code"/>
 			<id property="adImageName" column="ad_image_name"/>
+			<id property="adImagePath" column="ad_image_path"/>
     	</association>
     	<association property="adUnitPriceVo" javaType="com.kpsl.auction.ad.vo.AdUnitPriceVo">
     		<id property="adUnitPriceCode" column="ad_unit_price_code"/>
@@ -109,6 +110,7 @@
 	 			ai.ad_image_code, 
 	 			ai.ad_apply_code, 
 	 			ai.ad_image_name,
+	 			ai.ad_image_path,
 	 			aup.ad_unit_price_name
 	 	FROM 	ad_apply_tb aa 
 	 			LEFT JOIN ad_image_tb ai 
@@ -121,14 +123,32 @@
 	<update id="updateAdApply" parameterType="com.kpsl.auction.ad.vo.AdApplyVo">
 		UPDATE ad_apply_tb
 		SET
+			<if test="adUnitPriceCode != null">
+			ad_unit_price_code = ${adUnitPriceCode},
+			</if>
+			<if test="auctionGoodsCode != null">
+			auction_goods_code = ${auctionGoodsCode},
+			</if>
+			<if test="adApplyStartDate != null">
+			ad_apply_start_date = ${adApplyStartDate},
+			</if>
+			<if test="adApplyEndDate != null">
+			ad_apply_end_date = ${adApplyEndDate},
+			</if>
+			<if test="adApplyState != null">
 			ad_apply_state = #{adApplyState}
+			</if>
 		WHERE ad_apply_code = #{adApplyCode}
 	</update>
 	
 	<select id="selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId" parameterType="String" resultMap="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
 		SELECT  aup.ad_unit_price_name, 
-				ag.auction_goods_name, 
-				aa.ad_apply_state
+				ag.auction_goods_name,
+				aa.ad_apply_code,
+				aa.ad_apply_state,
+				aa.ad_apply_regist_date,
+				aa.ad_apply_start_date,
+				aa.ad_apply_end_date
 		FROM 	ad_apply_tb aa 
 				INNER JOIN ad_unit_price_tb aup
 				ON aa.ad_unit_price_code = aup.ad_unit_price_code
@@ -136,4 +156,6 @@
 				ON aa.auction_goods_code = ag.auction_goods_code
 		WHERE 	aa.user_id = #{userId};
 	</select>
+	
+	
 </mapper>

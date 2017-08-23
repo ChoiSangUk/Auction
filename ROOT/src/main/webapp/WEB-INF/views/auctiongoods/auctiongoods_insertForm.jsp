@@ -4,10 +4,44 @@
 <!DOCTYPE html>
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+	</script>
+	<script type="text/javascript" 
+	src="${pageContext.request.contextPath}/resources/smarteditor/js/HuskyEZCreator.js"  charset="utf-8">
+	
+	</script>
 <script>
+	var root ="${pageContext.request.contextPath}";
+	console.log('rkdalstn : '+root)
 	$(document).ready(function() {
+		$(function(){
+		    //전역변수
+		    var obj = [];              
+		    //스마트에디터 프레임생성
+		    nhn.husky.EZCreator.createInIFrame({
+		        oAppRef: obj,
+		        elPlaceHolder: "editor",
+		        sSkinURI: "${pageContext.request.contextPath}/resources/smarteditor/SmartEditor2Skin.html",
+		        htParams : {
+		            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+		            bUseToolbar : true,            
+		            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+		            bUseVerticalResizer : false,    
+		            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+		            bUseModeChanger : true,
+		        }
+		    });
+		    //전송버튼
+		    $("#savebutton").click(function(){
+		        //id가 smarteditor인 textarea에 에디터에서 대입
+		        obj.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
+		        //폼 submit
+		        $("#frm").submit();
+		    })
+		})
 
+		
+		
 		$('.largeCategory').click(function() {
 			var largeCategoryName = $(this).find('.largeCategoryName').text();
 			var largeCategoryCode = $(this).find('.largeCategoryCode').text();
@@ -183,14 +217,27 @@
 				}
 			});
 		});
+		
+		
+		//일반 라디오버튼 선택시 입찰 방식 보이게 토글 버튼으로 만듦
+		 $('input[name=auctionGoodsSys]').click(function () {
+		        if ($(this).val() == 'normal') {
+		        	$('#auctionGoodsBidSys').show();
+		        } else {
+		        	$('#auctionGoodsBidSys').hide();
+		        }
+		 });
+		
+
 	});
 </script>
-<div class="container-fluid text-center">
+<div class="container-fluid text-center" style="margin-right: 150px; margin-left: 150px;">
 	<div class="row content">
 		<h1>물품 등록</h1>
+		
 		<div class="col-sm-12 category text-left">
-			<div class="col-sm-4 visible-lg visible-sm ">
-				<h3 class="visible-lg visible-sm visible-sm">대분류 카테고리 선택</h3>
+			<div class="col-sm-4">
+				<h3>대분류 카테고리 선택</h3>
 				<br>
 				<div class="list-group " style="overflow: auto; height: 300px;">
 					<c:forEach var="largeCategory" items="${largeCategory}">
@@ -206,8 +253,8 @@
 				</div>
 			</div>
 
-			<div class="col-sm-4 visible-lg visible-sm">
-				<h3 class="visible-lg visible-sm visible-sm">중분류 전체</h3>
+			<div class="col-sm-4">
+				<h3>중분류 전체</h3>
 				<br>
 
 				<div class="list-group" id="middleCategory" style="overflow: auto; height: 300px;">
@@ -215,60 +262,73 @@
 				</div>
 			</div>	
 			
-			<div class="col-sm-4 visible-lg visible-sm">
-				<h3 class="visible-lg visible-sm visible-sm">소분류 전체</h3>
+			<div class="col-sm-4">
+				<h3>소분류 전체</h3>
 				<br>
 
 				<div class="list-group" id="smallCategory"  style="overflow: auto; height: 300px;">
 					<div class="list-group-item">소분류</div>
 				</div>
 			</div>
+		</div>
 
-			<div class="col-sm-12">
+			<div class="container col-sm-12"  style="margin:auto;">
 				<form class="form-horizontal"
-					action="${pageContext.request.contextPath}" method="post">
+					action="${pageContext.request.contextPath}/auctiongoods/auctiongoods_insert" method="post" id="frm">
 					
-						<h3 class="visible-lg visible-sm visible-sm">카테고리 코드</h3>
-						<input type="text" id="largeCategoryCode" name="largeCategoryCode" value="" readonly/> 
-						<input type="text" id="middleCategoryCode" name="middleCategoryCode" value="" readonly/> 
-						<input type="text" id="smallCategoryCode" name="smallCategoryCode" value="" readonly/>
-					<div class="container">
-						<h2>대분류 카테고리 선택</h2>
-						<select class="form-control">
-							<c:forEach var="largeCategory" items="${largeCategory}">
-								<option class="list-group-item">
-
-									<!-- 대분류 코드 값을 넣어 전달하여 중분류 선택  -->
-								</option>
-
-							</c:forEach>
-						</select>
-					</div>
+						<div>
+							<h3>카테고리 코드</h3>
+							<div class="col-sm-4">
+							<input type="text" class="form-control" id="largeCategoryCode" name="largeCategoryCode"	value="" readonly /> 
+							</div>
+							<div class="col-sm-4">
+							<input type="text" class="form-control" id="middleCategoryCode"	name="middleCategoryCode" value="" readonly /> 
+							</div>
+							<div class="col-sm-4">
+							<input type="text" class="form-control" id="smallCategoryCode" name="smallCategoryCode"	value="" readonly />
+							</div>
+							<br>
+							<br>
+						</div>
+						
+						
 					<div class="form-group">
-						<label class="col-sm-2 control-label">속성명</label>
+						<label class="col-sm-2 control-label">물품명</label>
 						<div class="col-sm-3">
-							<input class="form-control" type="text" name="" value=""
-								readonly>
-							<!-- 회원코드는 핸드폰뒷자리 중복일경우 +1 -->
+							<input class="form-control" type="text" name="auctionGoodsName" value="">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">라디오버튼 속성명</label>
+						<label class="col-sm-2 control-label">경매방식</label>
 						<div class="col-sm-3">
-							<label class="radio-inline"><input type="radio" name=""
-								checked="checked" value="M">남</label> <label
-								class="radio-inline"><input type="radio" name=""
-								value="F">여</label>
+							<label class="radio-inline">
+							<input type="radio" name="auctionGoodsSys" value="normal">일반</label> 
+							<label class="radio-inline">
+							<input type="radio" name="auctionGoodsSys" value="blind">블라인드</label>
 						</div>
 					</div>
+					<!-- 일반 경매 선택시 노출되게 -->
+					<div class="form-group" id="auctionGoodsBidSys" style="display:none">
+						<label class="col-sm-2 control-label">입찰방식</label>
+						<div class="col-sm-3">
+							<label class="radio-inline">
+							<input type="radio" name="auctionGoodsBidSys" value="normal" checked="checked">일반</label> 
+							<label class="radio-inline">
+							<input type="radio" name="auctionGoodsBidSys" value="blind">블라인드</label>
+						</div>
+					</div>
+					<!-- 상세 내용 입력 및 사진 추가 에디터 -->
 					<div class="form-group">
-						<label class="col-sm-2 control-label"></label>&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-default" type="submit" value="등록">
+						<textarea name="editor" id="editor" rows="10" cols="100" style="width:100%; height:700px;">
+						</textarea>
+					</div>
+					<div class="form-group">
+<!-- 						<label class="col-sm-2 control-label"></label> -->
+						<input class="btn btn-default" type="button" id="savebutton" value="등록">
 						<input class="btn btn-default" type="reset" value="다시쓰기">
 					</div>
 				</form>
 			</div>
-		</div>
 	</div>
 </div>
 

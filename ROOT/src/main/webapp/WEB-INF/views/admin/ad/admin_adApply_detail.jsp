@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:import url="/resources/module/top.jsp" charEncoding="UTF-8"/>
+<c:import url="/resources/module/admin_top.jsp" charEncoding="UTF-8"/>
 <!-- summernote css/js 추가 css는 적용이 깨져서 cdn주소로 대체 -->
 <link href="${pageContext.request.contextPath}/resources/css/summernote.css" rel="stylesheet">
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/summernote.css" rel="stylesheet">
@@ -30,7 +30,7 @@
 					</div>				
 					<label class="col-sm-1 control-label">광고명</label>
 					<div class="col-sm-2">
-						<input class="form-control" type="text" name="adUnitPriceCode" value="${adUnitPriceList.adUnitPriceName}" readonly="readonly">
+						<input class="form-control" type="text" name="adUnitPriceCode1" value="${adUnitPriceList.adUnitPriceName}" readonly="readonly">
 					</div>
 					<label class="col-sm-1 control-label">아이디</label>
 					<div class="col-sm-2">
@@ -40,15 +40,15 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">광고등록일</label>
 					<div class="col-sm-2">
-						<input class="form-control" type="text" name="adApplyRegistDate" value="${adApplyList.adApplyRegistDate}" readonly="readonly">
+						<input class="form-control" type="datetime" name="adApplyRegistDate1" value="${adApplyList.adApplyRegistDate}" readonly="readonly">
 					</div>
 					<label class="col-sm-1 control-label">광고시작일</label>
 					<div class="col-sm-2">
-						<input class="form-control" type="text" name="adApplyStartDate" value="${adApplyList.adApplyStartDate}" readonly="readonly">
+						<input class="form-control" type="datetime" name="adApplyStartDate1" value="${adApplyList.adApplyStartDate}" readonly="readonly">
 					</div>
 					<label class="col-sm-1 control-label">광고종료일</label>
 					<div class="col-sm-2">
-						<input class="form-control" type="text" name="adApplyEndDate" value="${adApplyList.adApplyEndDate}" readonly="readonly">
+						<input class="form-control" type="datetime" name="adApplyEndDate1" value="${adApplyList.adApplyEndDate}" readonly="readonly">
 					</div>
 				</div>
 				<div class="form-group">
@@ -60,7 +60,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<textarea class="form-controll" id="summernote" name="adImageName">${adImageList.adImageName}</textarea>
+					<textarea class="form-controll" id="summernote" name="adImageName">
+					<img alt="" src="${pageContext.request.contextPath}/resources/files/${adImageList.adImageName}">
+					</textarea>			
 				</div>
 				<div class="form-group submit text-center">
 					<input class="btn btn-info" type="submit" value="수정">
