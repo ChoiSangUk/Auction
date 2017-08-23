@@ -21,14 +21,14 @@ public class BidDaolmpl implements BidDao {
 	@Override
 	public List<BidVo> selectBidList(){
 		log.info("selectBidList 확인");
-		log.debug(sessionTemplate.selectList(NS+"selectBidList"));
+		
 		return sessionTemplate.selectList(NS+"selectBidList");
 	}
 	//입찰하기
 	@Override
 	public int instertBidPrice(BidVo bidvo) {
 		log.info("insertBidPrice 확인");
-		log.debug(sessionTemplate.insert(NS+"insertBidPrice"));
+		
 		return sessionTemplate.insert(NS+"insertBidPrice", bidvo);
 	
 	}
