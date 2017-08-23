@@ -24,6 +24,7 @@ public class BidServicelmpl implements BidService {
 	public int setBidPrice(BidVo bidvo) {
 		log.info("bidServicelmpl의 setBidPrice method ");
 		return bidDao.instertBidPrice(bidvo);
+	
 	}
 	
 }

@@ -12,6 +12,5 @@ public interface BidDao {
 	List<BidVo> selectBidList();
 	
 	/**입찰 버튼 클릭 시 입찰 **/
-	int instertBidPrice(BidVo bidvo);
-	
+	int instertBidPrice(BidVo bidvo);	
 }

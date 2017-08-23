@@ -35,7 +35,6 @@ public class BidController {
 			log.info(bidvo);
 		
 			bidService.setBidPrice(bidvo);
-			
 			log.info("입찰자 입찰하기");
 			return "redirect:/bid/bidform";	 
 	}
