@@ -42,7 +42,14 @@
 						<li><a href="${pageContext.request.contextPath}#">매입/매출 검색</a></li>
 						<li><a href="${pageContext.request.contextPath}#">매입/매출 월별통계</a></li>
 					</ul>
-				<li><a href="${pageContext.request.contextPath}/main">경매사이트 바로가기</a>
+				<li><a href="${pageContext.request.contextPath}/main">
+				<button class="btn btn-danger btn-xs">경매사이트 바로가기</button></a>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}/">
+					<button class="btn btn-danger btn-xs">프로젝트 소개페이지</button>
+					</a>
+				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${pageContext.request.contextPath}/admin/logout"><span class="glyphicon glyphicon-log-in"></span>

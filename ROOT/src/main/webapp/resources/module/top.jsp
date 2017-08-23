@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" id="topMenuNavar">
 	<div class="container-fluid" id="topMenu">
 		<div class="navbar-header">
 			<!-- 화면 축소시 화면리스트 버튼 생성 -->
@@ -29,20 +29,40 @@
 					<li><a href="#">Auction 설명서</a></li>
 					<li><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></li>
 					<li><a href="${pageContext.request.contextPath}/user/userJoin">회원가입 </a></li>
+					<li>
+						<a href="${pageContext.request.contextPath}/admin/adminLogin" style="color: #2F9D27">
+						<button class="btn btn-danger btn-xs">관리자 로그인페이지 </button>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/">
+						<button class="btn btn-danger btn-xs">프로젝트 소개페이지</button>
+						</a>
+					</li>
 				</c:if>
 			
 				<c:if test="${userLoginInfo.userLevel ne null}">
 					<li><a href="#">Auction 설명서</a></li>
 					<li><a href="logout">로그아웃</a></li>
 					<li><a href="${pageContext.request.contextPath}/mypage/mypageMain">마이페이지</a></li>
+					<li>
+						<a href="${pageContext.request.contextPath}/admin/adminLogin" style="color: #2F9D27">
+						<button class="btn btn-danger btn-xs">관리자 로그인페이지 </button>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/">
+						<button class="btn btn-danger btn-xs">프로젝트 소개페이지</button>
+						</a>
+					</li>
 				</c:if>
 							 
 			</ul>
 		</div>
 	</div>
 </nav>
-<nav class="navbar navbar-inverse" id="mainMenu">
-	<div class="container-fluid">
+<nav class="navbar navbar-inverse" id="mainMenuNabar">
+	<div class="container-fluid" id="mainMenu">
 		<div class="navbar-header">
 			<!-- 화면 축소시 화면리스트 버튼 생성 -->
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
