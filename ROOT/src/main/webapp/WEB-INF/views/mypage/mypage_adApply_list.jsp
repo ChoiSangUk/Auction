@@ -35,7 +35,8 @@
 					<c:choose>
 					<c:when test="${adApplyState eq '승인대기'}">
 					<td>
-					<a href="${pageContext.request.contextPath}/mypage/adApplyUpdateForm?adApplyCode=${ad.adApplyVo.adApplyCode}&adImageCode=${ad.adImageVo.adImageCode}">
+					<a href="${pageContext.request.contextPath}
+					/mypage/adApplyUpdateForm?adApplyCode=${ad.adApplyVo.adApplyCode}&adImageCode=${ad.adImageVo.adImageCode}">
 					<button>수정</button>
 					</a>
 					</td>
@@ -48,7 +49,7 @@
 					<c:choose>
 					<c:when test="${adApplyState eq '승인완료'}">
 					<td>
-					<a href="${pageContext.request.contextPath}">
+					<a href="${pageContext.request.contextPath}/mypage/adPaymentInsertForm?adApplyCode=${ad.adApplyVo.adApplyCode}">
 					<button>결제</button>
 					</a>
 					</td>

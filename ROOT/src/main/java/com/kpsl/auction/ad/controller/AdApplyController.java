@@ -41,7 +41,8 @@ public class AdApplyController {
 		log.info("myAdApplyModify 요청 확인");
 		log.info(adApplyCode+"<--- adApplyCode 확인");
 		log.info(adImageCode+"<--- adImageCode 확인");
-		String userId = "id002";
+		String userId = (String) session.getAttribute("userId");
+		/*String userId = "id002";*/
 		List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> myApplyList = 
 				adApplyService.getMyAdApplyList(userId);
 		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList();
@@ -58,8 +59,8 @@ public class AdApplyController {
 	// 나의 광고신청 업데이트(액션) 요청
 	@RequestMapping(value = "/mypage/adApplyUpdateForm", method = RequestMethod.POST)
 	public String myAdApplyModify(AdApplyVo adApplyVo, AdImageVo adImageVo
-								, @RequestParam("adImage") MultipartFile adImage,
-	    						MultipartHttpServletRequest multipartRequest) {
+								, @RequestParam("adImage") MultipartFile adImage
+	    						, MultipartHttpServletRequest multipartRequest) {
 		
 		log.info("myAdApplyModify 요청(액션) 확인");
 		UtilFile utilFile = new UtilFile();
@@ -77,7 +78,9 @@ public class AdApplyController {
 	public String myAdApplyList(Model model, HttpSession session) {
 		
 		log.info("myAdApplyList 요청 확인");
-		String userId = "id002";
+		String userId = (String) session.getAttribute("userId");
+		log.info(userId);
+		//String userId = "id002";
 		List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> myApplyList = 
 				adApplyService.getMyAdApplyList(userId);
 		model.addAttribute("myApplyList",myApplyList);
@@ -139,9 +142,8 @@ public class AdApplyController {
 	public String adApplyAdd(Model model, String userId, HttpSession session) {
 		
 		log.info("adApplyAdd 확인");
-		//session.getAttribute(userId);
-		// 로그인 세션이 연결 안되있어서 임시로 값을 넣어둠
-		userId = "id002";
+		userId = (String) session.getAttribute("userId");
+		//userId = "id002";
 		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList();
 		List<AuctionGoodsVo> auctionGoodsList = adApplyService.getAuctionGoodsListByUserId(userId);
 		model.addAttribute("adUnitPriceList",adUnitPriceList);
