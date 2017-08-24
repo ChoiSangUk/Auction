@@ -23,4 +23,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.selectUserGrade(userId);
 	}
 
+	@Override
+	public UserDetailVo getUser(String userId) {
+		// TODO Auto-generated method stub
+		return userDao.selectUser(userId);
+	}
+
 }

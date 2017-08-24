@@ -68,8 +68,27 @@
  		FROM user_detail_tb 
  		WHERE user_id=#{userId} AND user_password=#{userPassword} 
  	</select>
+ 	<!--유저 정보조회 -->
+ 	<select id="selectUser" parameterType="String" resultMap="userDetail">
+ 		SELECT user_id
+ 		, user_password 
+ 		, user_level
+ 		, grade_code
+ 		, restrict_code
+ 		, user_name
+ 		, user_gender
+ 		, user_birth
+ 		, user_phone
+ 		, user_email
+ 		, user_postcode
+ 		, user_addr
+ 		, user_addrdetail
+ 		, user_totalcash
+ 		FROM user_detail_tb 
+ 		WHERE user_id=#{userId}
+ 	</select>
  	<!-- 구매자회원가입 -->
-	<insert id="insertUserBuyer" parameterType="com.kpsl.auction.user.vo.UserDetailVo">
+ 	<insert id="insertUserBuyer" parameterType="com.kpsl.auction.user.vo.UserDetailVo">
 		INSERT INTO user_detail_tb(
 			user_id
 			, user_password

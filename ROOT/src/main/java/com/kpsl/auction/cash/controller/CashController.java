@@ -31,6 +31,7 @@ public class CashController {
 	@RequestMapping(value = "/mypage/myinfo/Cash", method = RequestMethod.POST)
 	public String cashInput(UserDetailVo userDetailVo,CashVo cashVo,HttpSession session) {
 		String userId = (String)session.getAttribute("userId");
+						
 		
 		cashVo.setUserId(userId);
 		cashService.setCash(cashVo);
@@ -42,6 +43,7 @@ public class CashController {
 		log.info(userId);
 		log.info(userDetailVo.toString());
 		cashService.modifyUserCash(userDetailVo);
+		session.getAttribute("userLoginInfo");
 		
 		
 		

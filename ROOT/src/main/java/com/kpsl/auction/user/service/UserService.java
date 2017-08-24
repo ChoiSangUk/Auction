@@ -9,4 +9,5 @@ import com.kpsl.auction.user.vo.UserDetailVo;
 public interface UserService {
 	UserDetailVo getUserLogin(String userId,String userPassword);
 	GradeVo getUserGrade(String userId);
+	UserDetailVo getUser(String userId);
 }

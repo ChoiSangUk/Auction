@@ -38,6 +38,12 @@ public class UserDaoImpl implements UserDao {
 		return sqlSessionTemplate.selectOne(NS+"selectUserGrade",userId);
 	}
 
+	@Override
+	public UserDetailVo selectUser(String userId) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne(NS+"selectUser", userId);
+	}
+
 
 
 }
