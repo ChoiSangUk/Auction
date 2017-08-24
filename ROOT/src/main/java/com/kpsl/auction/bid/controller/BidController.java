@@ -33,7 +33,7 @@ public class BidController {
 		@RequestMapping(value = "/bid/price", method =RequestMethod.POST)
 		public String bidPrice(BidVo bidvo){
 			log.info(bidvo);
-			log.info(bidvo.getBidPrice()+"<--bidPrice");
+			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");
 			bidService.setBidPrice(bidvo);
 			log.info("입찰자 입찰하기");
 			return "redirect:/bid/bidform";	 

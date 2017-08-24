@@ -28,7 +28,7 @@ public class BidDaolmpl implements BidDao {
 	@Override
 	public int instertBidPrice(BidVo bidvo) {
 		log.info("insertBidPrice 확인");
-		
+		/*log.debug(sessionTemplate.insert(NS+"insertBidPrice" , bidvo));*/
 		return sessionTemplate.insert(NS+"insertBidPrice", bidvo);
 	
 	}
