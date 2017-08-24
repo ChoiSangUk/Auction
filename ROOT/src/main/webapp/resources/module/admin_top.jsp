@@ -31,8 +31,8 @@
 					<ul class="dropdown-menu">
 						<li><a href="${pageContext.request.contextPath}/ad/adminAdManagement">광고단가 리스트</a></li>
 						<li><a href="${pageContext.request.contextPath}/ad/adminAdApplySearch">광고신청 리스트</a></li>
-						<li><a href="${pageContext.request.contextPath}/ad/adminAdRefundApplySearch">광고환불신청 리스트</a></li>
 						<li><a href="${pageContext.request.contextPath}/ad/adminAdRefundPaymentSearch">광고환불결제 리스트</a></li>
+						<li><a href="${pageContext.request.contextPath}/ad/adminAdRefundApplySearch">광고환불신청 리스트</a></li>
 					</ul>
 				</li>
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">매입매출 관리
