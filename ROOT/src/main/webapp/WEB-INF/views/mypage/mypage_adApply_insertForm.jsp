@@ -21,7 +21,9 @@
 		<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 		<a href="${pageContext.request.contextPath}/main">홈</a>
 		<span>></span>
-		<span>광고신청</span>
+		<a href="${pageContext.request.contextPath}/mypage/mypageAdInfo">광고 소개</a>
+		<span>></span>
+		<span>광고 신청</span>
 		</div>
 	</div><br>
 	<div class="row content">	

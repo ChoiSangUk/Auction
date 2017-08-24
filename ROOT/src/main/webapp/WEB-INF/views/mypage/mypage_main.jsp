@@ -52,12 +52,18 @@ a:active {text-decoration: none; color: #blue;}
 a:hover {text-decoration: underline; color: #000000;} */
 </style>
 
-<div class="container text-left">
-	<h3>마이페이지</h3>
-	<br>
-	<div class="row">
+<div class="container-fluid">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
+		<div class="row title">
+			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+			<a href="${pageContext.request.contextPath}/main">홈</a>
+			<span>></span>
+			<span style="color: #1266FF">마이페이지</span>
+			<h2>마이페이지</h2>
+		</div>
+		<div class="row content">
 		<!-- 마이페이지 기본정보 관리 -->
-		<div class="col-sm-12">
 			<div class="panel panel-default text-left col-sm-4 well">
 				<div class="panel-body">
 					<h4>
@@ -122,7 +128,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 			</div>
 		</div>
 		<!-- 구매내역 관리 -->
-		<div class="row">
+		<div class="row content">
 			<div class="col-sm-12 md-box">
 				<h3>
 					<span class="glyphicon glyphicon-search"></span> 구매현황 <a
@@ -206,33 +212,34 @@ a:hover {text-decoration: underline; color: #000000;} */
 				</div>
 			</c:if>
 		</div>
-	</div>
-	<!-- 문의관리 버튼 -->
-	<div class="row">
-		<div class="col-sm-12 sm-box">
-			<div class="col-sm-2">
-				<a class="btn btn-blue btn-lg" href="#">1:1문의하기</a>
-			</div>
-			<div class="col-sm-2">
-				<a class="btn btn-blue btn-lg" href="#">문의게시판</a>
-			</div>
-			<div class="col-sm-2">
-				<a class="btn btn-blue btn-lg"
-					href="${pageContext.request.contextPath}/mypage/mypageAdInfo">물품광고</a>
-			</div>
-			<div class="col-sm-2">
-				<a class="btn btn-blue btn-lg" href="#">구매안내</a>
-			</div>
-			<c:if test="${userLoginInfo.userLevel eq '판매자'}">
+		<!-- 문의관리 버튼 -->
+		<div class="row content">
+			<div class="col-sm-12">
 				<div class="col-sm-2">
-					<a class="btn btn-blue btn-lg" href="#">판매자수수료</a>
+					<a class="btn btn-blue btn-lg" href="#">1:1문의하기</a>
 				</div>
 				<div class="col-sm-2">
-					<a class="btn btn-blue btn-lg" href="#">판매안내</a>
+					<a class="btn btn-blue btn-lg" href="#">문의게시판</a>
 				</div>
-			</c:if>
+				<div class="col-sm-2">
+					<a class="btn btn-blue btn-lg"
+						href="${pageContext.request.contextPath}/mypage/mypageAdInfo">물품광고</a>
+				</div>
+				<div class="col-sm-2">
+					<a class="btn btn-blue btn-lg" href="#">구매안내</a>
+				</div>
+				<c:if test="${userLoginInfo.userLevel eq '판매자'}">
+					<div class="col-sm-2">
+						<a class="btn btn-blue btn-lg" href="#">판매자수수료</a>
+					</div>
+					<div class="col-sm-2">
+						<a class="btn btn-blue btn-lg" href="#">판매안내</a>
+					</div>
+				</c:if>
+			</div>
 		</div>
 	</div>
+	<div class="col-sm-1"></div>
 </div>
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8" />

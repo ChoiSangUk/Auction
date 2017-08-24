@@ -11,6 +11,14 @@
 
 <div class="container-fluid text-left">
 	<div class="row title">
+		<div class="col-sm-12">
+		<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+		<a href="${pageContext.request.contextPath}/main">홈</a>
+		<span>></span>
+		<span>광고 소개</span>
+		</div>
+	</div><br>
+	<div class="row title">
 		<h1>Auction 광고 소개 페이지</h1>
 		<!-- 광고단가 소개 -->
 		<table class="table table-bordered">
