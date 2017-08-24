@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kpsl.auction.user.service.UserDetailService;
 import com.kpsl.auction.user.service.UserService;
 import com.kpsl.auction.user.vo.GradeVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
@@ -18,7 +19,9 @@ public class MainController {
 	Logger log = Logger.getLogger(this.getClass());
 	@Autowired
 	private UserService userService;
-
+	@Autowired
+	private UserDetailService userDetailService;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
 
@@ -72,11 +75,12 @@ public class MainController {
 	}
 	//마이페이지 메인
 	@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.GET)
-	public String mypage(HttpSession session) {
+	public String mypage(Model model, HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		log.info(userId + "<----- page1 확인");
 		session.getAttribute("userLoginInfo");
-
+		UserDetailVo userDetailInfo = userService.getUser(userId);
+		model.addAttribute("userDetailInfo", userDetailInfo);
 		GradeVo gradeVo = userService.getUserGrade(userId);
 		log.info(gradeVo.getGradeName() + "<---- 확인");
 

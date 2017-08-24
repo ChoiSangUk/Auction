@@ -88,7 +88,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 			<div class="panel panel-default text-center col-sm-3">
 				<div class="panel-body">
 					<div class="sm-box col-sm-12">
-						<span>잔여 금액 : </span> <span>${userLoginInfo.userTotalcash}</span>
+						<span>잔여 금액 : </span> <span>${userDetailInfo.userTotalcash}</span>
 					</div>
 					<div class="col-sm-6">
 						<a class="btn btn-success" href="${pageContext.request.contextPath}/mypage/myinfo/Cash">캐쉬 충전</a>
