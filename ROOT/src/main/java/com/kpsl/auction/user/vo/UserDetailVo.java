@@ -103,4 +103,9 @@ public class UserDetailVo {
 	public void setUserTotalcash(int userTotalcash) {
 		this.userTotalcash = userTotalcash;
 	}
+	@Override
+	public String toString() {
+		return "UserDetailVo [userId=" + userId + ", userTotalcash=" + userTotalcash + "]";
+	}
+	
 }

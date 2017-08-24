@@ -36,9 +36,13 @@ public class CashController {
 		cashService.setCash(cashVo);
 		log.info("testtest CASH");
 		
+		
+		
 		userDetailVo.setUserId(userId);
 		log.info(userId);
+		log.info(userDetailVo.toString());
 		cashService.modifyUserCash(userDetailVo);
+		
 		
 		
 

@@ -38,6 +38,11 @@ public class CashVo {
 	public void setCashState(String cashState) {
 		this.cashState = cashState;
 	}
+	@Override
+	public String toString() {
+		return "CashVo [cashCode=" + cashCode + ", userId=" + userId + ", cashPrice=" + cashPrice + ", cashDate="
+				+ cashDate + ", cashState=" + cashState + "]";
+	}
 	
 	
 	
