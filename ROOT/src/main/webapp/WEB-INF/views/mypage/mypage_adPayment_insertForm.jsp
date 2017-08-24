@@ -18,24 +18,55 @@
 			<h2>광고 결제</h2>
 		</div>			
 		<div class="row content">
-				<!-- 물품광고신청 폼 -->
-				<form class="form-horizontal" action="${pageContext.request.contextPath}/mypage/adApplyInsertForm"
-					method="post">
-					<div class="form-group">
-						<label class="col-sm-1 control-label">광고 시작일</label>
-						<div class="col-sm-2">
-							<input class="form-control" type="date" name="adApplyStartDate">
+			<!-- 물품광고결제 폼 -->			
+			<form class="form-horizontal" action="${pageContext.request.contextPath}/mypage/adApplyInsertForm"
+				method="post">
+				<input type="hidden" value="">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="form-group">
+							<label class="col-sm-1 control-label">광고명</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" name="adApplyEndDate" value="" readonly="readonly">
+							</div>
+							<label class="col-sm-2 control-label">광고 시작일</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" name="adApplyEndDate" value="" readonly="readonly">
+							</div>
+							<label class="col-sm-2 control-label">광고 종료일</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" name="adApplyEndDate" value="" readonly="readonly">
+							</div>
 						</div>
-						<label class="col-sm-1 control-label">광고 종료일</label>
-						<div class="col-sm-2">
-							<input class="form-control" type="date" name="adApplyEndDate">
+						<div class="form-group">
+							<label class="col-sm-1 control-label">물품명</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" name="adApplyStartDate" value="" readonly="readonly">
+							</div>
 						</div>
 					</div>
-					<div class="form-group submit text-center">
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="col-sm-1 control-label">결제금액</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" name="adApplyStartDate" value="" readonly="readonly">
+							</div>
+							<label class="col-sm-2 control-label">사용 가능한 캐쉬금액 </label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" name="adApplyStartDate" value="" readonly="readonly">
+							</div>
+							<div class="col-sm-2">
+								<a class="btn btn-success" href="">캐쉬 충전</a>
+							</div>
+						</div>
+					</div>					
+				</div>
+				<div class="form-group submit text-center">
 						<input class="btn btn-info" type="submit" id="formSubmit" name="formSubmit" value="결제">
-						<input class="btn btn-default" type="reset" value="다시쓰기">
-					</div>
-				</form>
+						<a class="btn btn-default" href="">뒤로가기</a>
+				</div>
+			</form>
+			
 		</div>
 	</div>
 	<div class="col-sm-1"></div>
