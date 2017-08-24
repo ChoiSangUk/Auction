@@ -13,6 +13,8 @@
 <p>세션 권한 : <b>${userLoginInfo.userLevel}</b></p>
 <p>세션  등급코드: <b>${userLoginInfo.gradeCode}</b></p> 
 <p>등급: <b>${grade.gradeName}</b></p>
+<p>캐쉬총액: <b>${userLoginInfo.userTotalcash}</b></p>
+
 <P>페이지 상단에 &lt;%@ page session="<font color="red">true</font>" %&gt; 선언함</P>
 </body>
 </html>

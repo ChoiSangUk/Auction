@@ -97,7 +97,7 @@
 								</div>
 								<div class="form-inline">
 									<div class="input-group">
-										<input type="text" id="bankmoney" name="cashPrice" maxlength="10" class="form-control">*1000원 이상 신청가능
+										<input type="number" id="bankmoney" name="cashPrice" maxlength="10" class="form-control">*1000원 이상 신청가능
 										<button type="button" class="btn btn-dark-gray mr10">지우기</button>
 										<strong class="mr10 fcBlue" id="moneyTxt"></strong>
 									</div>

@@ -10,19 +10,42 @@
 		<result property="cashDate" column="cash_date" />
 		<result property="cashState" column="cash_state" />
 	</resultMap>
-
+	<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
+		<id property="userId" column="user_id" />
+		<result property="userPassword" column="user_password" />
+		<result property="userLevel" column="user_level" />
+		<result property="gradeCode" column="grade_code" />
+		<result property="restrictCode" column="restrict_code" />
+		<result property="userName" column="user_name" />
+		<result property="userGender" column="user_gender" />
+		<result property="userBirth" column="user_birth" />
+		<result property="userPhone" column="user_phone" />
+		<result property="userEmail" column="user_email" />
+		<result property="userPostcode" column="user_postcode" />
+		<result property="userAddr" column="user_addr" />
+		<result property="userAddrdetail" column="user_addrdetail" />
+		<result property="userTotalcash" column="user_totalcash" />
+	</resultMap>
+	<!-- 캐쉬테이블에 충전내역 insert -->
 	<insert id="insertCash" parameterType="com.kpsl.auction.cash.vo.CashVo"
-			useGeneratedKeys="true" keyProperty="cashCode">
-		<selectKey keyProperty="cashCode" resultType="string"
-			order="BEFORE">
+		useGeneratedKeys="true" keyProperty="cashCode">
+		<selectKey keyProperty="cashCode" resultType="string" order="BEFORE">
 			SELECT CONCAT("cash",MAX(CAST(substring(cash_code,5)+1 AS
-			DECIMAL))) FROM cash_tb
+			DECIMAL)))
+			FROM cash_tb
 		</selectKey>
-		INSERT INTO cash_tb
-		(cash_code, user_id, cash_price, cash_date,
-		cash_state)
-		VALUES (#{cashCode}, #{userId}, #{cashPrice}, NOW(),
-		'충전');
+			INSERT INTO cash_tb
+			(cash_code, user_id, cash_price, cash_date,
+			cash_state)
+			VALUES (#{cashCode}, #{userId}, #{cashPrice}, NOW(),
+			'충전');
 	</insert>
-
+	<!-- 캐쉬테이블충전내역으로 user캐쉬충전  -->
+	<update id="updateUserCash" parameterType="com.kpsl.auction.user.vo.UserDetailVo" >
+			UPDATE user_detail_tb AS u INNER JOIN cash_tb AS c
+			ON u.user_id = c.user_id
+			SET u.user_totalcash = u.user_totalcash + c.cash_price
+			WHERE u.user_id = #{userId};
+	</update>
+	
 </mapper>

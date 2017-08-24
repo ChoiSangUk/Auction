@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kpsl.auction.cash.service.CashService;
 import com.kpsl.auction.cash.vo.CashVo;
+import com.kpsl.auction.user.service.UserDetailService;
+import com.kpsl.auction.user.vo.UserDetailVo;
 
 
 
@@ -19,7 +21,7 @@ public class CashController {
 	Logger log = Logger.getLogger(this.getClass());
 	@Autowired
 	private CashService cashService;
-			
+	
 	//캐쉬충전
 	@RequestMapping(value = "/mypage/myinfo/Cash", method = RequestMethod.GET)
 	public String cashForm() {
@@ -27,12 +29,19 @@ public class CashController {
 		return "/mypage/mypage_myinfo_cash";
 	}
 	@RequestMapping(value = "/mypage/myinfo/Cash", method = RequestMethod.POST)
-	public String cashInput(CashVo cashVo,HttpSession session) {
+	public String cashInput(UserDetailVo userDetailVo,CashVo cashVo,HttpSession session) {
 		String userId = (String)session.getAttribute("userId");
+		
 		cashVo.setUserId(userId);
-	
 		cashService.setCash(cashVo);
-			
+		log.info("testtest CASH");
+		
+		userDetailVo.setUserId(userId);
+		log.info(userId);
+		cashService.modifyUserCash(userDetailVo);
+		
+		
+
 		return "redirect:/mypage/mypageMain";
 	}
 	

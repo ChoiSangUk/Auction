@@ -70,11 +70,12 @@ public class MainController {
 		log.info("adminMain 확인");
 		return "/admin/admin_main";
 	}
-
+	//마이페이지 메인
 	@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.GET)
 	public String mypage(HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		log.info(userId + "<----- page1 확인");
+		session.getAttribute("userLoginInfo");
 
 		GradeVo gradeVo = userService.getUserGrade(userId);
 		log.info(gradeVo.getGradeName() + "<---- 확인");

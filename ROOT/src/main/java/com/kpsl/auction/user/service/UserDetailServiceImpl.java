@@ -37,4 +37,8 @@ public class UserDetailServiceImpl implements UserDetailService {
 		return userDetailDao.insertUserSeller(userDetailVo);
 	}
 
+
+
+
+	
 }

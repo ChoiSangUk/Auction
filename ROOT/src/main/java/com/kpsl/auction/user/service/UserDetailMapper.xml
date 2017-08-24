@@ -24,11 +24,21 @@
 		<result property="gradeName" column="grade_name" />
 		<result property="gradeRank" column="grade_rank" />
 	</resultMap>
+	<resultMap type="com.kpsl.auction.cash.vo.CashVo" id="cash">
+		<id property="cashCode" column="cash_code" />
+		<result property="userId" column="user_id" />
+		<result property="cashPrice" column="cash_price" />
+		<result property="cashDate" column="cash_date" />
+		<result property="cashState" column="cash_state" />
+	</resultMap>
 	<resultMap type="com.kpsl.auction.user.vo.UserVo" id="user">
 		<id property="user_id" column="userId" />
 	</resultMap>
 	<!-- 회원등급 -->
  <!-- Board -->
+ 
+ 	<!--user캐쉬 UPDATE -->
+
    	<!-- usergrade -->
 	<select id="selectUserGrade" parameterType="String" resultMap="grade">
 
