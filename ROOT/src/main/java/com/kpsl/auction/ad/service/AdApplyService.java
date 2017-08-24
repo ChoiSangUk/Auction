@@ -23,6 +23,8 @@ public interface AdApplyService {
 	AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo getAdApplyDetail(String adApplyCode);
 	// 광고신청업데이트 DAO를 호출하기 위한 메서드
 	int modifyAdApply(AdApplyVo adApplyVo);
+	// 광고이미지업데이트 DAO를 호출하기 위한 메서드
+	int modifyAdImage(AdImageVo adImageVo);
 	// 나의광고신청리스트 DAO를 호출하기 위한 메서드
 	List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> getMyAdApplyList(String userId);
 	

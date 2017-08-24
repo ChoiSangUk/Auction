@@ -122,28 +122,31 @@
 	
 	<update id="updateAdApply" parameterType="com.kpsl.auction.ad.vo.AdApplyVo">
 		UPDATE ad_apply_tb
-		SET
+			<trim prefix="SET" suffixOverrides=",">
 			<if test="adUnitPriceCode != null">
-			ad_unit_price_code = ${adUnitPriceCode},
+			ad_unit_price_code = #{adUnitPriceCode},
 			</if>
 			<if test="auctionGoodsCode != null">
-			auction_goods_code = ${auctionGoodsCode},
+			auction_goods_code = #{auctionGoodsCode},
 			</if>
 			<if test="adApplyStartDate != null">
-			ad_apply_start_date = ${adApplyStartDate},
+			ad_apply_start_date = #{adApplyStartDate},
 			</if>
 			<if test="adApplyEndDate != null">
-			ad_apply_end_date = ${adApplyEndDate},
+			ad_apply_end_date = #{adApplyEndDate},
 			</if>
 			<if test="adApplyState != null">
 			ad_apply_state = #{adApplyState}
 			</if>
+			</trim>
 		WHERE ad_apply_code = #{adApplyCode}
 	</update>
 	
-	<select id="selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId" parameterType="String" resultMap="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
-		SELECT  aup.ad_unit_price_name, 
+	<select id="selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId" parameterType="String" resultMap="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
+		SELECT  aup.ad_unit_price_name,
+				ag.auction_goods_code, 
 				ag.auction_goods_name,
+				ai.ad_image_code,
 				aa.ad_apply_code,
 				aa.ad_apply_state,
 				aa.ad_apply_regist_date,
@@ -154,6 +157,8 @@
 				ON aa.ad_unit_price_code = aup.ad_unit_price_code
 				INNER JOIN auction_goods_tb ag
 				ON aa.auction_goods_code = ag.auction_goods_code
+				INNER JOIN ad_image_tb ai
+				ON aa.ad_apply_code = ai.ad_apply_code
 		WHERE 	aa.user_id = #{userId};
 	</select>
 	

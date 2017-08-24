@@ -35,7 +35,7 @@
 					<c:choose>
 					<c:when test="${adApplyState eq '승인대기'}">
 					<td>
-					<a href="${pageContext.request.contextPath}/mypage/adApplyUpdateForm?adApplyCode=${ad.adApplyVo.adApplyCode}">
+					<a href="${pageContext.request.contextPath}/mypage/adApplyUpdateForm?adApplyCode=${ad.adApplyVo.adApplyCode}&adImageCode=${ad.adImageVo.adImageCode}">
 					<button>수정</button>
 					</a>
 					</td>

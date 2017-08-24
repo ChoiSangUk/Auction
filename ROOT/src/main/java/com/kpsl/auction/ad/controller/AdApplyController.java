@@ -35,29 +35,39 @@ public class AdApplyController {
 	// 나의 광고신청 업데이트페이지 요청
 	@RequestMapping(value = "/mypage/adApplyUpdateForm", method = RequestMethod.GET)
 	public String myAdApplyModify(Model model, HttpSession session
-								,@RequestParam (value="adApplyCode", required=true) String adApplyCode) {
-		
+								,@RequestParam (value="adApplyCode", required=true) String adApplyCode
+								,@RequestParam (value="adImageCode", required=true) String adImageCode) {
+								
 		log.info("myAdApplyModify 요청 확인");
 		log.info(adApplyCode+"<--- adApplyCode 확인");
-		
+		log.info(adImageCode+"<--- adImageCode 확인");
 		String userId = "id002";
 		List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> myApplyList = 
 				adApplyService.getMyAdApplyList(userId);
 		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList();
+		List<AuctionGoodsVo> auctionGoodsList = adApplyService.getAuctionGoodsListByUserId(userId);
+		
 		model.addAttribute("myApplyList",myApplyList);
 		model.addAttribute("adUnitPriceList",adUnitPriceList);
+		model.addAttribute("auctionGoodsList",auctionGoodsList);
 		model.addAttribute("adApplyCode",adApplyCode);
+		model.addAttribute("adImageCode",adImageCode);		
 		
 		return "/mypage/mypage_adApply_updateForm";
 	}
 	// 나의 광고신청 업데이트(액션) 요청
 	@RequestMapping(value = "/mypage/adApplyUpdateForm", method = RequestMethod.POST)
-	public String myAdApplyModify(AdApplyVo adApplyVo) {
+	public String myAdApplyModify(AdApplyVo adApplyVo, AdImageVo adImageVo
+								, @RequestParam("adImage") MultipartFile adImage,
+	    						MultipartHttpServletRequest multipartRequest) {
 		
-		log.info(adApplyVo.getAdApplyCode());
-		log.info(adApplyVo.getAuctionGoodsCode());
 		log.info("myAdApplyModify 요청(액션) 확인");
-		//adApplyService.modifyAdApply(adApplyVo);
+		UtilFile utilFile = new UtilFile();
+		HashMap<String, String> adFile= utilFile.fileUpload(multipartRequest, adImage);
+		adImageVo.setAdImagePath(adFile.get("adImagePath"));
+		adImageVo.setAdImageName(adFile.get("adImageName"));
+		adApplyService.modifyAdApply(adApplyVo);
+		adApplyService.modifyAdImage(adImageVo);
 		
 		return "redirect:/mypage/adApplyList";
 	}
@@ -69,7 +79,7 @@ public class AdApplyController {
 		log.info("myAdApplyList 요청 확인");
 		String userId = "id002";
 		List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> myApplyList = 
-				adApplyService.getMyAdApplyList(userId);	
+				adApplyService.getMyAdApplyList(userId);
 		model.addAttribute("myApplyList",myApplyList);
 		
 		return "/mypage/mypage_adApply_list";		

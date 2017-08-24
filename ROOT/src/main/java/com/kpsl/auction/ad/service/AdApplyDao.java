@@ -21,6 +21,8 @@ public interface AdApplyDao {
 	AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode(String adApplyCode);
 	// 광고신청 UPDATE 메서드
 	int updateAdApply(AdApplyVo adApplyVo);
+	// 광고신청이미지 UPDATE 메서드
+	int updateAdImage(AdImageVo adImageVo);
 	// 나의광고신청리스트 SELECT 메서드
-	List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId(String userId);
+	List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId(String userId);
 }

@@ -25,4 +25,12 @@
 				#{adImageName},
 				#{adImagePath})
 	</insert>
+	
+	<update id="updateAdImage" parameterType="com.kpsl.auction.ad.vo.AdImageVo">
+		UPDATE ad_image_tb
+			SET
+				ad_image_name = #{adImageName},
+				ad_image_path = #{adImagePath}
+			WHERE ad_image_code = #{adImageCode}
+	</update>
 </mapper>

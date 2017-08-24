@@ -63,10 +63,16 @@ public class AdApplyDaoImpl implements AdApplyDao {
 		log.info("updateAdApply 호출 확인");
 		return sqlSessionTemplate.update(AdApplyMapperNS+"updateAdApply",adApplyVo);
 	}
-
+	
 	@Override
-	public List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId(String userId) {
+	public int updateAdImage(AdImageVo adImageVo) {
+		log.info("updateAdImage 호출 확인");
+		return sqlSessionTemplate.update(AdImageMapperNS+"updateAdImage",adImageVo);
+	}
+	
+	@Override
+	public List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId(String userId) {
 		log.info("selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId 호출 확인");
-		return sqlSessionTemplate.selectList(AdApplyMapperNS+"selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId",userId);
+		return sqlSessionTemplate.selectList(AdApplyMapperNS+"selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId",userId);
 	}
 }

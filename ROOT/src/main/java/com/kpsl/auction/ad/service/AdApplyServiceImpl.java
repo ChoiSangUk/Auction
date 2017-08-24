@@ -65,10 +65,16 @@ public class AdApplyServiceImpl implements AdApplyService {
 		log.info("modifyAdApply 호출 확인");
 		return adApplyDao.updateAdApply(adApplyVo);
 	}
-
+	
+	@Override
+	public int modifyAdImage(AdImageVo adImageVo) {
+		log.info("modifyAdImage 호출 확인");
+		return adApplyDao.updateAdImage(adImageVo);
+	}
+	
 	@Override
 	public List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> getMyAdApplyList(String userId) {
 		log.info("getMyAdApplyList 호출 확인");
-		return adApplyDao.selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId(userId);
+		return adApplyDao.selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId(userId);
 	}
 }

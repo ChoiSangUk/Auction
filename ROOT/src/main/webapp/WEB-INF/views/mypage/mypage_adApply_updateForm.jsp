@@ -28,17 +28,17 @@
 	</div><br>
 	<div class="row content">	
 		<div class="col-sm-12">		
-			<!-- 물품광고신청 폼 -->
+			<!-- 물품광고신청업데이트 폼 -->
 			<form class="form-horizontal" action="${pageContext.request.contextPath}/mypage/adApplyUpdateForm"
-				method="post" >
+				method="post" enctype="multipart/form-data">
 				<input class="form-control" type="hidden" name="adApplyCode" value="${adApplyCode}">
-				<input class="form-control" type="hidden" name="userId">		
+				<input class="form-control" type="hidden" name="adImageCode" value="${adImageCode}">		
 				<div class="form-group">
 					<label class="col-sm-2 control-label">물품명</label>
 					<div class="col-sm-2">
 						<select class="form-control" name="auctionGoodsCode">
-							<c:forEach var="ag" items="${myApplyList}">
-								<option value="${ag.auctionGoodsVo.auctionGoodsCode}">${ag.auctionGoodsVo.auctionGoodsName}</option>
+							<c:forEach var="ag" items="${auctionGoodsList}">
+								<option value="${ag.auctionGoodsCode}">${ag.auctionGoodsName}</option>
 							</c:forEach>
 						</select>
 					</div>				
@@ -74,7 +74,7 @@
 				<!-- summernote 작업예정 
 				<div class="form-group">
 					<textarea class="form-controll" id="summernote" name="adImageName"></textarea>
-				</div> 
+				</div>
 				-->
 				<div class="form-group submit text-center">
 					<input class="btn btn-info" type="submit" value="수정">
