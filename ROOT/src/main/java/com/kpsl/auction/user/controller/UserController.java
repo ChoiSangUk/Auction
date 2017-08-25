@@ -60,8 +60,11 @@ public class UserController {
 
 	// 세션테스트 화면
 	@RequestMapping("page1")
-	public String page1(HttpSession session) {
-						
+	public String page1(HttpSession session,Model model) {
+		String userId = (String) session.getAttribute("userId");
+		UserDetailVo userDetailInfo = userService.getUser(userId);
+		model.addAttribute("userDetailInfo", userDetailInfo);
+
 		return "/user/session_test1";
 	}
 	

@@ -2,24 +2,27 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
-<div class="container text-left">
-	<h3>나의 정보관리</h3>
 
-	<div class="row">
-		<div>
-			<ul>
-				<li><a href="#">회원정보수정</a></li>
-				<li><a href="#">회원탈퇴</a></li>
-				<li><a href="#">사업자회원 전환</a></li>
-				<li><a href="#">나의 등급/신용도</a></li>
-				<li><a href="#">캐쉬 관리</a></li>
-				<li><a href="#">나의 계좌관리</a></li>
-			</ul>
+<div class="container-fluid">
+	<!-- 왼쪽 여백 -->
+	<div class="col-sm-1"></div>
+	<!-- 가운데 메인 -->
+	<div class="col-sm-10">
+		<!-- 네이게이션 & 페이지 타이틀 -->
+		<div class="row title">
+			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+			<a href="${pageContext.request.contextPath}/main">홈</a>
+			<span>></span>
+			<a href="${pageContext.request.contextPath}/mypage/mypageMain">마이페이지</a>
+			<span>></span>
+			<span style="color: #1266FF">캐쉬충전</span>
+			<h2>나의 정보관리</h2>
 		</div>
-	</div>
-	<!--// submenu -->
-
-	<!-- 캐쉬 상세내역 -->
+		<!-- 내용1 -->
+		<c:import url="/resources/module/mypage_info.jsp" charEncoding="UTF-8" />
+		<!-- 내용2 -->
+		<div class="row content">				
+			<!-- 캐쉬 상세내역 -->
 	<div>
 		<h3>캐쉬 충전신청</h3>
 		<ul>
@@ -53,7 +56,7 @@
 		</div>
 	</div>
 	<div class="row text-center mt30">
-		<a href="#">출금신청</a>
+		<a href="${pageContext.request.contextPath}/mypage/myinfo/CashWithdraw">출금신청</a>
 	</div>
 
 	<form name="inputForm" id="inputForm" method="post"
@@ -153,11 +156,14 @@
 
 			<div class="row text-center btn-col-2">
 				<button type="submit">충전하기</button>
-				<a href="#">뒤로가기</a>
+				<a href="${pageContext.request.contextPath}/mypage/mypageMain">뒤로가기</a>
 			</div>
 		</div>
 	</form>
 </div>
+</div>
+</div>
+
 <!-- 충전 누를시 충전하시겠습니까? Y/N 구현해야되-->
 <script type="text/javascript">
 	function inputBankMoney(vl) {

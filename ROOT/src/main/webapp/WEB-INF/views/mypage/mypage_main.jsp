@@ -94,7 +94,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 						<a class="btn btn-success" href="${pageContext.request.contextPath}/mypage/myinfo/Cash">캐쉬 충전</a>
 					</div>
 					<div class="col-sm-6">
-						<a class="btn btn-success" href="#">캐쉬 출금</a>
+						<a class="btn btn-success" href="${pageContext.request.contextPath}/mypage/myinfo/CashWithdraw">캐쉬 출금</a>
 					</div>
 				</div>
 			</div>
@@ -113,7 +113,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 						</a>
 					</div>
 					<div class="col-sm-3">
-						<a class="mypage-a" href=""> <span
+						<a class="mypage-a" href="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccount"> <span
 							class="glyphicon glyphicon-cloud" aria-hidden="true"
 							aria-hidden="true"></span> <br>내 계좌<br>관리
 						</a>

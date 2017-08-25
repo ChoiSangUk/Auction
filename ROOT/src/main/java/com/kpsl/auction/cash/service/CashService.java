@@ -9,4 +9,6 @@ import com.kpsl.auction.user.vo.UserDetailVo;
 public interface CashService {
 	int setCash(CashVo cashVo);
 	int modifyUserCash(UserDetailVo userDetailVo);
+	int setCashWithdraw(CashVo cashVo);
+	int modifyUserCashWithdraw(UserDetailVo userDetailVo);
 }

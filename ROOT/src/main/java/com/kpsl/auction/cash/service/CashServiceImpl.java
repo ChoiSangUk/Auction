@@ -30,4 +30,19 @@ public class CashServiceImpl implements CashService {
 	}
 
 
+	@Override
+	public int setCashWithdraw(CashVo cashVo) {
+		log.info("CashService Class setCashWithdraw");
+		return cashDao.insertCashWithdraw(cashVo);
+	}
+
+
+	@Override
+	public int modifyUserCashWithdraw(UserDetailVo userDetailVo) {
+		log.info("CashService Class modifyUserCashWithdraw");
+		
+		return cashDao.updateUserCashWithdraw(userDetailVo);
+	}
+
+
 }

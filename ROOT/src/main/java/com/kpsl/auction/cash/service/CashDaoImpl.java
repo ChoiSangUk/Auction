@@ -27,4 +27,16 @@ public class CashDaoImpl implements CashDao {
 		return sqlSessionTemplate.update(NS+"updateUserCash", userDetailVo);
 	}
 
+	@Override
+	public int insertCashWithdraw(CashVo cashVo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert(NS+"insertCashWithdraw",cashVo);
+	}
+
+	@Override
+	public int updateUserCashWithdraw(UserDetailVo userDetailVo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update(NS+"updateUserCashWithdraw", userDetailVo);
+	}
+
 }

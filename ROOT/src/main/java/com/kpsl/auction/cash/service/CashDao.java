@@ -6,4 +6,6 @@ import com.kpsl.auction.user.vo.UserDetailVo;
 public interface CashDao {
 	int insertCash(CashVo cashVo);
 	int updateUserCash(UserDetailVo userDetailVo);
+	int insertCashWithdraw(CashVo cashVo);
+	int updateUserCashWithdraw(UserDetailVo userDetailVo);
 }
