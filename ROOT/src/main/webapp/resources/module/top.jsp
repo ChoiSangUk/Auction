@@ -20,8 +20,9 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>                        
-	      	</button>
-			<a class="navbar-brand" id="time"></a>
+	      	</button>    
+	      	<span class="glyphicon glyphicon-time navbar-brand" style="color: #ffffff;"></span>
+	      	<a class="navbar-brand" id="time"></a>
 		</div>
 		<div class="collapse navbar-collapse" id="topNavbar">
 			<ul class="nav navbar-nav navbar-right">
