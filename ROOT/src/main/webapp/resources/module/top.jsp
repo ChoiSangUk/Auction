@@ -85,6 +85,7 @@
 				</ul>
 				<c:if test="${userLoginInfo.userLevel eq '판매자'}"> 
 				<li><a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert">물품등록</a></li>
+				<li><a onclick="window.open('/auction/bid/bidform','win2','scrollbars=yes width=650, height=700');return false">입찰장</a>				
 				</c:if>
 				<li><a href="aa">고객센터</a></li>
 			</ul>

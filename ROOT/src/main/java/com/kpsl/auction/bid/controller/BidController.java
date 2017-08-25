@@ -2,6 +2,8 @@ package com.kpsl.auction.bid.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,9 +33,13 @@ public class BidController {
 	}
 	//입찰자 입찰버튼 클릭시 
 		@RequestMapping(value = "/bid/price", method =RequestMethod.POST)
-		public String bidPrice(BidVo bidvo){
+		public String bidPrice(BidVo bidvo, HttpSession session){
+			String buyerId = (String)session.getAttribute("userId");
+			
+			log.info(buyerId+"<<session으로 get한 userId로 들어오는 값");
 			log.info(bidvo);
 			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");
+			bidvo.setUserBuyerId(buyerId);
 			bidService.setBidPrice(bidvo);
 			log.info("입찰자 입찰하기");
 			return "redirect:/bid/bidform";	 

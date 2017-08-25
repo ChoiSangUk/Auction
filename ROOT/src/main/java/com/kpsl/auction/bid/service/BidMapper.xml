@@ -12,7 +12,7 @@
   		<id property="bidPrice" column="bid_price"></id>
   		<id property="bidDate" column="bid_date"></id>
 	</resultMap>
-	 <!--입찰자 리스트  -->
+	 <!--입찰자 리스트 쿼리문  -->
 	<select id="selectBidList" parameterType="java.util.Map" resultMap="Bid">
 			SELECT bid_code
 		 	,user_buyer_id
@@ -20,17 +20,17 @@
 		 	,user_seller_id
 		 	,bid_price
 		 	,bid_date
-		FROM bid_td;
+		FROM bid_tb;
   	</select>
-  	<!--입찰-->
+  	<!--입찰쿼리문-->
 	<insert id="insertBidPrice" parameterType="com.kpsl.auction.bid.vo.BidVo"
 			useGeneratedKeys="true" keyProperty="bidCode">
 		<selectKey keyProperty="bidCode" resultType="string"
 			order="BEFORE">
-			SELECT CONCAT("bid",MAX(CAST(substring(bid_code,5)+1 AS
+			SELECT CONCAT("bid",MAX(CAST(substring(bid_code,4)+1 AS
 			DECIMAL))) FROM bid_tb
 		</selectKey>
-	INSERT INTO bid_td 
+	INSERT INTO bid_tb
 	(bid_code
 	, user_buyer_id
 	, auction_goods_code
@@ -38,9 +38,9 @@
 	, bid_price
 	, bid_date)
 	VALUES 
-	('bid2'
-	, 'id004'
-	, 'good4'
+	(#{bidCode}
+	, #{userBuyerId}
+	, 'good1'
 	, 'id003'
 	,  #{bidPrice}
 	, NOW());
