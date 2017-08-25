@@ -97,8 +97,8 @@
 				FROM ad_apply_tb
 		ORDER BY ad_apply_regist_date
 	</select>
-	<!-- 광고신청,광고이미지 JOIN -->
-	<select id="selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode" parameterType="String" resultMap="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
+	<!-- 광고신청,광고이미지, 광고단가, 물품 JOIN -->
+	<select id="selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode" parameterType="com.kpsl.auction.ad.vo.AdApplyVo" resultMap="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
 		SELECT  aa.ad_apply_code, 
 				aa.ad_unit_price_code, 
 				aa.auction_goods_code, 
@@ -107,19 +107,23 @@
 				aa.ad_apply_start_date, 
 				aa.ad_apply_end_date, 
 				aa.ad_apply_state,
+				ag.auction_goods_name,
 	 			ai.ad_image_code, 
 	 			ai.ad_apply_code, 
 	 			ai.ad_image_name,
 	 			ai.ad_image_path,
-	 			aup.ad_unit_price_name
+	 			aup.ad_unit_price_name,
+	 			aup.ad_unit_price_price
 	 	FROM 	ad_apply_tb aa 
-	 			LEFT JOIN ad_image_tb ai 
-	 			ON aa.ad_apply_code = ai.ad_apply_code
-	 			LEFT JOIN ad_unit_price_tb aup
-	 			ON aa.ad_unit_price_code = aup.ad_unit_price_code
+				LEFT JOIN ad_unit_price_tb aup
+				ON aa.ad_unit_price_code = aup.ad_unit_price_code
+				LEFT JOIN auction_goods_tb ag
+				ON aa.auction_goods_code = ag.auction_goods_code
+				LEFT JOIN ad_image_tb ai
+				ON aa.ad_apply_code = ai.ad_apply_code
 	 	WHERE 	aa.ad_apply_code = #{adApplyCode}
 	</select>
-	
+	<!-- 광고신청 UPDATE 쿼리 -->
 	<update id="updateAdApply" parameterType="com.kpsl.auction.ad.vo.AdApplyVo">
 		UPDATE ad_apply_tb
 			<trim prefix="SET" suffixOverrides=",">
@@ -141,8 +145,8 @@
 			</trim>
 		WHERE ad_apply_code = #{adApplyCode}
 	</update>
-	
-	<select id="selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId" parameterType="String" resultMap="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
+	<!-- 광고신청, 광고이미지, 광고단가, 물품 테이블 JOIN 쿼리 id로 검색 -->
+	<select id="selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId" parameterType="com.kpsl.auction.ad.vo.AdApplyVo" resultMap="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
 		SELECT  aup.ad_unit_price_name,
 				ag.auction_goods_code, 
 				ag.auction_goods_name,
@@ -153,14 +157,12 @@
 				aa.ad_apply_start_date,
 				aa.ad_apply_end_date
 		FROM 	ad_apply_tb aa 
-				INNER JOIN ad_unit_price_tb aup
+				LEFT JOIN ad_unit_price_tb aup
 				ON aa.ad_unit_price_code = aup.ad_unit_price_code
-				INNER JOIN auction_goods_tb ag
+				LEFT JOIN auction_goods_tb ag
 				ON aa.auction_goods_code = ag.auction_goods_code
-				INNER JOIN ad_image_tb ai
+				LEFT JOIN ad_image_tb ai
 				ON aa.ad_apply_code = ai.ad_apply_code
 		WHERE 	aa.user_id = #{userId};
 	</select>
-	
-	
 </mapper>

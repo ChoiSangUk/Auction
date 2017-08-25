@@ -5,7 +5,7 @@ public class AdUnitPriceVo {
 	
 	private String adUnitPriceCode;
 	private String adUnitPriceName;
-	private String adUnitPricePrice;
+	private int adUnitPricePrice;
 	private String adUnitPriceState;
 	
 	public String getAdUnitPriceCode() {
@@ -20,10 +20,10 @@ public class AdUnitPriceVo {
 	public void setAdUnitPriceName(String adUnitPriceName) {
 		this.adUnitPriceName = adUnitPriceName;
 	}
-	public String getAdUnitPricePrice() {
+	public int getAdUnitPricePrice() {
 		return adUnitPricePrice;
 	}
-	public void setAdUnitPricePrice(String adUnitPricePrice) {
+	public void setAdUnitPricePrice(int adUnitPricePrice) {
 		this.adUnitPricePrice = adUnitPricePrice;
 	}
 	public String getAdUnitPriceState() {

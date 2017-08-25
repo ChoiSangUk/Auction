@@ -72,7 +72,7 @@ public class AdApplyDaoImpl implements AdApplyDao {
 	
 	@Override
 	public List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId(String userId) {
-		log.info("selectAdApplyAndAdUnitPriceAndAuctionGoodsByUserId 호출 확인");
+		log.info("selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId 호출 확인");
 		return sqlSessionTemplate.selectList(AdApplyMapperNS+"selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId",userId);
 	}
 }

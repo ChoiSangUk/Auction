@@ -27,5 +27,4 @@ public interface AdApplyService {
 	int modifyAdImage(AdImageVo adImageVo);
 	// 나의광고신청리스트 DAO를 호출하기 위한 메서드
 	List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> getMyAdApplyList(String userId);
-	
 }

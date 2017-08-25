@@ -39,6 +39,7 @@ public class UserDetailController {
 		if (loginUser != null) {
 			session.setAttribute("userId", userId);
 			session.setAttribute("userLoginInfo", loginUser);
+			log.info("로그인 성공");
 			return "redirect:/main";
 		} else {
 
