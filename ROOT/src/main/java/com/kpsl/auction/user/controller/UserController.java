@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,6 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kpsl.auction.user.service.UserDao;
@@ -100,6 +100,7 @@ public class UserController {
 
 	@RequestMapping(value = "/user/userBuyerInsertForm", method = RequestMethod.POST)
 	public String buyerInsert(UserDetailVo userDetailVo, UserVo userVo) {
+		
 		userDetailService.setUserBuyer(userDetailVo);
 		userDetailService.setUser(userVo);
 		log.info("구매자회원가입액션");

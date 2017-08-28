@@ -21,8 +21,8 @@
 		<!-- 내용2 -->
 		<div class="row content">
 			<!-- 캐쉬 상세내역 -->
-			<form role="form" id="addForm"
-				action="#"
+			<form role="form" id="AccountInsertForm"
+				action="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccountInsert"
 				method="post">
 				<div class="form-group">
 					<label for="accountBankName">은행명</label> <input type="text"
