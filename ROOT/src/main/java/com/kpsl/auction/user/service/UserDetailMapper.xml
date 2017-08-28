@@ -38,7 +38,6 @@
  <!-- Board -->
  
  	<!--user캐쉬 UPDATE -->
-
    	<!-- usergrade -->
 	<select id="selectUserGrade" parameterType="String" resultMap="grade">
 

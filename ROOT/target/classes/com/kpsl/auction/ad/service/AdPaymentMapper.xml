@@ -7,9 +7,37 @@
 	<resultMap type="com.kpsl.auction.ad.vo.AdPaymentVo" id="AdPaymentVo">
 		<id property="adPaymentCode" column="ad_payment_code"/>
 		<id property="adApplyCode" column="ad_apply_code"/>	
+		<id property="userId" column="user_id"/>
 		<id property="adPaymentPrice" column="ad_payment_price"/>
 		<id property="adPaymentRegistDate" column="ad_payment_regist_date"/>
 		<id property="adPaymentState" column="ad_payment_state"/>
+	</resultMap>
+	
+	<resultMap type="com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdPaymentVo" id="AdApplyAndAdImageAndAdPaymentVo">
+		<association property="adApplyVo" javaType="com.kpsl.auction.ad.vo.AdApplyVo">
+    		<id property="adApplyCode" column="ad_apply_code"/>
+			<id property="adUnitPriceCode" column="ad_unit_price_code"/>	
+			<id property="auctionGoodsCode" column="auction_goods_code"/>
+			<id property="userId" column="user_id"/>
+			<id property="adApplyRegistDate" column="ad_apply_regist_date"/>
+			<id property="adApplyStartDate" column="ad_apply_start_date"/>
+			<id property="adApplyEndDate" column="ad_apply_end_date"/>
+			<id property="adApplyState" column="ad_apply_state"/>
+    	</association>
+    	<association property="adImageVo" javaType="com.kpsl.auction.ad.vo.AdImageVo">
+    		<id property="adImageCode" column="ad_image_code"/>
+			<id property="adApplyCode" column="ad_apply_code"/>
+			<id property="adImageName" column="ad_image_name"/>
+			<id property="adImagePath" column="ad_image_path"/>
+    	</association>
+    	<association property="adPaymentVo" javaType="com.kpsl.auction.ad.vo.AdPaymentVo">
+    		<id property="adPaymentCode" column="ad_payment_code"/>
+			<id property="adApplyCode" column="ad_apply_code"/>	
+			<id property="userId" column="user_id"/>
+			<id property="adPaymentPrice" column="ad_payment_price"/>
+			<id property="adPaymentRegistDate" column="ad_payment_regist_date"/>
+			<id property="adPaymentState" column="ad_payment_state"/>
+    	</association>
 	</resultMap>
 	
 	<!-- 광고결제테이블 결제내역 INSERT쿼리 -->
@@ -21,15 +49,37 @@
 		INSERT INTO ad_payment_tb
 					(ad_payment_code, 
 					ad_apply_code, 
+					user_id,
 					ad_payment_price, 
 					ad_payment_regist_date, 
 					ad_payment_state)
 		VALUES (#{adPaymentCode}, 
 				#{adApplyCode}, 
+				#{userId},
 				#{adPaymentPrice}, 
 				NOW(), 
 				'결제완료')	
 	</insert>
-	
-	
+	<!-- 광고결제와 같이 userTotalcash가 UPDATE (트랜잭션 처리)-->
+	<update id="updateUserTotalcash" parameterType="com.kpsl.auction.ad.vo.AdPaymentVo">
+		UPDATE user_detail_tb
+			SET user_totalcash=user_totalcash-#{adPaymentPrice}
+		WHERE user_id = #{userId}
+	</update>
+	<!-- 광고 결제완료된 리스트 SELECT 쿼리문 -->
+	<select id="selectAdApplyAndAdImageAndAdPaymentByUserIdAndAdApplyEndDate" resultMap="AdApplyAndAdImageAndAdPaymentVo">
+		SELECT  aa.ad_apply_code, 
+				aa.ad_apply_end_date,
+				ai.ad_image_code, 
+				ai.ad_image_name, 
+				ap.ad_payment_code,
+				ap.ad_apply_code,
+				ap.ad_payment_state
+		FROM ad_apply_tb aa 
+			 LEFT JOIN ad_image_tb ai
+			 ON aa.ad_apply_code = ai.ad_apply_code
+			 LEFT JOIN ad_payment_tb ap
+			 ON aa.ad_apply_code = ap.ad_apply_code
+		WHERE ap.ad_payment_state='결제완료' AND aa.ad_apply_end_date > now();
+	</select>
 </mapper>

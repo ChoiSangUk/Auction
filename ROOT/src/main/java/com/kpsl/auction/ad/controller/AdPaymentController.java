@@ -25,6 +25,7 @@ public class AdPaymentController {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
+	// 광고결제페이지 요청
 	@RequestMapping(value = "/mypage/adPaymentInsertForm", method = RequestMethod.GET)
 	public String adPaymentInsertForm(Model model, HttpSession session
 									, @RequestParam(value="adApplyCode", required=true) String adApplyCode) {
@@ -40,11 +41,15 @@ public class AdPaymentController {
 		return "/mypage/mypage_adPayment_insertForm";
 	}
 	
+	// 광고결제페이지(액션) 요청, 광고결제와 회원캐쉬출금 트랜잭션 처리
 	@RequestMapping(value = "/mypage/adPaymentInsertForm", method = RequestMethod.POST)
 	public String adPaymentInsertForm(HttpSession session, AdPaymentVo adPaymentVo) {
 		
 		log.info("adPaymentInsertForm 요청 확인");
+		String userId = (String) session.getAttribute("userId");
+		adPaymentVo.setUserId(userId);
 		adPaymentService.addAdPayment(adPaymentVo);
+		adPaymentService.modifyUserTotalcash(adPaymentVo);
 		
 		return "redirect:/main";
 	}

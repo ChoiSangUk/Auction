@@ -11,20 +11,24 @@
 		<li data-target="#myCarousel" data-slide-to="1"></li>
 		<li data-target="#myCarousel" data-slide-to="2"></li>
 	</ol>
-
 	<!-- 메인배너 링크,이미지 -->
 	<div class="carousel-inner" role="listbox">
-		<div class="item active">
-			<img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
+		<c:forEach var="ad" items="${adPaymentSuccessList}" begin="0" end="0">
+		<div class="item active mainBanner">
+			<a href="#">
+			<img src="${pageContext.request.contextPath}/resources/files/${ad.adImageVo.adImageName}" 
+			style="width: 100%; height: 400px;" alt="Image">
+			</a>
 		</div>
-		<div class="item">
-			<img src="https://placehold.it/1200x400?text=Another Image Maybe"
-				alt="Image">
+		</c:forEach>
+		<c:forEach var="ad" items="${adPaymentSuccessList}" begin="1">
+		<div class="item mainBanner">
+			<a href="#">
+			<img src="${pageContext.request.contextPath}/resources/files/${ad.adImageVo.adImageName}" 
+			style="width: 100%; height: 400px;" alt="Image">
+			</a>
 		</div>
-		<div class="item">
-			<img src="https://placehold.it/1200x400?text=Another Image Maybe"
-				alt="Image">
-		</div>
+		</c:forEach>
 	</div>
 
 	<!-- 메인배너 선택기 -->
