@@ -25,7 +25,7 @@ public class UserDetailServiceImpl implements UserDetailService {
 
 	@Override
 	public int setUser(UserVo userVo) {
-		// TODO Auto-generated method stub
+		// 유저 ID만 저장
 		return userDetailDao.insertUser(userVo);
 	}
 
@@ -43,6 +43,14 @@ public class UserDetailServiceImpl implements UserDetailService {
 	public int modifyUserTrans(UserDetailVo userDetailVo) {
 		//구매자->판매자 전환
 		return userDetailDao.updateUserTrans(userDetailVo);
+	}
+
+
+
+	@Override
+	public int modifyUser(UserDetailVo userDetailVo) {
+		// 유저회원정보수정
+		return userDetailDao.updateUser(userDetailVo);
 	}
 
 

@@ -30,28 +30,28 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private UserDetailService userDetailService;
-
+	//회원가입폼
 	@RequestMapping(value = "/user/userJoin", method = RequestMethod.GET)
 	public String join(Locale locale, Model model) {
 
 		log.info("회원가입");
 		return "/user/user_join";
 	}
-
+	//구매자가입 약관
 	@RequestMapping(value = "/user/userBuyerClause", method = RequestMethod.GET)
 	public String buyerclause(Locale locale, Model model) {
 
 		log.info("구매자가입");
 		return "/user/user_buyerClause";
 	}
-
+	//판매자가입 약관
 	@RequestMapping(value = "/user/userSellerClause", method = RequestMethod.GET)
 	public String sellerclause(Locale locale, Model model) {
 
 		log.info("판매자가입");
 		return "/user/user_sellerClause";
 	}
-
+	//로그인폼
 	@RequestMapping(value = "/user/userLogin", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 
@@ -69,21 +69,21 @@ public class UserController {
 		return "/user/session_test1";
 	}
 	
-
+	//회원가입약관
 	@RequestMapping(value = "/user/test", method = RequestMethod.GET)
 	public String test(Locale locale, Model model) {
 		
 		log.info("회원가입약관");
 		return "/user/test";
 	}
-
+	//판매자회원가입폼
 	@RequestMapping(value = "/user/userSellerInsertForm", method = RequestMethod.GET)
 	public String sellerInsert(Locale locale, Model model) {
 
-		log.info("판매자회원가입");
+		log.info("판매자회원가입폼");
 		return "/user/user_seller_insertForm";
 	}
-
+	//판매자회원가입
 	@RequestMapping(value = "/user/userSellerInsertForm", method = RequestMethod.POST)
 	public String sellerInsert(UserDetailVo userDetailVo, UserVo userVo) {
 		userDetailService.setUserSeller(userDetailVo);
@@ -91,14 +91,14 @@ public class UserController {
 		log.info("판매자회원가입액션");
 		return "redirect:/user/userLogin";
 	}
-
+	//구매자회원가입폼
 	@RequestMapping(value = "/user/userBuyerInsertForm", method = RequestMethod.GET)
 	public String buyerInsert(Locale locale, Model model) {
 
-		log.info("구매자회원가입");
+		log.info("구매자회원가입폼");
 		return "/user/user_buyer_insertForm";
 	}
-
+	//구매자회원가입
 	@RequestMapping(value = "/user/userBuyerInsertForm", method = RequestMethod.POST)
 	public String buyerInsert(UserDetailVo userDetailVo, UserVo userVo) {
 		
@@ -107,18 +107,35 @@ public class UserController {
 		log.info("구매자회원가입액션");
 		return "redirect:/user/userLogin";
 	}
-	//마이페이지 메인
-		@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.POST)
-		public String mypage(HttpSession session,UserDetailVo userDetailVo) {
+	//마이페이지 구매자->판매자 전환
+	@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.POST)
+	public String mypage(HttpSession session,UserDetailVo userDetailVo) {
+	
+		String userId = (String) session.getAttribute("userId");
+		log.info(userId + "<----- page1 확인");
+		session.getAttribute("userLoginInfo");
+		UserDetailVo userDetailInfo = userService.getUser(userId);
+		userDetailService.modifyUserTrans(userDetailInfo);
+		log.info(userDetailVo.getUserLevel());
+
+		return "redirect:**/logout";
+	}
+	//회원수정폼
+	@RequestMapping(value = "/mypage/mypageMyinfoUpdate", method = RequestMethod.GET)
+	public String userUpdateForm(HttpSession session) {
+		session.getAttribute("userDetailInfo");
 		
-			String userId = (String) session.getAttribute("userId");
-			log.info(userId + "<----- page1 확인");
-			session.getAttribute("userLoginInfo");
-			UserDetailVo userDetailInfo = userService.getUser(userId);
-			userDetailService.modifyUserTrans(userDetailInfo);
-			log.info(userDetailVo.getUserLevel());
-
-			return "redirect:**/logout";
-		}
-
+		log.info("회원수정폼");
+		return "/mypage/mypage_myinfo_update";
+	}
+	//회원수정
+	@RequestMapping(value = "/mypage/mypageMyinfoUpdate", method = RequestMethod.POST)
+	public String userUpdate(HttpSession session,UserDetailVo userDetailVo) {
+		String userId = (String) session.getAttribute("userId");
+		userDetailVo.setUserId(userId);
+		userDetailService.modifyUser(userDetailVo);
+		
+		log.info("회원수정");
+		return "redirect:/mypage/mypageMain";
+	}
 }

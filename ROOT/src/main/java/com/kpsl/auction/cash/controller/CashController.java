@@ -10,6 +10,8 @@ import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kpsl.auction.account.service.AccountService;
+import com.kpsl.auction.account.vo.AccountVo;
 import com.kpsl.auction.cash.service.CashService;
 import com.kpsl.auction.cash.vo.CashVo;
 import com.kpsl.auction.user.service.UserService;
@@ -20,6 +22,8 @@ public class CashController {
 	Logger log = Logger.getLogger(this.getClass());
 	@Autowired
 	private CashService cashService;
+	@Autowired
+	private AccountService accountservice;
 
 	// 캐쉬충전폼
 	@RequestMapping(value = "/mypage/myinfo/Cash", method = RequestMethod.GET)
@@ -48,8 +52,12 @@ public class CashController {
 
 	// 캐쉬출금폼
 	@RequestMapping(value = "/mypage/myinfo/CashWithdraw", method = RequestMethod.GET)
-	public String cashWithdrawForm(HttpSession session) {
-		session.getAttribute("account");
+	public String cashWithdrawForm(HttpSession session,AccountVo accountVo) {
+		//출금계좌 받아오기
+		String userId = (String) session.getAttribute("userId");
+		accountVo.setUserId(userId);			
+		accountVo = accountservice.getAccount(userId);
+		session.setAttribute("account", accountVo);
 		return "/mypage/mypage_myinfo_cashWithdraw";
 	}
 

@@ -94,6 +94,7 @@ public class MainController {
 		GradeVo gradeVo = userService.getUserGrade(userId);
 		log.info(gradeVo.getGradeName() + "<---- 확인");
 		session.setAttribute("grade", gradeVo);
+		
 		return "/mypage/mypage_main";
 	}
 }

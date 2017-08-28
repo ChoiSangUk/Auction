@@ -9,5 +9,6 @@ public interface UserDetailDao {
 	int insertUserSeller(UserDetailVo userDetailVo);
 	int insertUser(UserVo userVo);
 	int updateUserTrans(UserDetailVo userDetailVo);
+	int updateUser(UserDetailVo userDetailVo);
 	
 }

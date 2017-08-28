@@ -11,4 +11,5 @@ public interface UserDetailService {
 	int setUser(UserVo userVo);
 	int setUserSeller(UserDetailVo userDetailVo);
 	int modifyUserTrans(UserDetailVo userDetailVo);
+	int modifyUser(UserDetailVo userDetailVo);
 }

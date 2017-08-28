@@ -161,4 +161,16 @@
 	</insert>
  	<!-- 아이디를 삭제를해도 같은 아이디를 만들수없도록 하기위한 수단 -->
  	<insert id="insertUser" parameterType="com.kpsl.auction.user.vo.UserDetailVo">INSERT INTO user_tb(user_id) VALUES (#{userId})</insert>
+ 	<!-- 유저정보변경-->
+ 	<update id="updateUser" parameterType="com.kpsl.auction.user.vo.UserDetailVo">
+ 		UPDATE user_detail_tb
+		SET
+			user_password=#{userPassword},
+			user_phone=#{userPhone},
+			user_email=#{userEmail},
+			user_postcode=#{userPostcode},
+			user_addr=#{userAddr},
+			user_addrdetail=#{userAddrdetail}
+		WHERE user_id = #{userId}
+ 	</update>
 </mapper>

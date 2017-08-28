@@ -97,7 +97,7 @@
 			</ul>
 			 <c:if test="${userLoginInfo.userLevel ne null}">
 				<a class="glyphicon glyphicon-user pull-right center">
-					${userLoginInfo.userId} ${userLoginInfo.userName} ${userLoginInfo.userLevel} 
+					${userLoginInfo.userName}님 ${userLoginInfo.userLevel}권한으로 접속하셨습니다. 
 				</a>
 			 </c:if>	
 				

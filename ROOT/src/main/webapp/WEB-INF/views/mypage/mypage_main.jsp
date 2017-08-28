@@ -103,7 +103,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 			<div class="panel panel-default text-center col-sm-5">
 				<div class="lg-box panel-body">
 					<div class="col-sm-3">
-						<a class="mypage-a" href="#"> <span
+						<a class="mypage-a" href="${pageContext.request.contextPath}/mypage/mypageMyinfoUpdate"> <span
 							class="glyphicon glyphicon-pencil" aria-hidden="true"
 							aria-hidden="true"></span> <br>내 정보<br>수정
 						</a>
