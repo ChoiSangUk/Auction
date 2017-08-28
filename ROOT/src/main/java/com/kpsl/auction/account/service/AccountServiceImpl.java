@@ -18,6 +18,21 @@ public class AccountServiceImpl implements AccountService {
 		log.info("AccountService Class setAccount");
 		return accountDao.insertAccount(accountVo);
 	}
+	@Override
+	public AccountVo getAccount(String userId) {
+		log.info("AccountService Class getAccount");
+		return accountDao.selectAccount(userId);
+	}
+	@Override
+	public int modifyAccount(AccountVo accountVo) {
+		log.info("AccountService Class modifyAccount");
+		return accountDao.updateAccount(accountVo);
+	}
+	@Override
+	public int removeAccount(AccountVo accountVo) {
+		log.info("AccountService Class removeAccount");
+		return accountDao.deleteAccount(accountVo);
+	}
 			
 
 }

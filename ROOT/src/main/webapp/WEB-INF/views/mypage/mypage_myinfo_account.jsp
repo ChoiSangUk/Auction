@@ -38,11 +38,43 @@
 					</li>
 				</ul>
 			</div>
+		<c:if test="${account.accountBankName eq null}">
 			<div class="col-sm-6">
 				<a class="btn btn-success"
 					href="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccountInsert">계좌등록</a>
 			</div>
+		</c:if>
 		</div>
+		<c:if test="${account.accountBankName ne null}">
+		<div class="col-sm-6">
+				<table class="table table-hover">
+					<thead>
+							<tr>
+								<th>은행명</th>
+								<th>예금주</th>
+								<th>계좌번호</th>
+							</tr>
+					</thead>
+					<tbody>
+							<tr>
+								<td>${account.accountBankName}</td>
+								<td>${account.accountHolderName}</td>
+								<td>${account.accountNo}</td>
+							</tr>
+					</tbody>
+		
+				</table>
+				<form id="AccountDelete" action="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccount" method="post">
+					<a class="btn btn-success"
+					href="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccountUpdate">계좌수정</a>
+					<a class="btn btn-warning"
+					href="${pageContext.request.contextPath}/mypage/myinfo/CashWithdraw">출금</a>
+					
+					<button class="btn btn-info"
+					type="submit">계좌삭제</button>
+				</form>	
+			</div>
+		</c:if>
 	</div>
 </div>
 

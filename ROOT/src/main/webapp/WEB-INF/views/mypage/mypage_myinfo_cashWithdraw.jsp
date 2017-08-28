@@ -44,10 +44,10 @@
 					<span class="fs15">출금 가능한 캐쉬</span>
 				</div>
 			</div>
-			<div class="col-md-9 col-sm-6 col-xs-12 clearfix">
+			<div class="col-md-9 col-sm-6 col-xs-12	 clearfix">
 				<div class="box box-gray my-money-box clearfix">
 					<p class="pull-left fs18 fcBlue">
-						<strong>${userLoginInfo.userTotalcash} 원</strong>
+						<strong>${userDetailInfo.userTotalcash} 원</strong>
 					</p>
 					<p class="pull-right btn-col-3">
 						<a href="#">충전관리</a> <a href="#">출금관리</a> <a href="#">상세내역</a>

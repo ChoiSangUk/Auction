@@ -85,15 +85,14 @@ public class MainController {
 	}
 	//마이페이지 메인
 	@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.GET)
-	public String mypage(Model model, HttpSession session) {
+	public String mypage(HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		log.info(userId + "<----- page1 확인");
 		session.getAttribute("userLoginInfo");
 		UserDetailVo userDetailInfo = userService.getUser(userId);
-		model.addAttribute("userDetailInfo", userDetailInfo);
+		session.setAttribute("userDetailInfo", userDetailInfo);
 		GradeVo gradeVo = userService.getUserGrade(userId);
 		log.info(gradeVo.getGradeName() + "<---- 확인");
-
 		session.setAttribute("grade", gradeVo);
 		return "/mypage/mypage_main";
 	}
