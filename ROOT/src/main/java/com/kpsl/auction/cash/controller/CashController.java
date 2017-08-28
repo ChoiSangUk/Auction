@@ -48,8 +48,8 @@ public class CashController {
 
 	// 캐쉬출금폼
 	@RequestMapping(value = "/mypage/myinfo/CashWithdraw", method = RequestMethod.GET)
-	public String cashWithdrawForm() {
-
+	public String cashWithdrawForm(HttpSession session) {
+		session.getAttribute("account");
 		return "/mypage/mypage_myinfo_cashWithdraw";
 	}
 

@@ -56,7 +56,7 @@
 		</div>
 	</div>
 	<div class="row text-center mt30">
-		<a href="${pageContext.request.contextPath}/mypage/myinfo/CashWithdraw">출금신청</a>
+		<a href="${pageContext.request.contextPath}/mypage/myinfo/CashWithdraw" class="btn btn-info">출금신청</a>
 	</div>
 
 	<form name="inputForm" id="inputForm" method="post"
@@ -155,8 +155,8 @@
 			<!--// 조회 테이블 -->
 
 			<div class="row text-center btn-col-2">
-				<button type="submit">충전하기</button>
-				<a href="${pageContext.request.contextPath}/mypage/mypageMain">뒤로가기</a>
+				<button type="submit" class="btn btn-info">충전하기</button>
+				<a class ="btn btn-info" href="${pageContext.request.contextPath}/mypage/mypageMain">뒤로가기</a>
 			</div>
 		</div>
 	</form>

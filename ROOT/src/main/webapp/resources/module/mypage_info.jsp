@@ -7,7 +7,6 @@
 		<ul>
 			<li><a href="#">회원정보수정</a></li>
 			<li><a href="#">회원탈퇴</a></li>
-			<li><a href="#">사업자회원 전환</a></li>
 			<li><a href="#">나의 등급/신용도</a></li>
 			<li><a href="#">캐쉬 관리</a></li>
 			<li><a href="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccount">나의
