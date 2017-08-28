@@ -78,9 +78,11 @@ a:hover {text-decoration: underline; color: #000000;} */
 					</c:if>
 					<c:if test="${userLoginInfo.userLevel eq '구매자' }">
 						<div class="sm-box">구매등급은 ${grade.gradeName} 입니다.</div>
-						<a class="mypage-a btn btn-default" href="#">구매혜택보기</a>
-						<a class="mypage-a btn btn-default" href="#">회원등급안내</a>
-						<a class="mypage-a btn btn-default" href="#">판매자전환</a>
+						<form id="trans" action="${pageContext.request.contextPath}/mypage/mypageMain" method="post">
+							<a class="mypage-a btn btn-default" href="#">구매혜택보기</a>
+							<a class="mypage-a btn btn-default" href="#">회원등급안내</a>
+							<button class="mypage-a btn btn-default" type="submit">판매자전환</button>
+						</form>
 					</c:if>
 
 				</div>

@@ -18,6 +18,7 @@ import com.kpsl.auction.user.service.UserDao;
 
 import com.kpsl.auction.user.service.UserDetailService;
 import com.kpsl.auction.user.service.UserService;
+import com.kpsl.auction.user.vo.GradeVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
 import com.kpsl.auction.user.vo.UserVo;
 
@@ -106,5 +107,18 @@ public class UserController {
 		log.info("구매자회원가입액션");
 		return "redirect:/user/userLogin";
 	}
+	//마이페이지 메인
+		@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.POST)
+		public String mypage(HttpSession session,UserDetailVo userDetailVo) {
+		
+			String userId = (String) session.getAttribute("userId");
+			log.info(userId + "<----- page1 확인");
+			session.getAttribute("userLoginInfo");
+			UserDetailVo userDetailInfo = userService.getUser(userId);
+			userDetailService.modifyUserTrans(userDetailInfo);
+			log.info(userDetailVo.getUserLevel());
+
+			return "redirect:**/logout";
+		}
 
 }

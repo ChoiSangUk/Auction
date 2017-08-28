@@ -39,6 +39,14 @@ public class UserDetailServiceImpl implements UserDetailService {
 
 
 
+	@Override
+	public int modifyUserTrans(UserDetailVo userDetailVo) {
+		//구매자->판매자 전환
+		return userDetailDao.updateUserTrans(userDetailVo);
+	}
+
+
+
 
 	
 }

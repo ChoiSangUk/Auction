@@ -109,7 +109,13 @@
 										maxlength="20" value="${account.accountNo}  ${account.accountBankName}"
 										class="form-control mr10" readonly="readonly"> 
 									<span>
+									<c:if test="${account.accountBankName eq null}">
+										<a href="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccountInsert">계좌추가</a>
+									</c:if>
+									<c:if test="${account.accountBankName ne null}">
 										<a href="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccount">계좌변경</a>
+									</c:if>
+									
 									</span>
 								</div>
 							</td>

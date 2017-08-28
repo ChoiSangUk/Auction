@@ -37,7 +37,12 @@
 	<!-- 회원등급 -->
  <!-- Board -->
  
- 	<!--user캐쉬 UPDATE -->
+ 	<update id="updateUsertransform" parameterType="com.kpsl.auction.user.vo.UserDetailVo">
+ 		UPDATE user_detail_tb
+		SET	user_level='판매자'
+		WHERE user_id=#{userId}
+ 	
+ 	</update>
    	<!-- usergrade -->
 	<select id="selectUserGrade" parameterType="String" resultMap="grade">
 

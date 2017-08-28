@@ -83,7 +83,7 @@ public class MainController {
 		log.info("adminMain 확인");
 		return "/admin/admin_main";
 	}
-	//마이페이지 메인
+	//마이페이지 
 	@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.GET)
 	public String mypage(HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
