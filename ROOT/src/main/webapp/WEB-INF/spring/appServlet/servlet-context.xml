@@ -57,7 +57,8 @@
         <property name="dataSource" ref="dataSource" />
         <!-- mybatis 세션생성후 쿼리를 실행시킬때 사용할 쿼리위치(메퍼)설정 -->
         <property name="mapperLocations">
-            <list>          	
+            <list>   
+          		<value>classpath:com/kpsl/auction/account/service/AccountMapper.xml</value>         	
             	<value>classpath:com/kpsl/auction/saleslog/service/SalesLogMapper.xml</value>  
             	<value>classpath:com/kpsl/auction/cash/service/CashMapper.xml</value>         
             	<value>classpath:com/kpsl/auction/user/service/UserDetailMapper.xml</value>            	

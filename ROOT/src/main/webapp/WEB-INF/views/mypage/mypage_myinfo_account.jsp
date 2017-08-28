@@ -38,7 +38,10 @@
 					</li>
 				</ul>
 			</div>
-
+			<div class="col-sm-6">
+				<a class="btn btn-success"
+					href="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccountInsert">계좌등록</a>
+			</div>
 		</div>
 	</div>
 </div>
