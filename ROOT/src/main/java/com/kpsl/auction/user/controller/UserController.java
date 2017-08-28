@@ -29,8 +29,6 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private UserDetailService userDetailService;
-	@Autowired
-	private UserDao userDao;
 
 	@RequestMapping(value = "/user/userJoin", method = RequestMethod.GET)
 	public String join(Locale locale, Model model) {
