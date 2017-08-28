@@ -48,7 +48,7 @@
 						<div class="form-group">
 							<label class="col-sm-1 control-label">결제금액</label>
 							<div class="col-sm-2">
-								<input class="form-control" type="number" name="adUnitPricePrice" id="adUnitPricePrice" value="${adPaymentList.adUnitPriceVo.adUnitPricePrice}" readonly="readonly">
+								<input class="form-control" type="number" name="adPaymentPrice" id="adPaymentPrice" value="${adPaymentList.adUnitPriceVo.adUnitPricePrice}" readonly="readonly">
 							</div>
 							<label class="col-sm-2 control-label">사용 가능한 캐쉬금액 </label>
 							<div class="col-sm-2">
@@ -104,15 +104,15 @@
 
 <script>
 $(document).ready(function() {
-	var adUnitPricePrice = parseInt($('#adUnitPricePrice').val());
+	var adPaymentPrice = parseInt($('#adPaymentPrice').val());
 	var userTotalcash = parseInt($('#userTotalcash').val());
 	// 결제 후 금액
-	var residual = userTotalcash-adUnitPricePrice;
+	var residual = userTotalcash-adPaymentPrice;
 	$('#residual').text(residual+" 원");
 	// 보유금액이 결제금액보다 작으면 span태그에 알려준다.
 	// 보유금액이 결제금액보다 크면 폼을 전송한다.
 	$('#paymentConfirmButton').click(function() {
-		if(adUnitPricePrice > userTotalcash) {
+		if(adPaymentPrice > userTotalcash) {
 			 console.log('잔액부족');
 			$('#cashCheck').text("잔액이 부족합니다! 캐쉬충전버튼을 누르시면 충전페이지로 이동합니다.");			
 		}else {

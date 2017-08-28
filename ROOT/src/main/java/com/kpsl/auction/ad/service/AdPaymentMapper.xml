@@ -1,1 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kpsl.auction.ad.service.AdPaymentMapper">
+	<resultMap type="com.kpsl.auction.ad.vo.AdPaymentVo" id="AdPaymentVo">
+		<id property="adPaymentCode" column="ad_payment_code"/>
+		<id property="adApplyCode" column="ad_apply_code"/>	
+		<id property="adPaymentPrice" column="ad_payment_price"/>
+		<id property="adPaymentRegistDate" column="ad_payment_regist_date"/>
+		<id property="adPaymentState" column="ad_payment_state"/>
+	</resultMap>
+	
+	<!-- 광고결제테이블 결제내역 INSERT쿼리 -->
+	<insert id="insertAdPayment" parameterType="com.kpsl.auction.ad.vo.AdPaymentVo">
+		<selectKey keyProperty="adPaymentCode" resultType="String" order="BEFORE">
+			SELECT CONCAT("ap",MAX(CAST(substring(ad_payment_code,3)+1 AS DECIMAL))) 
+			FROM ad_payment_tb
+		</selectKey>
+		INSERT INTO ad_payment_tb
+					(ad_payment_code, 
+					ad_apply_code, 
+					ad_payment_price, 
+					ad_payment_regist_date, 
+					ad_payment_state)
+		VALUES (#{adPaymentCode}, 
+				#{adApplyCode}, 
+				#{adPaymentPrice}, 
+				NOW(), 
+				'결제완료')	
+	</insert>
+	
+	
+</mapper>
