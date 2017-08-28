@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
+	<!-- MultipartResolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000000"/>
+        <property name="maxInMemorySize" value="100000000"/>
+    </bean>
+    
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<context:component-scan base-package="com.kpsl.auction" />
+	<!-- logger 인터셉터 -->
+	<mvc:interceptors>	    
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean id="loggerInterceptor" class="com.kpsl.auction.logger.LoggerInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <!-- 커넥션 풀 설정 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <!-- 배포할땐 127.0.0.1로  작업할땐 pjh3752.cafe24.com-->
+        <property name="url" value="jdbc:mysql://pjh3752.cafe24.com:3306/pjh3752?useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="username" value="pjh3752"/>
+        <property name="password" value="rkdqkrthddl!"/>
+    </bean>
+    <!-- 트랜잭션 어노테이션 처리를위한 빈 생성 -->
+    <bean id="txManager1" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+ 	<tx:annotation-driven transaction-manager="txManager1"/>
+ 	
+     <!-- mybatis설정 1. SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- mybatis 세션생성시 사용할 dataSource주입 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- mybatis 세션생성후 쿼리를 실행시킬때 사용할 쿼리위치(메퍼)설정 -->
+        <property name="mapperLocations">
+            <list>   
+          		<value>classpath:com/kpsl/auction/account/service/AccountMapper.xml</value>         	
+            	<value>classpath:com/kpsl/auction/saleslog/service/SalesLogMapper.xml</value>  
+            	<value>classpath:com/kpsl/auction/cash/service/CashMapper.xml</value>         
+            	<value>classpath:com/kpsl/auction/user/service/UserDetailMapper.xml</value>            	
+            	<value>classpath:com/kpsl/auction/ad/service/AdUnitPriceMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/ad/service/AdApplyMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/ad/service/AdImageMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/ad/service/AdPaymentMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/auctiongoods/service/AuctionGoodsMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/goodscategory/service/LargeCategoryMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/goodscategory/service/MiddleCategoryMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/goodscategory/service/SmallCategoryMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/bid/service/BidMapper.xml</value>            	
+            </list>
+        </property>
+    </bean>
+    
+    <!-- mybatis설정 2. SqlSessionTemplate -->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
+
+</beans>
