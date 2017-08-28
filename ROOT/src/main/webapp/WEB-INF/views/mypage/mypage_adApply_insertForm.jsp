@@ -66,6 +66,15 @@
 					<p><span class="glyphicon glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 					메인배너에 사용 될 이미지를 첨부해주세요! (그림의 사이즈는 1200x400으로 맞춰집니다)</p>
 				</div>
+				<!-- datetimepicker test -->
+				<div class="form-group">
+	                <div class='input-group date' id='datetimepicker1'>
+	                    <input type='text' class="form-control" />
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
+	                </div>
+           		</div>
 				<div class="form-group">
 					<textarea class="form-controll" id="summernote" name=""></textarea>
 				</div>
@@ -102,8 +111,11 @@ $("#formSubmit").click(function() {
 		});
 	});
 }); */
-
-
+$(function () {
+    $('#datetimepicker1').datepicker({
+    	language: 'ko',
+    });
+});
 </script>
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8"/>

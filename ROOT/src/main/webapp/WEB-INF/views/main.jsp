@@ -13,19 +13,17 @@
 	</ol>
 	<!-- 메인배너 링크,이미지 -->
 	<div class="carousel-inner" role="listbox">
-		<c:forEach var="ad" items="${adPaymentSuccessList}" begin="0" end="0">
 		<div class="item active mainBanner">
-			<a href="#">
-			<img src="${pageContext.request.contextPath}/resources/files/${ad.adImageVo.adImageName}" 
-			style="width: 100%; height: 400px;" alt="Image">
+			<a href="${pageContext.request.contextPath}/mypage/mypageAdInfo">
+			<img src="${pageContext.request.contextPath}/resources/files/mainBanner.jpg" 
+			style="width: 80%; height: 400px;" alt="Image" align="middle">
 			</a>
 		</div>
-		</c:forEach>
-		<c:forEach var="ad" items="${adPaymentSuccessList}" begin="1">
+		<c:forEach var="ad" items="${adPaymentSuccessList}">
 		<div class="item mainBanner">
 			<a href="#">
 			<img src="${pageContext.request.contextPath}/resources/files/${ad.adImageVo.adImageName}" 
-			style="width: 100%; height: 400px;" alt="Image">
+			style="width: 80%; height: 400px;" alt="Image" align="middle">
 			</a>
 		</div>
 		</c:forEach>
