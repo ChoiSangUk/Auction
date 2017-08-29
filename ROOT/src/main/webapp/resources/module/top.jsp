@@ -12,8 +12,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/ko.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.ko.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.min.css"/>
 </head>
 <body>
@@ -97,7 +97,7 @@
 			</ul>
 			 <c:if test="${userLoginInfo.userLevel ne null}">
 				<a class="glyphicon glyphicon-user pull-right center">
-					${userLoginInfo.userName}님 ${userLoginInfo.userLevel}권한으로 접속하셨습니다. 
+					${userLoginInfo.userId} ${userLoginInfo.userName} ${userLoginInfo.userLevel} 
 				</a>
 			 </c:if>	
 				
