@@ -65,15 +65,17 @@ th {
 							<th class="col-sm-2 text-center active">광고 등록일자</th>
 							<td>
 								<div class="form-inline">
-								<div class="col-sm-2 input-group date" data-provide="datepicker" id="date1">
-									<input class="form-control" type="text" name="adApplyStartDate">
+								<div class="col-sm-3 input-group date" data-provide="datepicker" id="sdate"
+								style="margin-left: 15px;">
+									<input class="form-control" type="text" name="adApplyStartDate" id="sd" readonly="readonly">
 									<div class="input-group-addon">
 						        		<span class="glyphicon glyphicon-th"></span>
 						    		</div>
 								</div>
-								<span>~</span>
-								<div class="col-sm-2 input-group date" data-provide="datepicker" id="date2">
-									<input class="form-control" type="text" name="adApplyEndDate">
+								<span style="margin-left: 15px;">~</span>
+								<div class="col-sm-3 input-group date" data-provide="datepicker" id="edate"
+								style="margin-left: 15px;">
+									<input class="form-control" type="text" name="adApplyEndDate" id="ed" readonly="readonly">
 									<div class="input-group-addon">
 						        		<span class="glyphicon glyphicon-th"></span>
 						    		</div>
@@ -87,8 +89,10 @@ th {
 								<div class="col-sm-4">
 									<input class="form-control" type="file" name="adImage">
 								</div>
-								<p><span class="glyphicon glyphicon glyphicon-asterisk" aria-hidden="true" style="vertical-align: middle;"></span>
-								메인배너에 사용 될 이미지를 첨부해주세요! (그림의 사이즈는 1200x400으로 맞춰집니다)</p>
+								<div style="margin-top: 8px;">
+								<span class="glyphicon glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+								메인배너에 사용 될 이미지를 첨부해주세요! (그림의 사이즈는 1200x400으로 맞춰집니다)
+								</div>
 							</td>
 						</tr>
 					</tbody>
@@ -103,7 +107,7 @@ th {
 			</form>		
 		</div>				
 	</div>
-	
+	<input type="text" id="ee">
 	<div class="col-sm-1"></div>
 </div>
 
@@ -116,16 +120,39 @@ th {
 	});
 }); */
 
-$(function () {
-    $('#date1').datepicker({
-    	language: 'ko',
-    	orientation: 'bottom'
-    });
-    $('#date2').datepicker({
-    	language: 'ko',
-    	orientation: 'bottom'
-    });
+/*************************************
+ * - datepicker -
+ * mysql datetime과 타입일치를 시키기위해
+ * momnet format을 사용하여 뒤에 시:분:초를 붙임
+ *************************************/
+$('#sdate').click(function(e){
+	console.log('클릭확인');
+	var a = $.ajax({
+		url: '${pageContext.request.contextPath}/dateAjax',
+		type: 'post',
+			success: function(endDate){
+			var eDate = endDate
+			$('#ee').val(eDate);
+		},
+		error: function(requestDate){
+			console.log('error'+requestDate.hi);
+		}
+	});
 });
+var endDate = $('#ee').val();
+console.log($('#ee').val());
+    $('#sdate').datepicker({
+    	format: 'yyyy-mm-dd'+moment().format(' hh:mm:ss'),
+    	language: 'ko',
+    	orientation: 'bottom',
+    	startDate: endDate  
+    });
+    $('#edate').datepicker({
+    	format: 'yyyy-mm-dd'+moment().format(' hh:mm:ss'),
+    	language: 'ko',
+    	orientation: 'bottom'
+    });
+
 </script>
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8"/>
