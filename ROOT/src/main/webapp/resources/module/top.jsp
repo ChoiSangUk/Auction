@@ -93,15 +93,14 @@
 				<li><a onclick="window.open('/auction/bid/bidform','win2','scrollbars=yes width=650, height=700');return false">입찰장</a>				
 				</c:if>
 				<li><a href="aa">고객센터</a></li>
-				
+				<c:if test="${userLoginInfo.userLevel ne null}">
+			 </c:if>					 
 			</ul>
-			 <c:if test="${userLoginInfo.userLevel ne null}">
-				<a class="glyphicon glyphicon-user pull-right center">
-					${userLoginInfo.userId} ${userLoginInfo.userName} ${userLoginInfo.userLevel} 
-				</a>
-			 </c:if>	
-				
-		</div>
-			
+			<div class="pull-right" style="margin-top: 12px;">
+				<span class="glyphicon glyphicon-user">
+					<strong>${userLoginInfo.userName}</strong>님이<strong>${userLoginInfo.userLevel}</strong>권한으로로그인하셨습니다.
+				</span>
+			</div>
+		</div>			
 	</div>
 </nav>

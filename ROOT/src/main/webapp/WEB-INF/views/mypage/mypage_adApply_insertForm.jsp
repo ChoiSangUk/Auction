@@ -8,6 +8,13 @@
 <script src="${pageContext.request.contextPath}/resources/js/summernote.js"></script>
 <!-- summernote-ko-KR 한글 추가 -->
 <script src="${pageContext.request.contextPath}/resources/font/summernote-ko-KR.js"></script>
+<style>
+th {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+
+</style>
 
 <div class="container-fluid">
 	<div class="col-sm-1"></div>
@@ -28,92 +35,95 @@
 				method="post" enctype="multipart/form-data">
 				<input class="form-control" type="hidden" name="adApplyCode">
 				<input class="form-control" type="hidden" name="userId">		
-				<div class="form-group">
-					<label class="col-sm-1 control-label">물품명</label>
-					<div class="col-sm-2">
-						<select class="form-control" name="auctionGoodsCode">
-							<c:forEach var="ag" items="${auctionGoodsList}">
-								<option value="${ag.auctionGoodsCode}">${ag.auctionGoodsName}</option>
-							</c:forEach>
-						</select>
-					</div>				
-					<label class="col-sm-1 control-label">광고명</label>
-					<div class="col-sm-2">
-						<select class="form-control" name="adUnitPriceCode">
-							<c:forEach var="ad" items="${adUnitPriceList}">
-								<option value="${ad.adUnitPriceCode}">${ad.adUnitPriceName}</option>
-							</c:forEach>
-						</select>
-					</div>
-				</div>
-				<!-- datepicker사용해서 광고가능한 스케줄 띄우기 -->
-				<div class="form-group">
-					<label class="col-sm-1 control-label">광고 시작일</label>
-					<div class="col-sm-2">
-						<input class="form-control" type="date" name="adApplyStartDate">
-					</div>
-					<label class="col-sm-1 control-label">광고 종료일</label>
-					<div class="col-sm-2">
-						<input class="form-control" type="date" name="adApplyEndDate">
-					</div>
-				</div>
-				<!-- 매인배너에 걸릴 이미지 -->
-				<div class="form-group">
-					<label class="col-sm-1 control-label">물품 이미지</label>
-					<div class="col-sm-2">
-						<input class="form-control" type="file" name="adImage">
-					</div>
-					<p><span class="glyphicon glyphicon glyphicon-asterisk" aria-hidden="true"></span>
-					메인배너에 사용 될 이미지를 첨부해주세요! (그림의 사이즈는 1200x400으로 맞춰집니다)</p>
-				</div>
-				<!-- datetimepicker test -->
-				<div class="form-group">
-	                <div class='input-group date' id='datetimepicker1'>
-	                    <input type='text' class="form-control" />
-	                    <span class="input-group-addon">
-	                        <span class="glyphicon glyphicon-calendar"></span>
-	                    </span>
-	                </div>
-           		</div>
-				<div class="form-group">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th class="col-sm-2 active">물품명</th>
+							<td>
+								<div class="col-sm-2">
+									<select class="form-control" name="auctionGoodsCode">
+										<c:forEach var="ag" items="${auctionGoodsList}">
+											<option value="${ag.auctionGoodsCode}">${ag.auctionGoodsName}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="col-sm-2 active">광고명</th>
+							<td>
+								<div class="col-sm-2">
+									<select class="form-control" name="adUnitPriceCode">
+										<c:forEach var="ad" items="${adUnitPriceList}">
+											<option value="${ad.adUnitPriceCode}">${ad.adUnitPriceName}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="col-sm-2 text-center active">광고 등록일자</th>
+							<td>
+								<div class="form-inline">
+								<div class="col-sm-2 input-group date" data-provide="datepicker" id="date1">
+									<input class="form-control" type="text" name="adApplyStartDate">
+									<div class="input-group-addon">
+						        		<span class="glyphicon glyphicon-th"></span>
+						    		</div>
+								</div>
+								<span>~</span>
+								<div class="col-sm-2 input-group date" data-provide="datepicker" id="date2">
+									<input class="form-control" type="text" name="adApplyEndDate">
+									<div class="input-group-addon">
+						        		<span class="glyphicon glyphicon-th"></span>
+						    		</div>
+								</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="col-sm-2 text-center active">물품 이미지</th>
+							<td>
+								<div class="col-sm-4">
+									<input class="form-control" type="file" name="adImage">
+								</div>
+								<p><span class="glyphicon glyphicon glyphicon-asterisk" aria-hidden="true" style="vertical-align: middle;"></span>
+								메인배너에 사용 될 이미지를 첨부해주세요! (그림의 사이즈는 1200x400으로 맞춰집니다)</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>					
+				<!-- <div class="form-group">
 					<textarea class="form-controll" id="summernote" name=""></textarea>
-				</div>
+				</div> -->
 				<div class="form-group submit text-center">
 					<input class="btn btn-info" type="submit" id="formSubmit" name="formSubmit" value="신청">
 					<input class="btn btn-default" type="reset" value="다시쓰기">
 				</div>
-			</form>
-		</div>
+			</form>		
+		</div>				
 	</div>
+	
 	<div class="col-sm-1"></div>
 </div>
 
 <script>
 // summernote 불러오기 및 설정
-$(document).ready(function() {
+/* $(document).ready(function() {
 	$('#summernote').summernote({
 		height : 500,
 		lang : 'ko-KR'
 	});
-});
-/* $(document).ready(function() {
-$("#formSubmit").click(function() {
-	var formData = $('#summernote').find('p').text();
-	$.ajax({
-		type : "POST",
-		url : '/auction/mypage/adApplyInsertForm',
-		cache : false,
-		data : formData,
-		success : function(formData){
-			console.log(formData);
-		},
-		error : onError
-		});
-	});
 }); */
+
 $(function () {
-    $('#datetimepicker1').datepicker({
+    $('#date1').datepicker({
     	language: 'ko',
+    	orientation: 'bottom'
+    });
+    $('#date2').datepicker({
+    	language: 'ko',
+    	orientation: 'bottom'
     });
 });
 </script>
