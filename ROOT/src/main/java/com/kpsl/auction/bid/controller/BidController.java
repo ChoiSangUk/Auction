@@ -10,8 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
+
 import com.kpsl.auction.bid.service.BidService;
 import com.kpsl.auction.bid.vo.BidVo;
 
@@ -36,18 +37,14 @@ public class BidController {
 	}
 	//입찰자 입찰버튼 클릭시 
 		@RequestMapping(value = "/bid/price", method =RequestMethod.POST)
-		public String bidPrice(BidVo bidvo, HttpSession session, AuctionGoodsVo auctiongoodsvo){
+		public String bidPrice(BidVo bidvo, HttpSession session
+				,@RequestParam (value="auctionGoodsName", required=true) String auctionGoodsName
+				,@RequestParam (value="auctionGoodsBidUnit", required=true) String auctionGoodsBidUnit
+				,@RequestParam (value="userId", required=true) String userId){
 			String buyerId = (String)session.getAttribute("userId");
-			AuctionGoodsVo goodscode = new AuctionGoodsVo();
 			
-			String auctionGoodsCode = goodscode.getAuctionGoodsCode() ;
-			String sellerId = goodscode.getUserId();
-			log.info(buyerId+"<<session으로 get한 userId로 들어오는 값");
 			log.info(bidvo);
 			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");
-			
-			bidvo.setAuctionGoodsCode(auctionGoodsCode);//물품 코드
-			bidvo.setUserSellerID(sellerId);
 			bidvo.setUserBuyerId(buyerId);				//입찰자 아이디
 			bidService.setBidPrice(bidvo);				//입찰가격을 bidprice 에 set
 			log.info("입찰자 입찰하기");

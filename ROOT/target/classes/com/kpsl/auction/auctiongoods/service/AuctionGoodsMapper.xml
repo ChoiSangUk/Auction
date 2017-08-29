@@ -52,4 +52,26 @@
 		FROM auction_goods_tb
 		WHERE auction_goods_regist_date > now()-INTERVAL 1 DAY AND user_id = #{userId};
 	</select>
+	<!--등록품목 리스트  -->
+	<select id="selectAuctionGoodss" parameterType="java.util.Map" resultMap="AuctionGoods">
+		SELECT auction_goods_code,
+		 user_id, 
+		 small_category_code, 
+		 middle_category_code, 
+		 large_category_code, 
+		 auction_goods_name, 
+		 auction_goods_sys, 
+		 auction_goods_bid_sys, 
+		 auction_goods_contents, 
+		 auction_goods_regist_date, 
+		 auction_goods_term, 
+		 auction_goods_start_date, 
+		 auction_goods_end_date, 
+		 auction_goods_start_price, 
+		 auction_goods_bid_unit, 
+		 auction_goods_instant_buy_state, 
+		 auction_goods_instant_buy_price, 
+		 auction_goods_state
+		FROM auction_goods_tb;
+	</select>
   </mapper>

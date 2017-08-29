@@ -15,17 +15,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.goodscategory.service.GoodsCategoryService;
 import com.kpsl.auction.goodscategory.vo.LargeCategoryVo;
 import com.kpsl.auction.goodscategory.vo.MiddleCategoryVo;
 import com.kpsl.auction.goodscategory.vo.SmallCategoryVo;
-
+import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
 @Controller
 public class AuctionGoodsController {
 	Logger log = Logger.getLogger(this.getClass());
 	@Autowired
-	private GoodsCategoryService goodsCategoryService;  
-
+	private GoodsCategoryService goodsCategoryService; 
+	@Autowired
+	private AuctionGoodsService auctionGoodsService;
 	
 	@RequestMapping(value = "/auctiongoods/auctiongoodslist", method = RequestMethod.GET)
 	public String auctionGoodsList(Model model) {
@@ -113,6 +115,15 @@ public class AuctionGoodsController {
 		return gson.toJson(smallCategoryList);
 	
 	}
-	
+	//물품리스트
+	@RequestMapping(value = "/auctiongoods/goodslist", method = RequestMethod.GET)
+	public String goodslist(Model model){
+		
+		log.info("리스트 클릭시 controller 메서드로 들어오는가?");
+		List<AuctionGoodsVo> list = auctionGoodsService.getAuctionGoodss();
+		log.info(list);
+		model.addAttribute("list",list);
+		return "/auctiongoods/auctiongoods_list1";
 	 
 }
+	}
