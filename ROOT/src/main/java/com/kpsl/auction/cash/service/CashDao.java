@@ -10,5 +10,5 @@ public interface CashDao {
 	int updateUserCash(UserDetailVo userDetailVo);
 	int insertCashWithdraw(CashVo cashVo);
 	int updateUserCashWithdraw(UserDetailVo userDetailVo);
-	List<CashVo> selectCashDetail(String userId,String cashState);
+	List<CashVo> selectCashDetail(CashVo cashVo);
 }

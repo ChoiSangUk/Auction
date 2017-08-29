@@ -71,17 +71,18 @@
 										
 											<div class="visible-lg visible-md">
 												<label class="checkbox-inline"> <input
-													type="checkbox" value="10" name="deltype"> 물품구매
-												</label> <label class="checkbox-inline"> <input
 													type="checkbox" value="충전" name="cashState"> 캐쉬충전
-												</label> <label class="checkbox-inline"> <input
+												</label><label class="checkbox-inline"> <input
+													type="checkbox" value="출금" name="cashState"> 캐쉬출금
+												</label><!-- <label class="checkbox-inline"> <input
 													type="checkbox" value="30" name="deltype">
 													환불(반품/판매취소)
 												</label> <label class="checkbox-inline"> <input
 													type="checkbox" value="60" name="deltype"> 광고신청
-												</label> <label class="checkbox-inline"> <input
-													type="checkbox" value="출금" name="cashState"> 캐쉬출금
-												</label>
+												</label> 
+												<label class="checkbox-inline"> <input
+													type="checkbox" value="10" name="deltype"> 물품구매
+												</label>  -->
 											</div>
 										</td>
 									</tr>
@@ -182,7 +183,7 @@
 						<c:forEach var="cashDetail" items="${cashDetail}">
 						<tr>
 						
-							<td>${cashDetail.cashPrice}</td>
+							<td>${cashDetail.cashPrice}원</td>
 							<td>${cashDetail.cashDate}</td>
 							<td>${cashDetail.cashState}</td>
 						

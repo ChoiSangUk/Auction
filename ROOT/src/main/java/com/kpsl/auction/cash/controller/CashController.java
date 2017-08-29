@@ -90,14 +90,14 @@ public class CashController {
 	}
 	//캐쉬 관리
 	@RequestMapping(value = "/mypage/myinfo/CashDetail", method = RequestMethod.POST)
-	public String cashDetail(HttpSession session,CashVo cashVo,Model model
-							,@RequestParam String cashState) {
+	public String cashDetail(HttpSession session,CashVo cashVo,Model model) {
 		String userId = (String) session.getAttribute("userId");
-		
-		List<CashVo> cashDetail = cashService.getCashDetail(userId,cashState);
-		model.addAttribute("cashDetail", cashDetail);
+		cashVo.setUserId(userId);
 		log.info(userId);
-		log.info(cashState);
+		List<CashVo> cashDetail = cashService.getCashDetail(cashVo);
+		model.addAttribute("cashDetail", cashDetail);
+		log.info(cashVo.getCashState());
+	
 		return "/mypage/mypage_myinfo_cashDetail";
 	}
 }
