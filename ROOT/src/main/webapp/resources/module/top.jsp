@@ -97,9 +97,11 @@
 			 </c:if>					 
 			</ul>
 			<div class="pull-right" style="margin-top: 12px;">
-				<span class="glyphicon glyphicon-user">
-					<strong>${userLoginInfo.userName}</strong>님이<strong>${userLoginInfo.userLevel}</strong>권한으로로그인하셨습니다.
-				</span>
+				<c:if test="${userLoginInfo.userName ne null}">
+					<span class="glyphicon glyphicon-user">
+						<strong>${userLoginInfo.userName}</strong>님이<strong>${userLoginInfo.userLevel}</strong>권한으로로그인하셨습니다.
+					</span>
+				</c:if>
 			</div>
 		</div>			
 	</div>

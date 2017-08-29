@@ -54,7 +54,7 @@
 		
 	</select> 
 	<!-- 로그인 -->
- 	<select id="selectUserLogin" parameterType="String" resultMap="userDetail">
+ 	<select id="selectUserLogin" parameterType="String" resultMap="userDetail" >
  		SELECT user_id
  		, user_password 
  		, user_level

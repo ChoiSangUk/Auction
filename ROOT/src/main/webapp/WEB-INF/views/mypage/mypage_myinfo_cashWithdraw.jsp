@@ -37,7 +37,7 @@
 		</ul>
 	</div>
 
-	<div class="row mt30 clearfix">
+	<div class="row mt30 clearfix table-bordered">
 		<div class="row">
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="box my-money-box text-center box-txt">
@@ -64,7 +64,7 @@
 		<input type="hidden" name="cmd" id="cmd" value="in">
 				<!-- 조회 테이블 -->
 		<div class="row mt50">
-			<div class="tableDefault mb30">
+			<div class="tableDefault mb30 table-bordered well form-search">
 				<table class="table-vertical">
 					<tbody>
 

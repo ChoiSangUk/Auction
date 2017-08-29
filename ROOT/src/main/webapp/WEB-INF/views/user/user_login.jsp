@@ -7,7 +7,7 @@
 	<div class="row content">
 		<div class="col-sm-12"> 
 			<h1>로그인 화면</h1>
-	    	<form class="form-horizontal" action="${pageContext.request.contextPath}/user/userLogin" method="post">
+	    	<form class="form-horizontal" id="login" action="${pageContext.request.contextPath}/user/userLogin" method="post">
 		   		<div class="form-group">
 		   			<label class="col-sm-2 control-label">아이디</label>
 		   			<div class="col-sm-3">
@@ -34,7 +34,7 @@
 				</div>
 				<div class="form-group">
 			   		<label class="col-sm-2 control-label"></label>&nbsp;&nbsp;&nbsp;
-					<input class="btn btn-default" type ="submit" value = "로그인">
+					<input class="btn btn-default" type ="submit" value = "로그인" >
 					<input class="btn btn-default" type ="reset" value = "다시쓰기">
 				</div>
 			</form>    	

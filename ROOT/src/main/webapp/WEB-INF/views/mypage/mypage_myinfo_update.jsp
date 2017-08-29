@@ -23,7 +23,10 @@
 		<!-- 내용2 -->
 		<div class="row content">				
 			<!-- 캐쉬 상세내역 -->
-		<form role="form" id="addForm" action="${pageContext.request.contextPath}/mypage/mypageMyinfoUpdate" method="post">
+		<div>
+			<h3>회원정보수정</h3>
+		</div>
+		<form role="form" class="well form-search" id="addForm" action="${pageContext.request.contextPath}/mypage/mypageMyinfoUpdate" method="post">
 		<div class="form-group">
 			<label for="userPassword">변경할 비밀번호</label> <input type="password"
 				class="form-control" id="userPassword" name="userPassword"
@@ -38,18 +41,18 @@
 		<div class="form-group">
 			<label for="user_phone">연락처</label> <input type="text"
 				class="form-control" id="userPhone" name="userPhone"
-				placeholder="연락처 입력해 주세요" value="">
+				placeholder="연락처 입력해 주세요" value="${userLoginInfo.userPhone}">
 		</div>
 				<div class="form-group">
 			<label for="user_email">이메일</label> <input type="email"
 				class="form-control" id="userEmail" name="userEmail"
-				placeholder="이메일 입력해 주세요" value="">
+				placeholder="이메일 입력해 주세요" value="${userLoginInfo.userEmail}">
 		</div>
 		<label for="user_email">주소</label> 
-		<input type="text" id="sample6_postcode" name="userPostcode" placeholder="우편번호" readonly="readonly" value="">
+		<input type="text" id="sample6_postcode" name="userPostcode" placeholder="우편번호" readonly="readonly" value="${userLoginInfo.userPostcode}">
 		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="sample6_address" name="userAddr" placeholder="주소" readonly="readonly" value="">
-		<input type="text" id="sample6_address2" name="userAddrdetail" placeholder="상세주소" value="">
+		<input type="text" id="sample6_address" name="userAddr" placeholder="주소" readonly="readonly" value="${userLoginInfo.userAddr}">
+		<input type="text" id="sample6_address2" name="userAddrdetail" placeholder="상세주소" value="${userLoginInfo.userAddrdetail}">
 		<div class="form-group text-center">
 			<button type="submit" class="btn btn-info">
 				회원수정<i class="fa fa-check spaceLeft"></i>

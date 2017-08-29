@@ -10,7 +10,10 @@ user_totalcash = 0
 defult 값
 -->
 <div>
-	<form role="form" id="addForm" action="${pageContext.request.contextPath}/user/userBuyerInsertForm" method="post">
+	<h2>구매자 회원가입</h2>
+</div>
+<div>
+	<form role="form" id="addForm" class="well form-search" action="${pageContext.request.contextPath}/user/userBuyerInsertForm" method="post">
 		<div class="form-group">
 			<label for="userId">아이디</label> <input type="text"
 				class="form-control" id="userId" name="userId" placeholder="아이디">

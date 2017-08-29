@@ -74,4 +74,12 @@
 															FROM cash_tb
 														  );
 	</update>
+	<!--캐쉬관리 캐쉬충전/출금-->
+	<select id="selectCashDetail" parameterType="com.kpsl.auction.cash.vo.CashVo" resultMap="cash">
+		SELECT cash_price,cash_date,cash_state
+		FROM cash_tb
+		WHERE user_id=#{userId} AND cash_state=#{cashState}
+		ORDER BY cash_date DESC
+	
+	</select>
 </mapper>

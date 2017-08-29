@@ -121,7 +121,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 						</a>
 					</div>
 					<div class="col-sm-3">
-						<a class="mypage-a" href="#"> <span
+						<a class="mypage-a" href="${pageContext.request.contextPath}/mypage/myinfo/CashDetail"> <span
 							class="glyphicon glyphicon-list-alt" aria-hidden="true"
 							aria-hidden="true"></span> <br>캐쉬 내역<br>조회
 						</a>
