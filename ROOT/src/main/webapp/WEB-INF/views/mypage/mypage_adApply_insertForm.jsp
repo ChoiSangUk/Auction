@@ -26,9 +26,10 @@ th {
 			<span>></span>
 			<a href="${pageContext.request.contextPath}/mypage/mypageAdInfo">광고 소개</a>
 			<span>></span>
-			<span>광고 신청</span>
+			<span>광고 신청</span><br>
+			<h1>광고 신청</h1>
 			</div>
-		</div><br>
+		</div>
 		<div class="row content text-left">	
 			<!-- 물품광고신청 폼 -->
 			<form class="form-horizontal" action="${pageContext.request.contextPath}/mypage/adApplyInsertForm"

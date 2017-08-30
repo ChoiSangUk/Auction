@@ -5,7 +5,19 @@
 
 <style>
 .table {
-	width: 20%;
+	width: 100%;
+}
+th {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+.adApply {
+	border: 2px solid #3D3D3D;
+	border-radius: 8px;
 }
 </style>
 <div class="container-fluid">
@@ -21,37 +33,65 @@
 			<h1>Auction 광고 소개 페이지</h1>
 		</div>
 		<div class="row content">		
-			<!-- 광고단가 소개 -->
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>광고명</th>
-						<th>광고단가</th>
-					</tr>
-				</thead>		
-				<tbody>
-				<c:forEach var="ad" items="${adUnitPriceList}">
-					<tr>
-						<td>${ad.adUnitPriceName}</td>
-						<td>${ad.adUnitPricePrice}</td>
-					</tr>
-				</c:forEach>
-				</tbody>
-			</table>
+			<!-- 메인배너 소개 -->
+			<div class="col-sm-12 well">
+			<div class="col-sm-8">
+				<h2>메인배너 소개</h2>
+				<p>Auction 메인페이지에서 메인배너로 등록해드립니다.<br>
+				<strong>평균 낙찰률 90%</strong> <strong>평균 조회수 1000회</strong> 이상을 기록하는 메인배너!<br>
+				지금 바로 경험해보세요!</p>
+					
+				<h2>실시간경매배너 소개</h2>
+				<p>준비중입니다.</p>		
+			</div>
+			<!-- 광고단가 표 -->
+			<div class="col-sm-3">
+				<h3>광고단가 표</h3>
+				<table class="table table-bordered">
+					<thead>
+						<tr class="info">
+							<th>광고명</th>
+							<th>광고단가</th>
+						</tr>
+					</thead>		
+					<tbody>
+					<c:forEach var="ad" items="${adUnitPriceList}">
+						<tr>
+							<td>${ad.adUnitPriceName}</td>
+							<td>${ad.adUnitPricePrice} 원</td>
+						</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			</div>
+			<div class="col-sm-1"></div>
 		</div>
-		<!-- 광고설명 -->
+		<!-- 선정 기준 -->
+		<div class="row content text-center">	
+			<h2>메인배너 선정기준</h2>
+			<p>
+			<strong>
+			1. 신용도가 좋은 회원<br>
+			2. 진품이 보증된 물품<br>
+			3. 희소성이 높은 물품<br>
+			</strong>
+			</p>
+		</div>					
+		<!-- 광고신청방법 -->
 		<div class="row content">
-			<h3>광고 신청 접수방법</h3>
-			<p>하단의 광고신청을 하시고.....</p>
-			<h3>메인배너 소개</h3>
-			<p>진품이 보증된 물품....
-			<h3>실시간경매배너 소개</h3>
-			<p>실시간으로....						
+			<div class="adApply text-center">
+				<h3>광고 신청 접수방법</h3><br>
+				<img alt="" src="${pageContext.request.contextPath}/resources/img/adApplyWay.png"
+				style="margin-bottom: 13px;">
+			</div>
 		</div>
-		<div class="row content">
 		<!-- 광고관리 링크 -->
-			<a href="${pageContext.request.contextPath}/mypage/adApplyInsertForm">광고신청하러가기</a><br>
-			<a href="${pageContext.request.contextPath}/mypage/adApplyList">신청한광고리스트 보러가기</a>
+		<div class="row content">			
+			<div class="text-center">
+				<a class="btn btn-info btn-lg" href="${pageContext.request.contextPath}/mypage/adApplyInsertForm">광고신청하러가기</a>
+				<a class="btn btn-default btn-lg" href="${pageContext.request.contextPath}/mypage/adApplyList">신청한광고리스트 보러가기</a>
+			</div>
 		</div>
 	</div>
 	<div class="col-sm-1"></div>
