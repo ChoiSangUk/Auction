@@ -53,14 +53,18 @@
 							<td></td>
 							</c:otherwise>
 							</c:choose>
-							<c:set var="adApplyState" value="${ad.adApplyVo.adApplyState}" />
+							<c:set var="adApplyState" value="${ad.adApplyVo.adApplyState}"/>
+							<c:set var="adPayment" value="${ad.adPaymentVo.adPaymentState}"/>
 							<c:choose>
-							<c:when test="${adApplyState eq '승인완료'}">
+							<c:when test="${adApplyState eq '승인완료' and adPayment eq null}">
 							<td>
 							<a href="${pageContext.request.contextPath}/mypage/adPaymentInsertForm?adApplyCode=${ad.adApplyVo.adApplyCode}">
 							<button>결제</button>
 							</a>
 							</td>
+							</c:when>
+							<c:when test="${adPayment ne null}">
+							<td>${adPayment}</td>
 							</c:when>
 							<c:otherwise>
 							<td></td>

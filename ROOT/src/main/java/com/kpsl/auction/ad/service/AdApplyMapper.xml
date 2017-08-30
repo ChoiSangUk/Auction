@@ -38,6 +38,14 @@
 			<id property="adUnitPricePrice" column="ad_unit_price_price"/>
 			<id property="adUnitPriceState" column="ad_unit_price_state"/>
     	</association>
+    	<association property="adPaymentVo" javaType="com.kpsl.auction.ad.vo.AdPaymentVo">
+    		<id property="adPaymentCode" column="ad_payment_code"/>
+			<id property="adApplyCode" column="ad_apply_code"/>	
+			<id property="userId" column="user_id"/>
+			<id property="adPaymentPrice" column="ad_payment_price"/>
+			<id property="adPaymentRegistDate" column="ad_payment_regist_date"/>
+			<id property="adPaymentState" column="ad_payment_state"/>
+    	</association>
     	<association property="auctionGoodsVo" javaType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo">
     		<id property="auctionGoodsCode" column="auction_goods_code"/>
 			<id property="userId" column="user_id"/>
@@ -156,7 +164,8 @@
 				aa.ad_apply_state,
 				aa.ad_apply_regist_date,
 				aa.ad_apply_start_date,
-				aa.ad_apply_end_date
+				aa.ad_apply_end_date,
+				ap.ad_payment_state
 		FROM 	ad_apply_tb aa 
 				LEFT JOIN ad_unit_price_tb aup
 				ON aa.ad_unit_price_code = aup.ad_unit_price_code
@@ -164,6 +173,9 @@
 				ON aa.auction_goods_code = ag.auction_goods_code
 				LEFT JOIN ad_image_tb ai
 				ON aa.ad_apply_code = ai.ad_apply_code
-		WHERE 	aa.user_id = #{userId};
+				LEFT JOIN ad_payment_tb ap
+				ON aa.ad_apply_code = ap.ad_apply_code
+		WHERE 	aa.user_id = #{userId}
+		ORDER BY aa.ad_apply_regist_date;
 	</select>
 </mapper>

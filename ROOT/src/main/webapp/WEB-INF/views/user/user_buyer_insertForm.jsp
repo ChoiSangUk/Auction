@@ -10,7 +10,10 @@ user_totalcash = 0
 defult 값
 -->
 <div>
-	<form role="form" id="addForm" action="${pageContext.request.contextPath}/user/userBuyerInsertForm" method="post">
+	<h2>구매자 회원가입</h2>
+</div>
+<div>
+	<form role="form" id="addForm" class="well form-search" action="${pageContext.request.contextPath}/user/userBuyerInsertForm" method="post">
 		<div class="form-group">
 			<label for="userId">아이디</label> <input type="text"
 				class="form-control" id="userId" name="userId" placeholder="아이디">
@@ -53,9 +56,9 @@ defult 값
 				placeholder="이메일 입력해 주세요">
 		</div>
 		<label for="user_email">주소</label> 
-		<input type="text" id="sample6_postcode" name="userPostcode" placeholder="우편번호">
+		<input type="text" id="sample6_postcode" name="userPostcode" placeholder="우편번호" readonly="readonly">
 		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="sample6_address" name="userAddr" placeholder="주소">
+		<input type="text" id="sample6_address" name="userAddr" placeholder="주소" readonly="readonly">
 		<input type="text" id="sample6_address2" name="userAddrdetail" placeholder="상세주소">
 		<div class="form-group text-center">
 			<button type="submit" class="btn btn-info">

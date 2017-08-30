@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
+import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.goodscategory.service.GoodsCategoryService;
 import com.kpsl.auction.goodscategory.vo.LargeCategoryVo;
 import com.kpsl.auction.goodscategory.vo.MiddleCategoryVo;
@@ -36,6 +38,8 @@ public class AuctionGoodsController {
 	Logger log = Logger.getLogger(this.getClass());
 	@Autowired
 	private GoodsCategoryService goodsCategoryService;  
+	@Autowired
+	private AuctionGoodsService auctionGoodsService;
 
      //이미지 업로드 추가
 	@RequestMapping(value="/photoUploader")
@@ -240,6 +244,14 @@ public class AuctionGoodsController {
 		return gson.toJson(smallCategoryList);
 	
 	}
-	
-	 
+	//물품리스트
+	@RequestMapping(value = "/auctiongoods/goodslist", method = RequestMethod.GET)
+	public String goodslist(Model model){
+		
+		log.info("리스트 클릭시 controller 메서드로 들어오는가?");
+		List<AuctionGoodsVo> list = auctionGoodsService.getAuctionGoodss();
+		log.info(list);
+		model.addAttribute("list",list);
+		return "/auctiongoods/auctiongoods_list1";
+	} 
 }

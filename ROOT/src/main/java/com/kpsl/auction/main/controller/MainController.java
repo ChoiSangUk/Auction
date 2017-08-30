@@ -1,5 +1,7 @@
 package com.kpsl.auction.main.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -9,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kpsl.auction.ad.service.AdPaymentService;
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdPaymentVo;
 import com.kpsl.auction.user.service.UserDetailService;
 import com.kpsl.auction.user.service.UserService;
 import com.kpsl.auction.user.vo.GradeVo;
@@ -21,6 +25,9 @@ public class MainController {
 	private UserService userService;
 	@Autowired
 	private UserDetailService userDetailService;
+	@Autowired
+	private AdPaymentService adPaymentService;
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -33,6 +40,9 @@ public class MainController {
 	public String main(Model model) {
 
 		log.info("로그확인");
+		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentSuccessList = adPaymentService.getPaymentSuccessList();
+		model.addAttribute("adPaymentSuccessList",adPaymentSuccessList);
+		
 		return "main";
 	}
 
@@ -73,7 +83,7 @@ public class MainController {
 		log.info("adminMain 확인");
 		return "/admin/admin_main";
 	}
-	//마이페이지 메인
+	//마이페이지 
 	@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.GET)
 	public String mypage(HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
@@ -84,6 +94,7 @@ public class MainController {
 		GradeVo gradeVo = userService.getUserGrade(userId);
 		log.info(gradeVo.getGradeName() + "<---- 확인");
 		session.setAttribute("grade", gradeVo);
+		
 		return "/mypage/mypage_main";
 	}
 }

@@ -2,6 +2,7 @@ package com.kpsl.auction.ad.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,11 +13,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kpsl.auction.ad.service.AdApplyService;
+import com.kpsl.auction.ad.service.AdPaymentService;
 import com.kpsl.auction.ad.service.AdUnitPriceService;
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdPaymentVo;
 import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo;
 import com.kpsl.auction.ad.vo.AdApplyVo;
 import com.kpsl.auction.ad.vo.AdImageVo;
@@ -29,6 +34,7 @@ public class AdApplyController {
 	//@Autowired AdApplyService adApplyService;
 	@Autowired AdUnitPriceService adUnitPriceService;
 	@Autowired AdApplyService adApplyService;
+	@Autowired AdPaymentService adPaymentService;
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
@@ -146,11 +152,29 @@ public class AdApplyController {
 		//userId = "id002";
 		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList();
 		List<AuctionGoodsVo> auctionGoodsList = adApplyService.getAuctionGoodsListByUserId(userId);
-		model.addAttribute("adUnitPriceList",adUnitPriceList);
-		model.addAttribute("auctionGoodsList",auctionGoodsList);
-
+		List<AdApplyAndAdImageAndAdPaymentVo> currentAdList = adPaymentService.getPaymentSuccessList();
+		model.addAttribute("adUnitPriceList", adUnitPriceList);
+		model.addAttribute("auctionGoodsList", auctionGoodsList);
+		model.addAttribute("currentAdList", currentAdList);
+		
 		return "/mypage/mypage_adApply_insertForm";
 	}
+	
+	@RequestMapping(value = "/dateAjax", method = RequestMethod.POST)
+	public @ResponseBody String dateAjax() {
+		
+		log.info("ajax 호출 확인");
+		List<AdApplyAndAdImageAndAdPaymentVo> currentAdList = adPaymentService.getPaymentSuccessList();
+		String endDate = currentAdList.get(0).getAdApplyVo().getAdApplyEndDate();
+		log.info(currentAdList.size()+"<--- size");
+		
+		if(currentAdList.size() > 2) {
+			return endDate;
+		}else {
+			return null;
+		}
+	}
+	
 	// 광고 (액션) 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)
 	public String adApplyAdd(AdApplyVo adApplyVo ,AdImageVo adImageVo

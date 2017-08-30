@@ -37,7 +37,7 @@
 		</ul>
 	</div>
 
-	<div class="row mt30 clearfix">
+	<div class="row mt30 clearfix table-bordered">
 		<div class="row">
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="box my-money-box text-center box-txt">
@@ -56,13 +56,15 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="row text-center mt30">
+		<a href="${pageContext.request.contextPath}/mypage/myinfo/Cash" class="btn btn-info">충전신청</a>
+	</div>
 	<form name="inputForm" id="inputForm" method="post"
 		action="${pageContext.request.contextPath}/mypage/myinfo/CashWithdraw">
 		<input type="hidden" name="cmd" id="cmd" value="in">
 				<!-- 조회 테이블 -->
 		<div class="row mt50">
-			<div class="tableDefault mb30">
+			<div class="tableDefault mb30 table-bordered well form-search">
 				<table class="table-vertical">
 					<tbody>
 
@@ -104,8 +106,17 @@
 							<td>
 								<div class="form-inline">
 									<input type="text" name="moneysendname" id="moneysendname"
-										maxlength="20" value="${userLoginInfo.userName}"
-										class="form-control mr10"> <span><a href="#">계좌변경</a></span>
+										maxlength="20" value="${account.accountNo}  ${account.accountBankName}"
+										class="form-control mr10" readonly="readonly"> 
+									<span>
+									<c:if test="${account.accountBankName eq null}">
+										<a href="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccountInsert">계좌추가</a>
+									</c:if>
+									<c:if test="${account.accountBankName ne null}">
+										<a href="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccount">계좌변경</a>
+									</c:if>
+									
+									</span>
 								</div>
 							</td>
 						</tr>
@@ -115,8 +126,8 @@
 			<!--// 조회 테이블 -->
 
 			<div class="row text-center btn-col-2">
-				<button type="submit">출금하기</button>
-				<a href="${pageContext.request.contextPath}/mypage/mypageMain">뒤로가기</a>
+				<button type="submit" class="btn btn-info">출금하기</button>
+				<a class="btn btn-info" href="${pageContext.request.contextPath}/mypage/mypageMain">뒤로가기</a>
 			</div>
 		</div>
 	</form>

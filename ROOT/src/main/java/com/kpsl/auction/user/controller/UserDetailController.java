@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.kpsl.auction.user.service.UserDetailService;
 import com.kpsl.auction.user.service.UserService;
-import com.kpsl.auction.user.vo.GradeVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
 
 @Controller
@@ -19,9 +16,6 @@ public class UserDetailController {
 	Logger log = Logger.getLogger(this.getClass());
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private UserDetailService userDetailService;
-
 	// 유저로그인
 	@RequestMapping(value = "/user/userLogin", method = RequestMethod.POST)
 	public String login(UserDetailVo userDetailVo, HttpSession session,Model model) {

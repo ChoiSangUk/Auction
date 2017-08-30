@@ -40,8 +40,8 @@
 	VALUES 
 	(#{bidCode}
 	, #{userBuyerId}
-	, 'good1'
-	, 'id003'
+	, 'good1'<!--goos db에서 가져와야  -->
+	, 'id003'<!--goos 등록에서   -->
 	,  #{bidPrice}
 	, NOW());
 	</insert>

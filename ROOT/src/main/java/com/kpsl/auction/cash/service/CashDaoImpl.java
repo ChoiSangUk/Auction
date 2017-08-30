@@ -1,5 +1,8 @@
 package com.kpsl.auction.cash.service;
 
+import java.util.List;
+
+
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,13 @@ public class CashDaoImpl implements CashDao {
 	public int updateUserCashWithdraw(UserDetailVo userDetailVo) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.update(NS+"updateUserCashWithdraw", userDetailVo);
+	}
+
+	@Override
+	public List<CashVo> selectCashDetail(CashVo cashVo) {
+		log.info("CashDao Class selectCashDetail : "+ cashVo);
+		
+		return sqlSessionTemplate.selectList(NS+"selectCashDetail", cashVo);
 	}
 
 }

@@ -24,7 +24,7 @@ public class AccountController {
 			String userId = (String) session.getAttribute("userId");
 			accountVo.setUserId(userId);			
 			accountVo = accountservice.getAccount(userId);
-			model.addAttribute("account", accountVo);
+			session.setAttribute("account", accountVo);
 			
 			return "/mypage/mypage_myinfo_account";
 		}

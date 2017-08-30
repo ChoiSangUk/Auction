@@ -78,9 +78,11 @@ a:hover {text-decoration: underline; color: #000000;} */
 					</c:if>
 					<c:if test="${userLoginInfo.userLevel eq '구매자' }">
 						<div class="sm-box">구매등급은 ${grade.gradeName} 입니다.</div>
-						<a class="mypage-a btn btn-default" href="#">구매혜택보기</a>
-						<a class="mypage-a btn btn-default" href="#">회원등급안내</a>
-						<a class="mypage-a btn btn-default" href="#">판매자전환</a>
+						<form id="trans" action="${pageContext.request.contextPath}/mypage/mypageMain" method="post">
+							<a class="mypage-a btn btn-default" href="#">구매혜택보기</a>
+							<a class="mypage-a btn btn-default" href="#">회원등급안내</a>
+							<button class="mypage-a btn btn-default" type="submit">판매자전환</button>
+						</form>
 					</c:if>
 
 				</div>
@@ -101,7 +103,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 			<div class="panel panel-default text-center col-sm-5">
 				<div class="lg-box panel-body">
 					<div class="col-sm-3">
-						<a class="mypage-a" href="#"> <span
+						<a class="mypage-a" href="${pageContext.request.contextPath}/mypage/mypageMyinfoUpdate"> <span
 							class="glyphicon glyphicon-pencil" aria-hidden="true"
 							aria-hidden="true"></span> <br>내 정보<br>수정
 						</a>
@@ -119,7 +121,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 						</a>
 					</div>
 					<div class="col-sm-3">
-						<a class="mypage-a" href="#"> <span
+						<a class="mypage-a" href="${pageContext.request.contextPath}/mypage/myinfo/CashDetail"> <span
 							class="glyphicon glyphicon-list-alt" aria-hidden="true"
 							aria-hidden="true"></span> <br>캐쉬 내역<br>조회
 						</a>

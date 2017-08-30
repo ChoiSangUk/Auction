@@ -32,5 +32,15 @@ public class UserDetailDaoImpl implements UserDetailDao {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.insert(NS+"insertUserSeller", userDetailVo);
 	}
+	@Override
+	public int updateUserTrans(UserDetailVo userDetailVo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update(NS+"updateUsertransform", userDetailVo);
+	}
+	@Override
+	public int updateUser(UserDetailVo userDetailVo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update(NS+"updateUser", userDetailVo);
+	}
 
 }

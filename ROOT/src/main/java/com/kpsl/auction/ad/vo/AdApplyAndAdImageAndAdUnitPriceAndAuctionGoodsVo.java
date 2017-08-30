@@ -7,6 +7,7 @@ public class AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo {
 	private AdApplyVo adApplyVo;
 	private AdImageVo adImageVo;
 	private AdUnitPriceVo adUnitPriceVo;
+	private AdPaymentVo adPaymentVo;
 	private AuctionGoodsVo auctionGoodsVo;
 	
 	public AuctionGoodsVo getAuctionGoodsVo() {
@@ -26,6 +27,12 @@ public class AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo {
 	}
 	public void setAdApplyVo(AdApplyVo adApplyVo) {
 		this.adApplyVo = adApplyVo;
+	}
+	public AdPaymentVo getAdPaymentVo() {
+		return adPaymentVo;
+	}
+	public void setAdPaymentVo(AdPaymentVo adPaymentVo) {
+		this.adPaymentVo = adPaymentVo;
 	}
 	public AdImageVo getAdImageVo() {
 		return adImageVo;

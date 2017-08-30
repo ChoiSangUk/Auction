@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+  <mapper namespace="com.kpsl.auction.bid.service.BidDepositMapper">
+  	<resultMap type="com.kpsl.auction.bid.vo.BidDepositVo" id="BidDepositMapper">
+  		<id property="bidDepositCode" column="bid_deposit_code"></id>
+  		<id property="bidCode" column="bid_code"></id>
+		<id property="userBuyerId" column="user_buyer_id"></id>
+   		<id property="auctionGoodsCode" column="auction_goods_code"></id>
+  		<id property="userSellerId" column="user_seller_id"></id>
+  		<id property="bidDepositPrice" column="bid_deposit_price"></id>
+		<id property="bidDepositState" column="bid_deposit_state"></id>
+		<id property="bidDepositDate" column="bid_deposit_date"></id>
+	</resultMap>
+	
+  </mapper>

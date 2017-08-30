@@ -6,10 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/moment.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/ko.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.ko.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.min.css"/>
 </head>
 <body>
 <nav class="navbar navbar-inverse" id="topMenuNavar">
@@ -85,10 +90,19 @@
 				</ul>
 				<c:if test="${userLoginInfo.userLevel eq '판매자'}"> 
 				<li><a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert">물품등록</a></li>
-				<li><a onclick="window.open('/auction/bid/bidform','win2','scrollbars=yes width=650, height=700');return false">입찰장</a>				
+				<li><a onclick="window.open('/auction/auctiongoods/goodslist','win2','scrollbars=yes width=650, height=700');return false">품목리스트</a>			
 				</c:if>
 				<li><a href="aa">고객센터</a></li>
+				<c:if test="${userLoginInfo.userLevel ne null}">
+			 </c:if>					 
 			</ul>
-		</div>
+			<div class="pull-right" style="margin-top: 12px;">
+				<c:if test="${userLoginInfo.userName ne null}">
+					<span class="glyphicon glyphicon-user">
+						<strong>${userLoginInfo.userName}</strong>님이<strong>${userLoginInfo.userLevel}</strong>권한으로로그인하셨습니다.
+					</span>
+				</c:if>
+			</div>
+		</div>			
 	</div>
 </nav>

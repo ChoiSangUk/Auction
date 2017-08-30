@@ -3,6 +3,7 @@ package com.kpsl.auction.ad.vo;
 public class AdPaymentVo {
 	private String adPaymentCode;
 	private String adApplyCode;
+	private String userId;
 	private int adPaymentPrice;
 	private String adPaymentRegistDate;
 	private String adPaymentState;
@@ -18,6 +19,12 @@ public class AdPaymentVo {
 	}
 	public void setAdApplyCode(String adApplyCode) {
 		this.adApplyCode = adApplyCode;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public int getAdPaymentPrice() {
 		return adPaymentPrice;

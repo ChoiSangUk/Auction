@@ -4,12 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kpsl.auction.account.service.AccountService;
+import com.kpsl.auction.account.vo.AccountVo;
 import com.kpsl.auction.cash.service.CashService;
 import com.kpsl.auction.cash.vo.CashVo;
 import com.kpsl.auction.user.service.UserService;
@@ -20,6 +25,8 @@ public class CashController {
 	Logger log = Logger.getLogger(this.getClass());
 	@Autowired
 	private CashService cashService;
+	@Autowired
+	private AccountService accountservice;
 
 	// 캐쉬충전폼
 	@RequestMapping(value = "/mypage/myinfo/Cash", method = RequestMethod.GET)
@@ -48,8 +55,12 @@ public class CashController {
 
 	// 캐쉬출금폼
 	@RequestMapping(value = "/mypage/myinfo/CashWithdraw", method = RequestMethod.GET)
-	public String cashWithdrawForm() {
-
+	public String cashWithdrawForm(HttpSession session,AccountVo accountVo) {
+		//출금계좌 받아오기
+		String userId = (String) session.getAttribute("userId");
+		accountVo.setUserId(userId);			
+		accountVo = accountservice.getAccount(userId);
+		session.setAttribute("account", accountVo);
 		return "/mypage/mypage_myinfo_cashWithdraw";
 	}
 
@@ -71,5 +82,22 @@ public class CashController {
 		
 		return "redirect:/mypage/mypageMain";
 	}
-
+	//캐쉬 관리폼
+	@RequestMapping(value = "/mypage/myinfo/CashDetail", method = RequestMethod.GET)
+	public String cashDetailForm(HttpSession session) {
+				
+		return "/mypage/mypage_myinfo_cashDetail";
+	}
+	//캐쉬 관리
+	@RequestMapping(value = "/mypage/myinfo/CashDetail", method = RequestMethod.POST)
+	public String cashDetail(HttpSession session,CashVo cashVo,Model model) {
+		String userId = (String) session.getAttribute("userId");
+		cashVo.setUserId(userId);
+		log.info(userId);
+		List<CashVo> cashDetail = cashService.getCashDetail(cashVo);
+		model.addAttribute("cashDetail", cashDetail);
+		log.info(cashVo.getCashState());
+	
+		return "/mypage/mypage_myinfo_cashDetail";
+	}
 }

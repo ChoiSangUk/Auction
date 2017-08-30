@@ -1,5 +1,7 @@
 package com.kpsl.auction.cash.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,13 @@ public class CashServiceImpl implements CashService {
 		log.info("CashService Class modifyUserCashWithdraw");
 		
 		return cashDao.updateUserCashWithdraw(userDetailVo);
+	}
+
+
+	@Override
+	public List<CashVo> getCashDetail(CashVo cashVo) {
+		log.info("CashService Class getCashDetail : ");
+		return cashDao.selectCashDetail(cashVo);
 	}
 
 
