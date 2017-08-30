@@ -77,10 +77,10 @@
 												</label><!-- <label class="checkbox-inline"> <input
 													type="checkbox" value="30" name="deltype">
 													환불(반품/판매취소)
-												</label> <label class="checkbox-inline"> <input
-													type="checkbox" value="60" name="deltype"> 광고신청
+												</label>  --><label class="checkbox-inline"> <input
+													type="checkbox" value="60" name="deltype"> 광고결제
 												</label> 
-												<label class="checkbox-inline"> <input
+												<!-- <label class="checkbox-inline"> <input
 													type="checkbox" value="10" name="deltype"> 물품구매
 												</label>  -->
 											</div>
