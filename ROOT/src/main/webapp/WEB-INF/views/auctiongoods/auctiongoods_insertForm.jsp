@@ -3,17 +3,161 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/smarteditor/js/HuskyEZCreator.js"  charset="utf-8">
 	</script>
-	<script type="text/javascript" 
-	src="${pageContext.request.contextPath}/resources/smarteditor/js/HuskyEZCreator.js"  charset="utf-8">
-	
-	</script>
+
+<div class="container-fluid text-center" style="margin-right: 150px; margin-left: 150px;">
+	<div class="row content">
+		<h1>물품 등록</h1>
+		
+		<div class="col-sm-12 category text-left">
+			<div class="col-sm-4">
+				<h3>대분류 카테고리 선택</h3>
+				<br>
+				<div class="list-group " style="overflow: auto; height: 300px;">
+					<c:forEach var="largeCategory" items="${largeCategory}">
+
+						<!-- a 태그 클릭시 값을 form의 input에 넘겨주고 이동 -->
+						<div class="list-group-item largeCategory"<%--  onclick="location.href='/auctiongoods/auctiongoodsinsert_middle?largeCategoryCode=${largeCategory.largeCategoryCode}'" --%>>
+							<span class="largeCategoryCode" style="display: none">${largeCategory.largeCategoryCode}</span>
+							<span class="largeCategoryName">${largeCategory.largeCategoryName}</span>
+							<!-- 대분류 코드 값을 넣어 전달하여 중분류 선택  -->
+						</div>
+
+					</c:forEach>
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<h3>중분류 전체</h3>
+				<br>
+
+				<div class="list-group" id="middleCategory" style="overflow: auto; height: 300px;">
+						<div class="list-group-item">중분류</div>
+				</div>
+			</div>	
+			
+			<div class="col-sm-4">
+				<h3>소분류 전체</h3>
+				<br>
+
+				<div class="list-group" id="smallCategory"  style="overflow: auto; height: 300px;">
+					<div class="list-group-item">소분류</div>
+				</div>
+			</div>
+		</div>
+
+			<div class="container col-sm-12"  style="margin:auto;">
+				<form class="form-horizontal"
+					action="${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert" method="post" id="frm">
+					
+						<div>
+							<h3>카테고리 코드</h3>
+							<div class="col-sm-4">
+							<input type="text" class="form-control" id="largeCategoryCode" name="largeCategoryCode"	value="" readonly /> 
+							</div>
+							<div class="col-sm-4">
+							<input type="text" class="form-control" id="middleCategoryCode"	name="middleCategoryCode" value="" readonly /> 
+						 	</div>
+							<div class="col-sm-4">
+							<input type="text" class="form-control" id="smallCategoryCode" name="smallCategoryCode"	value="" readonly />
+							</div>
+							<br>
+							<br>
+						</div>
+						<br>
+						<br>
+						<br>
+						
+					<div class="form-group">
+						<label class="col-sm-2 control-label">물품명</label>
+						<div class="col-sm-3">
+							<input class="form-control" type="text" name="auctionGoodsName" value="">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">경매방식</label>
+						<div class="col-sm-3">
+							<label class="radio-inline">
+							<input type="radio" name="auctionGoodsSys" value="normal">일반</label> 
+							<label class="radio-inline">
+							<input type="radio" name="auctionGoodsSys" value="blind">블라인드</label>
+						</div>
+					</div>
+					<!-- 일반 경매 선택시 노출되게 -->
+					<div class="form-group" id="auctionGoodsBidSys" style="display:none">
+						<label class="col-sm-2 control-label">입찰방식</label>
+						<div class="col-sm-3">
+							<label class="radio-inline">
+							<input type="radio" name="auctionGoodsBidSys" value="normal" checked="checked">일반</label> 
+							<label class="radio-inline">
+							<input type="radio" name="auctionGoodsBidSys" value="blind">블라인드</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">경매시작날짜</label>
+						<div class="col-sm-2">
+							<input type="text" id="startdatepicker" placeholder="클릭해보세요" name="startDate">
+						</div>
+						<label class="col-sm-2 control-label">경매 기간</label>
+						<div class="col-sm-1">
+							<select name="goodsTerm">
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="10">10</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+							</select>
+						</div>
+						
+						<label class="col-sm-2 control-label">경매종료날짜</label>
+						<div class="col-sm-2">
+							<input type="text" id="enddatepicker" placeholder="클릭해보세요" name="endDate">
+						</div>
+					</div>	
+					
+					<!-- 상세 내용 입력 및 사진 추가 에디터 -->
+					<div class="form-group">
+						<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:100%; height:700px;">
+						</textarea>
+					</div>
+					
+					<div class="form-group">
+<!-- 						<label class="col-sm-2 control-label"></label> -->
+						<input class="btn btn-default" type="button" id="savebutton" value="등록">
+						<input class="btn btn-default" type="reset" value="다시쓰기">
+					</div>
+				</form>
+			</div>
+	</div>
+</div>
+
 <script>
+//datepicker 속성 지정
+ $('#startdatepicker').datepicker({
+	
+	/* endDate:4,
+	startDate:1	 */
+});
+$('#enddatepicker').datepicker({
+	/* language:'ko',
+	startDate:4 */
+}); 
+
+
 	$(document).ready(function() {
 			var oEditors = [];
-                 
+            
+			//datepicker
+			
 		    //스마트에디터 프레임생성
 		    nhn.husky.EZCreator.createInIFrame({
 				oAppRef: oEditors,
@@ -34,6 +178,7 @@
 				},
 					fCreator: "createSEditor2"
 			});
+		   
 		    //전송버튼
 		    $("#savebutton").click(function(){
 		        //id가 smarteditor인 textarea에 에디터에서 대입
@@ -235,107 +380,5 @@
 	});
 	
 </script>
-<div class="container-fluid text-center" style="margin-right: 150px; margin-left: 150px;">
-	<div class="row content">
-		<h1>물품 등록</h1>
-		
-		<div class="col-sm-12 category text-left">
-			<div class="col-sm-4">
-				<h3>대분류 카테고리 선택</h3>
-				<br>
-				<div class="list-group " style="overflow: auto; height: 300px;">
-					<c:forEach var="largeCategory" items="${largeCategory}">
-
-						<!-- a 태그 클릭시 값을 form의 input에 넘겨주고 이동 -->
-						<div class="list-group-item largeCategory"<%--  onclick="location.href='/auctiongoods/auctiongoodsinsert_middle?largeCategoryCode=${largeCategory.largeCategoryCode}'" --%>>
-							<span class="largeCategoryCode" style="display: none">${largeCategory.largeCategoryCode}</span>
-							<span class="largeCategoryName">${largeCategory.largeCategoryName}</span>
-							<!-- 대분류 코드 값을 넣어 전달하여 중분류 선택  -->
-						</div>
-
-					</c:forEach>
-				</div>
-			</div>
-
-			<div class="col-sm-4">
-				<h3>중분류 전체</h3>
-				<br>
-
-				<div class="list-group" id="middleCategory" style="overflow: auto; height: 300px;">
-						<div class="list-group-item">중분류</div>
-				</div>
-			</div>	
-			
-			<div class="col-sm-4">
-				<h3>소분류 전체</h3>
-				<br>
-
-				<div class="list-group" id="smallCategory"  style="overflow: auto; height: 300px;">
-					<div class="list-group-item">소분류</div>
-				</div>
-			</div>
-		</div>
-
-			<div class="container col-sm-12"  style="margin:auto;">
-				<form class="form-horizontal"
-					action="${pageContext.request.contextPath}/auctiongoods/auctiongoods_insert" method="post" id="frm">
-					
-						<div>
-							<h3>카테고리 코드</h3>
-							<div class="col-sm-4">
-							<input type="text" class="form-control" id="largeCategoryCode" name="largeCategoryCode"	value="" readonly /> 
-							</div>
-							<div class="col-sm-4">
-							<input type="text" class="form-control" id="middleCategoryCode"	name="middleCategoryCode" value="" readonly /> 
-							</div>
-							<div class="col-sm-4">
-							<input type="text" class="form-control" id="smallCategoryCode" name="smallCategoryCode"	value="" readonly />
-							</div>
-							<br>
-							<br>
-						</div>
-						
-						
-					<div class="form-group">
-						<label class="col-sm-2 control-label">물품명</label>
-						<div class="col-sm-3">
-							<input class="form-control" type="text" name="auctionGoodsName" value="">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">경매방식</label>
-						<div class="col-sm-3">
-							<label class="radio-inline">
-							<input type="radio" name="auctionGoodsSys" value="normal">일반</label> 
-							<label class="radio-inline">
-							<input type="radio" name="auctionGoodsSys" value="blind">블라인드</label>
-						</div>
-					</div>
-					<!-- 일반 경매 선택시 노출되게 -->
-					<div class="form-group" id="auctionGoodsBidSys" style="display:none">
-						<label class="col-sm-2 control-label">입찰방식</label>
-						<div class="col-sm-3">
-							<label class="radio-inline">
-							<input type="radio" name="auctionGoodsBidSys" value="normal" checked="checked">일반</label> 
-							<label class="radio-inline">
-							<input type="radio" name="auctionGoodsBidSys" value="blind">블라인드</label>
-						</div>
-					</div>
-					<!-- 상세 내용 입력 및 사진 추가 에디터 -->
-					<div class="form-group">
-						<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:100%; height:700px;">
-						</textarea>
-					</div>
-					<div class="form-group">
-<!-- 						<label class="col-sm-2 control-label"></label> -->
-						<input class="btn btn-default" type="button" id="savebutton" value="등록">
-						<input class="btn btn-default" type="reset" value="다시쓰기">
-					</div>
-				</form>
-			</div>
-	</div>
-</div>
-
-
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8" />

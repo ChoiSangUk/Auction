@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -120,6 +118,7 @@ public class AuctionGoodsController {
 			
 			String modify_name = today + "-" + UUID.randomUUID().toString().substring(20)+"."+filename_extension;
 			
+			//서버에 파일 쓰기
 			InputStream is = request.getInputStream();
 			OutputStream os = new FileOutputStream(path + modify_name);
 			int numRead;
@@ -213,6 +212,13 @@ public class AuctionGoodsController {
 	model.addAttribute("largeCategory", largeCategory);
 	 
 	return "/auctiongoods/auctiongoods_insertForm";
+	}
+	
+	//auctiongoodsinert action 부분
+	@RequestMapping(value="/auctiongoods/auctiongoodsinsert", method= RequestMethod.POST)
+	public void auctionGoodsInsert_Post(HttpServletRequest request){
+		System.out.println("에디터 컨텐츠 값 : "+request.getParameter("ir1"));
+		System.out.println("등록 날짜 : " + request.getParameter("registDate"));
 	}
 	
 	//auctiongoods_list.jsp에서 대분류카테고리코드의 값을 받았을 때 중분류를 뿌려주기 위한 처리
