@@ -59,7 +59,16 @@ footer {
 .mainBanner {
 	width: 100%;
 }
-
+/* 툴팁 css */
+.dt + .tooltip > .tooltip-inner {
+	background-color: #ffffff; 
+	color: #000000; 
+	border: 1px solid black;
+	padding: 5px;
+	font-size: 15px;
+	max-width: 100%;
+}
+  
 /* Hide the carousel text when the screen is less than 600 pixels wide */
 @media ( max-width : 600px) {
 	.carousel-caption {

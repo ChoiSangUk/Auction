@@ -168,7 +168,7 @@ public class AdApplyController {
 		String endDate = currentAdList.get(0).getAdApplyVo().getAdApplyEndDate();
 		log.info(currentAdList.size()+"<--- size");
 		
-		if(currentAdList.size() > 2) {
+		if(currentAdList.size() >= 3) {
 			return endDate;
 		}else {
 			return null;

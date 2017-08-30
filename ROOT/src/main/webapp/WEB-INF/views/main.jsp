@@ -10,6 +10,7 @@
 		<li data-target="#myCarousel" data-slide-to="0"></li>
 		<li data-target="#myCarousel" data-slide-to="1"></li>
 		<li data-target="#myCarousel" data-slide-to="2"></li>
+		<li data-target="#myCarousel" data-slide-to="3"></li>
 	</ol>
 	<!-- 메인배너 링크,이미지 -->
 	<div class="carousel-inner" role="listbox">

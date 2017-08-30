@@ -40,7 +40,7 @@ th {
 						<tr>
 							<th class="col-sm-2 active">물품명</th>
 							<td>
-								<div class="col-sm-2">
+								<div class="col-sm-3">
 									<select class="form-control" name="auctionGoodsCode">
 										<c:forEach var="ag" items="${auctionGoodsList}">
 											<option value="${ag.auctionGoodsCode}">${ag.auctionGoodsName}</option>
@@ -52,7 +52,7 @@ th {
 						<tr>
 							<th class="col-sm-2 active">광고명</th>
 							<td>
-								<div class="col-sm-2">
+								<div class="col-sm-3">
 									<select class="form-control" name="adUnitPriceCode">
 										<c:forEach var="ad" items="${adUnitPriceList}">
 											<option value="${ad.adUnitPriceCode}">${ad.adUnitPriceName}</option>
@@ -64,7 +64,7 @@ th {
 						<tr>
 							<th class="col-sm-2 text-center active">광고 등록일자</th>
 							<td>
-								<div class="form-inline">
+								<div class="form-inline dt" data-toggle="tooltip">
 								<div class="col-sm-3 input-group date" data-provide="datepicker" id="sdate"
 								style="margin-left: 15px;">
 									<input class="form-control" type="text" name="adApplyStartDate" id="sd" readonly="readonly">
@@ -107,8 +107,6 @@ th {
 			</form>		
 		</div>				
 	</div>
-	<input type="text" id="ee">
-	<div class="col-sm-1"></div>
 </div>
 
 <script>
@@ -120,38 +118,65 @@ th {
 	});
 }); */
 
-/*************************************
- * - datepicker -
- * mysql datetime과 타입일치를 시키기위해
- * momnet format을 사용하여 뒤에 시:분:초를 붙임
- *************************************/
-$('#sdate').click(function(e){
-	console.log('클릭확인');
-	var a = $.ajax({
-		url: '${pageContext.request.contextPath}/dateAjax',
-		type: 'post',
-			success: function(endDate){
-			var eDate = endDate
-			$('#ee').val(eDate);
-		},
-		error: function(requestDate){
-			console.log('error'+requestDate.hi);
-		}
-	});
+/* 툴팁 설정 */
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip({
+    	html: true,
+        animated : 'fade',
+        placement : 'top',
+        title: '<strong style="color: red;">※메인배너 등록일자 주의사항※</strong><br>메인배너는 최대 3개까지 등록가능합니다.<br>메인배너가 모두 등록되어있을 경우 가장 먼저<br>종료되는 광고의 종료일자 이후부터 선택이 가능합니다.'
+    });   
 });
-var endDate = $('#ee').val();
-console.log($('#ee').val());
-    $('#sdate').datepicker({
-    	format: 'yyyy-mm-dd'+moment().format(' hh:mm:ss'),
-    	language: 'ko',
-    	orientation: 'bottom',
-    	startDate: endDate  
-    });
-    $('#edate').datepicker({
-    	format: 'yyyy-mm-dd'+moment().format(' hh:mm:ss'),
-    	language: 'ko',
-    	orientation: 'bottom'
-    });
+
+/***************************************
+ * - datepicker -
+ * 메인배너가 3개로 차있을 경우 가장 먼저 종료되는 메인배너의
+ * 종료일자 이후부터 선택이 가능하다.
+ * 메인배너가 3개 이하일 현재날짜 이후부터 선택이 가능하다. 
+ ***************************************/
+$.ajax({
+	url: '${pageContext.request.contextPath}/dateAjax',
+	type: 'post',
+		success: function(data){
+			var startData = data;
+			console.log(data);
+			
+		if(data != '') {
+			console.log('null X');
+			$('#sdate').datepicker({
+		    	format: 'yyyy-mm-dd',
+		    	language: 'ko',
+		    	orientation: 'bottom',
+		    	startDate: data 
+		    });			
+			$('#edate').datepicker({
+		    	format: 'yyyy-mm-dd',
+		    	language: 'ko',
+		    	orientation: 'bottom',
+		    	startDate: data 
+		    });
+		} else if(data == ''){
+			console.log('null');
+			var nowDate = moment().format('YYYY-MM-DD');
+			$('#sdate').datepicker({
+		    	format: 'yyyy-mm-dd',
+		    	language: 'ko',
+		    	orientation: 'bottom',
+		    	startDate: nowDate 
+		    });				
+			$('#edate').datepicker({
+		    	format: 'yyyy-mm-dd',
+		    	language: 'ko',
+		    	orientation: 'bottom',
+		    	startDate: nowDate
+		    });
+		}
+	},
+	error: function(requestDate){
+		console.log('error'+requestDate);
+	}
+});
+    
 
 </script>
 
