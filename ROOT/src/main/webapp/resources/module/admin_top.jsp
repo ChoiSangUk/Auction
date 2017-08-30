@@ -29,23 +29,24 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">회원관리</a></li>
-				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">경매물품관리</a></li>
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">회원관리X</a></li>
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">경매물품관리X</a></li>
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">광고관리
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="${pageContext.request.contextPath}/ad/adminAdManagement">광고단가 리스트</a></li>
 						<li><a href="${pageContext.request.contextPath}/ad/adminAdApplySearch">광고신청 리스트</a></li>
-						<li><a href="${pageContext.request.contextPath}/ad/adminAdRefundPaymentSearch">광고환불결제 리스트</a></li>
-						<li><a href="${pageContext.request.contextPath}/ad/adminAdRefundApplySearch">광고환불신청 리스트</a></li>
+						<li><a href="${pageContext.request.contextPath}/ad/adminAdPaymentSearch">광고결제 리스트X</a></li>
+						<li><a href="${pageContext.request.contextPath}/ad/adminAdRefundPaymentSearch">광고환불결제 리스트X</a></li>
+						<li><a href="${pageContext.request.contextPath}/ad/adminAdRefundApplySearch">광고환불신청 리스트X</a></li>
 					</ul>
 				</li>
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">매입매출 관리
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/saleslog/adminSalesLogList">매입/매출 리스트</a></li>
-						<li><a href="${pageContext.request.contextPath}#">매입/매출 검색</a></li>
-						<li><a href="${pageContext.request.contextPath}#">매입/매출 월별통계</a></li>
+						<li><a href="${pageContext.request.contextPath}/saleslog/adminSalesLogList">매입/매출 리스트X</a></li>
+						<li><a href="${pageContext.request.contextPath}#">매입/매출 검색X</a></li>
+						<li><a href="${pageContext.request.contextPath}#">매입/매출 월별통계X</a></li>
 					</ul>
 				<li><a href="${pageContext.request.contextPath}/main">
 				<button class="btn btn-danger btn-xs">경매사이트 바로가기</button></a>

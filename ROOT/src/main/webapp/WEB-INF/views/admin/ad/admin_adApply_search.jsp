@@ -35,10 +35,10 @@ th {
 							<td>
 								<label class="radio-inline" style="margin-left: 15px;">
 								<input type="radio" name="all" value="1">전체보기</label>
-								<label class="radio-inline"><input type="radio" name="range-7d" value="">최근일주</label>
-								<label class="radio-inline"><input type="radio" name="range-1m" value="">최근1개월</label>
-								<label class="radio-inline"><input type="radio" name="range-3m" value="">최근3개월</label>
-								<label class="radio-inline"><input type="radio" name="range-6m" value="">최근6개월</label>
+								<label class="radio-inline"><input type="radio" name="applyDate" id="all" value="">최근일주</label>
+								<label class="radio-inline"><input type="radio" name="applyDate" id="range-1m" value="">최근1개월</label>
+								<label class="radio-inline"><input type="radio" name="applyDate" id="range-3m" value="">최근3개월</label>
+								<label class="radio-inline"><input type="radio" name="applyDate" id="range-6m" value="">최근6개월</label>
 							</td>
 						</tr>
 						<tr>
