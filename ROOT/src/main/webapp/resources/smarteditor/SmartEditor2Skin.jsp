@@ -1,5 +1,7 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="ko">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
@@ -15,7 +17,7 @@
 <script type="text/javascript" src="./js/SE2B_Configuration_General.js" charset="utf-8"></script>	<!-- 설정 파일 -->
 <script type="text/javascript" src="./js/SE2BasicCreator.js" charset="utf-8"></script>
 
-<script src='js/smarteditor2.min.js' charset='utf-8'></script>
+<script src='js/smarteditor2.js' charset='utf-8'></script>
 <script src='photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js' charset='utf-8'></script>
 </head>
 <body>
