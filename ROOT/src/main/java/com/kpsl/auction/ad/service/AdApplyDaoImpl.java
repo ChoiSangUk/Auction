@@ -46,9 +46,9 @@ public class AdApplyDaoImpl implements AdApplyDao {
 	}
 
 	@Override
-	public List<AdApplyVo> selectAdApplyList() {
+	public List<AdApplyVo> selectAdApplyList(AdApplyVo adApplyVo) {
 		log.info("selectAdApplyList 호출 확인");
-		return sqlSessionTemplate.selectList(AdApplyMapperNS+"selectAdApply");
+		return sqlSessionTemplate.selectList(AdApplyMapperNS+"selectAdApply",adApplyVo);
 	}
 
 	@Override

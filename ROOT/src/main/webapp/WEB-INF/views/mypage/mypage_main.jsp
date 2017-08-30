@@ -39,10 +39,12 @@
 .glyphicon.glyphicon-plus, .glyphicon.glyphicon-search {
 	color: #0000A5;
 }
-
+.btn-danger {
+	width: 147px;
+}
 .btn-blue {
 	background-color: #0000A5;
-	color: #ffffff;
+	color: #ffffff;	
 	width: 147px;
 }
 
@@ -218,24 +220,24 @@ a:hover {text-decoration: underline; color: #000000;} */
 		<div class="row content">
 			<div class="col-sm-12">
 				<div class="col-sm-2">
-					<a class="btn btn-blue btn-lg" href="#">1:1문의하기</a>
+					<a class="btn btn-danger btn-lg" href="#">1:1문의하기</a>
 				</div>
 				<div class="col-sm-2">
-					<a class="btn btn-blue btn-lg" href="#">문의게시판</a>
+					<a class="btn btn-danger btn-lg" href="#">문의게시판</a>
 				</div>
 				<div class="col-sm-2">
 					<a class="btn btn-blue btn-lg"
 						href="${pageContext.request.contextPath}/mypage/mypageAdInfo">물품광고</a>
 				</div>
 				<div class="col-sm-2">
-					<a class="btn btn-blue btn-lg" href="#">구매안내</a>
+					<a class="btn btn-danger btn-lg" href="#">구매안내</a>
 				</div>
 				<c:if test="${userLoginInfo.userLevel eq '판매자'}">
 					<div class="col-sm-2">
-						<a class="btn btn-blue btn-lg" href="#">판매자수수료</a>
+						<a class="btn btn-danger btn-lg" href="#">판매자수수료</a>
 					</div>
 					<div class="col-sm-2">
-						<a class="btn btn-blue btn-lg" href="#">판매안내</a>
+						<a class="btn btn-danger btn-lg" href="#">판매안내</a>
 					</div>
 				</c:if>
 			</div>

@@ -10,67 +10,108 @@
 <script src="${pageContext.request.contextPath}/resources/font/summernote-ko-KR.js"></script>
 <style>
 .note-editor {
-	width: 80%;
+	width: 100%;
 	margin: auto;
 }
-
+th {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
 
 </style>
 
-<div class="container-fluid text-left">
-	<h1>광고신청 상세 화면</h1>
-	<div class="row content">	
-		<div class="col-sm-12">
+<div class="container-fluid">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
+		<div class="row title">
+			<h1>광고신청 상세보기</h1>
+		</div>
+		<div class="row content">
 			<!-- 광고신청 상세보기 폼 -->
 			<form class="form-horizontal" action="${pageContext.request.contextPath}/ad/adminAdApplyDetail" method="post">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">광고신청코드</label>
-					<div class="col-sm-2">
-						<input class="form-control" type="text" name="adApplyCode" value="${adApplyList.adApplyCode}" readonly="readonly">
-					</div>				
-					<label class="col-sm-1 control-label">광고명</label>
-					<div class="col-sm-2">
-						<input class="form-control" type="text" name="" value="${adUnitPriceList.adUnitPriceName}" readonly="readonly">
-					</div>
-					<label class="col-sm-1 control-label">아이디</label>
-					<div class="col-sm-2">
-						<input class="form-control" type="text" name="userId" value="${adApplyList.userId}" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">광고등록일</label>
-					<div class="col-sm-2">
-						<input class="form-control" type="datetime" name="" value="${adApplyList.adApplyRegistDate}" readonly="readonly">
-					</div>
-					<label class="col-sm-1 control-label">광고시작일</label>
-					<div class="col-sm-2">
-						<input class="form-control" type="datetime" name="" value="${adApplyList.adApplyStartDate}" readonly="readonly">
-					</div>
-					<label class="col-sm-1 control-label">광고종료일</label>
-					<div class="col-sm-2">
-						<input class="form-control" type="datetime" name="" value="${adApplyList.adApplyEndDate}" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">광고신청상태</label>
-					<div class="col-sm-2">
-						<input type="hidden" id="radioCheck" value="${adApplyList.adApplyState}">
-						<label class="radio-inline"><input type="radio" name="adApplyState" value="승인대기" id="stateWait">승인대기</label>
-						<label class="radio-inline"><input type="radio" name="adApplyState" value="승인완료" id="stateSuccess">승인완료</label>
-					</div>
-				</div>
-				<div class="form-group">
-					<textarea class="form-controll" id="summernote" name="adImageName">
-					<img alt="" src="${pageContext.request.contextPath}/resources/files/${adImageList.adImageName}">
-					</textarea>			
-				</div>
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th class="col-sm-2 active">광고신청코드</th>
+							<td>
+								<div class="col-sm-10">
+									<input class="form-control" type="text" name="adApplyCode" 
+									value="${adApplyList.adApplyCode}" readonly="readonly">
+								</div>
+							</td>
+							<th class="col-sm-2 active">광고명</th>
+							<td>
+								<div class="col-sm-10">
+									<input class="form-control" type="text" name="" 
+									value="${adUnitPriceList.adUnitPriceName}" readonly="readonly">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="col-sm-2 active">신청인아이디</th>
+							<td>
+								<div class="col-sm-10">
+									<input class="form-control" type="text" name="userId" 
+									value="${adApplyList.userId}" readonly="readonly">
+								</div>
+							</td>
+							<th class="col-sm-2 active">신청일</th>
+							<td>
+								<div class="col-sm-10">
+									<input class="form-control" type="datetime" name="" 
+									value="${adApplyList.adApplyRegistDate}" readonly="readonly">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="col-sm-2 active">광고시작일</th>
+							<td>
+								<div class="col-sm-10">
+									<input class="form-control" type="text" name="" 
+									value="${adApplyList.adApplyStartDate}" readonly="readonly">
+								</div>
+							</td>
+							<th class="col-sm-2 active">광고종료일</th>
+							<td>
+								<div class="col-sm-10">
+									<input class="form-control" type="text" name="" 
+									value="${adApplyList.adApplyEndDate}" readonly="readonly">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="col-sm-2 active">광고신청상태</th>
+							<td colspan="3">
+								<div class="col-sm-10">
+									<input type="hidden" id="radioCheck" value="${adApplyList.adApplyState}">
+									<label class="radio-inline"><input type="radio" name="adApplyState" value="승인대기" id="stateWait">승인대기</label>
+									<label class="radio-inline"><input type="radio" name="adApplyState" value="승인완료" id="stateSuccess">승인완료</label>
+									<label class="radio-inline"><input type="radio" name="adApplyState" value="승인반려" id="stateReject">승인반려</label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="active" colspan="4">광고 이미지</th>
+						<tr>
+						<tr>
+							<td colspan="4">
+								<div class="text-center">
+								<img alt="" src="${pageContext.request.contextPath}/resources/files/${adImageList.adImageName}"
+								style="width: 1000px; height: 500px;">
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 				<div class="form-group submit text-center">
 					<input class="btn btn-info" type="submit" value="수정">
 					<input class="btn btn-default" type="reset" value="다시쓰기">
+					<a class="btn btn-success" href="${pageContext.request.contextPath}/ad/adminAdApplySearch">광고신청 리스트</a>
 				</div>
 			</form>
 		</div>
 	</div>
+	<div class="col-sm-1"></div>
 </div>
 
 <script>
@@ -85,8 +126,10 @@ $(document).ready(function() {
 var radioCheck = $('#radioCheck').val();
 if(radioCheck == '승인대기') {
 	$('#stateWait').attr("checked", true);
-} else {
+} else if(radioCheck == '승인완료') {
 	$('#stateSuccess').attr("checked", true);
+} else if(radioCheck == '승인반려') {
+	$('#stateReject').attr("checked", true);
 }
 </script>
 

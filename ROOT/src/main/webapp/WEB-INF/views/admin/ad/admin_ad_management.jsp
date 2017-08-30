@@ -3,15 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/resources/module/admin_top.jsp" charEncoding="UTF-8" />
 
-<div class="container-fluid text-center">
-	<div class="row content">
+<div class="container-fluid">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
+		<div class="row title">
 		<!-- 메인화면  -->
-		<div class="col-sm-12 text-left">
 		<h1>광고단가 화면</h1>
-		<div class="table-responsive"> 
-			<table class="table table-hover">
+		</div>
+		<div class="row content">
+			<table class="table table-bordered">
 				<thead>
-					<tr>
+					<tr class="active">
 						<th>광고단가 코드</th>
 						<th>광고명</th>
 						<th>광고가격</th>
@@ -38,6 +40,7 @@
 		</div>
 		</div>
 	</div>
+	<div class="col-sm-1"></div>
 </div>
 
 <c:import url="/resources/module/admin_footer.jsp" charEncoding="UTF-8" />

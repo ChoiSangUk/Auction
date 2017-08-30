@@ -83,5 +83,6 @@
 			 ON aa.ad_apply_code = ap.ad_apply_code
 		WHERE ap.ad_payment_state='결제완료' AND aa.ad_apply_end_date >= CURDATE()
 		ORDER BY aa.ad_apply_end_date
+		LIMIT 0,3
 	</select>
 </mapper>

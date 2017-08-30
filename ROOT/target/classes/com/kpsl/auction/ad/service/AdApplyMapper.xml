@@ -103,7 +103,12 @@
 				ad_apply_start_date, 
 				ad_apply_end_date, 
 				ad_apply_state
-				FROM ad_apply_tb
+		FROM ad_apply_tb
+		<where>
+			<if test="adApplyState != null">
+				ad_apply_state = #{ad_apply_state}
+			</if>
+		</where>
 		ORDER BY ad_apply_regist_date
 	</select>
 	<!-- 광고신청,광고이미지, 광고단가, 물품 JOIN -->

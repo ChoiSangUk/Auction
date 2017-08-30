@@ -48,9 +48,9 @@ public class AdApplyServiceImpl implements AdApplyService {
 	}
 
 	@Override
-	public List<AdApplyVo> getAdApplyList() {
+	public List<AdApplyVo> getAdApplyList(AdApplyVo adApplyVo) {
 		log.info("getAdApplyList 호출 확인");
-		return adApplyDao.selectAdApplyList();
+		return adApplyDao.selectAdApplyList(adApplyVo);
 	}
 
 	@Override

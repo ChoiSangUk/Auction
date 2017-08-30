@@ -122,12 +122,25 @@ public class AdApplyController {
 		return "/admin/ad/admin_adApply_detail";
 	}
 	
-	// 광고신청 리스트 페이지 요청
+	// 관리자 광고신청 리스트 페이지 요청
 	@RequestMapping(value = "/ad/adminAdApplySearch", method = RequestMethod.GET)
-	public String adApplyList(Model model) {
+	public String adApplyList(Model model, AdApplyVo adApplyVo) {
 		
 		log.info("adApplyList 확인");
-		List<AdApplyVo> adApplyList = adApplyService.getAdApplyList();
+		List<AdApplyVo> adApplyList = adApplyService.getAdApplyList(adApplyVo);
+		model.addAttribute("adApplyList",adApplyList);
+		
+		return "/admin/ad/admin_adApply_search";
+	}
+	
+	// 광고신청 리스트 조회
+	@RequestMapping(value = "/ad/adminAdApplySearch", method = RequestMethod.POST)
+	public String adApplySearch(Model model, AdApplyVo adApplyVo
+								,@RequestParam(value="sk", required=true) String sk) {
+		
+		log.info("adApplyList 확인");
+		log.info(sk+"<--- 신청날짜 확인");
+		List<AdApplyVo> adApplyList = adApplyService.getAdApplyList(adApplyVo);
 		model.addAttribute("adApplyList",adApplyList);
 		
 		return "/admin/ad/admin_adApply_search";
@@ -159,7 +172,7 @@ public class AdApplyController {
 		
 		return "/mypage/mypage_adApply_insertForm";
 	}
-	
+	// 신청한 광고가 3개 이상이면 첫번째 광고의 종료날짜를 리턴
 	@RequestMapping(value = "/dateAjax", method = RequestMethod.POST)
 	public @ResponseBody String dateAjax() {
 		
@@ -175,14 +188,16 @@ public class AdApplyController {
 		}
 	}
 	
-	// 광고 (액션) 요청
+	// 광고신청 (액션) 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)
-	public String adApplyAdd(AdApplyVo adApplyVo ,AdImageVo adImageVo
+	public String adApplyAdd(AdApplyVo adApplyVo ,AdImageVo adImageVo, HttpSession session
     						, @RequestParam("adImage") MultipartFile adImage,
     						MultipartHttpServletRequest multipartRequest) {
 		log.info("adApplyAdd 확인");
 		UtilFile utilFile = new UtilFile();
 		HashMap<String, String> adFile= utilFile.fileUpload(multipartRequest, adImage);
+		String userId = (String) session.getAttribute("userId");
+		adApplyVo.setUserId(userId);
 		adImageVo.setAdImagePath(adFile.get("adImagePath"));
 		adImageVo.setAdImageName(adFile.get("adImageName"));		
 		adApplyService.adApplyTransaction(adApplyVo, adImageVo);
