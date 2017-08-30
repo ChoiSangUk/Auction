@@ -5,6 +5,7 @@
 	<p>kpsl</p>	
 </footer>
 </body>
+
 <script>
 /* 실시간 날짜,시간 출력 함수 */
 $(function() {

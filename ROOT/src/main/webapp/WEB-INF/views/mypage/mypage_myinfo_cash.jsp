@@ -19,7 +19,9 @@
 			<h2>나의 정보관리</h2>
 		</div>
 		<!-- 내용1 -->
-		<c:import url="/resources/module/mypage_info.jsp" charEncoding="UTF-8" />
+		<div>
+			<c:import url="/resources/module/mypage_info.jsp" charEncoding="UTF-8" />
+		</div>
 		<!-- 내용2 -->
 		<div class="row content">				
 			<!-- 캐쉬 상세내역 -->

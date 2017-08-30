@@ -91,20 +91,18 @@
 										<td>
 											
 											<div class="visible-lg visible-md">
-												<label class="radio-inline"> <input type="radio"
-													value="all" name="type"> 전체보기
+												<label class="radio-inline"> 
+												<input type="radio" name="cashDate"> 전체보기
 												</label> <label class="radio-inline"> <input type="radio"
-													value="day" name="type"> 일별보기
+													value="day" name="cashDate"> 일별보기
 												</label> <label class="radio-inline"> <input type="radio"
-													value="month" name="type"> 월별보기
+													value="range-7d" name="cashDate"> 최근일주
 												</label> <label class="radio-inline"> <input type="radio"
-													value="range-7d" name="type"> 최근일주
+													value="range-1m" name="cashDate"> 최근1개월
 												</label> <label class="radio-inline"> <input type="radio"
-													value="range-1m" name="type"> 최근1개월
+													value="range-3m" name="cashDate"> 최근3개월
 												</label> <label class="radio-inline"> <input type="radio"
-													value="range-3m" name="type"> 최근3개월
-												</label> <label class="radio-inline"> <input type="radio"
-													value="range-6m" name="type" checked> 최근6개월
+													value="range-6m" name="cashDate" checked> 최근6개월
 												</label>
 											</div>
 										</td>
@@ -113,7 +111,7 @@
 										<td>
 											<div class="visible-lg visible-md">
 												<label class="radio-inline"> <input type="radio"
-													value="rangedate" name="type"> 기간검색
+													name="cashDate"> 기간검색
 												</label>
 											</div>
 											<div class="form-inline">
@@ -137,27 +135,7 @@
 											</div>
 										</td>
 									</tr>
-									<tr>
-										<th class="text-center active">검색어</th>
-										<td>
-											<!-- disabled="" -->
-											<div class="form-group">
-												<div class="col-sm-2">
-													<select class="form-control" name="sk">
-														<option value="adApplyCode">광고신청코드</option>
-														<option value="userId">아이디</option>
-														<option value="adApplyRegistDate">광고신청일</option>
-														<option value="adApplyState">광고신청상태</option>
-													</select>
-												</div>
-												<div class="input-group col-sm-4">
-													<input type="text" class="form-control" name="sv"
-														placeholder="Search">
-												</div>
-											</div>
-										</td>
-									</tr>
-
+									
 								</tbody>
 
 							</table>
@@ -174,8 +152,9 @@
 					<div class="tableDefault mb30 col-sm-8">
 					<table class="table table-bordered">
 						<c:if test="${cashDetail ne null}">
+						<h3>검색결과</h3>
 						<tr>
-							<th class="text-center active">요금</th>
+							<th class="text-center active">금액</th>
 							<th class="text-center active">날짜</th>
 							<th class="text-center active">상태</th>
 						</tr>
@@ -198,4 +177,8 @@
 	</div>
 </div>
 
+
+<script type="text/javascript">
+
+</script>
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8" />

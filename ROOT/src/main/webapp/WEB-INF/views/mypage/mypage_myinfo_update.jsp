@@ -25,6 +25,12 @@
 			<!-- 캐쉬 상세내역 -->
 		<div>
 			<h3>회원정보수정</h3>
+			<ul>
+				<li>기본정보는 <span class="text-info">필수입력사항</span>입니다. 빠짐없이 채워넣어 주시기 바랍니다.</li>
+				<li>정확한 전화번호 및 주소 (이메일 포함)를 입력하셔야 정상적인 거래가 가능합니다. </li>
+				<li>부정확한 개인정보로 인한 책임과 불이익은 회원 본인이 감수하게 되오니 개인정보 입력시 <strong
+					class="text-info">유의</strong>하시기 바랍니다.</li>
+			</ul>
 		</div>
 		<form role="form" class="well form-search" id="addForm" action="${pageContext.request.contextPath}/mypage/mypageMyinfoUpdate" method="post">
 		<div class="form-group">

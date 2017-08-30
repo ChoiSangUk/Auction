@@ -94,6 +94,7 @@ public class CashController {
 		String userId = (String) session.getAttribute("userId");
 		cashVo.setUserId(userId);
 		log.info(userId);
+		log.info(cashVo.getCashDate());
 		List<CashVo> cashDetail = cashService.getCashDetail(cashVo);
 		model.addAttribute("cashDetail", cashDetail);
 		log.info(cashVo.getCashState());

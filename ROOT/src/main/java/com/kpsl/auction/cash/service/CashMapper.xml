@@ -82,6 +82,11 @@
 		<if test="cashState == '충전'">AND cash_state='충전'</if>
 		<if test="cashState == '출금'">AND cash_state='출금'</if>
 		<if test="cashState == '충전,출금'"></if>
+		<if test="cashDate == 'day'">AND cash_date >CURDATE()</if>
+		<if test="cashDate == 'range-7d'">AND cash_date >DATE_SUB(NOW(),INTERVAL 1 WEEK)</if>
+		<if test="cashDate == 'range-1m'">AND cash_date >DATE_SUB(NOW(),INTERVAL 1 MONTH)</if>
+		<if test="cashDate == 'range-3m'">AND cash_date >DATE_SUB(NOW(),INTERVAL 3 MONTH)</if>
+		<if test="cashDate == 'range-6m'">AND cash_date >DATE_SUB(NOW(),INTERVAL 6 MONTH)</if>
 		
 		ORDER BY cash_date DESC
 	
