@@ -48,9 +48,9 @@ public class CashServiceImpl implements CashService {
 
 
 	@Override
-	public List<CashVo> getCashDetail(String userId,String cashState) {
+	public List<CashVo> getCashDetail(CashVo cashVo) {
 		log.info("CashService Class getCashDetail : ");
-		return cashDao.selectCashDetail(userId,cashState);
+		return cashDao.selectCashDetail(cashVo);
 	}
 
 

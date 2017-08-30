@@ -13,5 +13,5 @@ public interface CashService {
 	int modifyUserCash(UserDetailVo userDetailVo);
 	int setCashWithdraw(CashVo cashVo);
 	int modifyUserCashWithdraw(UserDetailVo userDetailVo);
-	List<CashVo> getCashDetail(String userId,String cashState);
+	List<CashVo> getCashDetail(CashVo cashVo);
 }

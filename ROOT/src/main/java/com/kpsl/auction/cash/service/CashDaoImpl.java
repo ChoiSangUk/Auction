@@ -1,8 +1,7 @@
 package com.kpsl.auction.cash.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -44,13 +43,10 @@ public class CashDaoImpl implements CashDao {
 	}
 
 	@Override
-	public List<CashVo> selectCashDetail(String userId,String cashState) {
-		log.info("CashDao Class selectCashDetail : "+ userId);
-		Map<String, String> paramMap = new HashMap<String, String>();
-		paramMap.put("userId", userId);
-		paramMap.put("cashState", cashState);
+	public List<CashVo> selectCashDetail(CashVo cashVo) {
+		log.info("CashDao Class selectCashDetail : "+ cashVo);
 		
-		return sqlSessionTemplate.selectList(NS+"selectCashDetail", paramMap);
+		return sqlSessionTemplate.selectList(NS+"selectCashDetail", cashVo);
 	}
 
 }
