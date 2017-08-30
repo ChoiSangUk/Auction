@@ -14,23 +14,29 @@
 				
 					<thead>
 						<tr>
+							<th>코드번호</th>
 							<th>품목명</th>
 							<th>등록자</th>
 							<th>입찰단위</th>
+							<th>시작가</th>
 							<th>등록시간</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="auction" items="${list}">
 							<tr>
+								<td>${auction.auctionGoodsCode}</td>
 								<td>${auction.auctionGoodsName}</td>
 								<td>${auction.userId}</td>
 								<td>${auction.auctionGoodsBidUnit}</td>
+								<td>${auction.auctionGoodsStartPrice}</td>
 								<td>${auction.auctionGoodsRegistDate}</td>
 								<td><a href="${pageContext.request.contextPath}
 								/bid/bidform?auctionGoodsName=${auction.auctionGoodsName}
-								&/bid/bidform?userId=${auction.userId}
-								&/bid/bidform?auctionGoodsBidUnit=${auction.auctionGoodsBidUnit}
+								&userId=${auction.userId}
+								&auctionGoodsBidUnit=${auction.auctionGoodsBidUnit}
+								&auctionGoodsStartPrice=${auction.auctionGoodsStartPrice}
+								&auctionGoodsCode=${auction.auctionGoodsCode}
 								">
 								<button>입찰</button>
 								</a>

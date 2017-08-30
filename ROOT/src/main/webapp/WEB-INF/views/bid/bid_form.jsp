@@ -21,8 +21,9 @@
 						<div>200만원이상 : 100,000원</div>
 						<tr>
 							<h2>입찰하기</h2>
-							<th>입찰품목:
-							<th>입찰단위:</th>
+							<th>품목명: ${auctionGoodsName}</th>
+							<th>시작가격: ${auctionGoodsStartPrice}원 </th>
+							<th>입찰단위: ${auctionGoodsBidUnit}원</th>
 							</th>
 						</tr>
 						<tr>

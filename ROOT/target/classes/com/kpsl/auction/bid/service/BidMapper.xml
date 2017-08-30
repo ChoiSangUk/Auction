@@ -2,47 +2,48 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
-  <mapper namespace="com.kpsl.auction.bid.service.BidMapper">
-  	<resultMap type="com.kpsl.auction.bid.vo.BidVo" id="Bid">
-  		<id property="bidCode" column="bid_code"></id>
-  		<id property="userBuyerId" column="user_buyer_id"></id>
+
+<mapper namespace="com.kpsl.auction.bid.service.BidMapper">
+	<resultMap type="com.kpsl.auction.bid.vo.BidVo" id="Bid">
+		<id property="bidCode" column="bid_code"></id>
+		<id property="userBuyerId" column="user_buyer_id"></id>
 		<id property="auctionGoodsCode" column="auction_goods_code"></id>
-   		<id property="userSellerId" column="user_seller_id"></id>
-  		<id property="bidPrice" column="bid_price"></id>
-  		<id property="bidDate" column="bid_date"></id>
+		<id property="userSellerId" column="user_seller_id"></id>
+		<id property="bidPrice" column="bid_price"></id>
+		<id property="bidDate" column="bid_date"></id>
 	</resultMap>
-	 <!--입찰자 리스트 쿼리문  -->
+	<!--입찰자 리스트 쿼리문(각 물품마다의 리스트) -->
 	<select id="selectBidList" parameterType="java.util.Map" resultMap="Bid">
-			SELECT bid_code
-		 	,user_buyer_id
-		 	,auction_goods_code
-		 	,user_seller_id
-		 	,bid_price
-		 	,bid_date
-		FROM bid_tb;
-  	</select>
-  	<!--입찰쿼리문-->
-	<insert id="insertBidPrice" parameterType="com.kpsl.auction.bid.vo.BidVo"
-			useGeneratedKeys="true" keyProperty="bidCode">
-		<selectKey keyProperty="bidCode" resultType="string"
-			order="BEFORE">
+		SELECT bid_code
+		,user_buyer_id
+		,auction_goods_code
+		,user_seller_id
+		,bid_price
+		,bid_date
+		FROM bid_tb
+		<!-- <where> <if test = "auctionGoodsCode != null"></if> auction_goods_code 
+			= #{auctionGoodsCode} </where> -->
+	</select>
+	<!--입찰쿼리문 -->
+	<insert id="insertBidPrice" parameterType="com.kpsl.auction.bid.vo.BidVo" useGeneratedKeys="true" keyProperty="bidCode">
+		<selectKey keyProperty="bidCode" resultType="string" order="BEFORE">
 			SELECT CONCAT("bid",MAX(CAST(substring(bid_code,4)+1 AS
-			DECIMAL))) FROM bid_tb
+			DECIMAL)))
+			FROM bid_tb
 		</selectKey>
-	INSERT INTO bid_tb
-	(bid_code
-	, user_buyer_id
-	, auction_goods_code
-	, user_seller_id
-	, bid_price
-	, bid_date)
-	VALUES 
-	(#{bidCode}
-	, #{userBuyerId}
-	, 'good1'<!--goos db에서 가져와야  -->
-	, 'id003'<!--goos 등록에서   -->
-	,  #{bidPrice}
-	, NOW());
+		INSERT INTO bid_tb
+		(bid_code
+		, user_buyer_id
+		, auction_goods_code
+		, user_seller_id
+		, bid_price
+		, bid_date)
+		VALUES
+		(#{bidCode}
+		, #{userBuyerId}
+		, 'good1'<!--goos db에서 가져와야 -->
+		, 'id003'<!--goos 등록에서 -->
+		, #{bidPrice}
+		, NOW());
 	</insert>
-  </mapper>
+</mapper>
