@@ -98,11 +98,11 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">경매시작날짜</label>
 						<div class="col-sm-2">
-							<input type="text" id="startdatepicker" placeholder="클릭해보세요" name="startDate">
+							<input type="text" id="startdatepicker" placeholder="클릭해보세요" name="startDate" readonly>
 						</div>
 						<label class="col-sm-2 control-label">경매 기간</label>
 						<div class="col-sm-1">
-							<select name="goodsTerm">
+							<select name="goodsTerm" id="goodsterm">
 								<option value="3">3</option>
 								<option value="4">4</option>
 								<option value="5">5</option>
@@ -120,7 +120,7 @@
 						
 						<label class="col-sm-2 control-label">경매종료날짜</label>
 						<div class="col-sm-2">
-							<input type="text" id="enddatepicker" placeholder="클릭해보세요" name="endDate">
+							<input type="text" id="enddate" placeholder="시작 날짜를 입력하세요" name="endDate" readonly>
 						</div>
 					</div>	
 					
@@ -142,18 +142,65 @@
 
 <script>
 //datepicker 속성 지정
- $('#startdatepicker').datepicker({
-	
-	/* endDate:4,
-	startDate:1	 */
+var minDate = moment().add('day',1).format('YYYY-MM-DD'); //내일부터 시작 가능
+var maxDate = moment().add('day',12).format('YYYY-MM-DD'); 
+console.log(minDate);
+console.log(maxDate);
+$('#startdatepicker').datepicker({		
+	language: 'ko',
+	startDate: minDate,
+	endDate: maxDate 
 });
-$('#enddatepicker').datepicker({
-	/* language:'ko',
-	startDate:4 */
-}); 
+
 
 
 	$(document).ready(function() {
+			
+		//startDate가 바뀌면 ajax로 endDate 설정
+			$('#startdatepicker').change(function(){
+				var endDate = moment($('#startdatepicker').val()).add('day',$('#goodsterm').val()).format('YYYY-MM-DD'); 
+				console.log('endDate : '+endDate)
+				var endDateParam = {
+					"endDate" : endDate
+				};
+				$.ajax({
+		            type : "GET",
+		            url : "${pageContext.request.contextPath}/enddateajax",
+		            data : endDateParam,
+		            contentType : 'application/json; charset=UTF-8',
+		            error : function(){
+		                alert('통신실패!!');
+		            },
+		            success : function(data){
+		                //alert("통신데이터 값 : " + data) ;
+ 		                $('#enddate').val(endDate);
+		                }
+		        });
+			});
+			
+		
+		//goodsTerm이 바뀌면 ajax로 endDate 설정
+			$('#goodsterm').change(function(){
+				var endDate = moment($('#startdatepicker').val()).add('day',$('#goodsterm').val()).format('YYYY-MM-DD');
+				var endDateParam = {
+						"endDate" : endDate
+					};
+				$.ajax({
+		            type : "GET",
+		            url : "${pageContext.request.contextPath}/enddateajax",
+		            data : endDateParam,
+		            contentType : 'application/json; charset=UTF-8',
+		            error : function(){
+		                alert('통신실패!!');
+		            },
+		            success : function(data){
+		                //alert("통신데이터 값 : " + data) ;
+ 		                $('#enddate').val(endDate);
+		                }
+		        });
+			});
+			
+			
 			var oEditors = [];
             
 			//datepicker
