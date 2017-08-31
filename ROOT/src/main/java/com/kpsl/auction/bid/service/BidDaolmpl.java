@@ -20,14 +20,20 @@ public class BidDaolmpl implements BidDao {
 	//입찰자 리스트
 	@Override
 	public List<BidVo> selectBidList(){
-		log.info("selectBidList 확인");
-		
+		log.info("BidDao selectBidList 확인");
 		return sessionTemplate.selectList(NS+"selectBidList");
+	}
+	//물품별입찰자 리스트
+	@Override
+	public List<BidVo> goodsSelectBidList(BidVo bidvo){
+		//log.info(auctionGoodsCode +" --> BidDao 물품코드 들어오는 것인가.?");
+		log.info("BidDao goodsselectBidList 확인");
+		return sessionTemplate.selectList(NS+"selectBidList",bidvo);
 	}
 	//입찰하기
 	@Override
 	public int instertBidPrice(BidVo bidvo) {
-		log.info("insertBidPrice 확인");
+		log.info("BidDao insertBidPrice 확인");
 		/*log.debug(sessionTemplate.insert(NS+"insertBidPrice" , bidvo));*/
 		return sessionTemplate.insert(NS+"insertBidPrice", bidvo);
 	

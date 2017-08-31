@@ -173,8 +173,8 @@ $.ajax({
 		    });
 		}
 	},
-	error: function(requestDate){
-		console.log('error'+requestDate);
+	error: function(data){
+		console.log('error'+data);
 	}
 });
     

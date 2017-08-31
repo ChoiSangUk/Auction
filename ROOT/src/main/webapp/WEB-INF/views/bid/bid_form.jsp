@@ -35,7 +35,7 @@
 										<div class="form-group">
 											<label for="bidPrice">입찰금액</label> <input type="int"
 												class="form-control" id="bidPrice" name="bidPrice"
-												placeholder="금액">
+												placeholder="시작가 ${auctionGoodsStartPrice}원">
 											<button type="sumbit" style="background-color: #BDBDBD;">입찰</button>
 										</div>
 									</form>
@@ -50,11 +50,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="bid" items="${list}">
+						<c:forEach var="goodsbid" items="${goodsbidlist}">
 							<tr>
-								<td>${bid.userBuyerId}</td>
-								<td>${bid.bidPrice}원</td>
-								<td>${bid.bidDate}</td>
+								<td>${goodsbid.userBuyerId}</td>
+								<td>${goodsbid.bidPrice}원</td>
+								<td>${goodsbid.bidDate}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

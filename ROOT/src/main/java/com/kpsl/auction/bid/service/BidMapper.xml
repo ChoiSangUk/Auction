@@ -13,16 +13,19 @@
 		<id property="bidDate" column="bid_date"></id>
 	</resultMap>
 	<!--입찰자 리스트 쿼리문(각 물품마다의 리스트) -->
-	<select id="selectBidList" parameterType="java.util.Map" resultMap="Bid">
+	<select id="selectBidList" parameterType="com.kpsl.auction.bid.vo.BidVo" resultMap="Bid">
 		SELECT bid_code
 		,user_buyer_id
 		,auction_goods_code
 		,user_seller_id
 		,bid_price
 		,bid_date
-		FROM bid_tb
-		<!-- <where> <if test = "auctionGoodsCode != null"></if> auction_goods_code 
-			= #{auctionGoodsCode} </where> -->
+		FROM bid_tb		  
+		<where>
+			<if test="auctionGoodsCode != null">
+				auction_goods_code=#{auctionGoodsCode}
+			</if>
+		</where>
 	</select>
 	<!--입찰쿼리문 -->
 	<insert id="insertBidPrice" parameterType="com.kpsl.auction.bid.vo.BidVo" useGeneratedKeys="true" keyProperty="bidCode">
