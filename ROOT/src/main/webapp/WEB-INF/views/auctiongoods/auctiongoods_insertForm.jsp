@@ -10,16 +10,17 @@
 <div class="container-fluid text-center" style="margin-right: 150px; margin-left: 150px;">
 	<div class="row content">
 		<h1>물품 등록</h1>
-		
+		<h1>${userLoginInfo.userId}</h1>
+		<h1>${userDetailInfo.userTotalcash}</h1>
 		<div class="col-sm-12 category text-left">
 			<div class="col-sm-4">
 				<h3>대분류 카테고리 선택</h3>
 				<br>
-				<div class="list-group " style="overflow: auto; height: 300px;">
+				<div class="list-group" style="overflow: auto; height: 300px;">
 					<c:forEach var="largeCategory" items="${largeCategory}">
 
 						<!-- a 태그 클릭시 값을 form의 input에 넘겨주고 이동 -->
-						<div class="list-group-item largeCategory"<%--  onclick="location.href='/auctiongoods/auctiongoodsinsert_middle?largeCategoryCode=${largeCategory.largeCategoryCode}'" --%>>
+						<div class="list-group-item btn-default btn-default largeCategory"<%--  onclick="location.href='/auctiongoods/auctiongoodsinsert_middle?largeCategoryCode=${largeCategory.largeCategoryCode}'" --%>>
 							<span class="largeCategoryCode" style="display: none">${largeCategory.largeCategoryCode}</span>
 							<span class="largeCategoryName">${largeCategory.largeCategoryName}</span>
 							<!-- 대분류 코드 값을 넣어 전달하여 중분류 선택  -->
@@ -34,7 +35,7 @@
 				<br>
 
 				<div class="list-group" id="middleCategory" style="overflow: auto; height: 300px;">
-						<div class="list-group-item">중분류</div>
+						<div class="list-group-item btn-default">중분류</div>
 				</div>
 			</div>	
 			
@@ -43,16 +44,26 @@
 				<br>
 
 				<div class="list-group" id="smallCategory"  style="overflow: auto; height: 300px;">
-					<div class="list-group-item">소분류</div>
+					<div class="list-group-item btn-default">소분류</div>
 				</div>
 			</div>
 		</div>
 
+		<div class="container col-sm-12"  style="margin:auto;">
+			<label class="col-sm-2 control-label">선택된 카테고리</label>
+			<div class="col-sm-3">
+				<label id="largeCategoryLable"></label>
+				<label id="middleCategoryLable"></label>
+				<label id="smallCategoryLable"></label> 
+			</div>
+		</div>
+		
 			<div class="container col-sm-12"  style="margin:auto;">
+			<hr>
 				<form class="form-horizontal"
 					action="${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert" method="post" id="frm">
 					
-						<div>
+						<div style="display:none;">
 							<h3>카테고리 코드</h3>
 							<div class="col-sm-4">
 							<input type="text" class="form-control" id="largeCategoryCode" name="largeCategoryCode"	value="" readonly /> 
@@ -77,6 +88,7 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<hr>
 						<label class="col-sm-2 control-label">경매방식</label>
 						<div class="col-sm-3">
 							<label class="radio-inline">
@@ -87,6 +99,7 @@
 					</div>
 					<!-- 일반 경매 선택시 노출되게 -->
 					<div class="form-group" id="auctionGoodsBidSys" style="display:none">
+						<hr>
 						<label class="col-sm-2 control-label">입찰방식</label>
 						<div class="col-sm-3">
 							<label class="radio-inline">
@@ -95,14 +108,63 @@
 							<input type="radio" name="auctionGoodsBidSys" value="blind">블라인드</label>
 						</div>
 					</div>
+					
+					<!--  시작가 -->
+					<div class="form-group" >
+						<hr>
+						<div>
+							<label class="col-sm-2 control-label">최소 입찰가</label>
+							<div class="col-sm-3">
+								<input class="form-control" id ="auctionGoodsStartPrice" type="text" name="auctionGoodsStartPrice" value="">
+							</div>
+							<label class="col-sm-1 control-label">판매 보증금</label>
+							<label class="col-sm-2 control-label" id="sellerDepositPrice"></label>
+							<label class="col-sm-1 control-label">보유 캐쉬</label>
+							<label class="col-sm-2 control-label" id="userTotalCash"></label>
+						</div>
+
+						<div class="form-group" id="bidUnit" style="display:none">
+							<label class="col-sm-2 control-label">입찰 단위(원)</label>
+							<div class="col-sm-1">
+								<select name="bidUnit" id="bidUnit">
+									<option value="3">100</option>
+									<option value="4">500</option>
+									<option value="5">1000</option>
+									<option value="6">5000</option>
+									<option value="7">10000</option>
+									<option value="8">50000</option>
+									<option value="9">100000</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group" id="instantBuyState" style="display:none">
+						<hr>
+							<label class="col-sm-2 control-label">즉시구매여부</label>
+							<div class="col-sm-3">
+								<label class="radio-inline">
+								<input type="radio" name="instantBuyState" value="on">가능</label> 
+								<label class="radio-inline">
+								<input type="radio" name="instantBuyState" value="off">불가</label>
+							</div>
+							
+							<div class="col-sm-5" id="instantBuyPrice" style="display:none">
+								<label class="col-sm-3 control-label">즉시구매가</label>
+								<input type="text" name="instantBuyPrice">
+							</div>
+						</div>
+					</div>
+					
+					
 					<div class="form-group">
+					<hr>
 						<label class="col-sm-2 control-label">경매시작날짜</label>
 						<div class="col-sm-2">
-							<input type="text" id="startdatepicker" placeholder="클릭해보세요" name="startDate">
+							<input type="text" id="startDate" placeholder="클릭해보세요" name="startDate" readonly>
 						</div>
 						<label class="col-sm-2 control-label">경매 기간</label>
 						<div class="col-sm-1">
-							<select name="goodsTerm">
+							<select name="goodsTerm" id="goodsTerm">
 								<option value="3">3</option>
 								<option value="4">4</option>
 								<option value="5">5</option>
@@ -120,7 +182,7 @@
 						
 						<label class="col-sm-2 control-label">경매종료날짜</label>
 						<div class="col-sm-2">
-							<input type="text" id="enddatepicker" placeholder="클릭해보세요" name="endDate">
+							<input type="text" id="endDate" placeholder="시작 날짜를 입력하세요" name="endDate" readonly>
 						</div>
 					</div>	
 					
@@ -142,18 +204,71 @@
 
 <script>
 //datepicker 속성 지정
- $('#startdatepicker').datepicker({
-	
-	/* endDate:4,
-	startDate:1	 */
+var minDate = moment().add('day',1).format('YYYY-MM-DD'); //내일부터 시작 가능
+var maxDate = moment().add('day',12).format('YYYY-MM-DD'); 
+console.log(minDate);
+console.log(maxDate);
+$('#startDate').datepicker({		
+	language: 'ko',
+	startDate: minDate,
+	endDate: maxDate 
 });
-$('#enddatepicker').datepicker({
-	/* language:'ko',
-	startDate:4 */
-}); 
+
 
 
 	$(document).ready(function() {
+		
+		//최소 입찰가가 바뀔 때 보유캐쉬와 보증금을 비교
+			$('#auctionGoodsStartPrice').change(function(){
+				var auctionGoodsStartPrice = $('#auctionGoodsStartPrice').val();	
+				//console.log('최소입찰금액 : '+ auctionGoodsStartPrice);
+			});
+		
+		//startDate가 바뀌면 ajax로 endDate 설정
+			$('#startDate').change(function(){
+				var endDate = moment($('#startDate').val()).add('day',$('#goodsTerm').val()).format('YYYY-MM-DD'); 
+				console.log('endDate : '+endDate)
+				var endDateParam = {
+					"endDate" : endDate
+				};
+				$.ajax({
+		            type : "GET",
+		            url : "${pageContext.request.contextPath}/enddateajax",
+		            data : endDateParam,
+		            contentType : 'application/json; charset=UTF-8',
+		            error : function(){
+		                alert('통신실패!!');
+		            },
+		            success : function(data){
+		                //alert("통신데이터 값 : " + data) ;
+ 		                $('#endDate').val(endDate);
+		                }
+		        });
+			});
+			
+		
+		//goodsTerm이 바뀌면 ajax로 endDate 설정
+			$('#goodsTerm').change(function(){
+				var endDate = moment($('#startDate').val()).add('day',$('#goodsTerm').val()).format('YYYY-MM-DD');
+				var endDateParam = {
+						"endDate" : endDate
+					};
+				$.ajax({
+		            type : "GET",
+		            url : "${pageContext.request.contextPath}/enddateajax",
+		            data : endDateParam,
+		            contentType : 'application/json; charset=UTF-8',
+		            error : function(){
+		                alert('통신실패!!');
+		            },
+		            success : function(data){
+		                //alert("통신데이터 값 : " + data) ;
+ 		                $('#endDate').val(endDate);
+		                }
+		        });
+			});
+			
+			
 			var oEditors = [];
             
 			//datepicker
@@ -189,7 +304,7 @@ $('#enddatepicker').datepicker({
 		 
 
 		
-		
+		//대분류 카테고리를 클릭했을때의 동작
 		$('.largeCategory').click(function() {
 			var largeCategoryName = $(this).find('.largeCategoryName').text();
 			var largeCategoryCode = $(this).find('.largeCategoryCode').text();
@@ -197,7 +312,7 @@ $('#enddatepicker').datepicker({
 			//console.log(largeCategoryName);
 			//alert(largeCategoryCode);
 			var largeParam = {
-				"largeCategoryCode" : largeCategoryCode,
+				"largeCategoryCode" : largeCategoryCode
 				//"largeCategoryName" : largeCategoryName
 			};
 			
@@ -206,7 +321,10 @@ $('#enddatepicker').datepicker({
 			//대분류 카테고리를 누를때마다 중분류를 지워주고  다시 뿌림
 			$('#middleCategory').children().remove();
 			$('#middleCategoryCode').val("");
+			$('#middleCategoryLable').text("");
+			
 			$('#smallCategoryCode').val("");
+			$('#smallCategoryLable').text("");
 
 			$.ajax({
 				url : '/auction/auctiongoods/auctiongoodsinsert_middle',
@@ -221,7 +339,7 @@ $('#enddatepicker').datepicker({
 				success : function(getData) {
 					console.log('getData의 길이 :' + getData.length);
 					console.log('getData 는? \n' + getData);
-
+					
 					var obj = jQuery.parseJSON(JSON.stringify(getData));
 					console.log('obj의 length :'+obj.length);
 					console.log(obj[1].largeCategoryCode);
@@ -236,20 +354,27 @@ $('#enddatepicker').datepicker({
 						var divTag = $('<div></div>');
 						var spanTagLargeCategoryCode = $('<span	style="display:none"></span>');
 						var spanTagMiddleCategoryCode = $('<span style="display:none"></span>');
+						var spanTagMiddleCategoryName = $('<span style="display:none"></span>');
 						
 						//태그에 들어갈 클래스들을 추가
-						divTag.addClass('list-group-item');
+						divTag.addClass('list-group-item btn-default');
 						divTag.addClass('middleCategory');
 						
 						spanTagLargeCategoryCode.addClass('largeCategoryCode');
 						spanTagMiddleCategoryCode.addClass('middleCategoryCode');
+						spanTagMiddleCategoryName.addClass('middleCategoryName');
 						
 						//태그에 속한 텍스트 내용을 추가
 						spanTagLargeCategoryCode.append(largeCategoryCode);
 						spanTagMiddleCategoryCode.append(middleCategoryCode);
+						spanTagMiddleCategoryName.append(middleCategoryName);
+						
+						//div 태그에 각 span들을 추가
 						divTag.append(middleCategoryName);
 						divTag.append(spanTagLargeCategoryCode);
 						divTag.append(spanTagMiddleCategoryCode);
+						divTag.append(spanTagMiddleCategoryName);
+						
 						//만들어둔 태그들을 기존의 태그 안에 추가
 						$('#middleCategory').append(divTag);
 						//$('#middleCategory').append(spanTagLargeCategoryCode);
@@ -257,24 +382,26 @@ $('#enddatepicker').datepicker({
 					}
 
 					$('#largeCategoryCode').val(largeCategoryCode);
+					$('#largeCategoryLable').text(largeCategoryName+' > ');
 					
 					$('.middleCategory').click(function() {
 						
 						var largeCategoryCode = $(this).find('.largeCategoryCode').text();
 						var middleCategoryCode = $(this).find('.middleCategoryCode').text();
-						var middleCategoryName = $(this).find('.largeCategoryName').text();
+						var middleCategoryName = $(this).find('.middleCategoryName').text();
 						
-						console.log(largeCategoryCode);
+						console.log('미들카테고리네임 ?' + middleCategoryName);
 						
 						var middleParam = {
 								"largeCategoryCode" : largeCategoryCode,
-								"middleCategoryCode" : middleCategoryCode,
+								"middleCategoryCode" : middleCategoryCode
 						};
 						
 						//원래있던 소분류를 지워주고 다시 뿌려주기 
 						$('#smallCategory').children().remove();
 						$('#smallCategoryCode').val("");
-						
+						$('#smallCategoryLable').text("");
+
 						$.ajax({
 							url : '/auction/auctiongoods/auctiongoodsinsert_small',
 							type : 'get',
@@ -305,36 +432,43 @@ $('#enddatepicker').datepicker({
 									var spanTagLargeCategoryCode = $('<span style="display:none"></span>');
 									var spanTagMiddleCategoryCode = $('<span style="display:none"></span>');
 									var spanTagSmallCategoryCode = $('<span style="display:none"></span>');
+									var spanTagSmallCategoryName = $('<span style="display:none"></span>');
 									
 									//태그에 들어갈 클래스들을 추가
-									divTag.addClass('list-group-item');
+									divTag.addClass('list-group-item btn-default');
 									divTag.addClass('smallCategory');
 									
 									spanTagLargeCategoryCode.addClass('largeCategoryCode');
 									spanTagMiddleCategoryCode.addClass('middleCategoryCode');
 									spanTagSmallCategoryCode.addClass('smallCategoryCode');
+									spanTagSmallCategoryName.addClass('smallCategoryName');
 									
 									//태그에 속한 텍스트 내용을 추가
 									spanTagLargeCategoryCode.append(largeCategoryCode);
 									spanTagMiddleCategoryCode.append(middleCategoryCode);
 									spanTagSmallCategoryCode.append(smallCategoryCode);
+									spanTagSmallCategoryName.append(smallCategoryName);
 									
 									divTag.append(smallCategoryName);
 									divTag.append(spanTagLargeCategoryCode);
 									divTag.append(spanTagMiddleCategoryCode);
 									divTag.append(spanTagSmallCategoryCode);
+									divTag.append(spanTagSmallCategoryName);
 									
 									//만들어둔 태그들을 기존의 태그 안에 추가
 									$('#smallCategory').append(divTag);
 									//$('#smallCategory').append(spanTagLargeCategoryCode);
 									//$('#smallCategory').append(spanTagMiddleCategoryCode);
 									//$('#smallCategory').append(spanTagSmallCategoryCode);
+								
 								}
-
+								
 								$('#middleCategoryCode').val(middleCategoryCode);
-									
+								$('#middleCategoryLable').text(middleCategoryName+' > ');
+								
 								$('.smallCategory').click(function() {
 									var smallCategoryCode = $(this).find('.smallCategoryCode').text();
+									var smallCategoryName = $(this).find('.smallCategoryName').text();
 									console.log(smallCategoryCode);
 									$.ajax({
 										url : '/auction/auctiongoods/auctiongoodsinsert',
@@ -352,6 +486,7 @@ $('#enddatepicker').datepicker({
 											console.log(smallCategoryCode);
 
 											$('#smallCategoryCode').val(smallCategoryCode);
+											$('#smallCategoryLable').text(smallCategoryName);
 											}
 												
 										});
@@ -370,10 +505,23 @@ $('#enddatepicker').datepicker({
 		//일반 라디오버튼 선택시 입찰 방식 보이게 토글 버튼으로 만듦
 		 $('input[name=auctionGoodsSys]').click(function () {
 		        if ($(this).val() == 'normal') {
-		        	$('#auctionGoodsBidSys').show();
+		        	$('#auctionGoodsBidSys').show(); //경매방식이 일반일때 입찰방식 보임
+		        	$('#bidUnit').show();		 	 //경매방식이 일반일때 입찰단위 보임	
+		        	$('#instantBuyState').show();	 //경매방식이 일반일때 즉시구매여부 보임
 		        } else {
 		        	$('#auctionGoodsBidSys').hide();
+		        	$('#bidUnit').hide();
+		        	$('#instantBuyState').hide();
 		        }
+		 });
+		
+		//즉시구매가 가능일 때
+		 $('input[name=instantBuyState]').click(function (){
+			 if($(this).val() == 'on'){
+				 $('#instantBuyPrice').show(); //즉시구매가 입력 보임
+			 }else {
+		        	$('#instantBuyPrice').hide();
+		     }
 		 });
 		
 
