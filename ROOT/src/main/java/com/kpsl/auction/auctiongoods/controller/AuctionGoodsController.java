@@ -218,7 +218,6 @@ public class AuctionGoodsController {
 	@RequestMapping(value="/auctiongoods/auctiongoodsinsert", method= RequestMethod.POST)
 	public void auctionGoodsInsert_Post(HttpServletRequest request){
 		System.out.println("에디터 컨텐츠 값 : "+request.getParameter("ir1"));
-		System.out.println("등록 날짜 : " + request.getParameter("registDate"));
 	}
 	
 	//auctiongoods_list.jsp에서 대분류카테고리코드의 값을 받았을 때 중분류를 뿌려주기 위한 처리
@@ -260,4 +259,11 @@ public class AuctionGoodsController {
 		model.addAttribute("list",list);
 		return "/auctiongoods/auctiongoods_list1";
 	} 
+	
+	@RequestMapping(value = "/enddateajax", method = RequestMethod.GET)
+	@ResponseBody
+	public String endDate(Model model, @RequestParam(value="endDate", required=true) String endDate){
+		log.info("enddateajax에서 "+endDate+" 리턴");
+		return endDate;
+	}
 }
