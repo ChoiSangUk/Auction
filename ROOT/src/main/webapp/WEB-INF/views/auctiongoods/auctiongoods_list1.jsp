@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="/resources/module/admin_top.jsp" charEncoding="UTF-8" />
 
 <div class="container-fluid text-center">
@@ -14,7 +15,7 @@
 				
 					<thead>
 						<tr>
-							<th>코드번호</th>
+							<th type = "hidden">코드번호</th>
 							<th>품목명</th>
 							<th>등록자</th>
 							<th>입찰단위</th>
@@ -28,8 +29,8 @@
 								<td>${auction.auctionGoodsCode}</td>
 								<td>${auction.auctionGoodsName}</td>
 								<td>${auction.userId}</td>
-								<td>${auction.auctionGoodsBidUnit}</td>
-								<td>${auction.auctionGoodsStartPrice}</td>
+								<td><fmt:formatNumber value="${auction.auctionGoodsBidUnit}" groupingUsed="true"/>원</td>
+								<td><fmt:formatNumber value="${auction.auctionGoodsStartPrice}" groupingUsed="true"/>원</td>
 								<td>${auction.auctionGoodsRegistDate}</td>
 								<td><a href="${pageContext.request.contextPath}
 								/bid/bidform?auctionGoodsName=${auction.auctionGoodsName}
