@@ -23,7 +23,7 @@
 		FROM bid_tb		  
 		<where>
 			<if test="auctionGoodsCode != null">
-				auction_goods_code=#{auctionGoodsCode}
+				auction_goods_code=#{auctionGoodsCode} ORDER BY bid_price DESC 
 			</if>
 		</where>
 	</select>

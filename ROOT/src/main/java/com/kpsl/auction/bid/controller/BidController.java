@@ -38,11 +38,9 @@ public class BidController {
 		int auctionGoodsBidUnit = AuctionGoodsVo.getAuctionGoodsBidUnit();
 		model.addAttribute("auctionGoodsBidUnit",auctionGoodsBidUnit);
 		//품목별 입찰자 리스트(물품코드를 통한 쿼리실행)
-		String auctionGoodsCode = AuctionGoodsVo.getAuctionGoodsCode();
 		List<BidVo> goodsbidlist = bidService.goodsSelectBidList(bidvo);
 		model.addAttribute("goodsbidlist", goodsbidlist);
 		//==========
-		
 		
 		//전체입찰자 리스트
 		List<BidVo> list = bidService.getBidList();
@@ -66,8 +64,17 @@ public class BidController {
 			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");
 			bidvo.setUserBuyerId(buyerId);				//입찰자 아이디
 			bidService.setBidPrice(bidvo);				//입찰가격을 bidprice 에 set
+			bidvo.setBidCode(AuctionGoodsVo.getAuctionGoodsCode());
+			
 			log.info("입찰자 입찰하기");
 			return "redirect:/bid/bidform";	 
+	}
+		//본인이 입찰한 물품 리스트 보여주는 controller
+		@RequestMapping(value = "/bid/usergoodsbidlist", method = RequestMethod.GET)
+		public String user(){
+			/*String buyerId = (String)session.getAttribute("userId");*/
+		
+			return "/bid/NewFile";	 
 	}
 }
 	
