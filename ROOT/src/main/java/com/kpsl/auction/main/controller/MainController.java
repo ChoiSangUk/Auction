@@ -97,4 +97,11 @@ public class MainController {
 		
 		return "/mypage/mypage_main";
 	}
+	//구매자신용도
+	@RequestMapping(value = "/mypage/mypageMyinfoCredit", method = RequestMethod.GET)
+	public String mypageCredit(HttpSession session) {
+		String userId = (String) session.getAttribute("userId");
+
+		return "/mypage/mypage_myinfo_credit";
+	}
 }
