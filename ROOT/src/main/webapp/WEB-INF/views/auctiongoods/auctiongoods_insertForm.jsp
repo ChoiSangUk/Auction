@@ -11,7 +11,6 @@
 	<div class="row content">
 		<h1>물품 등록</h1>
 		<h1>${userLoginInfo.userId}</h1>
-		<h1>${userDetailInfo.userTotalcash}</h1>
 		<div class="col-sm-12 category text-left">
 			<div class="col-sm-4">
 				<h3>대분류 카테고리 선택</h3>
@@ -25,7 +24,6 @@
 							<span class="largeCategoryName">${largeCategory.largeCategoryName}</span>
 							<!-- 대분류 코드 값을 넣어 전달하여 중분류 선택  -->
 						</div>
-
 					</c:forEach>
 				</div>
 			</div>
@@ -49,12 +47,14 @@
 			</div>
 		</div>
 
-		<div class="container col-sm-12"  style="margin:auto;">
-			<label class="col-sm-2 control-label">선택된 카테고리</label>
-			<div class="col-sm-3">
-				<label id="largeCategoryLable"></label>
-				<label id="middleCategoryLable"></label>
-				<label id="smallCategoryLable"></label> 
+		<div class="container col-sm-12"   style="margin:auto;">
+			<div class="col-sm-2" align="right">
+				<label class ="control-label" >선택된 카테고리</label>
+			</div>
+			<div class="col-sm-9">
+				<label class="col-sm-2" id="largeCategoryLable"></label>
+				<label class="col-sm-2" id="middleCategoryLable"></label>
+				<label class="col-sm-2" id="smallCategoryLable"></label> 
 			</div>
 		</div>
 		
@@ -63,8 +63,8 @@
 				<form class="form-horizontal"
 					action="${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert" method="post" id="frm">
 					
+					<!-- 카테고리 코드가 담아져서 전달되는곳 -->
 						<div style="display:none;">
-							<h3>카테고리 코드</h3>
 							<div class="col-sm-4">
 							<input type="text" class="form-control" id="largeCategoryCode" name="largeCategoryCode"	value="" readonly /> 
 							</div>
@@ -78,8 +78,6 @@
 							<br>
 						</div>
 						<br>
-						<br>
-						<br>
 						
 					<div class="form-group">
 						<label class="col-sm-2 control-label">물품명</label>
@@ -87,6 +85,7 @@
 							<input class="form-control" type="text" name="auctionGoodsName" value="">
 						</div>
 					</div>
+					
 					<div class="form-group">
 						<hr>
 						<label class="col-sm-2 control-label">경매방식</label>
@@ -113,14 +112,15 @@
 					<div class="form-group" >
 						<hr>
 						<div>
-							<label class="col-sm-2 control-label">최소 입찰가</label>
-							<div class="col-sm-3">
+							<label class="col-sm-1 control-label">최소 입찰가</label>
+							<div class="col-sm-2">
 								<input class="form-control" id ="auctionGoodsStartPrice" type="text" name="auctionGoodsStartPrice" value="">
 							</div>
-							<label class="col-sm-1 control-label">판매 보증금</label>
+							<label class="col-sm-2 control-label">판매 보증금 :</label>
 							<label class="col-sm-2 control-label" id="sellerDepositPrice"></label>
-							<label class="col-sm-1 control-label">보유 캐쉬</label>
-							<label class="col-sm-2 control-label" id="userTotalCash"></label>
+							<label class="col-sm-1 control-label">캐쉬</label>
+							<label class="col-sm-2 control-label" >보유 캐쉬 :</label>
+							<label class="col-sm-2 control-label" id="userTotalCash">${userLoginInfo.userTotalcash} 캐쉬</label>
 						</div>
 
 						<div class="form-group" id="bidUnit" style="display:none">
@@ -154,7 +154,6 @@
 							</div>
 						</div>
 					</div>
-					
 					
 					<div class="form-group">
 					<hr>
@@ -215,13 +214,53 @@ $('#startDate').datepicker({
 });
 
 
-
 	$(document).ready(function() {
 		
 		//최소 입찰가가 바뀔 때 보유캐쉬와 보증금을 비교
 			$('#auctionGoodsStartPrice').change(function(){
-				var auctionGoodsStartPrice = $('#auctionGoodsStartPrice').val();	
-				//console.log('최소입찰금액 : '+ auctionGoodsStartPrice);
+				var auctionGoodsStartPrice = $('#auctionGoodsStartPrice').val();
+				if(auctionGoodsStartPrice<5000){
+					alert('최소 입찰가를 5000원 이상으로 입력하시오!')
+					$('#auctionGoodsStartPrice').val('')
+					$('#sellerDepositPrice').text('')
+				}else{
+					if(auctionGoodsStartPrice%100 != 0){
+						alert('최소입찰가는 100의 배수로 입력해주세요!')
+						$('#auctionGoodsStartPrice').val('')
+						$('#sellerDepositPrice').text('')
+					}else{			
+					//console.log('최소입찰금액 : '+ auctionGoodsStartPrice);
+					var userTotalCash = ${userLoginInfo.userTotalcash};
+					console.log('보유금액 : '+ userTotalCash);
+					
+					$.ajax({
+			            type : "GET",
+			            url : "${pageContext.request.contextPath}/sellerdepositajax",
+			            error : function(){
+			                alert('통신실패!!');
+			            },
+			            success : function(data){
+			                //alert("통신데이터 값 : " + data) ;
+			               // console.log('ajax 후에 auctionGoodsStartPrice'+auctionGoodsStartPrice)
+			               
+			              //최소입찰가가 정해지면 보증금이 자동으로 정해짐
+			               if(auctionGoodsStartPrice < 50000){
+			            	   $('#sellerDepositPrice').text('5000')
+			               }else if(auctionGoodsStartPrice >=50000 && auctionGoodsStartPrice <200000){
+			            	   $('#sellerDepositPrice').text('10000')
+			               }else if(auctionGoodsStartPrice >=200000 && auctionGoodsStartPrice <500000){
+			            	   $('#sellerDepositPrice').text('30000')
+			               }else if(auctionGoodsStartPrice >=500000 && auctionGoodsStartPrice <2000000){
+			            	   $('#sellerDepositPrice').text('50000')
+			               }else if(auctionGoodsStartPrice >=200000){
+			            	   $('#sellerDepositPrice').text('100000')
+			               }
+			               
+			               
+			        	}
+					});  
+					}
+				}
 			});
 		
 		//startDate가 바뀌면 ajax로 endDate 설정
