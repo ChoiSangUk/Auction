@@ -52,6 +52,7 @@ public class CashController {
 		session.getAttribute("userDetailInfo");
 		//3. 회사매입매출에 insert
 		
+		
 		return "redirect:/mypage/mypageMain";
 	}
 
