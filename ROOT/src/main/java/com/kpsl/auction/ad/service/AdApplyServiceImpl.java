@@ -52,7 +52,29 @@ public class AdApplyServiceImpl implements AdApplyService {
 		log.info("getAdApplyList 호출 확인");
 		return adApplyDao.selectAdApplyList(adApplyVo);
 	}
-
+	
+	@Override
+	public List<AdApplyVo> getAdApplyListBySv(AdApplyVo adApplyVo, String sk, String sv, String sDate, String eDate) {
+		
+		log.info("getAdApplyListBySv 호출 확인");
+		adApplyVo.setAdApplyRegistDate(sDate+eDate);
+		if(sk.equals("adApplyCode")) {
+			adApplyVo.setAdApplyCode(sv);
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}else if(sk.equals("userId")) {
+			adApplyVo.setUserId(sv);
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}else if(sk.equals("adApplyState")) {
+			adApplyVo.setAdApplyState(sv);
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}
+		
+		return adApplyDao.selectAdApplyList(adApplyVo);
+	}
+	
 	@Override
 	public AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo getAdApplyDetail(String adApplyCode) {
 		log.info(adApplyCode+"<--- getAdApplyAndAdImageByAdApplyCode adApplyCode 확인");

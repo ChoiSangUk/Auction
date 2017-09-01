@@ -94,7 +94,7 @@
 				'승인대기')
 	</insert>
 	<!-- 전체 광고신청 리스트 SELECT쿼리 (등록순으로)-->
-	<select id="selectAdApply" resultMap="AdApplyVo">
+	<select id="selectAdApply" parameterType="com.kpsl.auction.ad.vo.AdApplyVo" resultMap="AdApplyVo">
 		SELECT  ad_apply_code, 
 				ad_unit_price_code, 
 				auction_goods_code, 
@@ -104,11 +104,21 @@
 				ad_apply_end_date, 
 				ad_apply_state
 		FROM ad_apply_tb
-		<where>
-			<if test="adApplyState != null">
-				ad_apply_state = #{ad_apply_state}
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="adApplyCode != null and adApplyCode != ''">
+				ad_apply_code = #{adApplyCode}
 			</if>
-		</where>
+			<if test="userId != null and userId != ''">
+				user_id = #{userId}
+			</if>
+			<if test="adApplyState != null and adApplyState != ''">
+				ad_apply_state = #{adApplyState}
+			</if>
+			<if test="adApplyRegistDate != null and adApplyRegistDate != ''">
+				AND ad_apply_regist_date
+				BETWEEN substring(#{adApplyRegistDate},1,10) AND substring(#{adApplyRegistDate},11,20)
+			</if>
+		</trim>
 		ORDER BY ad_apply_regist_date
 	</select>
 	<!-- 광고신청,광고이미지, 광고단가, 물품 JOIN -->

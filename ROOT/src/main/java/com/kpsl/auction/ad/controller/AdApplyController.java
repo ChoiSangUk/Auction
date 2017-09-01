@@ -133,14 +133,16 @@ public class AdApplyController {
 		return "/admin/ad/admin_adApply_search";
 	}
 	
-	// 광고신청 리스트 조회
+	// 광고신청 리스트 조회 요청
 	@RequestMapping(value = "/ad/adminAdApplySearch", method = RequestMethod.POST)
 	public String adApplySearch(Model model, AdApplyVo adApplyVo
-								,@RequestParam(value="sk", required=true) String sk) {
+								,@RequestParam(value="sk", required=true) String sk
+								,@RequestParam(value="sv", required=true) String sv
+								,@RequestParam(value="sDate", required=true) String sDate
+								,@RequestParam(value="eDate", required=true) String eDate) {
 		
 		log.info("adApplyList 확인");
-		log.info(sk+"<--- 신청날짜 확인");
-		List<AdApplyVo> adApplyList = adApplyService.getAdApplyList(adApplyVo);
+		List<AdApplyVo> adApplyList = adApplyService.getAdApplyListBySv(adApplyVo, sk, sv, sDate, eDate);
 		model.addAttribute("adApplyList",adApplyList);
 		
 		return "/admin/ad/admin_adApply_search";

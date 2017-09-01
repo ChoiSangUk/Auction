@@ -31,7 +31,7 @@ th {
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
-							<th class="col-sm-2 active" rowspan="2">기간별 검색</th>
+							<th class="col-sm-2 active" rowspan="2">기간별 검색<br>(신청일 기준)</th>
 							<td>
 								<label class="radio-inline" style="margin-left: 15px;">
 								<input type="radio" name="all" value="1">전체보기</label>
@@ -46,7 +46,7 @@ th {
 								<div class="form-inline dt">
 								<div class="col-sm-3 input-group date" data-provide="datepicker" id="sdate"
 								style="margin-left: 15px;">
-									<input class="form-control" type="text" name="adApplyStartDate">
+									<input class="form-control" type="text" name="sDate">
 									<div class="input-group-addon">
 						        		<span class="glyphicon glyphicon-th"></span>
 						    		</div>
@@ -54,7 +54,7 @@ th {
 								<span style="margin-left: 15px;">~</span>
 								<div class="col-sm-3 input-group date" data-provide="datepicker" id="edate"
 								style="margin-left: 15px;">
-									<input class="form-control" type="text" name="adApplyEndDate">
+									<input class="form-control" type="text" name="eDate">
 									<div class="input-group-addon">
 						        		<span class="glyphicon glyphicon-th"></span>
 						    		</div>
@@ -69,7 +69,6 @@ th {
 									<select class="form-control" name="sk">
 										<option value="adApplyCode">광고신청코드</option>
 										<option value="userId">아이디</option>
-										<option value="adApplyRegistDate">광고신청일</option>
 										<option value="adApplyState">광고신청상태</option>
 									</select>
 								</div>
