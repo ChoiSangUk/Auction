@@ -22,19 +22,12 @@ public class BidController {
 	
 	Logger log = Logger.getLogger(this.getClass());
 
-	//모든 물품의 입찰자 리스트
-	/*@RequestMapping(value = "/bid/bidform", method = RequestMethod.GET)
-	public String allbidList(Model model){
-		List<BidVo> list = bidService.getBidList();
-		model.addAttribute("list",list);
-		return "/bid/bid_form";
-		
-	}*/
 	
-	//입찰자 리스트(각각의 물품마다의 입찰자 리스트)
+	
+	//입찰자 리스트(각각의 물품마다의 입찰자 리스트, 전체리스트)
 	@RequestMapping(value = "/bid/bidform", method = RequestMethod.GET)
 	public String bidList(Model model, AuctionGoodsVo AuctionGoodsVo, BidVo bidvo){
-	
+			
 		//물품명
 		String auctionGoodsName = AuctionGoodsVo.getAuctionGoodsName();
 		model.addAttribute("auctionGoodsName",auctionGoodsName);
@@ -44,13 +37,18 @@ public class BidController {
 		//입찰단위
 		int auctionGoodsBidUnit = AuctionGoodsVo.getAuctionGoodsBidUnit();
 		model.addAttribute("auctionGoodsBidUnit",auctionGoodsBidUnit);
-		
+		//품목별 입찰자 리스트(물품코드를 통한 쿼리실행)
 		String auctionGoodsCode = AuctionGoodsVo.getAuctionGoodsCode();
-		bidvo.setAuctionGoodsCode(auctionGoodsCode);
+		List<BidVo> goodsbidlist = bidService.goodsSelectBidList(bidvo);
+		model.addAttribute("goodsbidlist", goodsbidlist);
+		//==========
 		
-		log.info(auctionGoodsCode + "물품코드");
+		
+		//전체입찰자 리스트
 		List<BidVo> list = bidService.getBidList();
 		model.addAttribute("list",list);
+		//=====================
+		
 		log.info(auctionGoodsStartPrice+"시작가");
 		log.info(auctionGoodsName+"품목명");
 		log.info(auctionGoodsBidUnit+"입찰단위");

@@ -47,7 +47,9 @@
 			<div class="col-md-9 col-sm-6 col-xs-12	 clearfix">
 				<div class="box box-gray my-money-box clearfix">
 					<p class="pull-left fs18 fcBlue">
-						<strong>${userDetailInfo.userTotalcash} 원</strong>
+						<strong id="totalCash">						
+							${userDetailInfo.userTotalcash}원
+						</strong>
 					</p>
 					<p class="pull-right btn-col-3">
 						<a href="#">충전관리</a> <a href="#">출금관리</a> <a href="#">상세내역</a>
@@ -59,7 +61,7 @@
 	<div class="row text-center mt30">
 		<a href="${pageContext.request.contextPath}/mypage/myinfo/Cash" class="btn btn-info">충전신청</a>
 	</div>
-	<form name="inputForm" id="inputForm" method="post"
+	<form name="outputForm" id="outputForm" method="post"
 		action="${pageContext.request.contextPath}/mypage/myinfo/CashWithdraw">
 		<input type="hidden" name="cmd" id="cmd" value="in">
 				<!-- 조회 테이블 -->
@@ -91,7 +93,7 @@
 								</div>
 								<div class="form-inline">
 									<div class="input-group">
-										<input type="number" id="bankmoney" name="cashPrice" maxlength="10" class="form-control">*1000원 이상 신청가능
+										<input type="number" id="cashPrice" name="cashPrice" maxlength="10" class="form-control">*1000원 이상 신청가능
 										<button type="button" class="btn btn-dark-gray mr10">지우기</button>
 										<strong class="mr10 fcBlue" id="moneyTxt"></strong>
 									</div>
@@ -126,7 +128,8 @@
 			<!--// 조회 테이블 -->
 
 			<div class="row text-center btn-col-2">
-				<button type="submit" class="btn btn-info">출금하기</button>
+				<button type="button" id="submitBtn" class="btn btn-info">출금하기</button>
+				
 				<a class="btn btn-info" href="${pageContext.request.contextPath}/mypage/mypageMain">뒤로가기</a>
 			</div>
 		</div>
@@ -137,8 +140,20 @@
 
 <!-- 충전 누를시 충전하시겠습니까? Y/N 구현해야되-->
 <script type="text/javascript">
-	function inputBankMoney(vl) {
-		$("#bankmoney").val(vl);
+function inputBankMoney(vl) {
+	$("#cashPrice").val(vl);
+}
+
+$('#submitBtn').click(function() {
+	var withdrawCash = parseInt($('#cashPrice').val());
+	var totalCash = parseInt($('#totalCash').text());
+	console.log(withdrawCash);
+	console.log(totalCash);
+	if(withdrawCash <= totalCash) {
+		$('#outputForm').submit();
+	}else {
+		alert('금액부족');
 	}
+});
 </script>
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8" />

@@ -69,7 +69,7 @@
 										<th class="text-center active">결제구분</th>
 									<td>
 										
-											<div class="visible-lg visible-md">
+											<div>
 												<label class="checkbox-inline"> <input
 													type="checkbox" value="충전" name="cashState"> 캐쉬충전
 												</label><label class="checkbox-inline"> <input

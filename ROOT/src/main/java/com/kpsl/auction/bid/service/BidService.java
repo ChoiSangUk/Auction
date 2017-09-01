@@ -12,8 +12,12 @@ public interface BidService {
 
 		/**입찰자 리스트 인터페이스 **/
 	List<BidVo> getBidList();
+		/**물품별 입찰자 리스트 인터페이스**/
+	List<BidVo> goodsSelectBidList(BidVo bidvo);
 		/**입찰버튼 클릭시 인터페이스**/
 	int setBidPrice(BidVo bidvo);
+	
 		
 	
 }
+

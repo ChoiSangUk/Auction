@@ -48,7 +48,7 @@
 						<li><a href="${pageContext.request.contextPath}#">매입/매출 검색X</a></li>
 						<li><a href="${pageContext.request.contextPath}#">매입/매출 월별통계X</a></li>
 					</ul>
-				<li><a href="${pageContext.request.contextPath}/main">
+				<li><a href="${pageContext.request.contextPath}/logout">
 				<button class="btn btn-danger btn-xs">경매사이트 바로가기</button></a>
 				</li>
 				<li>

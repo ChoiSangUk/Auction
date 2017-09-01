@@ -111,7 +111,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 						</a>
 					</div>
 					<div class="col-sm-3">
-						<a class="mypage-a" href="#"> <span
+						<a class="mypage-a" href="${pageContext.request.contextPath}/mypage/mypageMyinfoCredit"> <span
 							class="glyphicon glyphicon-stats" aria-hidden="true"
 							aria-hidden="true"></span> <br>내 신용도<br>조회
 						</a>
