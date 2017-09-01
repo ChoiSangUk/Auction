@@ -96,8 +96,11 @@ public class AuctionGoodsController {
 
 	// auctiongoodsinert action 부분
 	@RequestMapping(value = "/auctiongoods/auctiongoodsinsert", method = RequestMethod.POST)
-	public void auctionGoodsInsert_Post(HttpServletRequest request) {
-		System.out.println("에디터 컨텐츠 값 : " + request.getParameter("ir1"));
+	public void auctionGoodsInsert_Post(AuctionGoodsVo auctionGoodsVo, Model model) {
+		//System.out.println("에디터 컨텐츠 값 : " + request.getParameter("auctionGoodsContents"));
+		//System.out.println("경매 기간 : "+ request.getParameter("auctionGoodsTerm"));
+		//AuctionGoodsVo auctionGoodsVo, Model model
+		System.out.println(auctionGoodsVo.toString());
 	}
 
 	// auctiongoods_list.jsp에서 대분류카테고리코드의 값을 받았을 때 중분류를 뿌려주기 위한 처리
