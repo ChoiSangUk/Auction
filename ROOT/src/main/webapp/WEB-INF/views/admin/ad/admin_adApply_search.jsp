@@ -9,7 +9,7 @@ th {
 	text-align: center !important;
 }
 
-#btn {
+.btn-lg {
 	width: 125px !important;
 }
 
@@ -34,11 +34,10 @@ th {
 							<th class="col-sm-2 active" rowspan="2">기간별 검색<br>(신청일 기준)</th>
 							<td>
 								<label class="radio-inline" style="margin-left: 15px;">
-								<input type="radio" name="all" value="1">전체보기</label>
-								<label class="radio-inline"><input type="radio" name="applyDate" id="all" value="">최근일주</label>
-								<label class="radio-inline"><input type="radio" name="applyDate" id="range-1m" value="">최근1개월</label>
-								<label class="radio-inline"><input type="radio" name="applyDate" id="range-3m" value="">최근3개월</label>
-								<label class="radio-inline"><input type="radio" name="applyDate" id="range-6m" value="">최근6개월</label>
+								<input type="radio" name="type" value="7">최근일주일</label>
+								<label class="radio-inline"><input type="radio" name="type" value="1">최근1개월</label>
+								<label class="radio-inline"><input type="radio" name="type" value="3">최근3개월</label>
+								<label class="radio-inline"><input type="radio" name="type" value="6">최근6개월</label>
 							</td>
 						</tr>
 						<tr>
@@ -85,8 +84,8 @@ th {
 					</tbody>
 				</table>
 				<div class="form-group text-center">
-					<input class="btn btn-info btn-lg" type="submit" id="btn" value="검색">
-					<input class="btn btn-lg" type="button" id="btn" value="검색삭제">
+					<input class="btn btn-info btn-lg" type="submit" id="submitBtn" value="검색">
+					<input class="btn btn-lg" type="reset" id="resetBtn" value="검색삭제">
 				</div>
 			</form>
 		</div>
@@ -136,8 +135,32 @@ $('#edate').datepicker({
 	language: 'ko',
 	orientation: 'bottom'
 });
+$('input:radio[name=type]').click(function(){
+	var checkVal = $('input:radio[name=type]:checked').val(); 
+	console.log(checkVal);
+	if(checkVal === '7') {
+		var subDate = moment().subtract(checkVal, 'days').format('YYYY-MM-DD');
+		var nowDate = moment().format('YYYY-MM-DD');
+		$('input:text[name=sDate]').val(subDate);
+		$('input:text[name=eDate]').val(nowDate);
+	}else if(checkVal === '1') {
+		var subDate = moment().subtract(checkVal, 'months').format('YYYY-MM-DD');
+		var nowDate = moment().format('YYYY-MM-DD');
+		$('input:text[name=sDate]').val(subDate);
+		$('input:text[name=eDate]').val(nowDate);
+	}else if(checkVal === '3') {
+		var subDate = moment().subtract(checkVal, 'months').format('YYYY-MM-DD');
+		var nowDate = moment().format('YYYY-MM-DD');
+		$('input:text[name=sDate]').val(subDate);
+		$('input:text[name=eDate]').val(nowDate);
+	}else if(checkVal === '6') {
+		var subDate = moment().subtract(checkVal, 'months').format('YYYY-MM-DD');
+		var nowDate = moment().format('YYYY-MM-DD');
+		$('input:text[name=sDate]').val(subDate);
+		$('input:text[name=eDate]').val(nowDate);
+	}
+});
 
-$
 </script>
 
 <c:import url="/resources/module/admin_footer.jsp" charEncoding="UTF-8" />

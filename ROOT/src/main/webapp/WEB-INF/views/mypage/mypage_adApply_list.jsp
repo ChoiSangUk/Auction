@@ -4,9 +4,11 @@
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
 
 <style>
-.table {
-	margin: auto;
+th,td {
+	vertical-align: middle !important;
+	text-align: center !important;
 }
+
 </style>
 
 <div class="container-fluid">
@@ -23,9 +25,9 @@
 			</div>
 			<div class="row content">				
 				<!-- 광고신청 리스트 테이블 -->
-				<table class="table table-hover">
+				<table class="table table-bordered">
 					<thead>
-						<tr>
+						<tr class="active text-center">
 							<th>광고명</th>
 							<th>물품명</th>
 							<th>광고신청상태</th>
@@ -45,7 +47,7 @@
 							<td>
 							<a href="${pageContext.request.contextPath}
 							/mypage/adApplyUpdateForm?adApplyCode=${ad.adApplyVo.adApplyCode}&adImageCode=${ad.adImageVo.adImageCode}">
-							<button>수정</button>
+							<button class="btn btn-success">수정</button>
 							</a>
 							</td>
 							</c:when>
@@ -59,12 +61,16 @@
 							<c:when test="${adApplyState eq '승인완료' and adPayment eq null}">
 							<td>
 							<a href="${pageContext.request.contextPath}/mypage/adPaymentInsertForm?adApplyCode=${ad.adApplyVo.adApplyCode}">
-							<button>결제</button>
+							<button class="btn btn-info">결제</button>
 							</a>
 							</td>
 							</c:when>
 							<c:when test="${adPayment ne null}">
-							<td>${adPayment}</td>
+							<td>
+							<strong style="color: red;">
+							${adPayment}
+							</strong>
+							</td>
 							</c:when>
 							<c:otherwise>
 							<td></td>
