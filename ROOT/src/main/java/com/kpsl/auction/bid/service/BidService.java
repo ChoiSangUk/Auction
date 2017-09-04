@@ -14,7 +14,9 @@ public interface BidService {
 	List<BidVo> getBidList();
 		/**물품별 입찰자 리스트 인터페이스**/
 	List<BidVo> goodsSelectBidList(BidVo bidvo);
-		/**입찰버튼 클릭시 인터페이스**/
+	/**개인 입찰 리스트**/
+	List<BidVo> userSelectGoodsBidsList(BidVo bidvo);
+	/**입찰버튼 클릭시 인터페이스**/
 	int setBidPrice(BidVo bidvo);
 	
 		

@@ -12,9 +12,12 @@ public interface BidDao{
 	List<BidVo> selectBidList();
 	/**품목별 입찰자 리스트 조회 하는 인터페이스**/
 	List<BidVo> goodsSelectBidList(BidVo bidvo);
+	/**개인 물품 입찰 리스트**/
+	List<BidVo> userSelectGoodsBidsList(BidVo bidvo);
 	
 	/**입찰 버튼 클릭 시 입찰 하는 인터페이스 **/
 	int instertBidPrice(BidVo bidvo);
 
+	
 		
 }

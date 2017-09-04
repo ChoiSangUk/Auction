@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.bid.service.BidService;
 import com.kpsl.auction.bid.vo.BidVo;
@@ -19,6 +21,7 @@ import com.kpsl.auction.bid.vo.BidVo;
 @Controller
 public class BidController {
 	@Autowired BidService bidService;
+	@Autowired AuctionGoodsService auctiongoodsservice;
 	
 	Logger log = Logger.getLogger(this.getClass());
 
@@ -27,7 +30,8 @@ public class BidController {
 	//입찰자 리스트(각각의 물품마다의 입찰자 리스트, 전체리스트)
 	@RequestMapping(value = "/bid/bidform", method = RequestMethod.GET)
 	public String bidList(Model model, AuctionGoodsVo AuctionGoodsVo, BidVo bidvo){
-			
+	
+		
 		//물품명
 		String auctionGoodsName = AuctionGoodsVo.getAuctionGoodsName();
 		model.addAttribute("auctionGoodsName",auctionGoodsName);
@@ -40,7 +44,7 @@ public class BidController {
 		//품목별 입찰자 리스트(물품코드를 통한 쿼리실행)
 		List<BidVo> goodsbidlist = bidService.goodsSelectBidList(bidvo);
 		model.addAttribute("goodsbidlist", goodsbidlist);
-		//==========
+	
 		
 		//전체입찰자 리스트
 		List<BidVo> list = bidService.getBidList();
@@ -70,11 +74,17 @@ public class BidController {
 			return "redirect:/bid/bidform";	 
 	}
 		//본인이 입찰한 물품 리스트 보여주는 controller
-		@RequestMapping(value = "/bid/usergoodsbidlist", method = RequestMethod.GET)
-		public String user(){
-			/*String buyerId = (String)session.getAttribute("userId");*/
-		
-			return "/bid/NewFile";	 
+		@RequestMapping(value = "/bid/bidusergoodsbidlist", method = RequestMethod.GET)
+		public String user(HttpSession session,  BidVo bidvo,Model model){
+			
+			//개인 입찰품목 리스트(session을 통해 가져온 아이디로 쿼리실행)
+			String buyerId = (String)session.getAttribute("userId");	
+			bidvo.setUserBuyerId(buyerId);
+			log.info(buyerId+"세션을 통해 들어온 아이디");
+			List<BidVo> usergoodsbidlist = bidService.userSelectGoodsBidsList(bidvo);
+			model.addAttribute("usergoodsbidlist",usergoodsbidlist);
+			
+			return "/bid/bid_usergoodsbidlist";	 
 	}
 }
 	

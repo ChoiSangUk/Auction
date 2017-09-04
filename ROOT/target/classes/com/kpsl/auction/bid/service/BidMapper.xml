@@ -22,8 +22,13 @@
 		,bid_date
 		FROM bid_tb		  
 		<where>
+		<!--물품에 입찰된 금액 리스트(내림차순)  -->
 			<if test="auctionGoodsCode != null">
 				auction_goods_code=#{auctionGoodsCode} ORDER BY bid_price DESC 
+			</if>
+			<!--개인 입찰  리스트  -->
+			<if test ="userBuyerId != null">
+				user_buyer_id = #{userBuyerId}
 			</if>
 		</where>
 	</select>

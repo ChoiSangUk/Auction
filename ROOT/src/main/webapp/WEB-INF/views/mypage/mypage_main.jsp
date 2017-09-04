@@ -136,7 +136,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 			<div class="col-sm-12 md-box">
 				<h3>
 					<span class="glyphicon glyphicon-search"></span> 구매현황 <a
-						class="mypage-a" href="#"> <span
+						class="mypage-a" href="${pageContext.request.contextPath}/bid/bidusergoodsbidlist"> <span
 						class="pull-right glyphicon glyphicon-plus"></span> <span
 						class="pull-right">구매관리 바로가기</span>
 					</a>
