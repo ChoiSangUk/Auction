@@ -31,7 +31,6 @@ public class BidController {
 	@RequestMapping(value = "/bid/bidform", method = RequestMethod.GET)
 	public String bidList(Model model, AuctionGoodsVo AuctionGoodsVo, BidVo bidvo){
 	
-		
 		//물품명
 		String auctionGoodsName = AuctionGoodsVo.getAuctionGoodsName();
 		model.addAttribute("auctionGoodsName",auctionGoodsName);
