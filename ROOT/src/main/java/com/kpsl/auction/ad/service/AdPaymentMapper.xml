@@ -22,6 +22,7 @@
 			<id property="adApplyRegistDate" column="ad_apply_regist_date"/>
 			<id property="adApplyStartDate" column="ad_apply_start_date"/>
 			<id property="adApplyEndDate" column="ad_apply_end_date"/>
+			<id property="adApplyApprovalDate" column="ad_apply_approval_date"/>
 			<id property="adApplyState" column="ad_apply_state"/>
     	</association>
     	<association property="adImageVo" javaType="com.kpsl.auction.ad.vo.AdImageVo">

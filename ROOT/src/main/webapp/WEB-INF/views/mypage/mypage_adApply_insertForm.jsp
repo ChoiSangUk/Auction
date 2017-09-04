@@ -173,8 +173,22 @@ $.ajax({
 		    });
 		}
 	},
+	/* 광고신청이 하나도없을 시 */
 	error: function(data){
 		console.log('error'+data);
+		var nowDate = moment().format('YYYY-MM-DD');
+		$('#sdate').datepicker({
+	    	format: 'yyyy-mm-dd',
+	    	language: 'ko',
+	    	orientation: 'bottom',
+	    	startDate: nowDate
+	    });
+		$('#edate').datepicker({
+	    	format: 'yyyy-mm-dd',
+	    	language: 'ko',
+	    	orientation: 'bottom',
+	    	startDate: nowDate
+	    });
 	}
 });
     

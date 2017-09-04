@@ -14,6 +14,7 @@ import com.kpsl.auction.ad.service.AdApplyService;
 import com.kpsl.auction.ad.service.AdPaymentService;
 import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo;
 import com.kpsl.auction.ad.vo.AdPaymentVo;
+import com.kpsl.auction.saleslog.vo.SalesLogVo;
 import com.kpsl.auction.user.service.UserService;
 import com.kpsl.auction.user.vo.UserDetailVo;
 
@@ -43,14 +44,13 @@ public class AdPaymentController {
 	
 	// 광고결제페이지(액션) 요청, 광고결제와 회원캐쉬출금 트랜잭션 처리
 	@RequestMapping(value = "/mypage/adPaymentInsertForm", method = RequestMethod.POST)
-	public String adPaymentInsertForm(HttpSession session, AdPaymentVo adPaymentVo) {
+	public String adPaymentInsertForm(HttpSession session, AdPaymentVo adPaymentVo, SalesLogVo salesLogVo) {
 		
 		log.info("adPaymentInsertForm 요청 확인");
 		String userId = (String) session.getAttribute("userId");
 		adPaymentVo.setUserId(userId);
-		adPaymentService.addAdPayment(adPaymentVo);
-		adPaymentService.modifyUserTotalcash(adPaymentVo);
-		
+		salesLogVo.setSalesLogUserId(userId);
+		adPaymentService.adPaymentAndSalesLogTransaction(adPaymentVo, salesLogVo);
 		return "redirect:/main";
 	}
 }

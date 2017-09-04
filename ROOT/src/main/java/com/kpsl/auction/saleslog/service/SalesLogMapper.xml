@@ -56,6 +56,30 @@
 				'100000', 
 				NOW(), 
 				'캐쉬충전');
-
+	</insert>
+	
+	<insert id="insertIncomeSalesLog" parameterType="com.kpsl.auction.saleslog.vo.SalesLogVo" >
+		<selectKey keyProperty="salesLogCode" resultType="string"
+			order="BEFORE">
+			SELECT CONCAT("inout",MAX(CAST(substring(sales_log_code,6)+1 AS
+			DECIMAL))) FROM sales_log_tb
+		</selectKey>
+		INSERT INTO sales_log_tb
+				(sales_log_code, 
+				sales_log_relation_code, 
+				sales_log_relation,
+				sales_log_deposit_and_withdrawal, 
+				sales_log_user_id, 
+				sales_log_price,
+				sales_log_date, 
+				sales_log_remarks)
+		VALUES (#{salesLogCode}, 
+				#{salesLogRelationCode}, 
+				#{salesLogRelation}, 
+				#{salesLogDepositAndWithdrawal}, 
+				#{salesLogUserId}, 
+				#{salesLogPrice}, 
+				NOW(), 
+				#{salesLogRemarks});
 	</insert>
 </mapper>

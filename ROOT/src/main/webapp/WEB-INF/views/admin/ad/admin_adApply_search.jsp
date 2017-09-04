@@ -100,6 +100,7 @@ th {
 						<th>광고시작일</th>
 						<th>광고종료일</th>
 						<th>광고신청상태</th>
+						<th>광고승인/반려일</th>
 						<th>상세보기</th>
 					</tr>
 				</thead>
@@ -112,6 +113,7 @@ th {
 						<td>${ad.adApplyStartDate}</td>
 						<td>${ad.adApplyEndDate}</td>
 						<td>${ad.adApplyState}</td>
+						<td>${ad.adApplyApprovalDate}</td>
 						<td><a class="btn btn-success"
 							href="${pageContext.request.contextPath}/ad/adminAdApplyDetail?adApplyCode=${ad.adApplyCode}">상세보기</a>
 						</td>

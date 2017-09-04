@@ -87,7 +87,6 @@ public class AdApplyController {
 		log.info("myAdApplyList 요청 확인");
 		String userId = (String) session.getAttribute("userId");
 		log.info(userId);
-		//String userId = "id002";
 		List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> myApplyList = 
 				adApplyService.getMyAdApplyList(userId);
 		model.addAttribute("myApplyList",myApplyList);
@@ -190,6 +189,7 @@ public class AdApplyController {
 		adImageVo.setAdImagePath(adFile.get("adImagePath"));
 		adImageVo.setAdImageName(adFile.get("adImageName"));		
 		adApplyService.adApplyTransaction(adApplyVo, adImageVo);
+		
 		
 		return "redirect:/mypage/mypageMain";
 	}
