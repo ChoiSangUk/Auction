@@ -94,6 +94,7 @@ public class AuctionGoodsController {
 		//System.out.println("에디터 컨텐츠 값 : " + request.getParameter("auctionGoodsContents"));
 		//System.out.println("경매 기간 : "+ request.getParameter("auctionGoodsTerm"));
 		//AuctionGoodsVo auctionGoodsVo, Model model
+		System.out.println(auctionGoodsVo.toString());
 		
 		//img태그를 찾아서 소스 분리
 		String contents = auctionGoodsVo.getAuctionGoodsContents();
@@ -112,10 +113,11 @@ public class AuctionGoodsController {
         /*  for(int i = 0; i<imgList.size(); i++){
         	System.out.println(imgList.get(i)); 
         }*/
-        int a =auctionGoodsService.addAuctionGoods(auctionGoodsVo, imgList);
+        //물품등록할 service 호출
+        auctionGoodsService.addAuctionGoods(auctionGoodsVo, imgList);
 
-		//System.out.println(auctionGoodsVo.toString());
-        return "/auctiongoods/auctiongoods_list";
+		
+        return auctionGoodsList(model);
 	}
 
 	
