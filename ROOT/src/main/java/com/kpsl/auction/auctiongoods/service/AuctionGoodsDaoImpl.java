@@ -21,12 +21,23 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 		// TODO Auto-generated method stub
 		log.info("selectAdUnitPriceList 확인");
 		
-		return sqlSessionTemplate.selectOne("com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper.selectAuctionGoods");
+		return sqlSessionTemplate.selectOne(NS+"selectAuctionGoods");
 	}
+	
+	//물품 등록
+	@Override
+	public int insertAuctionGoods(AuctionGoodsVo auctionGoodsVo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert(NS+"insertAuctionGoods", auctionGoodsVo);
+	}
+	
 	//등록품목 리스트 
 	@Override
 	public List<AuctionGoodsVo> selectAuctionGoodss() {
 		log.info("goodss !! list DAO쪽 메서드");
 		return sqlSessionTemplate.selectList(NS+"selectAuctionGoodss");
 	}
+	
+	
+
 }

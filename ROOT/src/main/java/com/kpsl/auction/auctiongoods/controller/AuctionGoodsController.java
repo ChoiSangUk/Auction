@@ -1,8 +1,9 @@
 package com.kpsl.auction.auctiongoods.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
 import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.goodscategory.service.GoodsCategoryService;
@@ -29,12 +28,6 @@ public class AuctionGoodsController {
 	@Autowired
 	private AuctionGoodsService auctionGoodsService;
 
-	// 판매 보증금 비교 ajax
-	@RequestMapping(value = "/sellerdepositajax")
-	@ResponseBody
-	public void sellerDepositCompare() {
-		System.out.println("insertForm.jsp에서 보유금과 보증금 비교");
-	}
 
 	// 스마트 에디터 테스트
 	@RequestMapping(value = "/test")
@@ -96,44 +89,37 @@ public class AuctionGoodsController {
 
 	// auctiongoodsinert action 부분
 	@RequestMapping(value = "/auctiongoods/auctiongoodsinsert", method = RequestMethod.POST)
-	public void auctionGoodsInsert_Post(AuctionGoodsVo auctionGoodsVo, Model model) {
+	public String auctionGoodsInsert_Post(AuctionGoodsVo auctionGoodsVo, Model model) {
+		System.out.println("acutiongoodsinsert_Post");
 		//System.out.println("에디터 컨텐츠 값 : " + request.getParameter("auctionGoodsContents"));
 		//System.out.println("경매 기간 : "+ request.getParameter("auctionGoodsTerm"));
 		//AuctionGoodsVo auctionGoodsVo, Model model
-		System.out.println(auctionGoodsVo.toString());
+		
+		//img태그를 찾아서 소스 분리
+		String contents = auctionGoodsVo.getAuctionGoodsContents();
+        Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
+        Matcher matcher = pattern.matcher(contents);
+        
+        //img소스를 담을 list 객체 
+        List<String> imgList = new ArrayList<String>();
+        
+        //추출한 img src들을 imgList에 담아줌
+        while(matcher.find()){
+        	imgList.add(matcher.group(1));
+            //System.out.println(matcher.group(1));
+        }
+      
+        /*  for(int i = 0; i<imgList.size(); i++){
+        	System.out.println(imgList.get(i)); 
+        }*/
+        int a =auctionGoodsService.addAuctionGoods(auctionGoodsVo, imgList);
+
+		//System.out.println(auctionGoodsVo.toString());
+        return "/auctiongoods/auctiongoods_list";
 	}
 
-	// auctiongoods_list.jsp에서 대분류카테고리코드의 값을 받았을 때 중분류를 뿌려주기 위한 처리
-	@RequestMapping(value = "/auctiongoods/auctiongoodsinsert_middle", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-	@ResponseBody
-	public String auctionGoodsInsert_Middle(Model model,
-			@RequestParam(value = "largeCategoryCode", required = true) String largeCategoryCode) {
-		log.info("auctionGoodsInsert_Middle에서 largeCategoryCode  :" + largeCategoryCode);
-		// List<LargeCategoryVo> largeCategory =
-		// goodsCategoryService.getAllLargeCategory();
-		List<MiddleCategoryVo> middleCategoryList = goodsCategoryService.getMiddleCategoryList(largeCategoryCode);
-
-		Gson gson = new Gson();
-		return gson.toJson(middleCategoryList);
-
-	}
-
-	@RequestMapping(value = "/auctiongoods/auctiongoodsinsert_small", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-	@ResponseBody
-	public String auctionGoodsInsert_Small(Model model,
-			@RequestParam(value = "largeCategoryCode", required = true) String largeCategoryCode,
-			@RequestParam(value = "middleCategoryCode", required = true) String middleCategoryCode) {
-
-		log.info("auctionGoodsInsert_Small에서 largeCategoryCode :" + largeCategoryCode);
-		// List<LargeCategoryVo> largeCategory =
-		// goodsCategoryService.getAllLargeCategory();
-		List<SmallCategoryVo> smallCategoryList = goodsCategoryService.getSmallCategoryList(largeCategoryCode,
-				middleCategoryCode);
-
-		Gson gson = new Gson();
-		return gson.toJson(smallCategoryList);
-
-	}
+	
+	
 
 	// 물품리스트
 	@RequestMapping(value = "/auctiongoods/goodslist", method = RequestMethod.GET)
@@ -145,11 +131,6 @@ public class AuctionGoodsController {
 		model.addAttribute("list", list);
 		return "/auctiongoods/auctiongoods_list1";
 	}
-
-	@RequestMapping(value = "/enddateajax", method = RequestMethod.GET)
-	@ResponseBody
-	public String endDate(Model model, @RequestParam(value = "endDate", required = true) String endDate) {
-		log.info("enddateajax에서 " + endDate + " 리턴");
-		return endDate;
-	}
+	
+	
 }

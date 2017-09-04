@@ -25,4 +25,17 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 		return auctionGoodsDao.selectAuctionGoodss();
 	}
 	
+	
+	@Override
+	public int addAuctionGoods(AuctionGoodsVo auctionGoodsVo, List<String> imgList) {
+		// TODO Auto-generated method stub
+		System.out.println("AuctionGoodsServiceImpl.addAuctionGoods에서 imgList가 잘 받아지나");
+	    for(int i=0; i<imgList.size(); i++){
+	    	System.out.println(imgList.get(i));
+	    }
+	    System.out.println("AuctionGoodsServiceImpl.addAuctionGoods에서 auctionGoodsVo가 잘 받아지나");
+	    System.out.println(auctionGoodsVo.toString());
+		return auctionGoodsDao.insertAuctionGoods(auctionGoodsVo);
+	}
+	
 }
