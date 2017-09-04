@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -174,21 +175,7 @@ public class AdApplyController {
 		
 		return "/mypage/mypage_adApply_insertForm";
 	}
-	// 신청한 광고가 3개 이상이면 첫번째 광고의 종료날짜를 리턴
-	@RequestMapping(value = "/dateAjax", method = RequestMethod.POST)
-	public @ResponseBody String dateAjax() {
-		
-		log.info("ajax 호출 확인");
-		List<AdApplyAndAdImageAndAdPaymentVo> currentAdList = adPaymentService.getPaymentSuccessList();
-		String endDate = currentAdList.get(0).getAdApplyVo().getAdApplyEndDate();
-		log.info(currentAdList.size()+"<--- size");
-		
-		if(currentAdList.size() >= 3) {
-			return endDate;
-		}else {
-			return null;
-		}
-	}
+
 	
 	// 광고신청 (액션) 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)

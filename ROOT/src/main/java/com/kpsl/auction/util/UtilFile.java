@@ -32,7 +32,7 @@ public class UtilFile {
 			fileName = uploadFile.getOriginalFilename();
 			byte[] bytes = uploadFile.getBytes();
 			// 배포할때에
-			path = getSaveLocation(request);
+			//path = getSaveLocation(request);
 			// 로컬에서 테스트할때에
 			path = "D:/git/Auction/ROOT/src/main/webapp/resources/files/";
 
