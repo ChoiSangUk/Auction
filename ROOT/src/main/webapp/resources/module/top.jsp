@@ -82,12 +82,6 @@
 			<ul class="nav navMenu navbar-nav navbar-left " >
 				<li class="dropdown dropdown:hover ">
 				<a class="dropdown-toggle" data-toggle="dropdown/button" href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist">온라인 경매</a>
-				<ul class="dropdown-menu  depth2 down-style2 ">
-					<li>
-						<a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist">동양미술</a>
-					
-					</li>
-				</ul>
 				<c:if test="${userLoginInfo.userLevel eq '판매자'}"> 
 				<li><a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert">물품등록</a></li>
 				<li><a onclick="window.open('/auction/auctiongoods/goodslist','win2','scrollbars=yes width=650, height=700');return false">품목리스트</a>			

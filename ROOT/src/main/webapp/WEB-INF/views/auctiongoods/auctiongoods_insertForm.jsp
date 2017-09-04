@@ -7,7 +7,6 @@
 <div class="container-fluid text-center" style="margin-right: 150px; margin-left: 150px;">
 	<div class="row content">
 		<h1>물품 등록</h1>
-		<h1>${userLoginInfo.userId}</h1>
 		<div class="col-sm-12 category text-left">
 			<div class="col-sm-4">
 				<h3>대분류 카테고리 선택</h3>

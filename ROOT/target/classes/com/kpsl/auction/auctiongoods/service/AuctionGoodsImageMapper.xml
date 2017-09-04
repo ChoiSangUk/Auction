@@ -1,1 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.kpsl.auction.auctiongoods.service.AuctionGoodsImageMapper">
+  	<resultMap type="com.kpsl.auction.auctiongoods.vo.AuctionGoodsImageVo" id="AuctionGoodsImage">
+		<id property="auctionGoodsImageCode" column="auction_goods_image_code"/>
+		<id property="auctionGoodsCode" column="auction_goods_code"/>
+		<id property="auctionGoodsImagePath" column="auction_goods_image_path"/>
+		
+		
+	</resultMap>
+	
+	<insert id="insertAuctionGoodsImage" parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsImageVo"
+	 useGeneratedKeys="true" keyProperty="auctionGoodsImageCode">
+	<selectKey keyProperty="auctionGoodsImageCode" resultType="string" order="BEFORE">
+			SELECT CONCAT("agi",MAX(CAST(substring(auction_goods_image_code,4)+1 AS DECIMAL))) 
+			FROM auction_goods_image_tb
+		</selectKey>
+		INSERT INTO auction_goods_image_tb 
+		(
+		 auction_goods_image_code,
+		 auction_goods_code,
+		 auction_goods_image_path
+		 )
+		 VALUES (
+		 #{auctionGoodsImageCode},
+		 #{auctionGoodsCode},
+		 #{auctionGoodsImagePath}
+		 );
+	</insert>
+	
+	
+	
+	
+  </mapper>

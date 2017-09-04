@@ -3,9 +3,7 @@ package com.kpsl.auction.auctiongoods.vo;
 public class AuctionGoodsImageVo {
 	private String auctionGoodsImageCode; 		//경매물품이미지코드(PK)
 	private String auctionGoodsCode;			// 경매물품코드(FK)
-	private String userId; 						//아이디(FK)
-	private String auctionGoodsImageName; 		//이미지명
-	private String auctionGoodsImageAlertName;	//변경된 이미지명
+	private String auctionGoodsImagePath; 		//이미지 경로
 	public String getAuctionGoodsImageCode() {
 		return auctionGoodsImageCode;
 	}
@@ -18,29 +16,17 @@ public class AuctionGoodsImageVo {
 	public void setAuctionGoodsCode(String auctionGoodsCode) {
 		this.auctionGoodsCode = auctionGoodsCode;
 	}
-	public String getUserId() {
-		return userId;
+	public String getAuctionGoodsImagePath() {
+		return auctionGoodsImagePath;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	public String getAuctionGoodsImageName() {
-		return auctionGoodsImageName;
-	}
-	public void setAuctionGoodsImageName(String auctionGoodsImageName) {
-		this.auctionGoodsImageName = auctionGoodsImageName;
-	}
-	public String getAuctionGoodsImageAlertName() {
-		return auctionGoodsImageAlertName;
-	}
-	public void setAuctionGoodsImageAlertName(String auctionGoodsImageAlertName) {
-		this.auctionGoodsImageAlertName = auctionGoodsImageAlertName;
+	public void setAuctionGoodsImagePath(String auctionGoodsImagePath) {
+		this.auctionGoodsImagePath = auctionGoodsImagePath;
 	}
 	@Override
 	public String toString() {
 		return "AuctionGoodsImageVo [auctionGoodsImageCode=" + auctionGoodsImageCode + ", auctionGoodsCode="
-				+ auctionGoodsCode + ", userId=" + userId + ", auctionGoodsImageName=" + auctionGoodsImageName
-				+ ", auctionGoodsImageAlertName=" + auctionGoodsImageAlertName + "]";
+				+ auctionGoodsCode + ", auctionGoodsImagePath=" + auctionGoodsImagePath + "]";
 	}
+	
 	
 }
