@@ -32,6 +32,8 @@ th,td {
 						<tr class="active text-center">
 							<th>광고명</th>
 							<th>물품명</th>
+							<th>광고시작날짜</th>
+							<th>광고종료날짜</th>
 							<th>광고신청상태</th>
 							<th>수정</th>
 							<th>결제</th>
@@ -42,6 +44,8 @@ th,td {
 						<tr>
 							<td>${ad.adUnitPriceVo.adUnitPriceName}</td>
 							<td>${ad.auctionGoodsVo.auctionGoodsName}</td>
+							<td>${ad.adApplyVo.adApplyStartDate}</td>
+							<td>${ad.adApplyVo.adApplyEndDate}</td>
 							<td>${ad.adApplyVo.adApplyState}</td>
 							<c:set var="adApplyState" value="${ad.adApplyVo.adApplyState}" />
 							<c:choose>

@@ -30,11 +30,27 @@ public class AdPaymentController {
 	Logger log = Logger.getLogger(this.getClass());	
 	
 	// 관리자 광고결제리스트 요청
-	@RequestMapping(value = "/ad/adminAdPaymentSearch", method = RequestMethod.GET)
-	public String adPaymentList(Model model, AdApplyAndAdImageAndAdPaymentVo adApplyAndAdImageAndAdPaymentVo) {
+	@RequestMapping(value = "/ad/adminAdPaymentSearch", method = RequestMethod.POST)
+	public String adPaymentSearch(Model model, AdPaymentVo adPaymentVo
+								, @RequestParam(value="sk", required=true) String sk
+								, @RequestParam(value="sv", required=true) String sv
+								, @RequestParam(value="sDate", required=true) String sDate
+								, @RequestParam(value="eDate", required=true) String eDate) {
 		
 		log.info("adPaymentList 요청 확인");
-		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentList = adPaymentService.getPaymentList(adApplyAndAdImageAndAdPaymentVo);
+		log.info(adPaymentVo.getAdPaymentCode()+"<---");
+		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentList = adPaymentService.getPaymentSearchList(adPaymentVo, sk, sv, sDate, eDate);
+		model.addAttribute("adPaymentList", adPaymentList);
+		
+		return "/admin/ad/admin_adPayment_search";
+	}
+	
+	// 관리자 광고결제리스트 요청
+	@RequestMapping(value = "/ad/adminAdPaymentSearch", method = RequestMethod.GET)
+	public String adPaymentList(Model model, AdPaymentVo adPaymentVo) {
+		
+		log.info("adPaymentList 요청 확인");
+		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentList = adPaymentService.getPaymentList();
 		model.addAttribute("adPaymentList", adPaymentList);
 		
 		return "/admin/ad/admin_adPayment_search";

@@ -38,6 +38,7 @@ th {
 								<label class="radio-inline"><input type="radio" name="type" value="1">최근1개월</label>
 								<label class="radio-inline"><input type="radio" name="type" value="3">최근3개월</label>
 								<label class="radio-inline"><input type="radio" name="type" value="6">최근6개월</label>
+								<label class="radio-inline"><input type="radio" name="adPaymentState" value="currentAd">현재등록중인광고</label>
 							</td>
 						</tr>
 						<tr>
@@ -67,8 +68,9 @@ th {
 								<div class="col-sm-2">
 									<select class="form-control" name="sk">
 										<option value="adPaymentCode">광고결제코드</option>
-										<option value="userId">광고신청코드</option>
-										<option value="adApplyState">아이디</option>
+										<option value="adApplyCode">광고신청코드</option>
+										<option value="userId">아이디</option>
+										<option value="adPaymentState">광고결제상태</option>
 									</select>
 								</div>
 								<div class="input-group col-sm-4">

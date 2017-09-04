@@ -44,12 +44,18 @@ public class AdPaymentDaoImpl implements AdPaymentDao {
 	}
 
 	@Override
-	public List<AdApplyAndAdImageAndAdPaymentVo> selectAdApplyAndAdImageAndAdPaymentList(
-			AdApplyAndAdImageAndAdPaymentVo adApplyAndAdImageAndAdPaymentVo) {
+	public List<AdApplyAndAdImageAndAdPaymentVo> selectAdApplyAndAdImageAndAdPaymentList() {
 		
 		log.info("selectAdApplyAndAdImageAndAdPaymentList 호출 확인");
 		
-		return sqlSessionTemplate.selectList(AdPaymentMapperNS+"selectAdPaymentAndAdApplyAndAdImageList",adApplyAndAdImageAndAdPaymentVo);
+		return sqlSessionTemplate.selectList(AdPaymentMapperNS+"selectAdPaymentAndAdApplyAndAdImageList");
 	}
 
+	@Override
+	public List<AdApplyAndAdImageAndAdPaymentVo> selectAdPaymentListByAdPaymentVo(AdPaymentVo adPaymentVo) {
+		
+		log.info("selectAdPaymentListByAdPaymentVo 호출 확인");
+		
+		return sqlSessionTemplate.selectList(AdPaymentMapperNS+"selectAdPaymentAndAdApplyAndAdImageList", adPaymentVo);
+	}
 }

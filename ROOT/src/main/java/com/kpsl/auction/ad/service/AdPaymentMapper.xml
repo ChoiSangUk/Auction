@@ -87,7 +87,7 @@
 		LIMIT 	0,3
 	</select>
 	<!-- 광고결제 전체리스트 SELECT 쿼리문 -->
-	<select id="selectAdPaymentAndAdApplyAndAdImageList" parameterType="com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdPaymentVo" 
+	<select id="selectAdPaymentAndAdApplyAndAdImageList" parameterType="com.kpsl.auction.ad.vo.AdPaymentVo" 
 	resultMap="AdApplyAndAdImageAndAdPaymentVo">
 		SELECT  ap.ad_payment_code,
 				ap.ad_apply_code,
@@ -106,9 +106,26 @@
 			 	ON ap.ad_apply_code = ai.ad_apply_code 	
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
 				ap.ad_payment_state = '결제완료'
-			<if test="adPaymentVo.adPaymentCode != null and adPaymentVo.adPaymentCode != ''">
-				AND ap.ad_payment_code = #{adPaymentVo.adPaymentCode}
+			<if test="adPaymentCode != null and adPaymentCode != ''">
+				AND ap.ad_payment_code = #{adPaymentCode}
 			</if> 
+			<if test="adApplyCode != null and adApplyCode != ''">
+				AND ap.ad_apply_code = #{adApplyCode}
+			</if>
+			<if test="userId != null and userId != ''">
+				AND ap.user_id = #{userId}
+			</if>
+			<if test="adPaymentState != null and adPaymentState != '' and adPaymentState != 'currentAd'">
+				AND ap.ad_payment_state = #{adPaymentState}
+			</if>
+			<if test="adPaymentRegistDate != null and adPaymentRegistDate != ' 00:00:00 23:59:59'">
+				AND ap.ad_payment_regist_date
+				BETWEEN substring(#{adPaymentRegistDate},1,19) AND substring(#{adPaymentRegistDate},20,38)
+			</if>
+			<if test="adPaymentState == 'currentAd'">
+				AND aa.ad_apply_start_date <![CDATA[<=]]> CURDATE() AND aa.ad_apply_end_date >= CURDATE()
+
+			</if>
 		</trim>
 		ORDER BY ap.ad_payment_regist_date	 
 	</select> 

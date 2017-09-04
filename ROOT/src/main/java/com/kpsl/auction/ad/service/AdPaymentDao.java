@@ -13,6 +13,8 @@ public interface AdPaymentDao {
 	int updateUserTotalcashByUserId(AdPaymentVo adPaymentVo);
 	// 광고신청, 광고이미지, 광고결제 SELECT메서드
 	List<AdApplyAndAdImageAndAdPaymentVo> selectAdApplyAndAdImageAndAdPaymentByUserIdAndAdApplyEndDate();
-	// 광고결제, 광고신청, 광고이미지 전체SELECT and 조회 메서드
-	List<AdApplyAndAdImageAndAdPaymentVo> selectAdApplyAndAdImageAndAdPaymentList(AdApplyAndAdImageAndAdPaymentVo adApplyAndAdImageAndAdPaymentVo);	
+	// 광고결제, 광고신청, 광고이미지 전체SELECT 메서드
+	List<AdApplyAndAdImageAndAdPaymentVo> selectAdApplyAndAdImageAndAdPaymentList();
+	// 광고결제 조회 SELECT 메서드
+	List<AdApplyAndAdImageAndAdPaymentVo> selectAdPaymentListByAdPaymentVo(AdPaymentVo adPaymentVo);
 }

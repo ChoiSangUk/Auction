@@ -21,6 +21,8 @@ public interface AdPaymentService {
 	int modifyUserTotalcash(AdPaymentVo adPaymentVo);
 	// 광고결제리스트 DAO 호출 메서드
 	List<AdApplyAndAdImageAndAdPaymentVo> getPaymentSuccessList();
-	// 광고결제 전체리스트 and 조회 DAO 호출 메서드
-	List<AdApplyAndAdImageAndAdPaymentVo> getPaymentList(AdApplyAndAdImageAndAdPaymentVo adApplyAndAdImageAndAdPaymentVo);
+	// 광고결제 전체리스트 DAO 호출 메서드
+	List<AdApplyAndAdImageAndAdPaymentVo> getPaymentList();
+	// 광고결제 조회 DAO 호출 메서드
+	List<AdApplyAndAdImageAndAdPaymentVo> getPaymentSearchList(AdPaymentVo adPaymentVo, String sk, String sv, String sDate, String eDate);
 }
