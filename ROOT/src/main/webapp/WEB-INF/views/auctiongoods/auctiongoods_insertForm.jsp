@@ -356,7 +356,7 @@ nhn.husky.EZCreator.createInIFrame({
 			$('#smallCategoryLable').text("");
 
 			$.ajax({
-				url : '/auction/auctiongoods/auctiongoodsinsert_middle',
+				url : '${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert_middle',
 				type : 'get',
 				data : largeParam,
 				datatype : 'json',
@@ -432,7 +432,7 @@ nhn.husky.EZCreator.createInIFrame({
 						$('#smallCategoryLable').text("");
 
 						$.ajax({
-							url : '/auction/auctiongoods/auctiongoodsinsert_small',
+							url : '${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert_small',
 							type : 'get',
 							data : middleParam,
 							datatype : 'json',
@@ -500,7 +500,7 @@ nhn.husky.EZCreator.createInIFrame({
 									var smallCategoryName = $(this).find('.smallCategoryName').text();
 									console.log(smallCategoryCode);
 									$.ajax({
-										url : '/auction/auctiongoods/auctiongoodsinsert',
+										url : '${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert',
 										type : 'get',
 										//data : middleParam,
 										//datatype : 'json',
