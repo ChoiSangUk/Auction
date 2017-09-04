@@ -117,9 +117,9 @@
 			<if test="adApplyState != null and adApplyState != ''">
 				ad_apply_state = #{adApplyState}
 			</if>
-			<if test="adApplyRegistDate != null and adApplyRegistDate != ''">
+			<if test="adApplyRegistDate != null and adApplyRegistDate != ' 00:00:00 23:59:59'">
 				AND ad_apply_regist_date
-				BETWEEN substring(#{adApplyRegistDate},1,10) AND substring(#{adApplyRegistDate},11,20)
+				BETWEEN substring(#{adApplyRegistDate},1,19) AND substring(#{adApplyRegistDate},20,38)
 			</if>
 		</trim>
 		ORDER BY ad_apply_regist_date

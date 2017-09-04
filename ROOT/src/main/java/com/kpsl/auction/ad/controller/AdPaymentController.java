@@ -1,5 +1,7 @@
 package com.kpsl.auction.ad.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kpsl.auction.ad.service.AdApplyService;
 import com.kpsl.auction.ad.service.AdPaymentService;
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdPaymentVo;
 import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo;
 import com.kpsl.auction.ad.vo.AdPaymentVo;
 import com.kpsl.auction.saleslog.vo.SalesLogVo;
@@ -24,7 +27,18 @@ public class AdPaymentController {
 	@Autowired UserService userService;
 	@Autowired AdApplyService adApplyService;
 	
-	Logger log = Logger.getLogger(this.getClass());
+	Logger log = Logger.getLogger(this.getClass());	
+	
+	// 관리자 광고결제리스트 요청
+	@RequestMapping(value = "/ad/adminAdPaymentSearch", method = RequestMethod.GET)
+	public String adPaymentList(Model model, AdApplyAndAdImageAndAdPaymentVo adApplyAndAdImageAndAdPaymentVo) {
+		
+		log.info("adPaymentList 요청 확인");
+		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentList = adPaymentService.getPaymentList(adApplyAndAdImageAndAdPaymentVo);
+		model.addAttribute("adPaymentList", adPaymentList);
+		
+		return "/admin/ad/admin_adPayment_search";
+	}
 	
 	// 광고결제페이지 요청
 	@RequestMapping(value = "/mypage/adPaymentInsertForm", method = RequestMethod.GET)

@@ -57,7 +57,7 @@ public class AdApplyServiceImpl implements AdApplyService {
 	public List<AdApplyVo> getAdApplyListBySv(AdApplyVo adApplyVo, String sk, String sv, String sDate, String eDate) {
 		
 		log.info("getAdApplyListBySv 호출 확인");
-		adApplyVo.setAdApplyRegistDate(sDate+eDate);
+		adApplyVo.setAdApplyRegistDate(sDate+" 00:00:00"+eDate+" 23:59:59");
 		if(sk.equals("adApplyCode")) {
 			adApplyVo.setAdApplyCode(sv);
 			log.info(sk+"<-- sk확인");

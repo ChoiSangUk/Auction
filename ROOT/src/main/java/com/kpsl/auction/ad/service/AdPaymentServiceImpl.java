@@ -35,6 +35,14 @@ public class AdPaymentServiceImpl implements AdPaymentService {
 	}
 	
 	@Override
+	public int modifyUserTotalcash(AdPaymentVo adPaymentVo) {
+		
+		log.info("modifyUserTotalcash 호출 확인");
+		
+		return adPaymentDao.updateUserTotalcashByUserId(adPaymentVo);
+	}
+	
+	@Override
 	// 광고결제 테이블에 INSERT후 코드값과 결제금액을 salesLogVo에 셋팅후 회사매입매출 INSERT메서드를 호출한다.
 	public void adPaymentAndSalesLogTransaction(AdPaymentVo adPaymentVo, SalesLogVo salesLogVo) {
 		addAdPayment(adPaymentVo);
@@ -50,15 +58,7 @@ public class AdPaymentServiceImpl implements AdPaymentService {
 		salesLogVo.setSalesLogPrice(salesLogPrice);
 		salesLogVo.setSalesLogRemarks(salesLogRemarks);
 		addSalesLog(salesLogVo);
-	}
-	
-	@Override
-	public int modifyUserTotalcash(AdPaymentVo adPaymentVo) {
-		
-		log.info("modifyUserTotalcash 호출 확인");
-		
-		return adPaymentDao.updateUserTotalcashByUserId(adPaymentVo);
-	}
+	}	
 
 	@Override
 	public List<AdApplyAndAdImageAndAdPaymentVo> getPaymentSuccessList() {
@@ -66,5 +66,14 @@ public class AdPaymentServiceImpl implements AdPaymentService {
 		log.info("getPaymentSuccessList 호출 확인");
 		
 		return adPaymentDao.selectAdApplyAndAdImageAndAdPaymentByUserIdAndAdApplyEndDate();
+	}
+
+	@Override
+	public List<AdApplyAndAdImageAndAdPaymentVo> getPaymentList(
+			AdApplyAndAdImageAndAdPaymentVo adApplyAndAdImageAndAdPaymentVo) {
+
+		log.info("getPaymentList 호출 확인");
+		
+		return adPaymentDao.selectAdApplyAndAdImageAndAdPaymentList(adApplyAndAdImageAndAdPaymentVo);
 	}
 }

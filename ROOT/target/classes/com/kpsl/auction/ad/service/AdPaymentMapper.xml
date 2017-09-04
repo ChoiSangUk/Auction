@@ -77,13 +77,39 @@
 				ap.ad_payment_code,
 				ap.ad_apply_code,
 				ap.ad_payment_state
-		FROM ad_apply_tb aa 
-			 LEFT JOIN ad_image_tb ai
-			 ON aa.ad_apply_code = ai.ad_apply_code
-			 LEFT JOIN ad_payment_tb ap
-			 ON aa.ad_apply_code = ap.ad_apply_code
-		WHERE ap.ad_payment_state='결제완료' AND aa.ad_apply_end_date >= CURDATE()
-		ORDER BY aa.ad_apply_end_date
-		LIMIT 0,3
+		FROM 	ad_apply_tb aa 
+			 	LEFT JOIN ad_image_tb ai
+			 	ON aa.ad_apply_code = ai.ad_apply_code
+			 	LEFT JOIN ad_payment_tb ap
+			 	ON aa.ad_apply_code = ap.ad_apply_code
+		WHERE 	ap.ad_payment_state='결제완료' AND aa.ad_apply_end_date >= CURDATE()
+		ORDER 	BY aa.ad_apply_end_date
+		LIMIT 	0,3
 	</select>
+	<!-- 광고결제 전체리스트 SELECT 쿼리문 -->
+	<select id="selectAdPaymentAndAdApplyAndAdImageList" parameterType="com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdPaymentVo" 
+	resultMap="AdApplyAndAdImageAndAdPaymentVo">
+		SELECT  ap.ad_payment_code,
+				ap.ad_apply_code,
+				ap.user_id,
+				aa.ad_apply_start_date,
+				aa.ad_apply_end_date,
+				ai.ad_image_code, 
+				ai.ad_image_name,
+				ap.ad_payment_price,
+				ap.ad_payment_regist_date,
+				ap.ad_payment_state	
+		FROM 	ad_payment_tb ap 
+			 	LEFT JOIN ad_apply_tb aa
+				ON ap.ad_apply_code = aa.ad_apply_code
+			 	LEFT JOIN ad_image_tb ai
+			 	ON ap.ad_apply_code = ai.ad_apply_code 	
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				ap.ad_payment_state = '결제완료'
+			<if test="adPaymentVo.adPaymentCode != null and adPaymentVo.adPaymentCode != ''">
+				AND ap.ad_payment_code = #{adPaymentVo.adPaymentCode}
+			</if> 
+		</trim>
+		ORDER BY ap.ad_payment_regist_date	 
+	</select> 
 </mapper>
