@@ -2,9 +2,11 @@ package com.kpsl.auction.saleslog.service;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.kpsl.auction.saleslog.vo.SalesLogVo;
 
+@Service
 public class SalesLogServiceImpl implements SalesLogService{
 	
 	Logger log = Logger.getLogger(this.getClass());

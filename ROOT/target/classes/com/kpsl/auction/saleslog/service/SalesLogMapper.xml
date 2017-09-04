@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kpsl.auction.saleslog.service.SalesLogMapper">
-	<!-- select용 resultMap 만들어... -->
 	<resultMap type="com.kpsl.auction.saleslog.vo.SalesLogVo" id="SalesLog">
 		<id property="salesLogCode" column="sales_log_code" />
 		<result property="salesLogRelationCode" column="sales_log_relation_code" />

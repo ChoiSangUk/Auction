@@ -8,7 +8,10 @@
 		<result property="userId" column="user_id" />
 		<result property="cashPrice" column="cash_price" />
 		<result property="cashDate" column="cash_date" />
+		<result property="cashDate1" column="cash_date" />
+		<result property="cashDate2" column="cash_date" />
 		<result property="cashState" column="cash_state" />
+		
 	</resultMap>
 	<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
 		<id property="userId" column="user_id" />
@@ -76,7 +79,7 @@
 	</update>
 	<!--캐쉬관리 캐쉬충전/출금-->
 	<select id="selectCashDetail" parameterType="com.kpsl.auction.cash.vo.CashVo" resultMap="cash">
-		SELECT cash_price,cash_date,cash_state
+		SELECT cash_code,cash_price,cash_date,cash_state
 		FROM cash_tb
 		WHERE user_id=#{userId}
 		<if test="cashState == '충전'">AND cash_state='충전'</if>
@@ -87,7 +90,9 @@
 		<if test="cashDate == 'range-1m'">AND cash_date >DATE_SUB(NOW(),INTERVAL 1 MONTH)</if>
 		<if test="cashDate == 'range-3m'">AND cash_date >DATE_SUB(NOW(),INTERVAL 3 MONTH)</if>
 		<if test="cashDate == 'range-6m'">AND cash_date >DATE_SUB(NOW(),INTERVAL 6 MONTH)</if>
-		
+		<if test="cashDate == 'dateSearch'">
+				AND cash_date >= #{cashDate1} AND #{cashDate2} >= cash_date 
+		</if>
 		ORDER BY cash_date DESC
 	
 	</select>

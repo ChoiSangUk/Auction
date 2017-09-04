@@ -8,6 +8,8 @@ public class CashVo {
 	private int cashPrice;
 	private String cashDate;
 	private String cashState;
+	private String cashDate1;
+	private String cashDate2;
 	public String getCashCode() {
 		return cashCode;
 	}
@@ -37,6 +39,19 @@ public class CashVo {
 	}
 	public void setCashState(String cashState) {
 		this.cashState = cashState;
+	}
+	
+	public String getCashDate1() {
+		return cashDate1;
+	}
+	public void setCashDate1(String cashDate1) {
+		this.cashDate1 = cashDate1;
+	}
+	public String getCashDate2() {
+		return cashDate2;
+	}
+	public void setCashDate2(String cashDate2) {
+		this.cashDate2 = cashDate2;
 	}
 	@Override
 	public String toString() {

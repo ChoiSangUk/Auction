@@ -77,9 +77,9 @@
 												</label><!-- <label class="checkbox-inline"> <input
 													type="checkbox" value="30" name="deltype">
 													환불(반품/판매취소)
-												</label>  --><label class="checkbox-inline"> <input
+												</label>  --><!-- <label class="checkbox-inline"> <input
 													type="checkbox" value="60" name="deltype"> 광고결제
-												</label> 
+												</label>  -->
 												<!-- <label class="checkbox-inline"> <input
 													type="checkbox" value="10" name="deltype"> 물품구매
 												</label>  -->
@@ -91,9 +91,7 @@
 										<td>
 											
 											<div class="visible-lg visible-md">
-												<label class="radio-inline"> 
-												<input type="radio" name="cashDate"> 전체보기
-												</label> <label class="radio-inline"> <input type="radio"
+												<label class="radio-inline"> <input type="radio"
 													value="day" name="cashDate"> 일별보기
 												</label> <label class="radio-inline"> <input type="radio"
 													value="range-7d" name="cashDate"> 최근일주
@@ -110,15 +108,15 @@
 									<tr>
 										<td>
 											<div class="visible-lg visible-md">
-												<label class="radio-inline"> <input type="radio"
-													name="cashDate"> 기간검색
+												<label class="radio-inline"> <input type="radio" value="dateSearch"
+													id="dateSearch" name="cashDate" > 기간검색
 												</label>
 											</div>
 											<div class="form-inline">
 												<div class="col-sm-2 input-group date"
 													data-provide="datepicker" id="date1">
 													<input class="form-control" type="text"
-														name="adApplyStartDate">
+														id="adApplyStartDate" name="cashDate1" disabled="disabled">
 													<div class="input-group-addon">
 														<span class="glyphicon glyphicon-th"></span>
 													</div>
@@ -127,7 +125,7 @@
 												<div class="col-sm-2 input-group date"
 													data-provide="datepicker" id="date2">
 													<input class="form-control" type="text"
-														name="adApplyEndDate">
+														id="adApplyEndDate" name="cashDate2" disabled="disabled">
 													<div class="input-group-addon">
 														<span class="glyphicon glyphicon-th"></span>
 													</div>
@@ -176,7 +174,65 @@
 		</div>
 	</div>
 </div>
+<script>
+$('#date1, #date2').datepicker({
+	format: 'yyyy-mm-dd',
+	language: 'ko',
+	orientation: 'bottom'
+});			
 
+$('input:radio[name=cashDate]').click(function(){
+	var checkVal = $('input:radio[name=cashDate]:checked').val(); 
+	console.log(checkVal);
+	if(checkVal === 'day') {
+		var subDate = moment().subtract(checkVal, 'days').format('YYYY-MM-DD');
+		var nowDate = moment().format('YYYY-MM-DD');
+		$('input:text[id=adApplyStartDate]').val(subDate);
+		$('input:text[id=adApplyEndDate]').val(nowDate);
+		$('#adApplyStartDate,#adApplyEndDate').attr('disabled',true); 
+
+	}else if(checkVal === 'range-7d') {
+		checkVal = '7';
+		var subDate = moment().subtract(checkVal, 'days').format('YYYY-MM-DD');
+		var nowDate = moment().format('YYYY-MM-DD');
+		$('input:text[id=adApplyStartDate]').val(subDate);
+		$('input:text[id=adApplyEndDate]').val(nowDate);
+		$('#adApplyStartDate,#adApplyEndDate').attr('disabled',true); 
+	}else if(checkVal === 'range-1m') {
+		checkVal = '1';
+		var subDate = moment().subtract(checkVal, 'months').format('YYYY-MM-DD');
+		var nowDate = moment().format('YYYY-MM-DD');
+		$('input:text[id=adApplyStartDate]').val(subDate);
+		$('input:text[id=adApplyEndDate]').val(nowDate);
+		$('#adApplyStartDate,#adApplyEndDate').attr('disabled',true); 
+	}else if(checkVal === 'range-3m') {
+		checkVal = '3';
+		var subDate = moment().subtract(checkVal, 'months').format('YYYY-MM-DD');
+		var nowDate = moment().format('YYYY-MM-DD');
+		$('input:text[id=adApplyStartDate]').val(subDate);
+		$('input:text[id=adApplyEndDate]').val(nowDate);
+		$('#adApplyStartDate,#adApplyEndDate').attr('disabled',true); 
+	}else if(checkVal === 'range-6m') {
+		checkVal = '6';
+		var subDate = moment().subtract(checkVal, 'months').format('YYYY-MM-DD');
+		var nowDate = moment().format('YYYY-MM-DD');
+		$('input:text[id=adApplyStartDate]').val(subDate);
+		$('input:text[id=adApplyEndDate]').val(nowDate);
+		$('#adApplyStartDate,#adApplyEndDate').attr('disabled',true); 
+	}		
+	console.log(subDate);
+	console.log(nowDate);
+});
+
+	$('#dateSearch').click(function(){
+		 $('#adApplyStartDate,#adApplyEndDate').removeAttr('disabled')
+		 
+	});
+
+	
+	
+
+</script>
 
 <script type="text/javascript">
 

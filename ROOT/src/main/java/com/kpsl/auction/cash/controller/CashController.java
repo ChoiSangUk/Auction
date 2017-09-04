@@ -8,16 +8,18 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.connector.Request;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.kpsl.auction.account.service.AccountService;
 import com.kpsl.auction.account.vo.AccountVo;
 import com.kpsl.auction.cash.service.CashService;
 import com.kpsl.auction.cash.vo.CashVo;
-import com.kpsl.auction.user.service.UserService;
+import com.kpsl.auction.saleslog.service.SalesLogService;
+import com.kpsl.auction.saleslog.vo.SalesLogVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
 
 @Controller
@@ -27,7 +29,8 @@ public class CashController {
 	private CashService cashService;
 	@Autowired
 	private AccountService accountservice;
-
+	@Autowired
+	private SalesLogService salesLogService;
 	// 캐쉬충전폼
 	@RequestMapping(value = "/mypage/myinfo/Cash", method = RequestMethod.GET)
 	public String cashForm() {
@@ -37,11 +40,13 @@ public class CashController {
 
 	// 캐쉬충전
 	@RequestMapping(value = "/mypage/myinfo/Cash", method = RequestMethod.POST)
-	public String cashInput(UserDetailVo userDetailVo, CashVo cashVo, HttpSession session,Model model) {
+	public String cashInput(UserDetailVo userDetailVo, CashVo cashVo, SalesLogVo salesLogVo,HttpSession session,Model model) {
 		String userId = (String) session.getAttribute("userId");
 		//1. 캐쉬테이블에 충전내역 insert
 		cashVo.setUserId(userId);
+		cashVo.getCashCode();
 		cashService.setCash(cashVo);
+		
 		log.info("testtest CASH");
 		//2. 유저테이블에 캐쉬 update
 		userDetailVo.setUserId(userId);
@@ -51,7 +56,14 @@ public class CashController {
 		session.getAttribute("userLoginInfo");
 		session.getAttribute("userDetailInfo");
 		//3. 회사매입매출에 insert
+		salesLogVo.setSalesLogRelationCode(cashVo.getCashCode());
+		salesLogVo.setSalesLogRelation("cash_tb");
+		salesLogVo.setSalesLogDepositAndWithdrawal("입금");
+		salesLogVo.setSalesLogUserId(userId);
+		salesLogVo.setSalesLogPrice(cashVo.getCashPrice());
+		salesLogVo.setSalesLogRemarks("캐쉬충전");
 		
+		salesLogService.addIncomeSalesLog(salesLogVo);
 		
 		return "redirect:/mypage/mypageMain";
 	}
@@ -69,7 +81,7 @@ public class CashController {
 
 	// 캐쉬출금
 	@RequestMapping(value = "/mypage/myinfo/CashWithdraw", method = RequestMethod.POST)
-	public String cashWithdraw(UserDetailVo userDetailVo, CashVo cashVo, HttpSession session,Model model) {
+	public String cashWithdraw(UserDetailVo userDetailVo, SalesLogVo salesLogVo,CashVo cashVo, HttpSession session,Model model) {
 		String userId = (String) session.getAttribute("userId");
 		//1. 캐쉬테이블에 출금내역 insert
 		cashVo.setUserId(userId);
@@ -82,7 +94,15 @@ public class CashController {
 		cashService.modifyUserCashWithdraw(userDetailVo);
 		session.getAttribute("userLoginInfo");
 		session.getAttribute("userDetailInfo");
+		//3. 회사매입매출에 insert
+		salesLogVo.setSalesLogRelationCode(cashVo.getCashCode());
+		salesLogVo.setSalesLogRelation("cash_tb");
+		salesLogVo.setSalesLogDepositAndWithdrawal("출금");
+		salesLogVo.setSalesLogUserId(userId);
+		salesLogVo.setSalesLogPrice(cashVo.getCashPrice());
+		salesLogVo.setSalesLogRemarks("캐쉬출금");
 		
+		salesLogService.addIncomeSalesLog(salesLogVo);
 		return "redirect:/mypage/mypageMain";
 	}
 	//캐쉬 관리폼
@@ -98,9 +118,16 @@ public class CashController {
 		cashVo.setUserId(userId);
 		log.info(userId);
 		log.info(cashVo.getCashDate());
-		List<CashVo> cashDetail = cashService.getCashDetail(cashVo);
-		model.addAttribute("cashDetail", cashDetail);
 		log.info(cashVo.getCashState());
+		//검색 날짜조건
+		cashVo.setCashDate2(cashVo.getCashDate2()+" 23:59:59");	
+		log.info(cashVo.getCashDate1());
+		log.info(cashVo.getCashDate2());
+		List<CashVo> cashDetail = cashService.getCashDetail(cashVo);
+		
+		
+		model.addAttribute("cashDetail", cashDetail);
+		
 	
 		return "/mypage/mypage_myinfo_cashDetail";
 	}

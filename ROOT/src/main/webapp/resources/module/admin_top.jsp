@@ -29,7 +29,16 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">회원관리X</a></li>
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">회원관리
+				<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="${pageContext.request.contextPath}#">회원리스트</a></li>
+						<li><a href="${pageContext.request.contextPath}#">회원검색</a></li>
+						
+					</ul>
+				</li>
+				
+				
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">경매물품관리X</a></li>
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">광고관리
 					<span class="caret"></span></a>
