@@ -9,6 +9,7 @@ public class AdApplyVo {
 	private String adApplyRegistDate;
 	private String adApplyStartDate;
 	private String adApplyEndDate;
+	private String adApplyApprovalDate;
 	private String adApplyState;
 	
 	public String getAdApplyCode() {
@@ -52,6 +53,12 @@ public class AdApplyVo {
 	}
 	public void setAdApplyEndDate(String adApplyEndDate) {
 		this.adApplyEndDate = adApplyEndDate;
+	}	
+	public String getAdApplyApprovalDate() {
+		return adApplyApprovalDate;
+	}
+	public void setAdApplyApprovalDate(String adApplyApprovalDate) {
+		this.adApplyApprovalDate = adApplyApprovalDate;
 	}
 	public String getAdApplyState() {
 		return adApplyState;

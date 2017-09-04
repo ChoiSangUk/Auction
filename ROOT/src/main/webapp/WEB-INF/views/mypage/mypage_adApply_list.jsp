@@ -23,7 +23,9 @@ th,td {
 				<span style="color: #1266FF">광고신청리스트</span>
 				<h2>나의 광고신청 리스트</h2>
 			</div>
-			<div class="row content">				
+			<div class="row content">
+			<h3>광고신청시 주의사항</h3>
+			<p>광고신청등록 후 수정은 광리자승인 이전까지만 가능하며, 관리자 승인 완료 후 하루 이내에 결제가 가능합니다.......</p>
 				<!-- 광고신청 리스트 테이블 -->
 				<table class="table table-bordered">
 					<thead>
@@ -57,17 +59,18 @@ th,td {
 							</c:choose>
 							<c:set var="adApplyState" value="${ad.adApplyVo.adApplyState}"/>
 							<c:set var="adPayment" value="${ad.adPaymentVo.adPaymentState}"/>
+							<c:set var="adApplyApprovalDate" value="${ad.adApplyVo.adApplyApprovalDate}"/>
 							<c:choose>
 							<c:when test="${adApplyState eq '승인완료' and adPayment eq null}">
 							<td>
 							<a href="${pageContext.request.contextPath}/mypage/adPaymentInsertForm?adApplyCode=${ad.adApplyVo.adApplyCode}">
-							<button class="btn btn-info">결제</button>
+							<button class="btn btn-info paymentBtn" id="paymentBtn" value="${adApplyApprovalDate}">결제</button>
 							</a>
 							</td>
 							</c:when>
 							<c:when test="${adPayment ne null}">
 							<td>
-							<strong style="color: red;">
+							<strong style="color: blue;">
 							${adPayment}
 							</strong>
 							</td>
@@ -84,5 +87,17 @@ th,td {
 		</div>			
 	<div class="col-sm-1"></div>
 </div>
-
+<script>
+$('.paymentBtn').click(function(){
+	console.log($(this).val());
+	var adApplyApprovalDate = $(this).val();
+	var ExpirationDate = moment(adApplyApprovalDate).add('days',1).format('YYYY-MM-DD hh:mm:ss');
+	var toDate = moment().format('YYYY-MM-DD hh:mm:ss');	
+	
+	if(toDate > ExpirationDate) {
+		alert('결제기간이 만료되었습니다!');
+		event.preventDefault();
+	}	
+});
+</script>
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8" />

@@ -29,6 +29,7 @@ th {
 		<div class="row content">
 			<!-- 광고신청 상세보기 폼 -->
 			<form class="form-horizontal" action="${pageContext.request.contextPath}/ad/adminAdApplyDetail" method="post">
+				<input type="hidden" name="adApplyApprovalDate" value="now">
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
@@ -115,13 +116,6 @@ th {
 </div>
 
 <script>
-// summernote 불러오기 및 설정
-$(document).ready(function() {
-	$('#summernote').summernote({
-		height : 500,
-		lang : 'ko-KR',
-	});
-});
 
 var radioCheck = $('#radioCheck').val();
 if(radioCheck == '승인대기') {

@@ -7,4 +7,6 @@ public interface SalesLogDao {
 
 	// 캐쉬충전시 회사매입매출 INSERT 쿼리
 	int insertSalesCash(CashVo cashVo,SalesLogVo logVo);
+	// 광고결제시 회사매입매출 INSERT 쿼리
+	int insertIncomeSalesLog(SalesLogVo salesLogVo);
 }
