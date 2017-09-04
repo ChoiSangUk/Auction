@@ -9,4 +9,7 @@ public interface AuctionGoodsService {
 	
 	//등록품목 리트스
 	List<AuctionGoodsVo> getAuctionGoodss();
+	
+	//물품등록
+	int addAuctionGoods(AuctionGoodsVo auctionGoodsVo, List<String> imgList);
 }

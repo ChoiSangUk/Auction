@@ -24,6 +24,55 @@
 		<id property="auctionGoodsState" column="auction_goods_state"/>
 	</resultMap>
 	
+	<insert id="insertAuctionGoods" parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo"
+	 useGeneratedKeys="true" keyProperty="auctionGoodsCode">
+	<selectKey keyProperty="auctionGoodsCode" resultType="string" order="BEFORE">
+			SELECT CONCAT("ag",MAX(CAST(substring(auction_goods_code,3)+1 AS DECIMAL))) 
+			FROM auction_goods_tb
+		</selectKey>
+		INSERT INTO auction_goods_tb 
+		(
+		 auction_goods_code,
+		 user_id,
+		 small_category_code,
+		 middle_category_code,
+		 large_category_code,
+		 auction_goods_name,
+		 auction_goods_sys,
+		 auction_goods_bid_sys,
+		 auction_goods_contents,
+		 auction_goods_regist_date,
+		 auction_goods_term,
+		 auction_goods_start_date,
+		 auction_goods_end_date,
+		 auction_goods_start_price,
+		 auction_goods_bid_unit,
+		 auction_goods_instant_buy_state,
+		 auction_goods_instant_buy_price,
+		 auction_goods_state
+		 )
+		 VALUES (
+		 #{auctionGoodsCode},
+		 #{userId},
+		 #{smallCategoryCode},
+		 #{middleCategoryCode},
+		 #{largeCategoryCode},
+		 #{auctionGoodsName},
+		 #{auctionGoodsSys},
+		 #{auctionGoodsBidSys},
+		 #{auctionGoodsContents},
+		 NOW(), <!-- 등록 날짜 시간 -->
+		 #{auctionGoodsTerm},
+		 #{auctionGoodsStartDate},
+		 #{auctionGoodsEndDate},
+		 #{auctionGoodsStartPrice},
+		 #{auctionGoodsBidUnit},
+		 #{auctionGoodsInstantBuyState},
+		 #{auctionGoodsInstantBuyPrice},
+		 '등록대기'
+		 );
+	</insert>
+	
 	<select id="selectAuctionGoods" resultMap="AuctionGoods">
 		SELECT user_id
 		FROM auction_goods_tb

@@ -14,36 +14,48 @@
 		<result property="salesLogDate" column="sales_log_date" />
 		<result property="salesLogRemarks" column="sales_log_remarks" />
 	</resultMap>
-
-	<insert id="insertSalesLog" parameterType="com.kpsl.auction.saleslog.vo.SalesLogVo"
-			useGeneratedKeys="true" keyProperty="sales_log_code">
-		<selectKey keyProperty="cashCode" resultType="string"
+	
+	<resultMap type="com.kpsl.auction.saleslog.vo.AllSalesLogVo" id="AllSalesLogVo">
+		<association property="cashVo" javaType="com.kpsl.auction.cash.vo.CashVo">
+			<id property="cashCode" column="cash_code" />
+			<result property="userId" column="user_id" />
+			<result property="cashPrice" column="cash_price" />
+			<result property="cashDate" column="cash_date" />
+			<result property="cashState" column="cash_state" />
+		</association>
+		<association property="adPaymentVo" javaType="com.kpsl.auction.ad.vo.AdPaymentVo">
+    		<id property="adPaymentCode" column="ad_payment_code"/>
+			<id property="adApplyCode" column="ad_apply_code"/>	
+			<id property="userId" column="user_id"/>
+			<id property="adPaymentPrice" column="ad_payment_price"/>
+			<id property="adPaymentRegistDate" column="ad_payment_regist_date"/>
+			<id property="adPaymentState" column="ad_payment_state"/>
+    	</association>
+	</resultMap>
+	
+	<insert id="insertCashSalesLog" parameterType="com.kpsl.auction.saleslog.vo.SalesLogVo" >
+		<selectKey keyProperty="salesLogCode" resultType="string"
 			order="BEFORE">
 			SELECT CONCAT("inout",MAX(CAST(substring(sales_log_code,6)+1 AS
 			DECIMAL))) FROM sales_log_tb
 		</selectKey>
 		INSERT INTO sales_log_tb
-		(sales_log_code, sales_log_relation_code, sales_log_relation,
-		sales_log_deposit_and_withdrawal, sales_log_user_id, sales_log_price,
-		sales_log_date, sales_log_remarks)
-		VALUES (#{salesLogCode}, 'cash1', '캐쉬', '입금', 'id002', 5000, NOW(), '캐쉬충전');
+				(sales_log_code, 
+				sales_log_relation_code, 
+				sales_log_relation,
+				sales_log_deposit_and_withdrawal, 
+				sales_log_user_id, 
+				sales_log_price,
+				sales_log_date, 
+				sales_log_remarks)
+		VALUES (#{salesLogCode}, 
+				'cash1', 
+				'cash_tb', 
+				'입금', 
+				'id002', 
+				'100000', 
+				NOW(), 
+				'캐쉬충전');
 
 	</insert>
-
-<!-- INSERT INTO cash_tb
-	(cash_code, user_id, cash_price, cash_date, cash_state)
-	VALUES ('cash1', 'id002', 5000, NOW(), '충전');
-
-INSERT INTO sales_log_tb
-	(sales_log_code, sales_log_relation_code, sales_log_relation, sales_log_deposit_and_withdrawal, sales_log_user_id, sales_log_price, sales_log_date, sales_log_remarks)
-	VALUES ('inout1', 'cash1', '캐쉬', '입금', 'id002', 5000, NOW(), '캐쉬충전');
-
-UPDATE user_detail_tb
-	SET user_totalcash = user_totalcash+5000
-	WHERE user_id='id002';
-
- -->
-
-
-
 </mapper>
