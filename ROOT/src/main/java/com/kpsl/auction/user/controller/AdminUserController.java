@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kpsl.auction.user.service.AdminUserService;
+import com.kpsl.auction.user.vo.AdminUserSearchVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
 
 @Controller
@@ -27,10 +28,13 @@ public class AdminUserController {
 	}
 	//유저검색
 	@RequestMapping(value = "/user/adminUserSearch", method = RequestMethod.POST)
-	public String adminUserSearch(Locale locale, Model model,UserDetailVo userDetailVo) {
-		adminUserService.getCashDetail(userDetailVo);
-		List<UserDetailVo> userSearch =  adminUserService.getCashDetail(userDetailVo);
+	public String adminUserSearch(Locale locale, Model model,AdminUserSearchVo adminUserSearchVo,UserDetailVo userDetailVo) {
+	
+		 userDetailVo.getUserLevel();		
+		adminUserService.getUserSearch(adminUserSearchVo);
+		List<AdminUserSearchVo> userSearch = adminUserService.getUserSearch(adminUserSearchVo);
 		model.addAttribute("userSearch", userSearch);
+		
 		log.info("회원검색");
 		return "/admin/user/admin_user_search";
 	}

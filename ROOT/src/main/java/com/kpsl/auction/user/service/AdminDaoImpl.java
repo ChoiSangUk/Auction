@@ -7,8 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kpsl.auction.user.vo.UserDetailVo;
-
+import com.kpsl.auction.user.vo.AdminUserSearchVo;
 
 @Repository
 public class AdminDaoImpl implements AdminUserDao {
@@ -19,9 +18,9 @@ public class AdminDaoImpl implements AdminUserDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public List<UserDetailVo> selectCashDetail(UserDetailVo userDetailVo) {
-		log.info("AdminUserDao Class selectCashDetail : "+ userDetailVo);
-		return sqlSessionTemplate.selectList(NS+"selectUserSearch", userDetailVo);
+	public List<AdminUserSearchVo> selectUserSearch(AdminUserSearchVo adminUserSearchVo) {
+		log.info("AdminUserDao Class selectCashDetail : "+ adminUserSearchVo);
+		return sqlSessionTemplate.selectList(NS+"selectUserSearch", adminUserSearchVo);
 	}
 
 

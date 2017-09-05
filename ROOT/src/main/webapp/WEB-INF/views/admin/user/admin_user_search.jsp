@@ -24,9 +24,9 @@
 										
 											<div>
 												<label class="checkbox-inline"> <input
-													type="checkbox" value="충전" name="cashState"> 구매자
+													type="checkbox" value="구매자" name="userLevel"> 구매자
 												</label><label class="checkbox-inline"> <input
-													type="checkbox" value="출금" name="cashState"> 판매자
+													type="checkbox" value="판매자" name="userLevel"> 판매자
 												</label>
 												
 											</div>
@@ -39,9 +39,9 @@
 										
 											<div>
 												<label class="checkbox-inline"> <input
-													type="checkbox" value="충전" name="cashState"> 남
+													type="checkbox" value="남" name="userGender"> 남
 												</label><label class="checkbox-inline"> <input
-													type="checkbox" value="출금" name="cashState"> 여
+													type="checkbox" value="여" name="userGender"> 여
 												</label>
 												
 											</div>
@@ -113,26 +113,26 @@
 						<th>보유캐쉬</th>
 					</tr>
 				</thead>
-				<c:forEach var="userSearch" items="${userSearch}">
+			<c:forEach var="userSearch" items="${userSearch}">
 				<tbody>
 					<tr>
-						<td>${userSearch.userId}</td>
-						<td>${userSearch.userLevel}</td>
-						<td>${userSearch.gradeCode}</td>
-						<td>${userSearch.restrictCode}</td>
-						<td>${userSearch.userName}</td>
-						<td>${userSearch.userGender}</td>
-						<td>${userSearch.userPhone}</td>
-						<td>${userSearch.userEmail}</td>
-						<td>${userSearch.userAddr}</td>
-						<td>${userSearch.userAddrdetail}</td>
-						<td>${userSearch.userTotalcash}</td>
+						<td>${userSearch.userDetailVo.userId}</td>
+						<td>${userSearch.userDetailVo.userLevel}</td>
+						<td>${userSearch.gradeVo.gradeName}</td>
+						<td>${userSearch.restrictVo.restrictState}</td>
+						<td>${userSearch.userDetailVo.userName}</td>
+						<td>${userSearch.userDetailVo.userGender}</td>
+						<td>${userSearch.userDetailVo.userPhone}</td>
+						<td>${userSearch.userDetailVo.userEmail}</td>
+						<td>${userSearch.userDetailVo.userAddr}</td>
+						<td>${userSearch.userDetailVo.userAddrdetail}</td>
+						<td>${userSearch.userDetailVo.userTotalcash}</td>
 								
 					</tr>
-				</tbody>
+					</tbody>
 				</c:forEach>
 			</table>
-			</c:if>
+		</c:if>
 		</div>
 	</div>
 	</form>

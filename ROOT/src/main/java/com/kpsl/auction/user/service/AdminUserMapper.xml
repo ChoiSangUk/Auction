@@ -3,45 +3,63 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kpsl.auction.user.service.AdminUserMapper">
-	<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
-		<id property="userId" column="user_id" />
-		<result property="userPassword" column="user_password" />
-		<result property="userLevel" column="user_level" />
-		<result property="gradeCode" column="grade_code" />
-		<result property="restrictCode" column="restrict_code" />
-		<result property="userName" column="user_name" />
-		<result property="userGender" column="user_gender" />
-		<result property="userBirth" column="user_birth" />
-		<result property="userPhone" column="user_phone" />
-		<result property="userEmail" column="user_email" />
-		<result property="userPostcode" column="user_postcode" />
-		<result property="userAddr" column="user_addr" />
-		<result property="userAddrdetail" column="user_addrdetail" />
-		<result property="userTotalcash" column="user_totalcash" />
-	</resultMap>
-	<resultMap type="com.kpsl.auction.user.vo.GradeVo" id="grade">
-		<id property="gradeCode" column="grade_code" />
-		<result property="gradeName" column="grade_name" />
-		<result property="gradeRank" column="grade_rank" />
+
+	<resultMap type="com.kpsl.auction.user.vo.AdminUserSearchVo"
+		id="userDetail">
+		<association property="userDetailVo"
+			javaType="com.kpsl.auction.user.vo.UserDetailVo">
+			<id property="userId" column="user_id" />
+			<result property="userPassword" column="user_password" />
+			<result property="userLevel" column="user_level" />
+			<result property="gradeCode" column="grade_code" />
+			<result property="restrictCode" column="restrict_code" />
+			<result property="userName" column="user_name" />
+			<result property="userGender" column="user_gender" />
+			<result property="userBirth" column="user_birth" />
+			<result property="userPhone" column="user_phone" />
+			<result property="userEmail" column="user_email" />
+			<result property="userPostcode" column="user_postcode" />
+			<result property="userAddr" column="user_addr" />
+			<result property="userAddrdetail" column="user_addrdetail" />
+			<result property="userTotalcash" column="user_totalcash" />
+		</association>
+
+		<association property="gradeVo" javaType="com.kpsl.auction.user.vo.GradeVo">
+			<id property="gradeCode" column="grade_code" />
+			<result property="gradeName" column="grade_name" />
+			<result property="gradeRank" column="grade_rank" />
+		</association>
+		<association property="restrictVo"
+			javaType="com.kpsl.auction.user.vo.RestrictVo">
+			<id property="restrictCode" column="restrict_code" />
+			<result property="restrictState" column="restrict_state" />
+			<result property="restrictRank" column="restrict_rank" />
+			<result property="restrictRemarks" column="restrict_remarks" />
+		</association>
 	</resultMap>
 
 	<!-- 유저검색 -->
-	<select id="selectUserSearch" parameterType="com.kpsl.auction.user.vo.UserDetailVo" resultMap="userDetail">
-		SELECT 
-			user_id, 
-			user_level, 
-			grade_code,
-			restrict_code, 
-			user_name, 
-			user_gender,
-		    user_phone, 
-		    user_email, 
-		    user_addr, 
-		    user_addrdetail, 
-		    user_totalcash
-		FROM 
-			user_detail_tb
-	
+	<select id="selectUserSearch" parameterType="com.kpsl.auction.user.vo.AdminUserSearchVo" resultMap="userDetail">
+		SELECT
+		u.user_id,
+		u.user_level,
+		g.grade_name,
+		r.restrict_state,
+		u.user_name,
+		u.user_gender,
+		u.user_phone,
+		u.user_email,
+		u.user_addr,
+		u.user_addrdetail,
+		u.user_totalcash
+		FROM
+		user_detail_tb AS u INNER JOIN restrict_tb AS r INNER JOIN grade_tb AS g
+		ON u.restrict_code = r.restrict_code AND u.grade_code = g.grade_code
+		WHERE u.user_level ='판매자' 
+		<if test="userLevel == '구매자'">
+			OR u.user_level ='구매자'
+		</if>
+		
 	</select>
 
 
