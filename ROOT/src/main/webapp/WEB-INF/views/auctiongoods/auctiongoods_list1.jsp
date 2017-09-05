@@ -37,9 +37,8 @@
 								&userId=${auction.userId}
 								&auctionGoodsBidUnit=${auction.auctionGoodsBidUnit}
 								&auctionGoodsStartPrice=${auction.auctionGoodsStartPrice}
-								&auctionGoodsCode=${auction.auctionGoodsCode}
-								">
-								<button>입찰</button>
+								&auctionGoodsCode=${auction.auctionGoodsCode}">
+								<button>입찰하기</button>
 								</a>
 								</td>
 							</tr>

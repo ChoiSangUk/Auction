@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="/resources/module/admin_top.jsp" charEncoding="UTF-8" />
 
 <div class="container-fluid text-center">
@@ -24,9 +24,13 @@
 						<tr>
 							<h2>입찰하기</h2>
 							<th>품목명: ${auctionGoodsName}</th>
-							<th>시작가격:<fmt:formatNumber value="${auctionGoodsStartPrice}" groupingUsed="true"/>원</th>
-							<th>입찰단위:<fmt:formatNumber value="${auctionGoodsBidUnit}" groupingUsed="true"/>원</th>
+							<th>시작가격:<fmt:formatNumber value="${auctionGoodsStartPrice}"
+									groupingUsed="true" />원
 							</th>
+							<th>입찰단위:<fmt:formatNumber value="${auctionGoodsBidUnit}"
+									groupingUsed="true" />원
+							</th>
+							
 						</tr>
 						<tr>
 							<div>
@@ -38,12 +42,11 @@
 											<label for="bidPrice">입찰금액</label> <input type="int"
 												class="form-control" id="bidPrice" name="bidPrice"
 												placeholder="시작가 <fmt:formatNumber value="${auctionGoodsStartPrice}" groupingUsed="true"/>원">
-											<button type="sumbit">입찰</button>
+											<button>입찰</button>
 										</div>
 									</form>
 								</td>
 							</div>
-
 						</tr>
 						<tr>
 							<th>입찰자</th>
@@ -55,7 +58,8 @@
 						<c:forEach var="goodsbid" items="${goodsbidlist}">
 							<tr>
 								<td>${goodsbid.userBuyerId}</td>
-								<td><fmt:formatNumber value="${goodsbid.bidPrice}" groupingUsed="true"/>원</td>
+								<td><fmt:formatNumber value="${goodsbid.bidPrice}"
+										groupingUsed="true" />원</td>
 								<td>${goodsbid.bidDate}</td>
 							</tr>
 						</c:forEach>

@@ -99,7 +99,7 @@ th {
 						<th>입찰품목명</th>
 						<th>입찰금액</th>
 						<th>입찰시간</th>
-						<th>물품입찰종료시간</th>
+					
 					</tr>
 				</thead>
 				<c:forEach var="usergoodsbid" items="${usergoodsbidlist}">
@@ -109,7 +109,7 @@ th {
 						<td>${usergoodsbid.userBuyerId}</td>
 						<td><fmt:formatNumber value="${usergoodsbid.bidPrice}" groupingUsed="true"/>원</td>
 						<td>${usergoodsbid.bidDate}</td>
-						<td></td>
+					
 					</tr>
 				</tbody>
 				</c:forEach>

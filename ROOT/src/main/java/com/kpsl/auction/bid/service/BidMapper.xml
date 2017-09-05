@@ -20,7 +20,7 @@
 		,user_seller_id
 		,bid_price
 		,bid_date
-		FROM bid_tb		  
+		FROM bid_tb	  
 		<where>
 		<!--물품에 입찰된 금액 리스트(내림차순)  -->
 			<if test="auctionGoodsCode != null">
@@ -49,8 +49,8 @@
 		VALUES
 		(#{bidCode}
 		, #{userBuyerId}
-		, 'good1'<!--goos db에서 가져와야 -->
-		, 'id003'<!--goos 등록에서 -->
+		, 'ag1'
+		, 'id003'
 		, #{bidPrice}
 		, NOW());
 	</insert>
