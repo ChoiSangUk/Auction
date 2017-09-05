@@ -11,6 +11,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/ko.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.ko.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.min.css"/>
