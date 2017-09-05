@@ -1,12 +1,7 @@
 package com.kpsl.auction.restController;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
+
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +19,11 @@ public class SalesRestController {
 	
 	@RequestMapping(value = "/mSalesLogAjax", method = RequestMethod.POST)
 	public List<SalesLogChartVo> mSalesLogAjax() {
-		
-		List<SalesLogChartVo> chartList = new ArrayList<SalesLogChartVo>();		
-		chartList = salesLogService.getMonthLogForSales();
-		chartList = salesLogService.getMonthLogForExpenses();
-
-		return chartList;
+		List<SalesLogChartVo> chartSalesList =  salesLogService.getMonthLogForSales();
+		List<SalesLogChartVo> chartExpensesList = salesLogService.getMonthLogForExpenses();
+		for(int i=0; i<chartSalesList.size(); i++) {
+			chartExpensesList.get(i).setSalesPrice(chartSalesList.get(i).getSalesPrice()) ;
+		}				
+		return chartExpensesList;
 	}
 }

@@ -7,20 +7,18 @@
 	<div class="col-sm-1"></div>
 	<div class="col-sm-10">
 		<div class="row title">
-			<h1>회사 매입매출 그래프</h1>			
-			
+			<h1>회사 매입매출 그래프</h1>						
 		</div>
 		<div class="row content">
-			<div id="curve_chart" style="width: 900px; height: 500px"></div>
-			<c:forEach var="sales" items="${incomeList}">
-				<span>${sales.salesLogDate}</span>
-				<span>${sales.salesLogPrice}</span>
-			</c:forEach>
-			<span>----</span>
-			<c:forEach var="sales" items="${outcomeList}">
-				<span>${sales.salesLogDate}</span>
-				<span>${sales.salesLogPrice}</span>
-			</c:forEach>
+			<div class="panel panel-default">
+  				<div class="panel-heading">
+  				<button class="btn btn-default">월별 매입매출</button>
+  				<button class="btn btn-default">년별 매입매출</button>
+  				</div>
+  				<div class="panel-body">
+					<div id="curve_chart" style="width: 80%; height: 600px; margin: auto;"></div>
+				</div>	
+			</div>
 		</div>
 	</div>
 	<div class="col-sm-1"></div>
@@ -30,10 +28,17 @@
 $.ajax({
 	url: '${pageContext.request.contextPath}/mSalesLogAjax',
 	type: 'post',
-	success: function(data){
+	success: function(requestData){
 		
-		console.log(data);
-
+		var chartDate = new Array();
+		var salesPrice = new Array();
+		var expensesPrice = new Array();
+		for(var i=0; i<requestData.length; i++) {
+			chartDate[i] = requestData[i].chartDate;
+			salesPrice[i] = requestData[i].salesPrice;
+			expensesPrice[i] = requestData[i].expensesPrice;
+		}
+		
 		google.charts.load('current', {
 			'packages' : [ 'corechart' ]
 		});
@@ -42,14 +47,13 @@ $.ajax({
 		function drawChart() {
 			var data = google.visualization.arrayToDataTable([
 					[ 'Month', '매출', '매입' ], 
-					['2004',  1000,      400],
-			        ['2005',  1170,      460],
-			        ['2006',  660,       1120],
-			        ['2007',  1030,      540]
+					[chartDate[0]+'월', salesPrice[0], expensesPrice[0]],
+					[chartDate[1]+'월', salesPrice[1], expensesPrice[1]],
+					[chartDate[2]+'월', salesPrice[2], expensesPrice[2]],
 			        ]);
 
 			var options = {
-				title : 'Company Performance',
+				title : '월별 매입매출',
 				curveType : 'function',
 				legend : {
 					position : 'bottom'
