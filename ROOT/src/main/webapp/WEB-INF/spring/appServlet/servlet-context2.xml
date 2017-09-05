@@ -43,9 +43,9 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <!-- 배포할땐 127.0.0.1로  작업할땐 pjh3752.cafe24.com -->
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/pjh3752?useUnicode=true&amp;characterEncoding=utf8"/>
-        <property name="username" value="root"/>
-        <property name="password" value="java0000"/>
+        <property name="url" value="jdbc:mysql://pjh3752.cafe24.com:3306/pjh3752?useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="username" value="pjh3752"/>
+        <property name="password" value="rkdqkrthddl!"/>
     </bean>
     <!-- 집에서 작업할때 -->
     <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -67,11 +67,11 @@
         <!-- mybatis 세션생성후 쿼리를 실행시킬때 사용할 쿼리위치(메퍼)설정 -->
         <property name="mapperLocations">
             <list>   
-            	<value>classpath:com/kpsl/auction/account/service/AccountMapper.xml</value>         	
+          		<value>classpath:com/kpsl/auction/account/service/AccountMapper.xml</value>         	
             	<value>classpath:com/kpsl/auction/saleslog/service/SalesLogMapper.xml</value>  
             	<value>classpath:com/kpsl/auction/cash/service/CashMapper.xml</value>         
             	<value>classpath:com/kpsl/auction/user/service/UserDetailMapper.xml</value>  
-            	<value>classpath:com/kpsl/auction/user/service/AdminUserMapper.xml</value>            	
+            	<value>classpath:com/kpsl/auction/user/service/AdminUserMapper.xml</value>          	
             	<value>classpath:com/kpsl/auction/ad/service/AdUnitPriceMapper.xml</value>
             	<value>classpath:com/kpsl/auction/ad/service/AdApplyMapper.xml</value>
             	<value>classpath:com/kpsl/auction/ad/service/AdImageMapper.xml</value>

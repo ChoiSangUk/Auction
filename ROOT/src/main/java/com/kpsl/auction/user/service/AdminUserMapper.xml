@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kpsl.auction.user.service.AdminUserMapper">
+	<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
+		<id property="userId" column="user_id" />
+		<result property="userPassword" column="user_password" />
+		<result property="userLevel" column="user_level" />
+		<result property="gradeCode" column="grade_code" />
+		<result property="restrictCode" column="restrict_code" />
+		<result property="userName" column="user_name" />
+		<result property="userGender" column="user_gender" />
+		<result property="userBirth" column="user_birth" />
+		<result property="userPhone" column="user_phone" />
+		<result property="userEmail" column="user_email" />
+		<result property="userPostcode" column="user_postcode" />
+		<result property="userAddr" column="user_addr" />
+		<result property="userAddrdetail" column="user_addrdetail" />
+		<result property="userTotalcash" column="user_totalcash" />
+	</resultMap>
+	<resultMap type="com.kpsl.auction.user.vo.GradeVo" id="grade">
+		<id property="gradeCode" column="grade_code" />
+		<result property="gradeName" column="grade_name" />
+		<result property="gradeRank" column="grade_rank" />
+	</resultMap>
+
+	<!-- 유저검색 -->
+	<select id="selectUserSearch" parameterType="com.kpsl.auction.user.vo.UserDetailVo" resultMap="userDetail">
+		SELECT 
+			user_id, 
+			user_level, 
+			grade_code,
+			restrict_code, 
+			user_name, 
+			user_gender,
+		    user_phone, 
+		    user_email, 
+		    user_addr, 
+		    user_addrdetail, 
+		    user_totalcash
+		FROM 
+			user_detail_tb
+	
+	</select>
+
+
+</mapper>

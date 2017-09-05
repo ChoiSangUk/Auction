@@ -12,6 +12,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.ko.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.min.css"/>
 </head>
@@ -32,8 +33,7 @@
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">회원관리
 				<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}#">회원리스트</a></li>
-						<li><a href="${pageContext.request.contextPath}#">회원검색</a></li>
+							<li><a href="${pageContext.request.contextPath}/user/adminUserSearch">회원검색</a></li>
 						
 					</ul>
 				</li>
