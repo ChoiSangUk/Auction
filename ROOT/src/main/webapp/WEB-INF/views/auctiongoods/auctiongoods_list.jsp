@@ -65,7 +65,7 @@
 
 							<a href="/kobay/item/itemView.do?itemseq=1707DGECCL7"> <img
 								src="#" onerror="this.src='/admin/images/noimg.gif';" border="0"
-								title="[1707DGECCL7]물품의 이미지들을 봅니다." alt="작은이미지">
+								>
 							</a>
 
 						</div>
