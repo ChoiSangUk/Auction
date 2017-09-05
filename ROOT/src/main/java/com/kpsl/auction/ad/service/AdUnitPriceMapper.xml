@@ -12,12 +12,12 @@
 	</resultMap>
 	<!-- 전체 광고단가 SELECT -->
 	<select id="selectAdUnitPriceList" parameterType="java.util.Map" resultMap="AdUnitPrice">
-		SELECT ad_unit_price_code, 
-		ad_unit_price_code,
-		ad_unit_price_name, 
-		ad_unit_price_price, 
-		ad_unit_price_state
-		FROM ad_unit_price_tb
+		SELECT  ad_unit_price_code, 
+				ad_unit_price_code,
+				ad_unit_price_name, 
+				ad_unit_price_price, 
+				ad_unit_price_state
+		FROM 	ad_unit_price_tb
 	</select>
 	
 	<!-- 광고단가 수정을 위한 SELECT -->
@@ -27,17 +27,17 @@
 				ad_unit_price_name, 
 				ad_unit_price_price, 
 				ad_unit_price_state
-				FROM ad_unit_price_tb
-		WHERE ad_unit_price_code=#{adUnitPirceCode}
+		FROM 	ad_unit_price_tb
+		WHERE 	ad_unit_price_code=#{adUnitPirceCode}
 	</select>
 	
 	<!-- 광고단가 수정을 위한 UPDATE -->
 	<update id="updateAdUnitPrice" parameterType="com.kpsl.auction.ad.vo.AdUnitPriceVo">
-		UPDATE ad_unit_price_tb
+		UPDATE  ad_unit_price_tb
 		SET
-			ad_unit_price_name = #{adUnitPriceName},
-			ad_unit_price_price = #{adUnitPricePrice},
-			ad_unit_price_state = #{adUnitPriceState}
-		WHERE ad_unit_price_code = #{adUnitPriceCode}
+				ad_unit_price_name = #{adUnitPriceName},
+				ad_unit_price_price = #{adUnitPricePrice},
+				ad_unit_price_state = #{adUnitPriceState}
+		WHERE 	ad_unit_price_code = #{adUnitPriceCode}
 	</update>
 </mapper>

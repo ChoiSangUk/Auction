@@ -31,31 +31,23 @@
 			<id property="adPaymentState" column="ad_payment_state"/>
     	</association>
 	</resultMap>
-	
-	<insert id="insertCashSalesLog" parameterType="com.kpsl.auction.saleslog.vo.SalesLogVo" >
-		<selectKey keyProperty="salesLogCode" resultType="string"
-			order="BEFORE">
-			SELECT CONCAT("inout",MAX(CAST(substring(sales_log_code,6)+1 AS
-			DECIMAL))) FROM sales_log_tb
-		</selectKey>
-		INSERT INTO sales_log_tb
-				(sales_log_code, 
-				sales_log_relation_code, 
-				sales_log_relation,
-				sales_log_deposit_and_withdrawal, 
-				sales_log_user_id, 
-				sales_log_price,
-				sales_log_date, 
-				sales_log_remarks)
-		VALUES (#{salesLogCode}, 
-				'cash1', 
-				'cash_tb', 
-				'입금', 
-				'id002', 
-				'100000', 
-				NOW(), 
-				'캐쉬충전');
-	</insert>
+		
+	<!-- 월별입금  -->
+	<select id="selectMonthLogForSales" parameterType="String" resultType="com.kpsl.auction.saleslog.vo.SalesLogChartVo">
+		SELECT	MONTH(sales_log_date) AS chartDate,
+				SUM(sales_log_price) AS salesPrice
+		FROM 	sales_log_tb
+		WHERE	sales_log_deposit_and_withdrawal = '입금'
+		GROUP BY chartDate;
+	</select>
+	<!-- 월별출금 -->
+	<select id="selectMonthLogForExpenses" parameterType="String" resultType="com.kpsl.auction.saleslog.vo.SalesLogChartVo">
+		SELECT	MONTH(sales_log_date) AS chartDate,
+				SUM(sales_log_price) AS expensesPrice
+		FROM 	sales_log_tb
+		WHERE	sales_log_deposit_and_withdrawal = '출금'
+		GROUP BY chartDate;
+	</select>
 	
 	<insert id="insertIncomeSalesLog" parameterType="com.kpsl.auction.saleslog.vo.SalesLogVo" >
 		<selectKey keyProperty="salesLogCode" resultType="string"

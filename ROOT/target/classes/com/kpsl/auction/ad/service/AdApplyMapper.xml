@@ -198,6 +198,6 @@
 				LEFT JOIN ad_payment_tb ap
 				ON aa.ad_apply_code = ap.ad_apply_code
 		WHERE 	aa.user_id = #{userId}
-		ORDER BY aa.ad_apply_regist_date;
+		ORDER BY ap.ad_payment_regist_date;
 	</select>
 </mapper>

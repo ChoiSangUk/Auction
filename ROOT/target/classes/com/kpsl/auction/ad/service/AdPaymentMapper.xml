@@ -83,7 +83,7 @@
 			 	LEFT JOIN ad_payment_tb ap
 			 	ON aa.ad_apply_code = ap.ad_apply_code
 		WHERE 	ap.ad_payment_state='결제완료' AND aa.ad_apply_end_date >= CURDATE()
-		ORDER 	BY aa.ad_apply_end_date
+		ORDER 	BY ap.ad_payment_regist_date
 		LIMIT 	0,3
 	</select>
 	<!-- 광고결제 전체리스트 SELECT 쿼리문 -->

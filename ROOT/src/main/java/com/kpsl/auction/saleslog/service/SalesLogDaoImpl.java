@@ -1,11 +1,16 @@
 package com.kpsl.auction.saleslog.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kpsl.auction.cash.vo.CashVo;
+import com.kpsl.auction.saleslog.vo.SalesLogChartVo;
 import com.kpsl.auction.saleslog.vo.SalesLogVo;
 
 @Repository
@@ -31,4 +36,19 @@ public class SalesLogDaoImpl implements SalesLogDao{
 		return sqlSessionTemplate.insert(salesLogMapper+"insertIncomeSalesLog",salesLogVo);
 	}
 
+	@Override
+	public List<SalesLogChartVo> selectMonthLogForSales() {
+		
+		log.info("selectMonthLogForSales 호출 확인");
+		
+		return sqlSessionTemplate.selectList(salesLogMapper+"selectMonthLogForSales");
+	}
+
+	@Override
+	public List<SalesLogChartVo> selectMonthLogForExpenses() {
+		
+		log.info("selectMonthLogForExpenses 호출 확인");
+		
+		return sqlSessionTemplate.selectList(salesLogMapper+"selectMonthLogForExpenses");
+	}
 }

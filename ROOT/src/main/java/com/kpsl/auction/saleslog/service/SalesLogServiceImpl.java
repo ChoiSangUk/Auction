@@ -1,9 +1,12 @@
 package com.kpsl.auction.saleslog.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kpsl.auction.saleslog.vo.SalesLogChartVo;
 import com.kpsl.auction.saleslog.vo.SalesLogVo;
 
 @Service
@@ -18,5 +21,21 @@ public class SalesLogServiceImpl implements SalesLogService{
 		log.info("addIncomeSalesLog 호출확인");
 		
 		return salesLogDao.insertIncomeSalesLog(salesLogVo);
+	}
+
+	@Override
+	public List<SalesLogChartVo> getMonthLogForSales() {
+		
+		log.info("selectMonthLogForSales 호출 확인");
+		
+		return salesLogDao.selectMonthLogForSales();
+	}
+
+	@Override
+	public List<SalesLogChartVo> getMonthLogForExpenses() {
+		
+		log.info("selectMonthLogForExpenses 호출 확인");
+		
+		return salesLogDao.selectMonthLogForExpenses();
 	}
 }
