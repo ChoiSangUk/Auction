@@ -19,6 +19,8 @@ public class AuctionGoodsVo {
 	private String auctionGoodsInstantBuyState;	//즉시구매유무
 	private int auctionGoodsInstantBuyPrice;	//즉시구매가
 	private String auctionGoodsState;		//등록상태
+	private int auctionGoodsHits; 			//조회 수
+	private int auctionGoodsBidHits;		//입찰 수 
 	public String getAuctionGoodsCode() {
 		return auctionGoodsCode;
 	}
@@ -128,6 +130,12 @@ public class AuctionGoodsVo {
 	public void setAuctionGoodsState(String auctionGoodsState) {
 		this.auctionGoodsState = auctionGoodsState;
 	}
+
+
+	public int getAuctionGoodsHits() {
+		return auctionGoodsHits;
+	}
+
 	@Override
 	public String toString() {
 		return "AuctionGoodsVo [auctionGoodsCode=" + auctionGoodsCode + ", userId=" + userId + ", smallCategoryCode="
@@ -138,7 +146,20 @@ public class AuctionGoodsVo {
 				+ ", auctionGoodsStartDate=" + auctionGoodsStartDate + ", auctionGoodsEndDate=" + auctionGoodsEndDate
 				+ ", auctionGoodsStartPrice=" + auctionGoodsStartPrice + ", auctionGoodsBidUnit=" + auctionGoodsBidUnit
 				+ ", auctionGoodsInstantBuyState=" + auctionGoodsInstantBuyState + ", auctionGoodsInstantBuyPrice="
-				+ auctionGoodsInstantBuyPrice + ", auctionGoodsState=" + auctionGoodsState + "]";
+				+ auctionGoodsInstantBuyPrice + ", auctionGoodsState=" + auctionGoodsState + ", auctionGoodsHits="
+				+ auctionGoodsHits + ", auctionGoodsBidHits=" + auctionGoodsBidHits + "]";
+	}
+
+	public void setAuctionGoodsHits(int auctionGoodsHits) {
+		this.auctionGoodsHits = auctionGoodsHits;
+	}
+
+	public int getAuctionGoodsBidHits() {
+		return auctionGoodsBidHits;
+	}
+
+	public void setAuctionGoodsBidHits(int auctionGoodsBidHits) {
+		this.auctionGoodsBidHits = auctionGoodsBidHits;
 	}
 	
 }

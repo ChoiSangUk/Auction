@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
 
-<div class="container-fluid text-center" style="margin-right: 150px; margin-left: 150px;">
+<div class="container-fluid text-center" style="margin-right: 100px; margin-left: 100px;">
 	<div class="row content">
 		<h1>물품 등록</h1>
 		<div class="col-sm-12 category text-left">
