@@ -14,8 +14,27 @@ public class AdminUserServiceImpl implements AdminUserService {
 	@Autowired private AdminUserDao adminUserDao;
 	Logger log = Logger.getLogger(this.getClass());
 	@Override
-	public List<AdminUserSearchVo> getUserSearch(UserDetailVo userDetailVo) {
+	public List<AdminUserSearchVo> getUserSearch(UserDetailVo userDetailVo, String sk, String sv) {
 		log.info("AdminUserService Class AdminUserService : " +userDetailVo);
+		
+		if(sk.equals("userId")) {
+			userDetailVo.setUserId(sv);
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}else if(sk.equals("userName")) {
+			userDetailVo.setUserName(sv);
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}else if(sk.equals("userPhone")) {
+			userDetailVo.setUserPhone(sv);
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}/*else if(sk.equals("adPaymentState")) {
+			adPaymentVo.setAdPaymentState(sv);
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}*/
+		
 		return adminUserDao.selectUserSearch(userDetailVo);
 	}
 	

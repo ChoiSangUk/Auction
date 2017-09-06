@@ -36,12 +36,10 @@ public class AdminUserController {
 		log.debug(userDetailVo.getUserLevel());	
 		log.debug(userDetailVo.getUserGender());
 		log.debug(userDetailVo.getGradeCode());
-		
-		
 		log.debug(sk);
 		log.debug(sv);
-		adminUserService.getUserSearch(userDetailVo);
-		List<AdminUserSearchVo> userSearch = adminUserService.getUserSearch(userDetailVo);
+		adminUserService.getUserSearch(userDetailVo,sk,sv);
+		List<AdminUserSearchVo> userSearch = adminUserService.getUserSearch(userDetailVo,sk,sv);
 		model.addAttribute("userSearch", userSearch);
 		
 		log.info("회원검색");

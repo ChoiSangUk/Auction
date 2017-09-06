@@ -70,10 +70,10 @@
 											<div class="col-sm-2">
 												<select class="form-control" name="sk">
 													<option value="userId">아이디</option>
-													<option value="adApplyState">입찰제한</option>
-													<option value="adApplyState">이름</option>
-													<option value="adApplyState">연락처</option>
-													<option value="adApplyState">캐쉬보유</option>
+													<option value="restrictCode">입찰제한</option>
+													<option value="userName">이름</option>
+													<option value="userPhone">연락처</option>
+													<option value="userTotalcash">캐쉬보유</option>
 												</select>
 											</div>
 											<div class="input-group col-sm-4">
