@@ -35,6 +35,19 @@
 	color: #ffffff !important;
 }
 
+th {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+
+.error {
+    color: red;
+}
+
+#fileCheck {
+	color: red;
+}
+
 /* Add a gray background color and some padding to the footer */
 footer {
 	background-color: #f2f2f2;

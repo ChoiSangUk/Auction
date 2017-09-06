@@ -16,7 +16,7 @@
   				<button class="btn btn-default">년별 매입매출</button>
   				</div>
   				<div class="panel-body">
-					<div id="curve_chart" style="width: 80%; height: 600px; margin: auto;"></div>
+					<div id="curve_chart" style="width: 100%; height: 700px; margin: auto;"></div>
 				</div>	
 			</div>
 		</div>
@@ -29,15 +29,15 @@ $.ajax({
 	url: '${pageContext.request.contextPath}/mSalesLogAjax',
 	type: 'post',
 	success: function(requestData){
-		
-		var chartDate = new Array();
+		console.log(requestData);
+ 		var chartDate = new Array();
 		var salesPrice = new Array();
 		var expensesPrice = new Array();
 		for(var i=0; i<requestData.length; i++) {
 			chartDate[i] = requestData[i].chartDate;
 			salesPrice[i] = requestData[i].salesPrice;
 			expensesPrice[i] = requestData[i].expensesPrice;
-		}
+		} 
 		
 		google.charts.load('current', {
 			'packages' : [ 'corechart' ]
@@ -47,9 +47,18 @@ $.ajax({
 		function drawChart() {
 			var data = google.visualization.arrayToDataTable([
 					[ 'Month', '매출', '매입' ], 
-					[chartDate[0]+'월', salesPrice[0], expensesPrice[0]],
-					[chartDate[1]+'월', salesPrice[1], expensesPrice[1]],
-					[chartDate[2]+'월', salesPrice[2], expensesPrice[2]],
+					['01월', salesPrice[0], expensesPrice[0]],
+					['02월', salesPrice[1], expensesPrice[1]],
+					['03월', salesPrice[2], expensesPrice[2]],
+					['04월', salesPrice[3], expensesPrice[3]],
+					['05월', salesPrice[4], expensesPrice[4]],
+					['06월', salesPrice[5], expensesPrice[5]],
+					['07월', salesPrice[6], expensesPrice[6]],
+					['08월', salesPrice[7], expensesPrice[7]],
+					['09월', salesPrice[8], expensesPrice[8]],
+					['10월', salesPrice[9], expensesPrice[9]],
+					['11월', salesPrice[10], expensesPrice[10]],
+					['12월', salesPrice[11], expensesPrice[11]],
 			        ]);
 
 			var options = {
@@ -64,7 +73,7 @@ $.ajax({
 					.getElementById('curve_chart'));
 
 			chart.draw(data, options);
-		} 		
+		} 	 
 	},
 	error: function(data){
 		console.log('error'+data);

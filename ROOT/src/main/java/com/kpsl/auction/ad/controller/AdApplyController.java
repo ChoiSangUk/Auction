@@ -5,11 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -164,7 +168,6 @@ public class AdApplyController {
 		
 		log.info("adApplyAdd 확인");
 		userId = (String) session.getAttribute("userId");
-		//userId = "id002";
 		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList();
 		List<AuctionGoodsVo> auctionGoodsList = adApplyService.getAuctionGoodsListByUserId(userId);
 		List<AdApplyAndAdImageAndAdPaymentVo> currentAdList = adPaymentService.getPaymentSuccessList();
@@ -175,10 +178,15 @@ public class AdApplyController {
 		return "/mypage/mypage_adApply_insertForm";
 	}
 
-	
+	@ModelAttribute("adApplyVo")
+	public AdApplyVo createStudentModel() {	
+		return new AdApplyVo();
+	}
+	 
 	// 광고신청 (액션) 요청
 	@RequestMapping(value = "/mypage/adApplyInsertForm", method = RequestMethod.POST)
-	public String adApplyAdd(AdApplyVo adApplyVo ,AdImageVo adImageVo, HttpSession session
+	public String adApplyAdd(@ModelAttribute("adApplyVo") @Validated AdApplyVo adApplyVo, BindingResult bindingResult 
+							,AdImageVo adImageVo, HttpSession session, Model model
     						, @RequestParam("adImage") MultipartFile adImage,
     						MultipartHttpServletRequest multipartRequest) {
 		log.info("adApplyAdd 확인");
@@ -187,10 +195,20 @@ public class AdApplyController {
 		String userId = (String) session.getAttribute("userId");
 		adApplyVo.setUserId(userId);
 		adImageVo.setAdImagePath(adFile.get("adImagePath"));
-		adImageVo.setAdImageName(adFile.get("adImageName"));		
-		adApplyService.adApplyTransaction(adApplyVo, adImageVo);
-		
-		
-		return "redirect:/mypage/mypageMain";
+		adImageVo.setAdImageName(adFile.get("adImageName"));
+		if (bindingResult.hasErrors()) { //검증에 실패한 빈은 BindingResult에 담겨 뷰에 전달된다.
+			log.info("확인");
+			userId = (String) session.getAttribute("userId");
+			List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList();
+			List<AuctionGoodsVo> auctionGoodsList = adApplyService.getAuctionGoodsListByUserId(userId);
+			List<AdApplyAndAdImageAndAdPaymentVo> currentAdList = adPaymentService.getPaymentSuccessList();
+			model.addAttribute("adUnitPriceList", adUnitPriceList);
+			model.addAttribute("auctionGoodsList", auctionGoodsList);
+			model.addAttribute("currentAdList", currentAdList);
+	        return "/mypage/mypage_adApply_insertForm";
+	    }else {
+	    	adApplyService.adApplyTransaction(adApplyVo, adImageVo);
+	    	return "redirect:/mypage/mypageMain";
+	    }
 	}
 }

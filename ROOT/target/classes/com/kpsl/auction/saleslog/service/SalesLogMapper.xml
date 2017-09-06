@@ -38,6 +38,7 @@
 				SUM(sales_log_price) AS salesPrice
 		FROM 	sales_log_tb
 		WHERE	sales_log_deposit_and_withdrawal = '입금'
+				AND YEAR(sales_log_date) = YEAR(now())
 		GROUP BY chartDate;
 	</select>
 	<!-- 월별출금 -->
@@ -46,6 +47,7 @@
 				SUM(sales_log_price) AS expensesPrice
 		FROM 	sales_log_tb
 		WHERE	sales_log_deposit_and_withdrawal = '출금'
+				AND YEAR(sales_log_date) = YEAR(now())
 		GROUP BY chartDate;
 	</select>
 	
