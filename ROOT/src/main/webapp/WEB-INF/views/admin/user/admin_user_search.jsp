@@ -23,7 +23,7 @@
 									<td>
 										
 											<div>
-												<label class="checkbox-inline"> <input
+												<label class="checkbox-inline" style="margin-left: 15px;"> <input
 													type="checkbox" value="구매자" name="userLevel"> 구매자
 												</label><label class="checkbox-inline"> <input
 													type="checkbox" value="판매자" name="userLevel"> 판매자
@@ -38,7 +38,7 @@
 									<td>
 										
 											<div>
-												<label class="radio-inline"> <input
+												<label class="radio-inline" style="margin-left: 15px;"> <input
 													type="radio" value="남" name="userGender"> 남
 												</label><label class="radio-inline"> <input
 													type="radio" value="여" name="userGender"> 여
@@ -52,7 +52,7 @@
 										<th class="text-center active">회원등급</th>
 										<td>
 											<div>
-												<label class="radio-inline"> <input type="radio"
+												<label class="radio-inline" style="margin-left: 15px;"> <input type="radio"
 													value="grade4" name="gradeCode"> 일반회원
 												</label> <label class="radio-inline"> <input type="radio"
 													value="grade3" name="gradeCode"> 우수회원
@@ -71,7 +71,7 @@
 										<td>
 											
 											<div>
-												<label class="radio-inline"> <input type="radio"
+												<label class="radio-inline" style="margin-left: 15px;"> <input type="radio"
 													value="restrict1" name="restrictCode"> 정상
 												</label> <label class="radio-inline"> <input type="radio"
 													value="restrict2" name="restrictCode"> 입찰제한
