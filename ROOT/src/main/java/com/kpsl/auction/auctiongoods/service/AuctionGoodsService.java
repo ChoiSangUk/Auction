@@ -12,4 +12,7 @@ public interface AuctionGoodsService {
 	
 	//물품등록
 	int addAuctionGoods(AuctionGoodsVo auctionGoodsVo, List<String> imgList);
+	
+	//물품 리스트
+	List<AuctionGoodsVo> getAllAuctionGoods();
 }

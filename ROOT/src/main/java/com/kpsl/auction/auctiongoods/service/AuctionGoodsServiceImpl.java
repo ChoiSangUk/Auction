@@ -23,7 +23,7 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 		// TODO Auto-generated method stub
 		return auctionGoodsDao.selectAuctionGoods();
 	}
-//등록품목 리스트
+//등록품목 리스트(임시)
 	@Override
 	public List<AuctionGoodsVo> getAuctionGoodss() {
 		log.info("ServiceImpl goods list 메소드");
@@ -51,6 +51,15 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 		}
 		
 		 return 0;
+	}
+	
+	//모든 물품 리스트
+	@Override
+	public List<AuctionGoodsVo> getAllAuctionGoods() {
+		// TODO Auto-generated method stub
+		List<AuctionGoodsVo> list =auctionGoodsDao.selectAllAuctionGoods();
+		System.out.println(list.toString());
+		return auctionGoodsDao.selectAllAuctionGoods();
 	}
 	
 }

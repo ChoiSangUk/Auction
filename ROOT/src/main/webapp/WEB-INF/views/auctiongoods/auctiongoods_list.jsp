@@ -59,32 +59,27 @@
 			<div class="col-sm-12 text-left">
 				<h1>경매물품 리스트</h1>
 				<hr>
+				<div class="row goodsList" style="margin-left: 20px">
 				<!-- -----------------물품이 보여지는 곳 start----------------- -->
-				<div class="row goodslist" style="margin-left: 20px">
-					<div class="dpTable listLineBox col-sm-2"
-						style="border: 1px solid #48BAE4; padding: 1px; margin: 8px">
+					<div class="col-sm-2" style="border: 1px solid #48BAE4; padding: 1px; margin: 8px">
 						<div style="border-bottom:none;">
-<!-- 							 <img src="#" onerror="#" border="0"/> -->
+ 							<!-- <img src="#" onerror="#" border="0"/> -->
 						</div>
 						<div>
 							<div class="auctionGoodsName">
 								물품명
 							</div>
-							<div>
-								<p class="nowPrice">현재가 : 1,000 원</p>
+							<div class="nowPrice">
+								현재가 : 1,000 원
+							</div>
+							<div class="remainingTime">
+									<strong> 남은시간 : 9일 22시간 </strong>
+							</div>
+							<div class="sellerId">
+									<strong> 판매자 아이디 </strong>
 							</div>
 							<div>
-								<p>
-									<strong class="remainingTime"> 남은시간 : 9일 22시간 </strong>
-								</p>
-							</div>
-							<div>
-								<p>
-									<strong class="sellerId"> 판매자 아이디 </strong>
-								</p>
-							</div>
-							<div style="border:1px">
-								<span style="width:45%; display:inline-block; border-right:1px;">
+								<span style="width:45%; display:inline-block;">
 									입찰수 :<span class="bidCount">0</span>
 								</span>
 								<span style="width:45%; display:inline-block;">		
@@ -94,10 +89,8 @@
 						</div>
 					</div>
 					
-					
-					<!-- 각각의물품 div end -->
+						<!-- -----------------물품이 보여지는 곳 end----------------- -->
 				</div>
-				<!-- -----------------물품이 보여지는 곳 end----------------- -->
 			</div>
 		</div>
 	</div>
@@ -114,6 +107,72 @@
 		
 		$('.nowPrice').text('12341234')
 		console.log($('.nowPrice').text())
+		
+		//전체 물품을 뿌려주기 위한 ajax
+		$.ajax({
+			url : '${pageContext.request.contextPath}/auctiongoods/auctiongoodslist_getallgoods',
+			type : 'get',
+			dataType : 'json',
+			error : function(xhr, status, e) {
+				alert('ajax Error');
+			},
+			success : function(getData){
+				var obj = jQuery.parseJSON(JSON.stringify(getData));
+				console.log('obj의 length'+obj.length);
+				console.log(obj[1].auctionGoodsName);
+				
+				for(var i=0; i<obj.length; i++){
+					var auctionGoodsCode = obj[i].auctionGoodsCode;
+					var userId =obj[i].userId;
+					var smallCategoryCode=obj[i].smallCategoryCode;
+					var	middleCategoryCode=obj[i].middleCategoryCode;
+					var largeCategoryCode=obj[i].largeCategoryCode;
+					var auctionGoodsName=obj[i].auctionGoodsName;
+					var auctionGoodsSys=obj[i].auctionGoodsSys;
+					var auctionGoodsBidSys=obj[i].auctionGoodsBidSys;
+					var auctionGoodsContents=obj[i].auctionGoodsContents;
+					var auctionGoodsRegistDate=obj[i].auctionGoodsRegistDate;
+					var auctionGoodsTerm=obj[i].auctionGoodsTerm;
+					var auctionGoodsStartDate=obj[i].auctionGoodsStartDate;
+					var auctionGoodsEndDate=obj[i].auctionGoodsEndDate;
+					var auctionGoodsStartPrice=obj[i].auctionGoodsStartPrice;
+					var auctionGoodsBidUnit=obj[i].auctionGoodsBidUnit;
+					var auctionGoodsInstantBuyState=obj[i].auctionGoodsInstantBuyState;
+					var auctionGoodsInstantBuyPrice=obj[i].auctionGoodsInstantBuyPrice;
+					var auctionGoodsState=obj[i].auctionGoodsState;
+					var auctionGoodsHits=obj[i].auctionGoodsHits;
+					var auctionGoodsBidHits=obj[i].auctionGoodsBidHits;
+					
+					var mainDivTag = $('<div class="col-sm-2" style="border:1px solid #48BAE4; padding: 1px; margin: 8px"></div>');
+					var imgDivTag = $('<div class="img" style="border-bottom:none;"></div>');
+					var bottomDivTag = $('<div class="bottom"></div>');
+					var auctionGoodsNameDivTag = $('<div class="auctionGoodsName">'+auctionGoodsName+'</div>');
+					var nowPriceDivTag = $('<div class="nowPrice">'+'강산(현재가)원' +'</div>');
+					var remainingTimeDivTag = $('<div class="remainingTime"><strong>'+'남은시간(미구현)'+'</strong></div>');
+					var sellerIdDivTag = $('<div class="sellerId">판매자 : <strong>'+userId +'</strong></div>');
+					var divTag = $('<div>'+
+					                '<span style="width:45%; display:inline-block;">' +
+									'입찰수 :<span class="bidCount">'+auctionGoodsBidHits +'</span>'+
+									'</span>'+
+									'<span style="width:45%; display:inline-block;">'+		
+									'조회수 : <span class="auctionGoodsHits">'+auctionGoodsHits +'</span>'+
+									'</span>'+		
+									'</div>');
+					
+					bottomDivTag.append(auctionGoodsNameDivTag);
+					bottomDivTag.append(nowPriceDivTag);
+					bottomDivTag.append(remainingTimeDivTag);
+					bottomDivTag.append(sellerIdDivTag);
+					bottomDivTag.append(divTag);
+					
+					mainDivTag.append(imgDivTag);
+					mainDivTag.append(bottomDivTag);
+					
+					$('.goodsList').append(mainDivTag);
+				}
+			}
+		})
+		
 	})		
 </script>
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8" />

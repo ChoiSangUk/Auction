@@ -37,6 +37,12 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 		log.info("goodss !! list DAO쪽 메서드");
 		return sqlSessionTemplate.selectList(NS+"selectAuctionGoodss");
 	}
+
+	@Override
+	public List<AuctionGoodsVo> selectAllAuctionGoods() {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods");
+	}
 	
 	
 

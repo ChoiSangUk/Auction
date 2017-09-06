@@ -26,6 +26,14 @@
 		<id property="auctionGoodsHits" column="auction_goods_hits"/>
 	</resultMap>
 	
+	<!-- 모든 물품 리스트 -->
+	<select id="selectAllAuctionGoods" resultMap="AuctionGoods">
+		SELECT
+		*
+		FROM
+		auction_goods_tb;
+	</select>
+	
 	<insert id="insertAuctionGoods" parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo"
 	 useGeneratedKeys="true" keyProperty="auctionGoodsCode">
 	<selectKey keyProperty="auctionGoodsCode" resultType="string" order="BEFORE">
