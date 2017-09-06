@@ -23,7 +23,6 @@
 			<result property="userAddrdetail" column="user_addrdetail" />
 			<result property="userTotalcash" column="user_totalcash" />
 		</association>
-
 		<association property="gradeVo" javaType="com.kpsl.auction.user.vo.GradeVo">
 			<id property="gradeCode" column="grade_code" />
 			<result property="gradeName" column="grade_name" />
@@ -39,7 +38,7 @@
 	</resultMap>
 
 	<!-- 유저검색 -->
-	<select id="selectUserSearch" parameterType="com.kpsl.auction.user.vo.AdminUserSearchVo" resultMap="userDetail">
+	<select id="selectUserSearch" parameterType="String" resultMap="userDetail">
 		SELECT
 		u.user_id,
 		u.user_level,
@@ -55,10 +54,20 @@
 		FROM
 		user_detail_tb AS u INNER JOIN restrict_tb AS r INNER JOIN grade_tb AS g
 		ON u.restrict_code = r.restrict_code AND u.grade_code = g.grade_code
-		WHERE u.user_level ='판매자' 
-		<if test="userLevel == '구매자'">
-			OR u.user_level ='구매자'
-		</if>
+		<where>
+			<if test="userLevel == '구매자,판매자'">
+				(u.user_level = '구매자' OR u.user_level='판매자')
+			</if>
+			<if test="userLevel == '구매자' | userLevel == '판매자'"> 
+				 u.user_level = #{userLevel}
+			</if>
+			<if test="userGender != null and userGender != '' ">
+				AND u.user_gender = #{userGender}
+			</if> 
+			<if test="gradeCode != null and gradeCode != '' ">
+				AND u.grade_code= #{gradeCode}
+			</if>
+		</where>
 		
 	</select>
 

@@ -6,5 +6,5 @@ import com.kpsl.auction.user.vo.AdminUserSearchVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
 
 public interface AdminUserDao {
-		List<AdminUserSearchVo> selectUserSearch(AdminUserSearchVo adminUserSearchVo);
+		List<AdminUserSearchVo> selectUserSearch(UserDetailVo userDetailVo);
 }

@@ -38,10 +38,10 @@
 									<td>
 										
 											<div>
-												<label class="checkbox-inline"> <input
-													type="checkbox" value="남" name="userGender"> 남
-												</label><label class="checkbox-inline"> <input
-													type="checkbox" value="여" name="userGender"> 여
+												<label class="radio-inline"> <input
+													type="radio" value="남" name="userGender"> 남
+												</label><label class="radio-inline"> <input
+													type="radio" value="여" name="userGender"> 여
 												</label>
 												
 											</div>
@@ -52,15 +52,15 @@
 										<th class="text-center active" rowspan="2">조회방법</th>
 										<td>
 											
-											<div class="visible-lg visible-md">
+											<div>
 												<label class="radio-inline"> <input type="radio"
-													value="day" name="cashDate"> 일반회원
+													value="grade4" name="gradeCode"> 일반회원
 												</label> <label class="radio-inline"> <input type="radio"
-													value="range-7d" name="cashDate"> 우수회원
+													value="grade3" name="gradeCode"> 우수회원
 												</label> <label class="radio-inline"> <input type="radio"
-													value="range-1m" name="cashDate"> VIP
+													value="grade2" name="gradeCode"> VIP
 												</label> <label class="radio-inline"> <input type="radio"
-													value="range-3m" name="cashDate"> VVIP
+													value="grade1" name="gradeCode"> VVIP
 												</label> 
 											</div>
 										</td>
@@ -73,8 +73,7 @@
 													<option value="adApplyState">입찰제한</option>
 													<option value="adApplyState">이름</option>
 													<option value="adApplyState">연락처</option>
-												<option value="adApplyState">캐쉬보유</option>
-													
+													<option value="adApplyState">캐쉬보유</option>
 												</select>
 											</div>
 											<div class="input-group col-sm-4">
@@ -118,7 +117,7 @@
 					<tr>
 						<td>${userSearch.userDetailVo.userId}</td>
 						<td>${userSearch.userDetailVo.userLevel}</td>
-						<td>${userSearch.gradeVo.gradeName}</td>
+						<td>${userSearch.gradeVo.gradeName}</td> 
 						<td>${userSearch.restrictVo.restrictState}</td>
 						<td>${userSearch.userDetailVo.userName}</td>
 						<td>${userSearch.userDetailVo.userGender}</td>
@@ -126,8 +125,7 @@
 						<td>${userSearch.userDetailVo.userEmail}</td>
 						<td>${userSearch.userDetailVo.userAddr}</td>
 						<td>${userSearch.userDetailVo.userAddrdetail}</td>
-						<td>${userSearch.userDetailVo.userTotalcash}</td>
-								
+						<td>${userSearch.userDetailVo.userTotalcash}</td>  
 					</tr>
 					</tbody>
 				</c:forEach>

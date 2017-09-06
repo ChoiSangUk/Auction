@@ -10,5 +10,5 @@ import com.kpsl.auction.user.vo.UserDetailVo;
 
 @Transactional
 public interface AdminUserService {
-	List<AdminUserSearchVo> getUserSearch(AdminUserSearchVo adminUserSearchVo);
+	List<AdminUserSearchVo> getUserSearch(UserDetailVo userDetailVo);
 }

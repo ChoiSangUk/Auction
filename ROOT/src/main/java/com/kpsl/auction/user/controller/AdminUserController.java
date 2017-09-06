@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kpsl.auction.user.service.AdminUserService;
 import com.kpsl.auction.user.vo.AdminUserSearchVo;
@@ -28,11 +29,19 @@ public class AdminUserController {
 	}
 	//유저검색
 	@RequestMapping(value = "/user/adminUserSearch", method = RequestMethod.POST)
-	public String adminUserSearch(Locale locale, Model model,AdminUserSearchVo adminUserSearchVo,UserDetailVo userDetailVo) {
+	public String adminUserSearch(Locale locale, Model model,AdminUserSearchVo adminUserSearchVo,UserDetailVo userDetailVo
+								,@RequestParam String sk
+								,@RequestParam String sv) {
 	
-		 userDetailVo.getUserLevel();		
-		adminUserService.getUserSearch(adminUserSearchVo);
-		List<AdminUserSearchVo> userSearch = adminUserService.getUserSearch(adminUserSearchVo);
+		log.debug(userDetailVo.getUserLevel());	
+		log.debug(userDetailVo.getUserGender());
+		log.debug(userDetailVo.getGradeCode());
+		
+		
+		log.debug(sk);
+		log.debug(sv);
+		adminUserService.getUserSearch(userDetailVo);
+		List<AdminUserSearchVo> userSearch = adminUserService.getUserSearch(userDetailVo);
 		model.addAttribute("userSearch", userSearch);
 		
 		log.info("회원검색");

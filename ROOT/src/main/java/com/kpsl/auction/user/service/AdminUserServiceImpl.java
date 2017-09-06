@@ -14,9 +14,9 @@ public class AdminUserServiceImpl implements AdminUserService {
 	@Autowired private AdminUserDao adminUserDao;
 	Logger log = Logger.getLogger(this.getClass());
 	@Override
-	public List<AdminUserSearchVo> getUserSearch(AdminUserSearchVo adminUserSearchVo) {
-		log.info("AdminUserService Class AdminUserService : " +adminUserSearchVo);
-		return adminUserDao.selectUserSearch(adminUserSearchVo);
+	public List<AdminUserSearchVo> getUserSearch(UserDetailVo userDetailVo) {
+		log.info("AdminUserService Class AdminUserService : " +userDetailVo);
+		return adminUserDao.selectUserSearch(userDetailVo);
 	}
 	
 
