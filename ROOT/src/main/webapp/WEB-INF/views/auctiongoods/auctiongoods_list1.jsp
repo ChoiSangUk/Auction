@@ -15,7 +15,7 @@
 				
 					<thead>
 						<tr>
-							<th type = "hidden">코드번호</th>
+							<th >코드번호</th>
 							<th>품목명</th>
 							<th>등록자</th>
 							<th>입찰단위</th>
@@ -39,6 +39,7 @@
 								&auctionGoodsStartPrice=${auction.auctionGoodsStartPrice}
 								&auctionGoodsCode=${auction.auctionGoodsCode}">
 								<button>입찰하기</button>
+							
 								</a>
 								</td>
 							</tr>

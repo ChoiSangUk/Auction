@@ -49,8 +49,8 @@
 		VALUES
 		(#{bidCode}
 		, #{userBuyerId}
-		, 'ag1'
-		, 'id003'
+		, #{auctionGoodsCode}
+		, #{userSellerId}
 		, #{bidPrice}
 		, NOW());
 	</insert>
