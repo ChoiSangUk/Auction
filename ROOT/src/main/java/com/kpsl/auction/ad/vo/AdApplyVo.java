@@ -1,18 +1,18 @@
 package com.kpsl.auction.ad.vo;
 
-import org.hibernate.validator.constraints.NotEmpty;
+
 
 // 광고신청VO
 public class AdApplyVo {	
 	private String adApplyCode;
 	private String adUnitPriceCode;
-	@NotEmpty(message="물품을 먼저 등록해주세요.")
+	//@NotEmpty(message="물품을 먼저 등록해주세요.")
 	private String auctionGoodsCode;
 	private String userId;	
 	private String adApplyRegistDate;
-	@NotEmpty(message="광고시작일을 선택해주세요.")
+	//@NotEmpty(message="광고시작일을 선택해주세요.")
 	private String adApplyStartDate;
-	@NotEmpty(message="광고종료일을 선택해주세요.")
+	//@NotEmpty(message="광고종료일을 선택해주세요.")
 	private String adApplyEndDate;
 	private String adApplyApprovalDate;
 	private String adApplyState;

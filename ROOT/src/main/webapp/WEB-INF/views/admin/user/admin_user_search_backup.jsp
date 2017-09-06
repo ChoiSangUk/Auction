@@ -49,8 +49,9 @@
 										
 									</tr>
 									<tr>
-										<th class="text-center active">회원등급</th>
+										<th class="text-center active" rowspan="2">조회방법</th>
 										<td>
+											
 											<div>
 												<label class="radio-inline"> <input type="radio"
 													value="grade4" name="gradeCode"> 일반회원
@@ -62,39 +63,19 @@
 													value="grade1" name="gradeCode"> VVIP
 												</label> 
 											</div>
-											
-										</td>
-										
-									</tr>
-									<tr>
-										<th class="text-center active" rowspan="2">조회방법</th>
-										<td>
-											
-											<div>
-												<label class="radio-inline"> <input type="radio"
-													value="restrict1" name="restrictCode"> 정상
-												</label> <label class="radio-inline"> <input type="radio"
-													value="restrict2" name="restrictCode"> 입찰제한
-												</label> <label class="radio-inline"> <input type="radio"
-													value="restrict3" name="restrictCode"> 판매제한
-												</label>
-											</div>
 										</td>
 									</tr>
 									<tr>
 										<td>
-																
 											<div class="col-sm-2">
 												<select class="form-control" name="sk">
 													<option value="userId">아이디</option>
+													<option value="restrictCode">입찰제한</option>
 													<option value="userName">이름</option>
 													<option value="userPhone">연락처</option>
-													<option value="userEmail">이메일</option>
-													<option value="userAddr">주소</option>
+													<option value="userTotalcash">캐쉬보유</option>
 												</select>
 											</div>
-											
-											
 											<div class="input-group col-sm-4">
 												<input type="text" class="form-control" name="sv" placeholder="Search">
 											</div>

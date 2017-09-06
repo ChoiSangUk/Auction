@@ -33,11 +33,7 @@ public class AdminUserController {
 								,@RequestParam String sk
 								,@RequestParam String sv) {
 	
-		log.debug(userDetailVo.getUserLevel());	
-		log.debug(userDetailVo.getUserGender());
-		log.debug(userDetailVo.getGradeCode());
-		log.debug(sk);
-		log.debug(sv);
+		log.debug(userDetailVo.getUserAddr());
 		adminUserService.getUserSearch(userDetailVo,sk,sv);
 		List<AdminUserSearchVo> userSearch = adminUserService.getUserSearch(userDetailVo,sk,sv);
 		model.addAttribute("userSearch", userSearch);

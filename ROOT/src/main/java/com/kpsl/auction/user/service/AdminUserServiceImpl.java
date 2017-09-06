@@ -18,22 +18,26 @@ public class AdminUserServiceImpl implements AdminUserService {
 		log.info("AdminUserService Class AdminUserService : " +userDetailVo);
 		
 		if(sk.equals("userId")) {
-			userDetailVo.setUserId(sv);
+			userDetailVo.setUserId(sv+"%");
 			log.info(sk+"<-- sk확인");
 			log.info(sv+"<-- sv확인");
 		}else if(sk.equals("userName")) {
-			userDetailVo.setUserName(sv);
+			userDetailVo.setUserName("%"+sv+"%");
 			log.info(sk+"<-- sk확인");
 			log.info(sv+"<-- sv확인");
 		}else if(sk.equals("userPhone")) {
-			userDetailVo.setUserPhone(sv);
+			userDetailVo.setUserPhone("%"+sv+"%");
 			log.info(sk+"<-- sk확인");
 			log.info(sv+"<-- sv확인");
-		}/*else if(sk.equals("adPaymentState")) {
-			adPaymentVo.setAdPaymentState(sv);
+		}else if(sk.equals("userEmail")) {
+			userDetailVo.setUserEmail(sv+"%");
 			log.info(sk+"<-- sk확인");
 			log.info(sv+"<-- sv확인");
-		}*/
+		}else if(sk.equals("userAddr")) {
+			userDetailVo.setUserAddr("%"+sv+"%");
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}
 		
 		return adminUserDao.selectUserSearch(userDetailVo);
 	}
