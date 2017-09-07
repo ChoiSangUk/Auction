@@ -109,13 +109,13 @@
 		FROM ad_apply_tb
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
 			<if test="adApplyCode != null and adApplyCode != ''">
-				ad_apply_code = #{adApplyCode}
+				ad_apply_code LIKE #{adApplyCode}
 			</if>
 			<if test="userId != null and userId != ''">
-				user_id = #{userId}
+				user_id LIKE #{userId}
 			</if>
 			<if test="adApplyState != null and adApplyState != ''">
-				ad_apply_state = #{adApplyState}
+				ad_apply_state LIKE #{adApplyState}
 			</if>
 			<if test="adApplyRegistDate != null and adApplyRegistDate != ' 00:00:00 23:59:59'">
 				AND ad_apply_regist_date

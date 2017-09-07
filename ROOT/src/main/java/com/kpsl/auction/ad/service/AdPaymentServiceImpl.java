@@ -83,19 +83,19 @@ public class AdPaymentServiceImpl implements AdPaymentService {
 		log.info(adPaymentVo.getAdPaymentCode()+"<---2");
 		adPaymentVo.setAdPaymentRegistDate(sDate+" 00:00:00"+eDate+" 23:59:59");
 		if(sk.equals("adPaymentCode")) {
-			adPaymentVo.setAdPaymentCode(sv);
+			adPaymentVo.setAdPaymentCode("%"+sv+"%");
 			log.info(sk+"<-- sk확인");
 			log.info(sv+"<-- sv확인");
 		}else if(sk.equals("adApplyCode")) {
-			adPaymentVo.setAdApplyCode(sv);
+			adPaymentVo.setAdApplyCode("%"+sv+"%");
 			log.info(sk+"<-- sk확인");
 			log.info(sv+"<-- sv확인");
 		}else if(sk.equals("userId")) {
-			adPaymentVo.setUserId(sv);
+			adPaymentVo.setUserId("%"+sv+"%");
 			log.info(sk+"<-- sk확인");
 			log.info(sv+"<-- sv확인");
 		}else if(sk.equals("adPaymentState")) {
-			adPaymentVo.setAdPaymentState(sv);
+			adPaymentVo.setAdPaymentState("%"+sv+"%");
 			log.info(sk+"<-- sk확인");
 			log.info(sv+"<-- sv확인");
 		}

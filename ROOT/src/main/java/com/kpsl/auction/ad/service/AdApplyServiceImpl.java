@@ -59,15 +59,15 @@ public class AdApplyServiceImpl implements AdApplyService {
 		log.info("getAdApplyListBySv 호출 확인");
 		adApplyVo.setAdApplyRegistDate(sDate+" 00:00:00"+eDate+" 23:59:59");
 		if(sk.equals("adApplyCode")) {
-			adApplyVo.setAdApplyCode(sv);
+			adApplyVo.setAdApplyCode("%"+sv+"%");
 			log.info(sk+"<-- sk확인");
 			log.info(sv+"<-- sv확인");
 		}else if(sk.equals("userId")) {
-			adApplyVo.setUserId(sv);
+			adApplyVo.setUserId("%"+sv+"%");
 			log.info(sk+"<-- sk확인");
 			log.info(sv+"<-- sv확인");
 		}else if(sk.equals("adApplyState")) {
-			adApplyVo.setAdApplyState(sv);
+			adApplyVo.setAdApplyState("%"+sv+"%");
 			log.info(sk+"<-- sk확인");
 			log.info(sv+"<-- sv확인");
 		}

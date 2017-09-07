@@ -19,6 +19,9 @@ td {
 	border: 2px solid #3D3D3D;
 	border-radius: 8px;
 }
+.adApplyBtn {
+	width: 160px;
+}
 </style>
 <div class="container-fluid">
 	<div class="col-sm-1"></div>
@@ -80,17 +83,17 @@ td {
 		</div>					
 		<!-- 광고신청방법 -->
 		<div class="row content">
-			<div class="adApply text-center">
+			<div class="adApply col-sm-12 text-center">
 				<h3>광고 신청 접수방법</h3><br>
 				<img alt="" src="${pageContext.request.contextPath}/resources/img/adApplyWay.png"
-				style="margin-bottom: 13px;">
+				style="margin-bottom: 13px; width: 100%; height: 100%;">
 			</div>
 		</div>
 		<!-- 광고관리 링크 -->
 		<div class="row content">			
 			<div class="text-center">
-				<a class="btn btn-info btn-lg" href="${pageContext.request.contextPath}/mypage/adApplyInsertForm">광고신청하러가기</a>
-				<a class="btn btn-default btn-lg" href="${pageContext.request.contextPath}/mypage/adApplyList">신청한광고리스트 보러가기</a>
+				<a class="btn btn-info btn-lg adApplyBtn" href="${pageContext.request.contextPath}/mypage/adApplyInsertForm">광고신청</a>
+				<a class="btn btn-default btn-lg adApplyBtn" href="${pageContext.request.contextPath}/mypage/adApplyList">광고신청리스트</a>
 			</div>
 		</div>
 	</div>

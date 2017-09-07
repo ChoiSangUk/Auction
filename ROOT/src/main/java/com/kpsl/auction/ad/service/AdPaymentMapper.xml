@@ -107,16 +107,16 @@
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
 				ap.ad_payment_state = '결제완료'
 			<if test="adPaymentCode != null and adPaymentCode != ''">
-				AND ap.ad_payment_code = #{adPaymentCode}
+				AND ap.ad_payment_code LIKE #{adPaymentCode}
 			</if> 
 			<if test="adApplyCode != null and adApplyCode != ''">
-				AND ap.ad_apply_code = #{adApplyCode}
+				AND ap.ad_apply_code LIKE #{adApplyCode}
 			</if>
 			<if test="userId != null and userId != ''">
-				AND ap.user_id = #{userId}
+				AND ap.user_id LIKE #{userId}
 			</if>
 			<if test="adPaymentState != null and adPaymentState != '' and adPaymentState != 'currentAd'">
-				AND ap.ad_payment_state = #{adPaymentState}
+				AND ap.ad_payment_state LIKE #{adPaymentState}
 			</if>
 			<if test="adPaymentRegistDate != null and adPaymentRegistDate != ' 00:00:00 23:59:59'">
 				AND ap.ad_payment_regist_date

@@ -104,7 +104,6 @@ th {
 						<th>광고결제금액</th>
 						<th>광고결제일</th>
 						<th>광고결제상태</th>
-						<th>상세보기</th>
 					</tr>
 				</thead>
 				<c:forEach var="ad" items="${adPaymentList}">
@@ -118,9 +117,6 @@ th {
 						<td>${ad.adPaymentVo.adPaymentPrice}</td>
 						<td>${ad.adPaymentVo.adPaymentRegistDate}</td>
 						<td>${ad.adPaymentVo.adPaymentState}</td>
-						<td><a class="btn btn-success"
-							href="${pageContext.request.contextPath}/ad/adminAdApplyDetail?adApplyCode=">상세보기</a>
-						</td>
 					</tr>
 				</tbody>
 				</c:forEach>

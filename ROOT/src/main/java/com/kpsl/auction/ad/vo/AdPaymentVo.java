@@ -1,5 +1,6 @@
 package com.kpsl.auction.ad.vo;
 
+// 광고결제VO
 public class AdPaymentVo {
 	private String adPaymentCode;
 	private String adApplyCode;

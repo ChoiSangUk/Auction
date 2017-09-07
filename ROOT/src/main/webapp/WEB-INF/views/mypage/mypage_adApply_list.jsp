@@ -37,6 +37,7 @@ th,td {
 							<th>광고신청상태</th>
 							<th>수정</th>
 							<th>결제</th>
+							<th>환불</th>
 						</tr>
 					</thead>		
 					<tbody>
@@ -61,14 +62,13 @@ th,td {
 							<td></td>
 							</c:otherwise>
 							</c:choose>
-							<c:set var="adApplyState" value="${ad.adApplyVo.adApplyState}"/>
 							<c:set var="adPayment" value="${ad.adPaymentVo.adPaymentState}"/>
 							<c:set var="adApplyApprovalDate" value="${ad.adApplyVo.adApplyApprovalDate}"/>
 							<c:choose>
 							<c:when test="${adApplyState eq '승인완료' and adPayment eq null}">
 							<td>
 							<a href="${pageContext.request.contextPath}/mypage/adPaymentInsertForm?adApplyCode=${ad.adApplyVo.adApplyCode}">
-							<button class="btn btn-info paymentBtn" id="paymentBtn" value="${adApplyApprovalDate}">결제</button>
+							<button class="btn btn-info paymentBtn" value="${adApplyApprovalDate}">결제</button>
 							</a>
 							</td>
 							</c:when>
@@ -82,7 +82,26 @@ th,td {
 							<c:otherwise>
 							<td></td>
 							</c:otherwise>
-							</c:choose>				
+							</c:choose>
+							<c:choose>
+							<c:when test="${adPayment ne null}">
+							<td>
+							<a href="${pageContext.request.contextPath}/mypage/adPaymentInsertForm?adApplyCode=${ad.adApplyVo.adApplyCode}">
+							<button class="btn btn-info paymentBtn" id="paymentBtn" value="${adApplyApprovalDate}">결제</button>
+							</a>
+							</td>
+							</c:when>
+							<c:when test="${adPayment eq null}">
+							<td>
+							<strong style="color: blue;">
+							
+							</strong>
+							</td>
+							</c:when>
+							<c:otherwise>
+							<td></td>
+							</c:otherwise>
+							</c:choose>						
 						</tr>
 						</c:forEach>
 					</tbody>

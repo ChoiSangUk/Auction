@@ -2,7 +2,7 @@ package com.kpsl.auction.ad.vo;
 
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
-// AdApply, AdImage, AdUnitPrice 조인을 위한 Vo
+// AdApply, AdImage, AdUnitPrice, AdPayment, AuctionGoods, AdRefund 조인을 위한 Vo
 public class AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo {
 	private AdApplyVo adApplyVo;
 	private AdImageVo adImageVo;
