@@ -101,7 +101,7 @@
 							<label class="radio-inline">
 							<input type="radio" name="auctionGoodsBidSys" value="normal">일반</label> 
 							<label class="radio-inline">
-							<input type="radio" name="auctionGoodsBidSys" value="blind">블라인드</label>
+							<input type="radio" name="auctionGoodsBidSys" value="blind" checked="checked">블라인드</label>
 						</div>
 					</div>
 					
@@ -120,7 +120,7 @@
 							<label class="col-sm-2 control-label" id="userTotalCash">${userLoginInfo.userTotalcash} 캐쉬</label>
 						</div>
 
-						<div class="form-group" id="bidUnit" style="display:none">
+						<div class="form-group" id="bidUnit">
 							<label class="col-sm-2 control-label">입찰 단위(원)</label>
 							<div class="col-sm-1">
 								<select name="auctionGoodsBidUnit" id="bidUnit">
@@ -142,12 +142,12 @@
 								<label class="radio-inline">
 								<input type="radio" name="auctionGoodsInstantBuyState" value="on">가능</label> 
 								<label class="radio-inline">
-								<input type="radio" name="auctionGoodsInstantBuyState" value="off" >불가</label>
+								<input type="radio" name="auctionGoodsInstantBuyState" value="off" checked="checked">불가</label>
 							</div>
 							
 							<div class="col-sm-5" id="instantBuyPrice" style="display:none">
 								<label class="col-sm-3 control-label">즉시구매가</label>
-								<input type="text" name="auctionGoodsInstantBuyPrice">
+								<input type="text" name="auctionGoodsInstantBuyPrice" value="0">
 							</div>
 						</div>
 					</div>
@@ -228,6 +228,26 @@ nhn.husky.EZCreator.createInIFrame({
 	});
 });
 
+//일반 라디오버튼 선택시 입찰 방식 보이게 토글 버튼으로 만듦
+$('input[name=auctionGoodsSys]').click(function () {
+       if ($(this).val() == 'normal') {
+       	$('#auctionGoodsBidSys').show(); //경매방식이 일반일때 입찰방식 보임
+       	$('#instantBuyState').show();	 //경매방식이 일반일때 즉시구매여부 보임
+       } else {
+       	$('#auctionGoodsBidSys').hide();
+       	$('#instantBuyState').hide();
+       }
+});
+
+//즉시구매가 가능일 때
+$('input[name=auctionGoodsInstantBuyState]').click(function (){
+	 if($(this).val() == 'on'){
+		 $('#instantBuyPrice').show(); //즉시구매가 입력 보임
+	 }else {
+       	$('#instantBuyPrice').hide();
+       	$('#instantBuyPrice').val('0');
+    }
+});
 
 	$(document).ready(function() {
 		
@@ -270,7 +290,9 @@ nhn.husky.EZCreator.createInIFrame({
 			               // console.log('ajax 후에 auctionGoodsStartPrice'+auctionGoodsStartPrice)
 			               
 			              //최소입찰가가 정해지면 보증금이 자동으로 정해짐
-			               if(auctionGoodsStartPrice < 50000){
+			               if(auctionGoodsStartPrice <= 5000){
+			            	   $('#sellerDepositPrice').val('1000')
+			               }else if(auctionGoodsStartPrice < 50000){
 			            	   $('#sellerDepositPrice').val('5000')
 			               }else if(auctionGoodsStartPrice >=50000 && auctionGoodsStartPrice <200000){
 			            	   $('#sellerDepositPrice').val('10000')
@@ -529,29 +551,6 @@ nhn.husky.EZCreator.createInIFrame({
 				}
 			});
 		});
-		
-		
-		//일반 라디오버튼 선택시 입찰 방식 보이게 토글 버튼으로 만듦
-		 $('input[name=auctionGoodsSys]').click(function () {
-		        if ($(this).val() == 'normal') {
-		        	$('#auctionGoodsBidSys').show(); //경매방식이 일반일때 입찰방식 보임
-		        	$('#bidUnit').show();		 	 //경매방식이 일반일때 입찰단위 보임	
-		        	$('#instantBuyState').show();	 //경매방식이 일반일때 즉시구매여부 보임
-		        } else {
-		        	$('#auctionGoodsBidSys').hide();
-		        	$('#bidUnit').hide();
-		        	$('#instantBuyState').hide();
-		        }
-		 });
-		
-		//즉시구매가 가능일 때
-		 $('input[name=auctionGoodsInstantBuyState]').click(function (){
-			 if($(this).val() == 'on'){
-				 $('#instantBuyPrice').show(); //즉시구매가 입력 보임
-			 }else {
-		        	$('#instantBuyPrice').hide();
-		     }
-		 });
 		
 
 	});

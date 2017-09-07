@@ -94,12 +94,13 @@ public class AuctionGoodsController {
 		//System.out.println("에디터 컨텐츠 값 : " + request.getParameter("auctionGoodsContents"));
 		//System.out.println("경매 기간 : "+ request.getParameter("auctionGoodsTerm"));
 		//AuctionGoodsVo auctionGoodsVo, Model model
-		System.out.println(auctionGoodsVo.toString());
+		//System.out.println(auctionGoodsVo.toString());
 		
 		//img태그를 찾아서 소스 분리
 		String contents = auctionGoodsVo.getAuctionGoodsContents();
         Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
         Matcher matcher = pattern.matcher(contents);
+        
         
         //img소스를 담을 list 객체 
         List<String> imgList = new ArrayList<String>();

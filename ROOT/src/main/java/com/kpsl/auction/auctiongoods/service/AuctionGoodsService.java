@@ -2,6 +2,7 @@ package com.kpsl.auction.auctiongoods.service;
 
 import java.util.List;
 
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
 public interface AuctionGoodsService {
@@ -14,5 +15,5 @@ public interface AuctionGoodsService {
 	int addAuctionGoods(AuctionGoodsVo auctionGoodsVo, List<String> imgList);
 	
 	//물품 리스트
-	List<AuctionGoodsVo> getAllAuctionGoods();
+	List<AuctionGoodsAndFirstImageVo> getAllAuctionGoods();
 }

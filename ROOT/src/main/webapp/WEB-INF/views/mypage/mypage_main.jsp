@@ -135,29 +135,39 @@ a:hover {text-decoration: underline; color: #000000;} */
 		<div class="row content">
 			<div class="col-sm-12 md-box">
 				<h3>
-					<span class="glyphicon glyphicon-search"></span> 구매현황 <a
-						class="mypage-a" href="${pageContext.request.contextPath}/bid/bidusergoodsbidlist"> <span
+					<span class="glyphicon glyphicon-search"></span> 구매현황 
+					<a
+						class="mypage-a" href="#"> <span
 						class="pull-right glyphicon glyphicon-plus"></span> <span
 						class="pull-right">구매관리 바로가기</span>
+					</a>
+					
+					
+					<a
+						class="mypage-a" href="${pageContext.request.contextPath}/bid/bidusergoodsbidlist"> <span
+						class="pull-right glyphicon glyphicon-plus"></span> <span
+						class="pull-right">입찰관리 바로가기</span>
 					</a>
 				</h3>
 			</div>
 			<div class="table">
 				<table class="table table-bordered">
 					<thead>
-						<tr>
-							<th colspan="4">d</th>
-							<th colspan="4">d</th>
+						<tr class="active">
+							<th colspan="5">주문/배송 조회</th>
+							<th colspan="5">취소/반품/미수령</th>
 						</tr>
-						<tr>
-							<th>#</th>
-							<th>#</th>
-							<th>#</th>
-							<th>#</th>
-							<th>#</th>
-							<th>#</th>
-							<th>#</th>
-							<th>#</th>
+						<tr class="active">
+							<th>입금요청</th>
+							<th>입금확인중</th>
+							<th>결제완료<br>배송준비중</th>
+							<th>배송중</th>
+							<th>구매결정<br>대기</th>
+							<th>구매거부</th>
+							<th>반품</th>
+							<th>미수령</th>
+							<th>미입금</th>
+							<th>판매거부</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -170,6 +180,8 @@ a:hover {text-decoration: underline; color: #000000;} */
 							<td>6</td>
 							<td>7</td>
 							<td>8</td>
+							<td>9</td>
+							<td>0</td>
 						</tr>
 					</tbody>
 				</table>
@@ -186,34 +198,42 @@ a:hover {text-decoration: underline; color: #000000;} */
 					</h3>
 				</div>
 
-				<div class="table">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>2</td>
-								<td>3</td>
-								<td>4</td>
-								<td>5</td>
-								<td>6</td>
-								<td>7</td>
-								<td>8</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+							<div class="table">
+				<table class="table table-bordered">
+					<thead>
+						<tr class="active">
+							<th colspan="5">주문/배송 조회</th>
+							<th colspan="5">취소/반품/미수령</th>
+						</tr>
+						<tr class="active">
+							<th>입금요청</th>
+							<th>입금확인중</th>
+							<th>배송요청</th>
+							<th>배송중</th>
+							<th>구매결정<br>대기</th>
+							<th>구매거부</th>
+							<th>반품</th>
+							<th>미수령</th>
+							<th>미입금</th>
+							<th>판매거부</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>2</td>
+							<td>3</td>
+							<td>4</td>
+							<td>5</td>
+							<td>6</td>
+							<td>7</td>
+							<td>8</td>
+							<td>9</td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			</c:if>
 		</div>
 		<!-- 문의관리 버튼 -->

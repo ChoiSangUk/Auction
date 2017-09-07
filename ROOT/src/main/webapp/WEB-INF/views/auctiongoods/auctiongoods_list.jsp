@@ -10,7 +10,7 @@
 			<h3 class="visible-lg visible-md visible-sm">대분류 전체</h3>
 			<br>
 			<div class="list-group largeCategoryList" style="overflow: auto; height: 300px;">
-				<a href="#" class="list-group-item list-group-item-info">전체보기</a>
+				<a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist" class="list-group-item list-group-item-info">전체보기</a>
 				<c:forEach var="largeCategory" items="${largeCategory}">
 					<a class="list-group-item"
 						href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist_middle?largeCategoryCode=${largeCategory.largeCategoryCode}">
@@ -56,14 +56,14 @@
 	<hr>
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-12 text-left">
+			<div class="col-sm-12">
 				<h1>경매물품 리스트</h1>
 				<hr>
 				<div class="row goodsList" style="margin-left: 20px">
 				<!-- -----------------물품이 보여지는 곳 start----------------- -->
-					<div class="col-sm-2" style="border: 1px solid #48BAE4; padding: 1px; margin: 8px">
+					<!-- <div class="col-sm-2" style="border: 1px solid #48BAE4; padding: 1px; margin: 8px">
 						<div style="border-bottom:none;">
- 							<!-- <img src="#" onerror="#" border="0"/> -->
+ 							<img src="#" onerror="#" border="0"/>
 						</div>
 						<div>
 							<div class="auctionGoodsName">
@@ -87,7 +87,7 @@
 								</span>		
 							</div>
 						</div>
-					</div>
+					</div> -->
 					
 						<!-- -----------------물품이 보여지는 곳 end----------------- -->
 				</div>
@@ -105,8 +105,6 @@
 		 	largeCategoryCode[index] = $(this).text();	//선택자의 개수만큼 각각의 largeCategoryCode[index]에 해당 선택자의 text 입력
 		})
 		
-		$('.nowPrice').text('12341234')
-		console.log($('.nowPrice').text())
 		
 		//전체 물품을 뿌려주기 위한 ajax
 		$.ajax({
@@ -114,40 +112,53 @@
 			type : 'get',
 			dataType : 'json',
 			error : function(xhr, status, e) {
-				alert('ajax Error');
+				alert('auction goodsList ajax Error');
 			},
 			success : function(getData){
 				var obj = jQuery.parseJSON(JSON.stringify(getData));
-				console.log('obj의 length'+obj.length);
-				console.log(obj[1].auctionGoodsName);
+				//var parseObj = jQuery.parseJSON(JSON.stringify(obj[0]))
+				console.log(obj[0].auctionGoodsImageVo);
+				console.log(obj[0].auctionGoodsVo.auctionGoodsName);
 				
 				for(var i=0; i<obj.length; i++){
-					var auctionGoodsCode = obj[i].auctionGoodsCode;
-					var userId =obj[i].userId;
-					var smallCategoryCode=obj[i].smallCategoryCode;
-					var	middleCategoryCode=obj[i].middleCategoryCode;
-					var largeCategoryCode=obj[i].largeCategoryCode;
-					var auctionGoodsName=obj[i].auctionGoodsName;
-					var auctionGoodsSys=obj[i].auctionGoodsSys;
-					var auctionGoodsBidSys=obj[i].auctionGoodsBidSys;
-					var auctionGoodsContents=obj[i].auctionGoodsContents;
-					var auctionGoodsRegistDate=obj[i].auctionGoodsRegistDate;
-					var auctionGoodsTerm=obj[i].auctionGoodsTerm;
-					var auctionGoodsStartDate=obj[i].auctionGoodsStartDate;
-					var auctionGoodsEndDate=obj[i].auctionGoodsEndDate;
-					var auctionGoodsStartPrice=obj[i].auctionGoodsStartPrice;
-					var auctionGoodsBidUnit=obj[i].auctionGoodsBidUnit;
-					var auctionGoodsInstantBuyState=obj[i].auctionGoodsInstantBuyState;
-					var auctionGoodsInstantBuyPrice=obj[i].auctionGoodsInstantBuyPrice;
-					var auctionGoodsState=obj[i].auctionGoodsState;
-					var auctionGoodsHits=obj[i].auctionGoodsHits;
-					var auctionGoodsBidHits=obj[i].auctionGoodsBidHits;
+					var auctionGoodsCode = obj[i].auctionGoodsVo.auctionGoodsCode; //물품코드
+					var userId =obj[i].auctionGoodsVo.userId;							//판매자아이디
+					var auctionGoodsName=obj[i].auctionGoodsVo.auctionGoodsName; 		//물품명
+					var auctionGoodsSys=obj[i].auctionGoodsVo.auctionGoodsSys;			//경매방식
+					if(auctionGoodsSys=="normal"){
+						auctionGoodsSys="일반경매";
+					}else{
+						auctionGoodsSys="블라인드경매";
+					}
+					
+					var auctionGoodsTerm=obj[i].auctionGoodsVo.auctionGoodsTerm;		//판매기간
+					var auctionGoodsStartDate=obj[i].auctionGoodsVo.auctionGoodsStartDate;	//시작일
+					var auctionGoodsEndDate=obj[i].auctionGoodsVo.auctionGoodsEndDate;		
+					var auctionGoodsStartPrice=obj[i].auctionGoodsVo.auctionGoodsStartPrice;
+					var auctionGoodsInstantBuyState=obj[i].auctionGoodsVo.auctionGoodsInstantBuyState;
+					var auctionGoodsInstantBuyPrice=obj[i].auctionGoodsVo.auctionGoodsInstantBuyPrice;
+					
+					var auctionGoodsState=obj[i].auctionGoodsVo.auctionGoodsState;
+					var auctionGoodsHits=obj[i].auctionGoodsVo.auctionGoodsHits;
+					var auctionGoodsBidHits=obj[i].auctionGoodsVo.auctionGoodsBidHits;
+					var auctionGoodsImagePath=obj[i].auctionGoodsImageVo.auctionGoodsImagePath;
+					
+					var nowPrice=null;
+					if(nowPrice == null){
+						nowPrice=auctionGoodsStartPrice
+					};
 					
 					var mainDivTag = $('<div class="col-sm-2" style="border:1px solid #48BAE4; padding: 1px; margin: 8px"></div>');
-					var imgDivTag = $('<div class="img" style="border-bottom:none;"></div>');
+					var imgDivTag = $('<div class="img" style="border-bottom:none;"><img src="'+auctionGoodsImagePath+'" style="width:90%; height:200px;" onerror="#" border="0"/></div>');
 					var bottomDivTag = $('<div class="bottom"></div>');
 					var auctionGoodsNameDivTag = $('<div class="auctionGoodsName">'+auctionGoodsName+'</div>');
-					var nowPriceDivTag = $('<div class="nowPrice">'+'강산(현재가)원' +'</div>');
+					var auctionGoodsSysTag = $('<div class="auctionGoodsSys">'+auctionGoodsSys+'</div>');
+					var nowPriceDivTag = $('<div class="nowPrice">'+'현재가 <strong>'+nowPrice +'원(입찰가로)</strong></div>');
+					
+					//즉시구매가가 존재하면 태그를 추가
+					if(auctionGoodsInstantBuyPrice!='0'){
+						var auctionGoodsInstantBuyPriceTag = $('<div class="auctionGoodsInstantBuyPrice">'+'즉시구매가 : <strong>'+auctionGoodsInstantBuyPrice +'원</strong></div>');	
+					}
 					var remainingTimeDivTag = $('<div class="remainingTime"><strong>'+'남은시간(미구현)'+'</strong></div>');
 					var sellerIdDivTag = $('<div class="sellerId">판매자 : <strong>'+userId +'</strong></div>');
 					var divTag = $('<div>'+
@@ -160,6 +171,7 @@
 									'</div>');
 					
 					bottomDivTag.append(auctionGoodsNameDivTag);
+					bottomDivTag.append(auctionGoodsSysTag);
 					bottomDivTag.append(nowPriceDivTag);
 					bottomDivTag.append(remainingTimeDivTag);
 					bottomDivTag.append(sellerIdDivTag);
