@@ -124,9 +124,11 @@ public class AdApplyController {
 	
 	// 관리자 광고신청 리스트 페이지 요청
 	@RequestMapping(value = "/ad/adminAdApplySearch", method = RequestMethod.GET)
-	public String adApplyList(Model model, AdApplyVo adApplyVo) {
+	public String adApplyList(Model model, AdApplyVo adApplyVo
+							, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
-		log.info("adApplyList 확인");
+		log.info("adApplyList get 확인");
+		log.info(currentPage+"<-- page");
 		List<AdApplyVo> adApplyList = adApplyService.getAdApplyList(adApplyVo);
 		model.addAttribute("adApplyList",adApplyList);
 		

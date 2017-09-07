@@ -124,6 +124,13 @@
 		</trim>
 		ORDER BY ad_apply_regist_date
 	</select>
+	
+	<!-- 광고신청 페이징을위한 count SELECT 쿼리 -->
+	<select id="selectAdApplyCount" resultType="int">
+		SELECT count(ad_apply_code)
+		FROM ad_apply_tb
+	</select>
+	
 	<!-- 광고신청,광고이미지, 광고단가, 물품 JOIN -->
 	<select id="selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode" parameterType="com.kpsl.auction.ad.vo.AdApplyVo" resultMap="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
 		SELECT  aa.ad_apply_code, 

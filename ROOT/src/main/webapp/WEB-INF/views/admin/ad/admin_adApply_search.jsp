@@ -17,6 +17,12 @@ th {
 	vertical-align: middle !important;
 	text-align: center !important;
 }
+
+.paging {
+	margin-left: 1px;
+	margin-right: 1px;
+}
+
 </style>
 
 <div class="container-fluid">
@@ -121,6 +127,7 @@ th {
 				</tbody>
 				</c:forEach>
 			</table>
+			<div class="" id="paging"></div>
 		</div>
 	</div>
 	<div class="col-sm-1"></div>
@@ -163,6 +170,19 @@ $('input:radio[name=type]').click(function(){
 	}
 });
 
+/* jquery pagin */
+
+	
+	$('#paging').paging({
+		current:5,		
+		max:50
+	});
+	$('.paging').focus(function(){
+		var page = $(this).attr('href');
+		console.log(page);
+	$('.paging').attr('href','${pageContext.request.contextPath}/ad/adminAdApplySearch?currentPage='+page);
+	});
+	
 </script>
 
 <c:import url="/resources/module/admin_footer.jsp" charEncoding="UTF-8" />
