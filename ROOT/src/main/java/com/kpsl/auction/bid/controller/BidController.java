@@ -17,11 +17,13 @@ import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.bid.service.BidService;
 import com.kpsl.auction.bid.vo.BidVo;
+import com.kpsl.auction.cash.service.CashService;
 
 @Controller
 public class BidController {
 	@Autowired BidService bidService;
 	@Autowired AuctionGoodsService auctiongoodsservice;
+	@Autowired  CashService cashservice;
 	
 	Logger log = Logger.getLogger(this.getClass());
 
@@ -63,26 +65,31 @@ public class BidController {
  		return "/bid/bid_form";
  	}
  	//입찰자 입찰버튼 클릭시 
- 		@RequestMapping(value = "/bid/price", method = RequestMethod.GET)
- 		public String bidPrice(BidVo bidvo, HttpSession session, AuctionGoodsVo AuctionGoodsVo){
+ 		@RequestMapping(value = "/bid/price", method = RequestMethod.POST)
+ 		public String bidPrice(Model model, BidVo bidvo, HttpSession session, AuctionGoodsVo AuctionGoodsVo){
+ 			//각 각 가져오는 값들= 구매자, 물품코드, 판매자, 입찰단위, 시작가 
  			String buyerId = (String)session.getAttribute("userId");
  			String auctionGoodsCode = AuctionGoodsVo.getAuctionGoodsCode();
  			String userSellerID  = AuctionGoodsVo.getUserId();
- 			
- 			log.info(auctionGoodsCode + "<== form 에서 code 값이 들어왔어여?");
+ 			int auctionGoodsBidUnit = AuctionGoodsVo.getAuctionGoodsBidUnit();
+ 			int auctionGoodsStartPrice = AuctionGoodsVo.getAuctionGoodsStartPrice();
+ 			//
+ 			/*log.info(auctionGoodsCode + "<== form 에서 code 값이 들어왔어여?");
  			log.info(userSellerID+"<-- form 에서 userId 값이 들어왔나여?");
+ 			log.info(auctionGoodsBidUnit +"<<==입찰 단위값 왔는가?");
+ 			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");*/
  			
- 			
+ 			//mapper 에 set 되는 값들
 			bidvo.setUserSellerID(userSellerID);
  			bidvo.setAuctionGoodsCode(auctionGoodsCode);
- 			log.info(bidvo);
- 			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");
- 			bidvo.setUserBuyerId(buyerId);				//입찰자 아이디
- 			bidService.setBidPrice(bidvo);				//입찰가격을 bidprice 에 set
- 		
+ 			bidvo.setUserBuyerId(buyerId);				
+ 			//
+ 			bidService.setBidPrice(bidvo);				
+ 			
  			log.info("입찰자 입찰하기");
- 			return "redirect:/bid/bidform";
- 					 	}
+ 			return "redirect:/bid/bidform?userId="+userSellerID+"&auctionGoodsBidUnit="+auctionGoodsBidUnit+"&auctionGoodsStartPrice="
+ 			+auctionGoodsStartPrice+"&auctionGoodsCode="+auctionGoodsCode;
+ 	}
  		//본인이 입찰한 물품 리스트 보여주는 controller
  		@RequestMapping(value = "/bid/bidusergoodsbidlist", method = RequestMethod.GET)
  		public String user(HttpSession session,  BidVo bidvo,Model model){

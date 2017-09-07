@@ -25,6 +25,7 @@
 					</thead>
 					<tbody>
 						<c:forEach var="auction" items="${list}">
+						
 							<tr>
 								<td>${auction.auctionGoodsCode}</td>
 								<td>${auction.auctionGoodsName}</td>
@@ -39,10 +40,9 @@
 								&auctionGoodsStartPrice=${auction.auctionGoodsStartPrice}
 								&auctionGoodsCode=${auction.auctionGoodsCode}">
 								<button>입찰하기</button>
-							
 								</a>
 								</td>
-							</tr>
+							</tr>	
 						</c:forEach>
 					</tbody>
 				</table>

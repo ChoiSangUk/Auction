@@ -67,7 +67,7 @@
 			VALUES (#{cashCode}, #{userId}, #{cashPrice}, NOW(),
 			'출금');
 	</insert>
-	<!-- 캐쉬테이블충전내역으로 user캐쉬출금  -->
+	<!-- 캐쉬테이블출금내역으로 user캐쉬출금  -->
 	<update id="updateUserCashWithdraw" parameterType="com.kpsl.auction.user.vo.UserDetailVo" >
 			UPDATE user_detail_tb AS u INNER JOIN cash_tb AS c
 			ON u.user_id = c.user_id

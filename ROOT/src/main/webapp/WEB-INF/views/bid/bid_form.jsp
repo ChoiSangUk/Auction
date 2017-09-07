@@ -23,7 +23,6 @@
 						<div>200만원이상 : 100,000원</div>
 						<tr>
 							<h2>입찰하기</h2>
-
 							<th>품목명: ${auctionGoodsName}</th>
 							<th>시작가격:<fmt:formatNumber value="${auctionGoodsStartPrice}"
 									groupingUsed="true" />원
@@ -37,14 +36,16 @@
 								<td>
 									<form role="form" id="priceaddForm"
 										action="${pageContext.request.contextPath}/bid/price"
-										method="get">
+										method="post">
 										<div class="form-group">
 											<label for="bidPrice">입찰금액</label> <input type="int"
 												class="form-control" id="bidPrice" name="bidPrice"
 												placeholder="시작가 <fmt:formatNumber value="${auctionGoodsStartPrice}" groupingUsed="true"/>원">
 												<input type="hidden" name="auctionGoodsCode" value="${auctionGoodsCode}">
 												<input type="hidden" name="userId" value="${userId}">
-												<input type="hidden" name="auctionGoodsName" value="${auctionGoodsName}">										
+												<input type="hidden" name="auctionGoodsName" value="${auctionGoodsName}">
+												<input type="hidden" name="auctionGoodsBidUnit" value="${auctionGoodsBidUnit} ">
+												<input type="hidden" name="auctionGoodsStartPrice" value="${auctionGoodsStartPrice}">
 											  <button type="submit">입찰</button>
 										</div>
 									</form>
