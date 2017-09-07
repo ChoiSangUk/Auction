@@ -110,7 +110,7 @@
 			, user_totalcash)
 		VALUES (
 			#{userId}
-			, #{userPassword}
+			, (HEX(AES_ENCRYPT(#{userPassword},'ENCRYPT')))
 			, '구매자'
 			, 'grade4'
 			, 'restrict1'
