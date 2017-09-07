@@ -28,7 +28,19 @@ public class AuctionGoodsController {
 	@Autowired
 	private AuctionGoodsService auctionGoodsService;
 
-
+	
+	//선택한 단일 물품 상세 페이지로
+	@RequestMapping(value = "/auctiongoods/auctiongoods_detail", method = RequestMethod.GET)
+	public String getAuctionGoods(Model model,
+			@RequestParam(value = "auctionGoodsCode", required = true) String auctionGoodsCode){
+		
+		 AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods(auctionGoodsCode);
+		
+		 model.addAttribute("auctionGoods", auctionGoods);
+		return "auctiongoods/auctiongoods_detail";
+		
+	}
+	
 	// 스마트 에디터 테스트
 	@RequestMapping(value = "/test")
 	public String test() {

@@ -19,11 +19,11 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public AuctionGoodsVo selectAuctionGoods() {
+	public AuctionGoodsVo selectAuctionGoods(String auctionGoodsCode) {
 		// TODO Auto-generated method stub
 		log.info("selectAdUnitPriceList 확인");
 		
-		return sqlSessionTemplate.selectOne(NS+"selectAuctionGoods");
+		return sqlSessionTemplate.selectOne(NS+"selectAuctionGoods", auctionGoodsCode);
 	}
 	
 	//물품 등록
