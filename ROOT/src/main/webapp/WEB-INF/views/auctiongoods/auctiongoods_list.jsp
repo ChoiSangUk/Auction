@@ -96,7 +96,9 @@
 	</div>
 </div>
 <script>
+		
 	$(document).ready(function(){
+		
 		
 		//대분류 코드를 뽑아서 
 		var largeCategoryList =  $('.largeCategoryCode') //선택자를 변수에 담고
@@ -148,7 +150,7 @@
 						nowPrice=auctionGoodsStartPrice
 					};
 					
-					var mainDivTag = $('<div class="col-sm-2" style="border:1px solid #48BAE4; padding: 1px; margin: 8px"></div>');
+					var mainDivTag = $('<div class="col-sm-2 mainDiv" style="border:1px solid #48BAE4; padding: 1px; margin: 8px"><span class="auctionGoodsCode" style="display:none;">'+auctionGoodsCode+'</span></div>');
 					var imgDivTag = $('<div class="img" style="border-bottom:none;"><img src="'+auctionGoodsImagePath+'" style="width:90%; height:200px;" onerror="#" border="0"/></div>');
 					var bottomDivTag = $('<div class="bottom"></div>');
 					var auctionGoodsNameDivTag = $('<div class="auctionGoodsName">'+auctionGoodsName+'</div>');
@@ -182,10 +184,16 @@
 					
 					$('.goodsList').append(mainDivTag);
 				}
+			
+			//물품 클릭시 상세 페이지로 이동
+			$('.mainDiv').click(function(){
+				var auctionGoodsCode = $(this).find('.auctionGoodsCode').text();
+				alert(auctionGoodsCode)
+				location.href = '${pageContext.request.contextPath}/auctiongoods/auctiongoods_detail?auctionGoodsCode='+auctionGoodsCode;
+			});
 			}
 		})
-		
-	})		
+	})
 </script>
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8" />
 

@@ -20,9 +20,9 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 	private AuctionGoodsImageDao auctionGoodsImageDao;
 	
 	@Override
-	public AuctionGoodsVo getAuctionGoods() {
+	public AuctionGoodsVo getAuctionGoods(String auctionGoodsCode) {
 		// TODO Auto-generated method stub
-		return auctionGoodsDao.selectAuctionGoods();
+		return auctionGoodsDao.selectAuctionGoods(auctionGoodsCode);
 	}
 //등록품목 리스트(임시)
 	@Override

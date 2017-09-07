@@ -7,7 +7,6 @@ import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
 
 public interface AuctionGoodsDao {
-	public AuctionGoodsVo selectAuctionGoods();
 	
 	int insertAuctionGoods(AuctionGoodsVo auctionGoodsVo);
 	
@@ -17,5 +16,7 @@ public interface AuctionGoodsDao {
 	//모든 물픔 리스트
 	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoods();
 	
-	
+	//단일 물품
+	public AuctionGoodsVo selectAuctionGoods(String auctionGoodsCode);
+
 }

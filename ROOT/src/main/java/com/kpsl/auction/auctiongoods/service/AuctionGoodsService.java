@@ -6,7 +6,8 @@ import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
 public interface AuctionGoodsService {
-	public AuctionGoodsVo getAuctionGoods();
+	//단일 물품
+	public AuctionGoodsVo getAuctionGoods(String auctionGoodsCode);
 	
 	//등록품목 리트스
 	List<AuctionGoodsVo> getAuctionGoodss();
