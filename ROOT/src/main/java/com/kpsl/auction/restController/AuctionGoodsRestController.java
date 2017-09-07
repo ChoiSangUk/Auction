@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.goodscategory.service.GoodsCategoryService;
 import com.kpsl.auction.goodscategory.vo.MiddleCategoryVo;
@@ -28,7 +29,9 @@ public class AuctionGoodsRestController {
 	//모든 물품을 뿌려주기 위한 처리
 	@RequestMapping(value = "/auctiongoods/auctiongoodslist_getallgoods", produces = "application/json; charset=UTF-8" )
 	public String auctionGoodsList_getAllGoods(){
-		List<AuctionGoodsVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods(); 
+		System.out.println("여기는 오나 ?");
+		List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods(); 
+		System.out.println("auctionGoodsList는 있나? "+auctionGoodsList);
 		
 		Gson gson = new Gson();
 		return gson.toJson(auctionGoodsList);

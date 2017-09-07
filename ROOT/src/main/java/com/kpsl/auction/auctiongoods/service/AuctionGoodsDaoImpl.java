@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
 @Repository
@@ -39,8 +41,12 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	}
 
 	@Override
-	public List<AuctionGoodsVo> selectAllAuctionGoods() {
+	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoods() {
 		// TODO Auto-generated method stub
+		System.out.println("daoimpl까지");
+		System.out.println(sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods"));
+		List<AuctionGoodsAndFirstImageVo> list=sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods");
+		System.out.println("daoimpl에서"+list.toString());
 		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods");
 	}
 	

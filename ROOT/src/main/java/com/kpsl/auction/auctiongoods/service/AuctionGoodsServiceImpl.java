@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 @Transactional
@@ -47,6 +48,7 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 			AuctionGoodsImageVo auctionGoodsImageVo = new AuctionGoodsImageVo();
 			auctionGoodsImageVo.setAuctionGoodsCode(auctionGoodsVo.getAuctionGoodsCode());
 			auctionGoodsImageVo.setAuctionGoodsImagePath(imgList.get(i));
+			auctionGoodsImageVo.setAuctionGoodsImageNum(i);
 			auctionGoodsImageDao.insertAuctionGoodsImage(auctionGoodsImageVo);
 		}
 		
@@ -55,10 +57,11 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 	
 	//모든 물품 리스트
 	@Override
-	public List<AuctionGoodsVo> getAllAuctionGoods() {
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoods() {
 		// TODO Auto-generated method stub
-		List<AuctionGoodsVo> list =auctionGoodsDao.selectAllAuctionGoods();
-		System.out.println(list.toString());
+		System.out.println("serviceimpl까지");
+		List<AuctionGoodsAndFirstImageVo> list =auctionGoodsDao.selectAllAuctionGoods();
+		System.out.println("옥션굿즈서비스"+list.toString());
 		return auctionGoodsDao.selectAllAuctionGoods();
 	}
 	

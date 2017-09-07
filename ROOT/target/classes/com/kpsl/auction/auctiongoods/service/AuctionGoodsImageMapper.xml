@@ -7,7 +7,7 @@
 		<id property="auctionGoodsImageCode" column="auction_goods_image_code"/>
 		<id property="auctionGoodsCode" column="auction_goods_code"/>
 		<id property="auctionGoodsImagePath" column="auction_goods_image_path"/>
-		
+		<id property="auctionGoodsImageNum" column="auction_goods_image_num"/>
 		
 	</resultMap>
 	
@@ -21,16 +21,16 @@
 		(
 		 auction_goods_image_code,
 		 auction_goods_code,
-		 auction_goods_image_path
+		 auction_goods_image_path,
+		 auction_goods_image_num
 		 )
 		 VALUES (
 		 #{auctionGoodsImageCode},
 		 #{auctionGoodsCode},
-		 #{auctionGoodsImagePath}
+		 #{auctionGoodsImagePath},
+		 #{auctionGoodsImageNum}
 		 );
 	</insert>
-	
-	
 	
 	
   </mapper>

@@ -2,135 +2,185 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper">
-  	<resultMap type="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo" id="AuctionGoods">
-		<id property="auctionGoodsCode" column="auction_goods_code"/>
-		<id property="userId" column="user_id"/>
-		<id property="smallCategoryCode" column="small_category_code"/>
-		<id property="middleCategoryCode" column="middle_category_code"/>
-		<id property="largeCategoryCode" column="large_category_code"/>
-		<id property="auctionGoodsName" column="auction_goods_name"/>
-		<id property="auctionGoodsSys" column="auction_goods_sys"/>
-		<id property="auctionGoodsBidSys" column="auction_goods_bid_sys"/>
-		<id property="auctionGoodsContents" column="auction_goods_contents"/>
-		<id property="auctionGoodsRegistDate" column="auction_goods_regist_date"/>
-		<id property="auctionGoodsTerm" column="auction_goods_term"/>
-		<id property="auctionGoodsStartDate" column="auction_goods_start_date"/>
-		<id property="auctionGoodsEndDate" column="auction_goods_end_date"/>
-		<id property="auctionGoodsStartPrice" column="auction_goods_start_price"/>
-		<id property="auctionGoodsBidUnit" column="auction_goods_bid_unit"/>
-		<id property="auctionGoodsInstantBuyState" column="auction_goods_instant_buy_state"/>
-		<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price"/>
-		<id property="auctionGoodsState" column="auction_goods_state"/>
-		<id property="auctionGoodsBidHits" column="auction_goods_bit_hits"/>
-		<id property="auctionGoodsHits" column="auction_goods_hits"/>
+<mapper namespace="com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper">
+	<resultMap type="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo"
+		id="AuctionGoods">
+		<id property="auctionGoodsCode" column="auction_goods_code" />
+		<id property="userId" column="user_id" />
+		<id property="smallCategoryCode" column="small_category_code" />
+		<id property="middleCategoryCode" column="middle_category_code" />
+		<id property="largeCategoryCode" column="large_category_code" />
+		<id property="auctionGoodsName" column="auction_goods_name" />
+		<id property="auctionGoodsSys" column="auction_goods_sys" />
+		<id property="auctionGoodsBidSys" column="auction_goods_bid_sys" />
+		<id property="auctionGoodsContents" column="auction_goods_contents" />
+		<id property="auctionGoodsRegistDate" column="auction_goods_regist_date" />
+		<id property="auctionGoodsTerm" column="auction_goods_term" />
+		<id property="auctionGoodsStartDate" column="auction_goods_start_date" />
+		<id property="auctionGoodsEndDate" column="auction_goods_end_date" />
+		<id property="auctionGoodsStartPrice" column="auction_goods_start_price" />
+		<id property="auctionGoodsBidUnit" column="auction_goods_bid_unit" />
+		<id property="auctionGoodsInstantBuyState" column="auction_goods_instant_buy_state" />
+		<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price" />
+		<id property="auctionGoodsState" column="auction_goods_state" />
+		<id property="auctionGoodsBidHits" column="auction_goods_bit_hits" />
+		<id property="auctionGoodsHits" column="auction_goods_hits" />
 	</resultMap>
-	
+
+	<resultMap
+		type="com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo"
+		id="AuctionGoodsAndImage">
+		<association property="auctionGoodsVo"
+			javaType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo">
+			<id property="auctionGoodsCode" column="auction_goods_code" />
+			<id property="userId" column="user_id" />
+			<id property="smallCategoryCode" column="small_category_code" />
+			<id property="middleCategoryCode" column="middle_category_code" />
+			<id property="largeCategoryCode" column="large_category_code" />
+			<id property="auctionGoodsName" column="auction_goods_name" />
+			<id property="auctionGoodsSys" column="auction_goods_sys" />
+			<id property="auctionGoodsBidSys" column="auction_goods_bid_sys" />
+			<id property="auctionGoodsContents" column="auction_goods_contents" />
+			<id property="auctionGoodsRegistDate" column="auction_goods_regist_date" />
+			<id property="auctionGoodsTerm" column="auction_goods_term" />
+			<id property="auctionGoodsStartDate" column="auction_goods_start_date" />
+			<id property="auctionGoodsEndDate" column="auction_goods_end_date" />
+			<id property="auctionGoodsStartPrice" column="auction_goods_start_price" />
+			<id property="auctionGoodsBidUnit" column="auction_goods_bid_unit" />
+			<id property="auctionGoodsInstantBuyState" column="auction_goods_instant_buy_state" />
+			<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price" />
+			<id property="auctionGoodsState" column="auction_goods_state" />
+			<id property="auctionGoodsBidHits" column="auction_goods_bit_hits" />
+			<id property="auctionGoodsHits" column="auction_goods_hits" />
+		</association>
+		<association property="auctionGoodsImageVo"
+			javaType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsImageVo">
+			<id property="auctionGoodsImageCode" column="auction_goods_image_code" />
+			<id property="auctionGoodsCode" column="auction_goods_code" />
+			<id property="auctionGoodsImagePath" column="auction_goods_image_path" />
+			<id property="auctionGoodsImageNum" column="auction_goods_image_num" />
+
+		</association>
+	</resultMap>
+
 	<!-- 모든 물품 리스트 -->
-	<select id="selectAllAuctionGoods" resultMap="AuctionGoods">
+	<select id="selectAllAuctionGoods" resultMap="AuctionGoodsAndImage">
 		SELECT
-		*
-		FROM
-		auction_goods_tb;
+		ag.*,
+		agi.auction_goods_image_path
+		FROM auction_goods_tb AS ag INNER JOIN
+		auction_goods_image_tb AS agi
+		ON ag.auction_goods_code =
+		agi.auction_goods_code
+		AND
+		agi.auction_goods_image_num=0;
 	</select>
-	
+
 	<insert id="insertAuctionGoods" parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo"
-	 useGeneratedKeys="true" keyProperty="auctionGoodsCode">
-	<selectKey keyProperty="auctionGoodsCode" resultType="string" order="BEFORE">
-			SELECT CONCAT("ag",MAX(CAST(substring(auction_goods_code,3)+1 AS DECIMAL))) 
+		useGeneratedKeys="true" keyProperty="auctionGoodsCode">
+		<selectKey keyProperty="auctionGoodsCode" resultType="string"
+			order="BEFORE">
+			SELECT CONCAT("ag",MAX(CAST(substring(auction_goods_code,3)+1
+			AS DECIMAL)))
 			FROM auction_goods_tb
 		</selectKey>
-		INSERT INTO auction_goods_tb 
+		INSERT INTO auction_goods_tb
 		(
-		 auction_goods_code,
-		 user_id,
-		 small_category_code,
-		 middle_category_code,
-		 large_category_code,
-		 auction_goods_name,
-		 auction_goods_sys,
-		 auction_goods_bid_sys,
-		 auction_goods_contents,
-		 auction_goods_regist_date,
-		 auction_goods_term,
-		 auction_goods_start_date,
-		 auction_goods_end_date,
-		 auction_goods_start_price,
-		 auction_goods_bid_unit,
-		 auction_goods_instant_buy_state,
-		 auction_goods_instant_buy_price,
-		 auction_goods_state
-		 )
-		 VALUES (
-		 #{auctionGoodsCode},
-		 #{userId},
-		 #{smallCategoryCode},
-		 #{middleCategoryCode},
-		 #{largeCategoryCode},
-		 #{auctionGoodsName},
-		 #{auctionGoodsSys},
-		 #{auctionGoodsBidSys},
-		 #{auctionGoodsContents},
-		 NOW(), <!-- 등록 날짜 시간 -->
-		 #{auctionGoodsTerm},
-		 #{auctionGoodsStartDate},
-		 #{auctionGoodsEndDate},
-		 #{auctionGoodsStartPrice},
-		 #{auctionGoodsBidUnit},
-		 #{auctionGoodsInstantBuyState},
-		 #{auctionGoodsInstantBuyPrice},
-		 '등록대기'
-		 );
+		auction_goods_code,
+		user_id,
+		small_category_code,
+		middle_category_code,
+		large_category_code,
+		auction_goods_name,
+		auction_goods_sys,
+		auction_goods_bid_sys,
+		auction_goods_contents,
+		auction_goods_regist_date,
+		auction_goods_term,
+		auction_goods_start_date,
+		auction_goods_end_date,
+		auction_goods_start_price,
+		auction_goods_bid_unit,
+		auction_goods_instant_buy_state,
+		auction_goods_instant_buy_price,
+		auction_goods_state
+		)
+		VALUES (
+		#{auctionGoodsCode},
+		#{userId},
+		#{smallCategoryCode},
+		#{middleCategoryCode},
+		#{largeCategoryCode},
+		#{auctionGoodsName},
+		#{auctionGoodsSys},
+		#{auctionGoodsBidSys},
+		#{auctionGoodsContents},
+		NOW(), <!-- 등록 날짜 시간 -->
+		#{auctionGoodsTerm},
+		#{auctionGoodsStartDate},
+		#{auctionGoodsEndDate},
+		#{auctionGoodsStartPrice},
+		#{auctionGoodsBidUnit},
+		#{auctionGoodsInstantBuyState},
+		#{auctionGoodsInstantBuyPrice},
+		'등록대기'
+		);
 	</insert>
-	
+
 	<select id="selectAuctionGoods" resultMap="AuctionGoods">
 		SELECT user_id
-		FROM auction_goods_tb
+		FROM
+		auction_goods_tb
 		WHERE auction_goods_code = 1 ;
 	</select>
 	<!-- 광고신청을 위한 SELECT 쿼리문 -->
-	<select id="selectAuctionGoodsListByUserId" parameterType="String" resultMap="AuctionGoods">
+	<select id="selectAuctionGoodsListByUserId" parameterType="String"
+		resultMap="AuctionGoods">
 		SELECT auction_goods_code,
-		 user_id, 
-		 small_category_code, 
-		 middle_category_code, 
-		 large_category_code, 
-		 auction_goods_name, 
-		 auction_goods_sys, 
-		 auction_goods_bid_sys, 
-		 auction_goods_contents, 
-		 auction_goods_regist_date, 
-		 auction_goods_term, 
-		 auction_goods_start_date, 
-		 auction_goods_end_date, 
-		 auction_goods_start_price, 
-		 auction_goods_bid_unit, 
-		 auction_goods_instant_buy_state, 
-		 auction_goods_instant_buy_price, 
-		 auction_goods_state
+		user_id,
+		small_category_code,
+		middle_category_code,
+		large_category_code,
+		auction_goods_name,
+		auction_goods_sys,
+		auction_goods_bid_sys,
+		auction_goods_contents,
+		auction_goods_regist_date,
+		auction_goods_term,
+		auction_goods_start_date,
+		auction_goods_end_date,
+		auction_goods_start_price,
+		auction_goods_bid_unit,
+		auction_goods_instant_buy_state,
+		auction_goods_instant_buy_price,
+		auction_goods_state
 		FROM auction_goods_tb
-		WHERE auction_goods_regist_date > now()-INTERVAL 1 DAY AND user_id = #{userId};
+		WHERE
+		auction_goods_regist_date > now()-INTERVAL
+		1 DAY AND user_id =
+		#{userId};
 	</select>
-	<!--등록품목 리스트  -->
-	<select id="selectAuctionGoodss" parameterType="java.util.Map" resultMap="AuctionGoods">
+	<!--등록품목 리스트 -->
+	<select id="selectAuctionGoodss" parameterType="java.util.Map"
+		resultMap="AuctionGoods">
 		SELECT auction_goods_code,
-		 user_id, 
-		 small_category_code, 
-		 middle_category_code, 
-		 large_category_code, 
-		 auction_goods_name, 
-		 auction_goods_sys, 
-		 auction_goods_bid_sys, 
-		 auction_goods_contents, 
-		 auction_goods_regist_date, 
-		 auction_goods_term, 
-		 auction_goods_start_date, 
-		 auction_goods_end_date, 
-		 auction_goods_start_price, 
-		 auction_goods_bid_unit, 
-		 auction_goods_instant_buy_state, 
-		 auction_goods_instant_buy_price, 
-		 auction_goods_state
+		user_id,
+		small_category_code,
+		middle_category_code,
+		large_category_code,
+		auction_goods_name,
+		auction_goods_sys,
+		auction_goods_bid_sys,
+		auction_goods_contents,
+		auction_goods_regist_date,
+		auction_goods_term,
+		auction_goods_start_date,
+		auction_goods_end_date,
+		auction_goods_start_price,
+		auction_goods_bid_unit,
+		auction_goods_instant_buy_state,
+		auction_goods_instant_buy_price,
+		auction_goods_state
 		FROM auction_goods_tb;
 	</select>
-  </mapper>
+</mapper>
