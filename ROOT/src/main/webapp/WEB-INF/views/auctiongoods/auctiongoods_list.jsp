@@ -149,18 +149,19 @@
 					if(nowPrice == null){
 						nowPrice=auctionGoodsStartPrice
 					};
-					
-					var mainDivTag = $('<div class="col-sm-2 mainDiv" style="border:1px solid #48BAE4; padding: 1px; margin: 8px"><span class="auctionGoodsCode" style="display:none;">'+auctionGoodsCode+'</span></div>');
+					//즉시구매가가 존재하면 태그를 추가
+					if(auctionGoodsInstantBuyPrice!='0'){
+						var auctionGoodsInstantBuyPriceTag = $('<div class="auctionGoodsInstantBuyPrice">'+'즉시구매가 : <strong>'+auctionGoodsInstantBuyPrice +'원</strong></div>');	
+						
+					}else{
+						var auctionGoodsInstantBuyPriceTag = $('<div class="auctionGoodsInstantBuyPrice">'+'즉시구매 불가능</strong></div>');
+					}
+					var mainDivTag = $('<div class="col-sm-2 mainDiv btn btn-default" style="border:1px solid #48BAE4; padding: 1px; margin: 8px"><span class="auctionGoodsCode" style="display:none;">'+auctionGoodsCode+'</span></div>');
 					var imgDivTag = $('<div class="img" style="border-bottom:none;"><img src="'+auctionGoodsImagePath+'" style="width:90%; height:200px;" onerror="#" border="0"/></div>');
 					var bottomDivTag = $('<div class="bottom"></div>');
 					var auctionGoodsNameDivTag = $('<div class="auctionGoodsName">'+auctionGoodsName+'</div>');
 					var auctionGoodsSysTag = $('<div class="auctionGoodsSys">'+auctionGoodsSys+'</div>');
 					var nowPriceDivTag = $('<div class="nowPrice">'+'현재가 <strong>'+nowPrice +'원(입찰가로)</strong></div>');
-					
-					//즉시구매가가 존재하면 태그를 추가
-					if(auctionGoodsInstantBuyPrice!='0'){
-						var auctionGoodsInstantBuyPriceTag = $('<div class="auctionGoodsInstantBuyPrice">'+'즉시구매가 : <strong>'+auctionGoodsInstantBuyPrice +'원</strong></div>');	
-					}
 					var remainingTimeDivTag = $('<div class="remainingTime"><strong>'+'남은시간(미구현)'+'</strong></div>');
 					var sellerIdDivTag = $('<div class="sellerId">판매자 : <strong>'+userId +'</strong></div>');
 					var divTag = $('<div>'+
@@ -175,6 +176,7 @@
 					bottomDivTag.append(auctionGoodsNameDivTag);
 					bottomDivTag.append(auctionGoodsSysTag);
 					bottomDivTag.append(nowPriceDivTag);
+					bottomDivTag.append(auctionGoodsInstantBuyPriceTag);
 					bottomDivTag.append(remainingTimeDivTag);
 					bottomDivTag.append(sellerIdDivTag);
 					bottomDivTag.append(divTag);
@@ -188,7 +190,7 @@
 			//물품 클릭시 상세 페이지로 이동
 			$('.mainDiv').click(function(){
 				var auctionGoodsCode = $(this).find('.auctionGoodsCode').text();
-				alert(auctionGoodsCode)
+				
 				location.href = '${pageContext.request.contextPath}/auctiongoods/auctiongoods_detail?auctionGoodsCode='+auctionGoodsCode;
 			});
 			}
