@@ -71,4 +71,10 @@
 		, #{bidPrice}
 		, NOW());
 	</insert>
+	<!--입찰 시에 캐쉬에서 보증금 만큼 빠져나가기.  -->
+	<update id="updateUserCashWithdraw" parameterType="com.kpsl.auction.user.vo.UserDetailVo">
+	UPDATE user_detail_tb 
+	SET user_totalcash = user_totalcash - 1000
+	WHERE user_id = #{userId};
+	</update>
 </mapper>

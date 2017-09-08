@@ -7,6 +7,7 @@
 <div class="container-fluid text-center">
 	<div class="row content">
 		<!-- 메인화면  -->
+		
 		<div class="col-sm-12 text-left">
 			<h1>입찰창</h1>
 
@@ -61,6 +62,7 @@
 					<tbody>
 						<c:forEach var="goodsbid" items="${goodsbidlist}">
 							<tr>
+							<td>${goodsbid.bidCode}</td>
 								<td>${goodsbid.userBuyerId}</td>
 								<td><fmt:formatNumber value="${goodsbid.bidPrice}"
 										groupingUsed="true" />원</td>

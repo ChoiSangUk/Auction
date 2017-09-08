@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
 import com.kpsl.auction.bid.vo.BidVo;
+import com.kpsl.auction.user.vo.UserDetailVo;
 
 @Repository
 public class BidDaolmpl implements BidDao {
@@ -17,14 +18,12 @@ public class BidDaolmpl implements BidDao {
 	final String NS = "com.kpsl.auction.bid.service.BidMapper.";
 	@Autowired
 	private SqlSessionTemplate sessionTemplate;
-
 	// 입찰자 리스트
 	@Override
 	public List<BidVo> selectBidList() {
 		log.info("BidDao selectBidList 확인");
 		return sessionTemplate.selectList(NS + "selectBidList");
 	}
-
 	// 물품별입찰자 리스트
 	@Override
 	public List<BidVo> goodsSelectBidList(BidVo bidvo) {
@@ -32,20 +31,23 @@ public class BidDaolmpl implements BidDao {
 		log.info("BidDao goodsselectBidList 확인");
 		return sessionTemplate.selectList(NS + "selectBidList", bidvo);
 	}
-
 	// 개인 입찰 리스트
 	@Override
 	public List<BidVo> userSelectGoodsBidsList(BidVo bidvo) {
 		log.info("BidDao userSelectGoodsBidsList 확인");
 		return sessionTemplate.selectList(NS + "selectBidList", bidvo);
-
 	}
-
 	// 입찰하기
 	@Override
 	public int instertBidPrice(BidVo bidvo) {
 		log.info("BidDao insertBidPrice 확인");
 		/* log.debug(sessionTemplate.insert(NS+"insertBidPrice" , bidvo)); */
 		return sessionTemplate.insert(NS + "insertBidPrice", bidvo);
+	}
+	// 보증금 차감
+	@Override
+	public int updateUserCashWithdraw(UserDetailVo userDetailVo) {
+		 log.info("BidDao updateUserCashWithdraw 확인");
+		return sessionTemplate.insert(NS + "updateUserCashWithdraw", userDetailVo);
 	}
 }

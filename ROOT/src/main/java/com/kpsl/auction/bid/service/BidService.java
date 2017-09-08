@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.kpsl.auction.bid.vo.BidVo;
+import com.kpsl.auction.user.vo.UserDetailVo;
 
 @Transactional
 public interface BidService {
@@ -18,7 +19,8 @@ public interface BidService {
 	List<BidVo> userSelectGoodsBidsList(BidVo bidvo);
 	/**입찰버튼 클릭시 인터페이스**/
 	int setBidPrice(BidVo bidvo);
-	
+	/**입찰버튼 클릭시 보증금 차감 인터페이스**/
+	int modifyUserCashWithdraw(UserDetailVo userDetailVo);
 		
 	
 }

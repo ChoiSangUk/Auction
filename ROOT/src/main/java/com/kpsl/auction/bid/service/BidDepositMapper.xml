@@ -14,5 +14,28 @@
 		<id property="bidDepositState" column="bid_deposit_state"></id>
 		<id property="bidDepositDate" column="bid_deposit_date"></id>
 	</resultMap>
-	
+	<insert id="insertBidDeposit" parameterType="com.kpsl.auction.bid.vo.BidDepositVo" useGeneratedKeys="true" keyProperty="bidCode">
+		<selectKey keyProperty="bidDepositCode" resultType="string" order="BEFORE">
+			SELECT CONCAT("bdc",MAX(CAST(substring(bid_deposit_code,4)+1 AS
+			DECIMAL)))
+			FROM bid_deposit_tb
+		</selectKey>
+		INSERT INTO bid_deposit_tb
+	(bid_deposit_code
+	, bid_code
+	, user_buyer_id
+	, auction_goods_code
+	, user_seller_id
+	, bid_deposit_price
+	, bid_deposit_state
+	, bid_deposit_date)
+	VALUES (#{bidDepositCode}
+	, #{bidCode}
+	, #{userBuyerId}
+	, #{auctionGoodsCode}
+	, #{userSellerId}
+	, 1000
+	, '보관'
+	, NOW())
+	</insert>
   </mapper>

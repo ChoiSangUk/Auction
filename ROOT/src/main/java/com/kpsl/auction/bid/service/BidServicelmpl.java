@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.kpsl.auction.bid.vo.BidVo;
+import com.kpsl.auction.user.vo.UserDetailVo;
 
 @Service
 public class BidServicelmpl implements BidService {
@@ -37,5 +38,10 @@ public class BidServicelmpl implements BidService {
 	public List<BidVo> userSelectGoodsBidsList(BidVo bidvo) {
 		log.info("BidServicelmpl의 userSelectGoodsBidsList 메서드");
 		return bidDao.userSelectGoodsBidsList(bidvo);
+	}
+	@Override
+	public int modifyUserCashWithdraw(UserDetailVo userDetailVo) {
+		log.info("BidServicelmpl의 modifyUserCashWithdraw 메서드");
+		return bidDao.updateUserCashWithdraw(userDetailVo);
 	}
 }

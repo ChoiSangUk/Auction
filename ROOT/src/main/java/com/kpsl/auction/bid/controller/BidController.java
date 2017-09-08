@@ -10,48 +10,49 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.bid.service.BidService;
+import com.kpsl.auction.bid.vo.BidDepositVo;
 import com.kpsl.auction.bid.vo.BidVo;
 import com.kpsl.auction.cash.service.CashService;
+import com.kpsl.auction.user.vo.UserDetailVo;
+import com.kpsl.auction.bid.service.BidDepositService;
 
 @Controller
 public class BidController {
-	@Autowired BidService bidService;
 	@Autowired AuctionGoodsService auctiongoodsservice;
-	@Autowired  CashService cashservice;
+	@Autowired BidService bidService;
+	@Autowired BidDepositService biddepositservice;
+	@Autowired CashService cashservice;
 	
 	Logger log = Logger.getLogger(this.getClass());
 
-	
-	
 	//입찰자 리스트(각각의 물품마다의 입찰자 리스트, 전체리스트)
 	@RequestMapping(value = "/bid/bidform", method =  {RequestMethod.GET, RequestMethod.POST})
-  	public String bidList(Model model, AuctionGoodsVo AuctionGoodsVo, BidVo bidvo){
-		//물품코드
-		String auctionGoodsCode = AuctionGoodsVo.getAuctionGoodsCode();
+  	public String bidList(Model model, AuctionGoodsVo auctiongoodsvo, BidVo bidvo){
+		/**물품코드**/
+		String auctionGoodsCode = auctiongoodsvo.getAuctionGoodsCode();
   		model.addAttribute("auctionGoodsCode",auctionGoodsCode);
-  		//물품명
-  		String auctionGoodsName = AuctionGoodsVo.getAuctionGoodsName();
+  		/**물품명**/
+  		String auctionGoodsName = auctiongoodsvo.getAuctionGoodsName();
   		model.addAttribute("auctionGoodsName",auctionGoodsName);
- 		//시작가
- 		int auctionGoodsStartPrice =  AuctionGoodsVo.getAuctionGoodsStartPrice();
+ 		/**시작가**/
+ 		int auctionGoodsStartPrice =  auctiongoodsvo.getAuctionGoodsStartPrice();
  		model.addAttribute("auctionGoodsStartPrice", auctionGoodsStartPrice);
- 		//입찰단위
- 		int auctionGoodsBidUnit = AuctionGoodsVo.getAuctionGoodsBidUnit();
+ 		/**입찰단위**/
+ 		int auctionGoodsBidUnit = auctiongoodsvo.getAuctionGoodsBidUnit();
  		model.addAttribute("auctionGoodsBidUnit",auctionGoodsBidUnit);
- 		//물품 등록자
- 		String userId = AuctionGoodsVo.getUserId();
+ 		/**물품 등록자**/
+ 		String userId = auctiongoodsvo.getUserId();
  		model.addAttribute("userId",userId);
- 		//품목별 입찰자 리스트(물품코드를 통한 쿼리실행)
+ 		/**품목별 입찰자 리스트(물품코드를 통한 쿼리실행)**/
  		List<BidVo> goodsbidlist = bidService.goodsSelectBidList(bidvo);
  		model.addAttribute("goodsbidlist", goodsbidlist);
  		
- 		//전체입찰자 리스트
+ 		/**전체입찰자 리스트**/
  		List<BidVo> list = bidService.getBidList();
  		model.addAttribute("list",list);
  		//=====================
@@ -66,25 +67,46 @@ public class BidController {
  	}
  	//입찰자 입찰버튼 클릭시 
  		@RequestMapping(value = "/bid/price", method = RequestMethod.POST)
- 		public String bidPrice(Model model, BidVo bidvo, HttpSession session, AuctionGoodsVo AuctionGoodsVo){
- 			//각 각 가져오는 값들= 구매자, 물품코드, 판매자, 입찰단위, 시작가 
- 			String buyerId = (String)session.getAttribute("userId");
- 			String auctionGoodsCode = AuctionGoodsVo.getAuctionGoodsCode();
- 			String userSellerID  = AuctionGoodsVo.getUserId();
- 			int auctionGoodsBidUnit = AuctionGoodsVo.getAuctionGoodsBidUnit();
- 			int auctionGoodsStartPrice = AuctionGoodsVo.getAuctionGoodsStartPrice();
- 			//
- 			/*log.info(auctionGoodsCode + "<== form 에서 code 값이 들어왔어여?");
- 			log.info(userSellerID+"<-- form 에서 userId 값이 들어왔나여?");
- 			log.info(auctionGoodsBidUnit +"<<==입찰 단위값 왔는가?");
- 			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");*/
+ 		public String bidPrice(Model model, BidVo bidvo, HttpSession session 
+ 								, AuctionGoodsVo auctiongoodsvo, UserDetailVo userdetailvo
+ 								, BidDepositVo biddepositvo  ){
+
+ 			/**각 각 가져오는 값들= 구매자, 물품코드, 판매자, 입찰단위, 시작가 **/
+ 			String userbuyerId = (String)session.getAttribute("userId");
+ 			String auctionGoodsCode = auctiongoodsvo.getAuctionGoodsCode();
+ 			String userSellerID  = auctiongoodsvo.getUserId();
+ 			int auctionGoodsBidUnit = auctiongoodsvo.getAuctionGoodsBidUnit();
+ 			int auctionGoodsStartPrice = auctiongoodsvo.getAuctionGoodsStartPrice();
  			
- 			//mapper 에 set 되는 값들
+			/**bid mapper 에 set 되는 값들**/
 			bidvo.setUserSellerID(userSellerID);
  			bidvo.setAuctionGoodsCode(auctionGoodsCode);
- 			bidvo.setUserBuyerId(buyerId);				
- 			//
- 			bidService.setBidPrice(bidvo);				
+ 			bidvo.setUserBuyerId(userbuyerId);
+ 			/**biddeposti mapper 에 set 되는 값들**/
+ 			biddepositvo.setAuctionGoodsCode(auctionGoodsCode);
+ 			biddepositvo.setUserBuyerId(userbuyerId);
+ 			biddepositvo.setUserSellerId(userSellerID);
+ 			
+ 			
+ 			/**log.info(auctionGoodsCode + "<== form 에서 code 값이 들어왔어여?");
+ 			log.info(userSellerID+"<-- form 에서 userId 값이 들어왔나여?");
+ 			log.info(auctionGoodsBidUnit +"<<==입찰 단위값 왔는가?");
+ 			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");**/
+ 			
+ 
+ 			/**입찰 서비스**/
+ 			bidService.setBidPrice(bidvo);	
+ 			
+ 			/**보증금 insert 하는 서비스**/
+ 			 String bidCode =  bidvo.getBidCode();
+ 			biddepositvo.setBidCode(bidCode); 
+ 			biddepositservice.setBidDeposit(biddepositvo);
+ 			
+ 			/**보증금 차감 되는 서비스**/
+ 			userdetailvo.setUserId(userbuyerId);
+ 			bidService.modifyUserCashWithdraw(userdetailvo);
+ 			
+ 			
  			
  			log.info("입찰자 입찰하기");
  			return "redirect:/bid/bidform?userId="+userSellerID+"&auctionGoodsBidUnit="+auctionGoodsBidUnit+"&auctionGoodsStartPrice="
@@ -94,7 +116,7 @@ public class BidController {
  		@RequestMapping(value = "/bid/bidusergoodsbidlist", method = RequestMethod.GET)
  		public String user(HttpSession session,  BidVo bidvo,Model model){
  			
- 			//개인 입찰품목 리스트(session을 통해 가져온 아이디로 쿼리실행)
+ 			/**개인 입찰품목 리스트(session을 통해 가져온 아이디로 쿼리실행)**/
  			String buyerId = (String)session.getAttribute("userId");	
  			bidvo.setUserBuyerId(buyerId);
  			log.info(buyerId+"세션을 통해 들어온 아이디");
