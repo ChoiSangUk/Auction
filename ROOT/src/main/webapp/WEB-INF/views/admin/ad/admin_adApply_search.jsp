@@ -33,7 +33,7 @@ th {
 		</div>
 		<!-- 광고신청리스트 검색 -->
 		<div class="row">			
-			<form class="form-horizontal" action="${pageContext.request.contextPath}/ad/adminAdApplySearch" method="post">
+			<form class="form-horizontal" action="${pageContext.request.contextPath}/ad/adminAdApplySearch" method="get">				
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
@@ -89,6 +89,8 @@ th {
 						</tr>
 					</tbody>
 				</table>
+				<input type="hidden" id="currentPage" value="">
+				<input type="hidden" id="lastPage" value="${lastPage}">
 				<div class="form-group text-center">
 					<input class="btn btn-info btn-lg" type="submit" id="submitBtn" value="검색">
 					<input class="btn btn-lg" type="reset" id="resetBtn" value="검색삭제">
@@ -97,6 +99,7 @@ th {
 		</div>
 		<!-- 결과값 테이블 -->
 		<div class="row content text-center">
+			<strong>${adApplyCount}</strong>
 			<table class="table table-bordered">
 				<thead>
 					<tr class="active">
@@ -121,7 +124,7 @@ th {
 						<td>${ad.adApplyState}</td>
 						<td>${ad.adApplyApprovalDate}</td>
 						<td><a class="btn btn-success"
-							href="${pageContext.request.contextPath}/ad/adminAdApplyDetail?adApplyCode=${ad.adApplyCode}">상세보기</a>
+							href="#<%-- ${pageContext.request.contextPath}/ad/adminAdApplyDetail?adApplyCode=${ad.adApplyCode} --%>">상세보기</a>
 						</td>
 					</tr>
 				</tbody>
@@ -172,16 +175,29 @@ $('input:radio[name=type]').click(function(){
 
 /* jquery pagin */
 
-	
+var currentPage = parseInt($('#currentPage').val());
+var lastPage = parseInt($('#lastPage').val());
+$(function(){	
+	var locationURL = $(location).attr('href');
+	var locationPathname = $(location).attr('pathname');
+	var splitURL = locationURL.split('=');
+	var a = splitURL[0]+'='+splitURL[1]+'='+splitURL[2]+'='+splitURL[3]+'='+splitURL[4];
+	console.log(a);
+	var locationSearch = $(location).attr('search');
+
 	$('#paging').paging({
-		current:5,		
-		max:50
+		current: currentPage,
+		max: lastPage,		
+		onclick:function(e, page) {
+			if(locationSearch.length<=14) {
+			$('.paging').attr('href',locationPathname+'?currentPage='+page);
+			}else {
+				$('.paging').attr('href',a+'&currentPage='+page);
+			}
+		}	
 	});
-	$('.paging').focus(function(){
-		var page = $(this).attr('href');
-		console.log(page);
-	$('.paging').attr('href','${pageContext.request.contextPath}/ad/adminAdApplySearch?currentPage='+page);
-	});
+});
+	
 	
 </script>
 

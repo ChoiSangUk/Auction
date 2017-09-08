@@ -106,8 +106,8 @@ public class AdApplyController {
 	
 	// 광고상세정보 페이지 요청
 	@RequestMapping(value = "/ad/adminAdApplyDetail", method = RequestMethod.GET)
-	public String adApplyDetail(Model model,
-								@RequestParam(value="adApplyCode", required=true) String adApplyCode) {
+	public String adApplyDetail(Model model
+								,@RequestParam(value="adApplyCode", required=true) String adApplyCode) {
 		
 		log.info(adApplyCode+"<--- adApplyCode 확인");
 		log.info("adApplyDetail 확인");
@@ -123,28 +123,46 @@ public class AdApplyController {
 	}
 	
 	// 관리자 광고신청 리스트 페이지 요청
-	@RequestMapping(value = "/ad/adminAdApplySearch", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/ad/adminAdApplyList", method = RequestMethod.GET)
 	public String adApplyList(Model model, AdApplyVo adApplyVo
-							, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+							,@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
 		log.info("adApplyList get 확인");
-		log.info(currentPage+"<-- page");
-		List<AdApplyVo> adApplyList = adApplyService.getAdApplyList(adApplyVo);
+		int adApplyCount = adApplyService.getAdApplyCount();
+		int pagePerRow = 5;
+		// count/pagePerRow시 결과값이 소수점이하는 버리기 때문에 pagePerRow를 double형으로 형변환시킴
+		int lastPage = (int) (Math.ceil(adApplyCount / (double)pagePerRow));
+		log.info(lastPage+"<-- lastPage");
+		List<AdApplyVo> adApplyList = adApplyService.getAdApplyList(adApplyVo, currentPage, pagePerRow);
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("adApplyCount",adApplyCount);
+		model.addAttribute("lastPage",lastPage);
 		model.addAttribute("adApplyList",adApplyList);
 		
+		
 		return "/admin/ad/admin_adApply_search";
-	}
+	}*/
 	
 	// 광고신청 리스트 조회 요청
-	@RequestMapping(value = "/ad/adminAdApplySearch", method = RequestMethod.POST)
+	@RequestMapping(value = "/ad/adminAdApplySearch", method = RequestMethod.GET)
 	public String adApplySearch(Model model, AdApplyVo adApplyVo
-								,@RequestParam(value="sk", required=true) String sk
-								,@RequestParam(value="sv", required=true) String sv
-								,@RequestParam(value="sDate", required=true) String sDate
-								,@RequestParam(value="eDate", required=true) String eDate) {
+								,@RequestParam(value="sk", required=false) String sk
+								,@RequestParam(value="sv", required=false) String sv
+								,@RequestParam(value="sDate", required=false) String sDate
+								,@RequestParam(value="eDate", required=false) String eDate
+								,@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
 		log.info("adApplyList 확인");
-		List<AdApplyVo> adApplyList = adApplyService.getAdApplyListBySv(adApplyVo, sk, sv, sDate, eDate);
+		int adApplyCount = adApplyService.getAdApplyCount(adApplyVo, sk, sv, sDate, eDate);
+		log.info(adApplyCount+"<--adApplyCount");
+		int pagePerRow = 5;
+		// count/pagePerRow시 결과값이 소수점이하는 버리기 때문에 pagePerRow를 double형으로 형변환시킴
+		int lastPage = (int) (Math.ceil(adApplyCount / (double)pagePerRow));
+		log.info(lastPage+"<-- lastPage");
+		List<AdApplyVo> adApplyList = adApplyService.searchAdApplyList(adApplyVo, sk, sv, sDate, eDate, currentPage, pagePerRow);
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("adApplyCount",adApplyCount);
+		model.addAttribute("lastPage",lastPage);
 		model.addAttribute("adApplyList",adApplyList);
 		
 		return "/admin/ad/admin_adApply_search";

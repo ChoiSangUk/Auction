@@ -117,18 +117,34 @@
 			<if test="adApplyState != null and adApplyState != ''">
 				ad_apply_state LIKE #{adApplyState}
 			</if>
-			<if test="adApplyRegistDate != null and adApplyRegistDate != ' 00:00:00 23:59:59'">
+			<if test="adApplyRegistDate != null and adApplyRegistDate != 'null 00:00:00null 23:59:59' and adApplyRegistDate != ' 00:00:00 23:59:59'">
 				AND ad_apply_regist_date
 				BETWEEN substring(#{adApplyRegistDate},1,19) AND substring(#{adApplyRegistDate},20,38)
 			</if>
 		</trim>
 		ORDER BY ad_apply_regist_date
+		LIMIT #{beginRow}, #{pagePerRow}
 	</select>
 	
 	<!-- 광고신청 페이징을위한 count SELECT 쿼리 -->
-	<select id="selectAdApplyCount" resultType="int">
+	<select id="selectAdApplyCount" parameterType="com.kpsl.auction.ad.vo.AdApplyVo" resultType="int">
 		SELECT count(ad_apply_code)
 		FROM ad_apply_tb
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="adApplyCode != null and adApplyCode != ''">
+				ad_apply_code LIKE #{adApplyCode}
+			</if>
+			<if test="userId != null and userId != ''">
+				user_id LIKE #{userId}
+			</if>
+			<if test="adApplyState != null and adApplyState != ''">
+				ad_apply_state LIKE #{adApplyState}
+			</if>
+			<if test="adApplyRegistDate != null and adApplyRegistDate != 'null 00:00:00null 23:59:59' and adApplyRegistDate != ' 00:00:00 23:59:59'">
+				AND ad_apply_regist_date
+				BETWEEN substring(#{adApplyRegistDate},1,19) AND substring(#{adApplyRegistDate},20,38)
+			</if>
+		</trim>
 	</select>
 	
 	<!-- 광고신청,광고이미지, 광고단가, 물품 JOIN -->

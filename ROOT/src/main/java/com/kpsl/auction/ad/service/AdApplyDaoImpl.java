@@ -34,7 +34,9 @@ public class AdApplyDaoImpl implements AdApplyDao {
 
 	@Override
 	public int insertAdApply(AdApplyVo adApplyVo) {
+		
 		log.info("insertAdApply 호출 확인");
+		
 		return sqlSessionTemplate.insert(AdApplyMapperNS+"insertAdApply",adApplyVo);
 	}
 
@@ -47,10 +49,21 @@ public class AdApplyDaoImpl implements AdApplyDao {
 
 	@Override
 	public List<AdApplyVo> selectAdApplyList(AdApplyVo adApplyVo) {
+		
 		log.info("selectAdApplyList 호출 확인");
+		
 		return sqlSessionTemplate.selectList(AdApplyMapperNS+"selectAdApply",adApplyVo);
 	}
-
+	
+	
+	@Override
+	public int selectAdApplyCount(AdApplyVo adApplyVo) {
+			
+		log.info("selectAdApplyCount 호출 확인");
+		
+		return sqlSessionTemplate.selectOne(AdApplyMapperNS+"selectAdApplyCount",adApplyVo);
+	}
+	
 	@Override
 	public AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode(String adApplyCode) {
 		log.info("selectAdApplyAndAdImageByAdApplyCode 호출 확인");

@@ -16,6 +16,8 @@ public class AdApplyVo {
 	private String adApplyEndDate;
 	private String adApplyApprovalDate;
 	private String adApplyState;
+	private int beginRow;
+	private int pagePerRow;	
 	
 	public String getAdApplyCode() {
 		return adApplyCode;
@@ -70,5 +72,17 @@ public class AdApplyVo {
 	}
 	public void setAdApplyState(String adApplyState) {
 		this.adApplyState = adApplyState;
+	}
+	public int getBeginRow() {
+		return beginRow;
+	}
+	public void setBeginRow(int beginRow) {
+		this.beginRow = beginRow;
+	}
+	public int getPagePerRow() {
+		return pagePerRow;
+	}
+	public void setPagePerRow(int pagePerRow) {
+		this.pagePerRow = pagePerRow;
 	}
 }

@@ -17,6 +17,8 @@ public interface AdApplyDao {
 	int insertAdImage(AdImageVo adImageVo);
 	// 광고 신청 리스트 SELECT 메서드
 	List<AdApplyVo> selectAdApplyList(AdApplyVo adApplyVo);
+	// 광고 신청 리스트 검색시 페이징처리를 위한 COUNT SELECT 메서드
+	int selectAdApplyCount(AdApplyVo adApplyVo);
 	// 광고 신청, 광고이미지 JOIN SELECT 메서드
 	AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo selectAdApplyAndAdImageAndAdUnitPriceByAdApplyCode(String adApplyCode);
 	// 광고신청 UPDATE 메서드
@@ -24,5 +26,5 @@ public interface AdApplyDao {
 	// 광고신청이미지 UPDATE 메서드
 	int updateAdImage(AdImageVo adImageVo);
 	// 나의광고신청리스트 SELECT 메서드
-	List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId(String userId);
+	List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> selectAdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsByUserId(String userId);	
 }
