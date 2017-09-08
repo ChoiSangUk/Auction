@@ -124,13 +124,13 @@
 							<label class="col-sm-2 control-label">입찰 단위(원)</label>
 							<div class="col-sm-1">
 								<select name="auctionGoodsBidUnit" id="bidUnit">
-									<option value="3">100</option>
-									<option value="4">500</option>
-									<option value="5">1000</option>
-									<option value="6">5000</option>
-									<option value="7">10000</option>
-									<option value="8">50000</option>
-									<option value="9">100000</option>
+									<option value="100">100</option>
+									<option value="500">500</option>
+									<option value="1000">1000</option>
+									<option value="5000">5000</option>
+									<option value="10000">10000</option>
+									<option value="50000">50000</option>
+									<option value="100000">100000</option>
 								</select>
 							</div>
 						</div>

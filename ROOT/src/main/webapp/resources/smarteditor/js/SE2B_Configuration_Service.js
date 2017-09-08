@@ -32,8 +32,8 @@ nhn.husky.SE2M_Configuration.SE2B_CSSLoader = {
  */
 nhn.husky.SE2M_Configuration.SE_EditingAreaManager = {
 	sCSSBaseURI : "css",
-	sBlankPageURL : getContextPath()+"/resources/smarteditor/smart_editor2_inputarea.jsp",
-	sBlankPageURL_EmulateIE7 : getContextPath()+"/resources/smarteditor/smart_editor2_inputarea_ie8.jsp",
+	sBlankPageURL : "/resources/smarteditor/smart_editor2_inputarea.jsp",
+	sBlankPageURL_EmulateIE7 : "/resources/smarteditor/smart_editor2_inputarea_ie8.jsp",
 	aAddtionalEmulateIE7 : [] // IE8 default 사용, IE9 ~ 선택적 사용
 };
 

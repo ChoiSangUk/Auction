@@ -32,5 +32,11 @@
 		 );
 	</insert>
 	
+	<select id="selectAllAuctionGoodsImages" parameterType="String" resultMap="AuctionGoodsImage">
+		SELECT *
+		FROM auction_goods_image_tb
+		WHERE auction_goods_code=#{auctionGoodsCode};
+	</select>
+	
 	
   </mapper>

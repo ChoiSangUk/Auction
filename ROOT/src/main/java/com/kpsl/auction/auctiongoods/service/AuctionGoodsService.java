@@ -3,6 +3,7 @@ package com.kpsl.auction.auctiongoods.service;
 import java.util.List;
 
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 
 public interface AuctionGoodsService {
@@ -17,4 +18,7 @@ public interface AuctionGoodsService {
 	
 	//물품 리스트
 	List<AuctionGoodsAndFirstImageVo> getAllAuctionGoods();
+	
+	//물품 이미지 리스트
+	List<AuctionGoodsImageVo> getAllAuctionGoodsImages(String auctionGoodsCode);
 }

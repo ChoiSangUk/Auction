@@ -65,4 +65,11 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 		return auctionGoodsDao.selectAllAuctionGoods();
 	}
 	
+	//물품에 대한 모든 이미지 리스트
+	@Override
+	public List<AuctionGoodsImageVo> getAllAuctionGoodsImages(String auctionGoodsCode) {
+		// TODO Auto-generated method stub
+		return auctionGoodsImageDao.selectAllAuctionGoodsImages(auctionGoodsCode);
+	}
+	
 }
