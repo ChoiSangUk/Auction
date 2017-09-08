@@ -70,9 +70,8 @@
  		, user_addrdetail
  		, user_totalcash
  		FROM user_detail_tb 
- 		WHERE user_id=#{userId} AND user_password=#{userPassword} 
- 		
- 	<!-- 	(AES_DECRYPT(UNHEX(user_password),'ENCRYPT')) -->
+ 		WHERE user_id=#{userId} AND (AES_DECRYPT(UNHEX(user_password),'ENCRYPT'))=#{userPassword} 
+
  	</select>
  	<!--유저 정보조회 -->
  	<select id="selectUser" parameterType="String" resultMap="userDetail">
@@ -147,7 +146,7 @@
 			, user_totalcash)
 		VALUES (
 			#{userId}
-			, #{userPassword}
+			, (HEX(AES_ENCRYPT(#{userPassword},'ENCRYPT')))
 			, '판매자'
 			, 'grade4'
 			, 'restrict1'
@@ -167,7 +166,7 @@
  	<update id="updateUser" parameterType="com.kpsl.auction.user.vo.UserDetailVo">
  		UPDATE user_detail_tb
 		SET
-			user_password=#{userPassword},
+			user_password=(HEX(AES_ENCRYPT(#{userPassword},'ENCRYPT'))),
 			user_phone=#{userPhone},
 			user_email=#{userEmail},
 			user_postcode=#{userPostcode},
