@@ -51,7 +51,7 @@
 						<strong>${userDetailInfo.userTotalcash} 원</strong>
 					</p>
 					<p class="pull-right btn-col-3">
-						<a href="#">충전관리</a> <a href="#">출금관리</a> <a href="#">상세내역</a>
+						 <a href="${pageContext.request.contextPath}/mypage/myinfo/CashDetail">충전/출금 상세내역</a>
 					</p>
 				</div>
 			</div>

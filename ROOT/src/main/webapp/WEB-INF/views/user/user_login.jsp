@@ -67,7 +67,7 @@
 					</div>
 					<label class="col-sm-3 control-label">아이디/비밀번호를 잊어버리셨나요?</label>
 					<div class="col-sm-9">
-					<a class="btn btn-default loginQbtn" href="#">아이디/비밀번호찾기</a>
+					<a class="btn btn-default loginQbtn" href="${pageContext.request.contextPath}/user/userFindIdPw">아이디/비밀번호찾기</a>
 					</div>
 				</div>
 		</div>													    					

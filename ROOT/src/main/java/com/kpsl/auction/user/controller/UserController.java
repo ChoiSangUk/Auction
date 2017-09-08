@@ -138,4 +138,22 @@ public class UserController {
 		log.info("회원수정");
 		return "redirect:/mypage/mypageMain";
 	}
+	//아이디/비밀번호 찾기 
+	@RequestMapping(value = "/user/userFindIdPw", method = RequestMethod.GET)
+	public String userFindIdPw(){
+		
+		return "/user/user_findIdPw";
+	}
+	//아이디 찾기 폼
+	@RequestMapping(value = "/user/userFindIdForm", method = RequestMethod.GET)
+	public String userFindIdForm(){
+		
+		return "/user/user_findId_form";
+	}
+	//비밀번호 찾기 폼
+	@RequestMapping(value = "/user/userFindPwForm", method = RequestMethod.GET)
+	public String userFindPwForm(){
+		
+		return "/user/user_findPw_form";
+	}
 }
