@@ -10,5 +10,6 @@ public interface UserDetailDao {
 	int insertUser(UserVo userVo);
 	int updateUserTrans(UserDetailVo userDetailVo);
 	int updateUser(UserDetailVo userDetailVo);
+	UserDetailVo selectUserPwFind(String userId,String userEmail);
 	
 }

@@ -12,4 +12,5 @@ public interface UserDetailService {
 	int setUserSeller(UserDetailVo userDetailVo);
 	int modifyUserTrans(UserDetailVo userDetailVo);
 	int modifyUser(UserDetailVo userDetailVo);
+	UserDetailVo getUserPwFind(String userId,String userEmail);
 }

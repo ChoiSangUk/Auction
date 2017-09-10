@@ -55,6 +55,13 @@ public class UserDetailServiceImpl implements UserDetailService {
 
 
 
+	@Override
+	public UserDetailVo getUserPwFind(String userId, String userEmail) {
+		// 비밀번호찾기
+		return userDetailDao.selectUserPwFind(userId, userEmail);
+	}
+
+
 
 	
 }

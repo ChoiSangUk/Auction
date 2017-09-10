@@ -1,9 +1,7 @@
 package com.kpsl.auction.user.controller;
 
 import java.util.Locale;
-
 import javax.servlet.http.HttpSession;
-
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +10,11 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kpsl.auction.user.service.UserDao;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kpsl.auction.user.service.UserDetailService;
 import com.kpsl.auction.user.service.UserService;
-import com.kpsl.auction.user.vo.GradeVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
 import com.kpsl.auction.user.vo.UserVo;
 

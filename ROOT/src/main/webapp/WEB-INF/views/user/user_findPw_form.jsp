@@ -18,10 +18,14 @@
 		</div>
 		<!-- 내용1 -->
 		<div class="row content">				
-			
-		
-			
-			
+				<form action="${pageContext.request.contextPath}/user/userFindPwForm" method="post">
+					아이디 : <input type="text" id="userId" name="userId">		
+					email : <input type="text" id="userEmail" name="userEmail">
+					<button type="submit">dd</button>
+					
+					
+				</form>
+				
 			</div>
 		</div>
 

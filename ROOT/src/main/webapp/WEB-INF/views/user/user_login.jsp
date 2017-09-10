@@ -75,4 +75,5 @@
 	<div class="col-sm-1"></div>
 </div>
 
+
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8" />

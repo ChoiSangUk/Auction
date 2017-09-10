@@ -1,5 +1,8 @@
 package com.kpsl.auction.user.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -42,5 +45,13 @@ public class UserDetailDaoImpl implements UserDetailDao {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.update(NS+"updateUser", userDetailVo);
 	}
+	@Override
+	public UserDetailVo selectUserPwFind(String userId, String userEmail) {
+		Map<String,String> pwFindMap = new HashMap<String,String>();
+		pwFindMap.put("userId", userId);
+		pwFindMap.put("userEmail", userEmail);
+		return sqlSessionTemplate.selectOne(NS+"selectUserPwFind", pwFindMap);
+	}
+
 
 }
