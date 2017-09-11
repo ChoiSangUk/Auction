@@ -5,11 +5,12 @@ package com.kpsl.auction.user.vo;
 public class UserRemoveVo {
 	private String userRemoveCode;
 	private String userId;
-	private String userRemoveApplyDate;
-	private String userRemoveClearDate;
+	private String userRemoveReason;
+	private String userRemoveReasonDetail;
+	private String userJoindate;
+	private String userRemoveDate;
 	
 	public String getUserRemoveCode() {
-		System.out.println("UserRemoveVo:userRemoveCode"+userRemoveCode);
 		return userRemoveCode;
 	}
 	public void setUserRemoveCode(String userRemoveCode) {
@@ -21,24 +22,30 @@ public class UserRemoveVo {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getUserRemoveApplyDate() {
-		return userRemoveApplyDate;
+	public String getUserRemoveReason() {
+		return userRemoveReason;
 	}
-	public void setUserRemoveApplyDate(String userRemoveApplyDate) {
-		this.userRemoveApplyDate = userRemoveApplyDate;
+	public void setUserRemoveReason(String userRemoveReason) {
+		this.userRemoveReason = userRemoveReason;
 	}
-	public String getUserRemoveClearDate() {
-		return userRemoveClearDate;
+	public String getUserRemoveReasonDetail() {
+		return userRemoveReasonDetail;
 	}
-	public void setUserRemoveClearDate(String userRemoveClearDate) {
-		this.userRemoveClearDate = userRemoveClearDate;
+	public void setUserRemoveReasonDetail(String userRemoveReasonDetail) {
+		this.userRemoveReasonDetail = userRemoveReasonDetail;
 	}
-	@Override
-	public String toString() {
-		return "UserRemoveVo [userRemoveCode=" + userRemoveCode + ", userId=" + userId + ", userRemoveApplyDate="
-				+ userRemoveApplyDate + ", userRemoveClearDate=" + userRemoveClearDate + "]";
+	public String getUserJoindate() {
+		return userJoindate;
 	}
-	
-	
+	public void setUserJoindate(String userJoindate) {
+		this.userJoindate = userJoindate;
+	}
+	public String getUserRemoveDate() {
+		return userRemoveDate;
+	}
+	public void setUserRemoveDate(String userRemoveDate) {
+		this.userRemoveDate = userRemoveDate;
+	}
+
 	
 }

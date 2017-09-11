@@ -44,6 +44,12 @@ public class UserDaoImpl implements UserDao {
 		return sqlSessionTemplate.selectOne(NS+"selectUser", userId);
 	}
 
+	@Override
+	public int deleteUser(String userId) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.delete(NS+"deleteUser", userId);
+	}
+
 
 
 }

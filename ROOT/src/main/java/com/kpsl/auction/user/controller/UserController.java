@@ -29,7 +29,6 @@ public class UserController {
 	//회원가입폼
 	@RequestMapping(value = "/user/userJoin", method = RequestMethod.GET)
 	public String join(Locale locale, Model model) {
-
 		log.info("회원가입");
 		return "/user/user_join";
 	}
@@ -82,8 +81,8 @@ public class UserController {
 	//판매자회원가입
 	@RequestMapping(value = "/user/userSellerInsertForm", method = RequestMethod.POST)
 	public String sellerInsert(UserDetailVo userDetailVo, UserVo userVo) {
-		userDetailService.setUserSeller(userDetailVo);
 		userDetailService.setUser(userVo);
+		userDetailService.setUserSeller(userDetailVo);
 		log.info("판매자회원가입액션");
 		return "redirect:/user/userLogin";
 	}
@@ -97,9 +96,8 @@ public class UserController {
 	//구매자회원가입
 	@RequestMapping(value = "/user/userBuyerInsertForm", method = RequestMethod.POST)
 	public String buyerInsert(UserDetailVo userDetailVo, UserVo userVo) {
-		
-		userDetailService.setUserBuyer(userDetailVo);
 		userDetailService.setUser(userVo);
+		userDetailService.setUserBuyer(userDetailVo);		
 		log.info("구매자회원가입액션");
 		return "redirect:/user/userLogin";
 	}

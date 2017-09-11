@@ -8,5 +8,6 @@ public interface UserDao {
 	UserDetailVo selectUserLogin(String userId,String userPassword);
 	GradeVo selectUserGrade(String userId);
 	UserDetailVo selectUser(String userId);
+	int deleteUser(String userId);
 	
 }

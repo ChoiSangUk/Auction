@@ -129,6 +129,7 @@
 						<th>주소</th>
 						<th>상세주소</th>
 						<th>보유캐쉬</th>
+						<th>회원가입날짜</th>
 					</tr>
 				</thead>
 			<c:forEach var="userSearch" items="${userSearch}">
@@ -144,7 +145,9 @@
 						<td>${userSearch.userDetailVo.userEmail}</td>
 						<td>${userSearch.userDetailVo.userAddr}</td>
 						<td>${userSearch.userDetailVo.userAddrdetail}</td>
-						<td>${userSearch.userDetailVo.userTotalcash}</td>  
+						<td>${userSearch.userDetailVo.userTotalcash}</td>
+						<td>${userSearch.userDetailVo.userJoindate}</td> 
+						 
 					</tr>
 					</tbody>
 				</c:forEach>

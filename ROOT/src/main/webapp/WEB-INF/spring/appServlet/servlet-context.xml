@@ -10,6 +10,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
@@ -32,7 +33,7 @@
 	</bean>
 
 	<context:component-scan base-package="com.kpsl.auction" />
-	
+
 	<!-- logger 인터셉터 -->
 	<mvc:interceptors>	    
         <mvc:interceptor>
@@ -111,7 +112,8 @@
             	<value>classpath:com/kpsl/auction/account/service/AccountMapper.xml</value>         	
             	<value>classpath:com/kpsl/auction/saleslog/service/SalesLogMapper.xml</value>  
             	<value>classpath:com/kpsl/auction/cash/service/CashMapper.xml</value>         
-            	<value>classpath:com/kpsl/auction/user/service/UserDetailMapper.xml</value>  
+            	<value>classpath:com/kpsl/auction/user/service/UserDetailMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/user/service/UserRemoveMapper.xml</value>    
             	<value>classpath:com/kpsl/auction/user/service/AdminUserMapper.xml</value>            	
             	<value>classpath:com/kpsl/auction/ad/service/AdUnitPriceMapper.xml</value>
             	<value>classpath:com/kpsl/auction/ad/service/AdApplyMapper.xml</value>

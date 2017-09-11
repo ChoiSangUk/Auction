@@ -18,6 +18,7 @@
 		<result property="userAddr" column="user_addr" />
 		<result property="userAddrdetail" column="user_addrdetail" />
 		<result property="userTotalcash" column="user_totalcash" />
+		<result property="userJoindate" column="user_joindate" />
 	</resultMap>
 	<resultMap type="com.kpsl.auction.user.vo.GradeVo" id="grade">
 		<id property="gradeCode" column="grade_code" />
@@ -187,5 +188,9 @@
 			</if>
 		</where>
 	</select>
- 	
+ 	<!-- 회원탈퇴(UserRemoveVo와 트랜잭션) -->
+ 	<delete id="deleteUser">
+ 		DELETE FROM user_detail_tb 
+ 		WHERE user_id=#{userId}
+ 	</delete>
 </mapper>

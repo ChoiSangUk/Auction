@@ -22,6 +22,7 @@
 			<result property="userAddr" column="user_addr" />
 			<result property="userAddrdetail" column="user_addrdetail" />
 			<result property="userTotalcash" column="user_totalcash" />
+			<result property="userJoindate" column="user_joindate" />
 		</association>
 		<association property="gradeVo" javaType="com.kpsl.auction.user.vo.GradeVo">
 			<id property="gradeCode" column="grade_code" />
@@ -50,7 +51,8 @@
 		u.user_email,
 		u.user_addr,
 		u.user_addrdetail,
-		u.user_totalcash
+		u.user_totalcash,
+		u.user_joindate
 		FROM
 		user_detail_tb AS u INNER JOIN restrict_tb AS r INNER JOIN grade_tb AS g
 		ON u.restrict_code = r.restrict_code AND u.grade_code = g.grade_code

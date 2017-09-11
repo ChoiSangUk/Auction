@@ -28,7 +28,7 @@ dd {
 		<!-- 내용1 -->
 		<c:import url="/resources/module/mypage_info.jsp" charEncoding="UTF-8" />
 		<!-- 내용2 -->
-		<form>
+		<form action="" method="post">
 			<div class="row content">
 				<div class="text-center well">
 					<h2>
@@ -60,9 +60,7 @@ dd {
 										<dd class="mb20">탈퇴신청 후 2일이내(공휴일제외)고객님의 은행계좌로 송금됩니다.</dd>
 										<dt>[재가입 및 아이디 사용]</dt>
 										<dd class="mb20">
-											<strong class="fcBlue">탈퇴 후 6개월 이후 재가입이 가능합니다.(단
-												사이트제한 상태에서 탈퇴한 경우 제외.)</strong><br> 탈퇴 전 사용하였던 아이디는 다시 사용하실 수
-											없습니다.
+											탈퇴 전 사용하였던 아이디는 다시 사용하실 수 없습니다.
 										</dd>
 										<dt>[탈퇴가 불가한 경우]</dt>
 										<dd>
@@ -74,16 +72,16 @@ dd {
 							</tr>
 							<tr>
 								<th class="text-center active">탈퇴신청사유</th>
-								<td><select name="outtype" id="outtype"
+								<td><select name="userRemoveReason" id="userRemoveReason"
 									class="form-control">
-										<option value="10">재가입</option>
-										<option value="11">미사용</option>
-										<option value="12">기타</option>
+										<option value="재가입">재가입</option>
+										<option value="미사용">미사용</option>
+										<option value="기타">기타</option>
 								</select></td>
 							</tr>
 							<tr>
 								<th class="text-center active">탈퇴사유</th>
-								<td><textarea name="outcont" id="outcont" rows="5"
+								<td><textarea name="userRemoveReasonDetail" id="userRemoveReasonDetail" rows="5"
 										class="form-control"></textarea></td>
 							</tr>
 						</tbody>

@@ -1,1 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kpsl.auction.user.service.UserDetailMapper">
+	<resultMap type="com.kpsl.auction.user.vo.UserRemoveVo" id="userRemoveVo">
+		<id property="userRemoveCode" column="user_remove_code" />
+		<result property="userId" column="user_id" />
+		<result property="userRemoveReason" column="user_remove_reason" />
+		<result property="userRemoveReasonDetail" column="user_remove_reason_detail" />
+		<result property="userJoindate" column="user_joindate" />
+		<result property="userRemoveDate" column="user_remove_date" />
+	</resultMap>
+	<insert id="insertUserDelete" parameterType="com.kpsl.auction.user.vo.UserRemoveVo"
+		useGeneratedKeys="true" keyProperty="userRemoveCode">
+		<selectKey keyProperty="userRemoveCode" resultType="string" order="BEFORE">
+			SELECT CONCAT("remove",MAX(CAST(substring(user_remove_code,7)+1 AS
+			DECIMAL)))
+			FROM user_remove_tb
+		</selectKey>
+		INSERT INTO user_remove_tb (
+				user_remove_code, 
+				user_id, 
+				user_remove_reason, 
+				user_remove_reason_detail, 
+				user_joindate, 
+				user_remove_date	)
+		VALUES (
+				#{userRemoveCode}, 
+				#{userId},
+				#{userRemoveReason}, 
+				#{userRemoveReasonDetail},
+				  (SELECT user_joindate
+				   FROM user_detail_tb
+				   WHERE user_id=#{userId}), 
+				NOW()					
+				);
+	
+	</insert>
+
+
+
+</mapper>
