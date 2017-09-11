@@ -18,5 +18,8 @@ public interface AuctionGoodsDao {
 	
 	//단일 물품
 	public AuctionGoodsVo selectAuctionGoods(String auctionGoodsCode);
+	
+	//물품 수정
+	int updateAuctionGoods(AuctionGoodsVo auctionGoodsVo);
 
 }

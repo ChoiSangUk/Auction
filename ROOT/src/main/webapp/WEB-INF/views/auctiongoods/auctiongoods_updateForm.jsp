@@ -81,6 +81,7 @@
 						<div class="col-sm-3">
 							<input class="form-control" type="text" name="auctionGoodsName" value="${auctionGoods.auctionGoodsName}">
 						</div>
+						<span style="display:none"><input class="form-control" type="text" name="auctionGoodsCode" value="${auctionGoods.auctionGoodsCode}"></span>
 					</div>
 					
 					<div class="form-group">

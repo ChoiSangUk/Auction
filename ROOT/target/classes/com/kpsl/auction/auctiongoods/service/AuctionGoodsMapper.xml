@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper">
+ <mapper namespace="com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper">
 	<resultMap type="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo"
 		id="AuctionGoods">
 		<id property="auctionGoodsCode" column="auction_goods_code" />
@@ -83,6 +83,27 @@
 	</resultMap>
 	
 
+	<update id="updateAuctionGoods" parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo">
+		UPDATE auction_goods_tb
+		SET small_category_code = #{smallCategoryCode},
+		 middle_category_code = #{middleCategoryCode},
+		 large_category_code = #{largeCategoryCode},
+		 auction_goods_name = #{auctionGoodsName},
+		 auction_goods_sys = #{auctionGoodsSys},
+		 auction_goods_bid_sys = #{auctionGoodsBidSys},
+		 auction_goods_contents = #{auctionGoodsContents},
+		 auction_goods_term = #{auctionGoodsTerm},
+		 auction_goods_start_date = #{auctionGoodsStartDate},
+		 auction_goods_end_date = #{auctionGoodsEndDate},
+		 auction_goods_start_price = #{auctionGoodsStartPrice},
+		 auction_goods_bid_unit = #{auctionGoodsBidUnit},
+		 auction_goods_instant_buy_state = #{auctionGoodsInstantBuyState},
+		 auction_goods_instant_buy_price = #{auctionGoodsInstantBuyPrice},
+		 auction_goods_bid_hits = #{auctionGoodsBidHits},
+		 auction_goods_hits = #{auctionGoodsHits},
+		 auction_goods_deposit_price = #{auctionGoodsDepositPrice}
+		WHERE auction_goods_code = #{auctionGoodsCode}
+	</update>
 	<!-- 모든 물품 리스트 -->
 	<select id="selectAllAuctionGoods" resultMap="AuctionGoodsAndImage">
 		SELECT
@@ -208,4 +229,6 @@
 		auction_goods_state
 		FROM auction_goods_tb;
 	</select>
+
 </mapper>
+  

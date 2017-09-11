@@ -49,6 +49,13 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 		System.out.println("daoimpl에서"+list.toString());
 		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods");
 	}
+
+	@Override
+	public int updateAuctionGoods(AuctionGoodsVo auctionGoodsVo) {
+		
+		System.out.println("updatedao :"+auctionGoodsVo);
+		return sqlSessionTemplate.update(NS+"updateAuctionGoods", auctionGoodsVo);
+	}
 	
 	
 

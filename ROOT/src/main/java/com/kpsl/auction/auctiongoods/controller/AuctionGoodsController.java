@@ -45,11 +45,11 @@ public class AuctionGoodsController {
 	
 	//물품 수정 액션 부분
 	@RequestMapping(value = "/auctiongoods/auctiongoodsupdate_action", method=RequestMethod.POST)
-	public String updateAuctionGoodsAction(AuctionGoodsVo auctionGoodsVo, Model model){
+	public String updateAuctionGoodsAction(Model model,AuctionGoodsVo auctionGoodsVo){
 		String contents = auctionGoodsVo.getAuctionGoodsContents();
         Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
         Matcher matcher = pattern.matcher(contents);
-        
+        System.out.println("update에서의 acutionGoodsVo"+auctionGoodsVo.toString());
         
         //img소스를 담을 list 객체 
         List<String> imgList = new ArrayList<String>();
