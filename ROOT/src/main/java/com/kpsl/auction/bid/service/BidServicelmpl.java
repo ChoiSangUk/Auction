@@ -39,9 +39,5 @@ public class BidServicelmpl implements BidService {
 		log.info("BidServicelmpl의 userSelectGoodsBidsList 메서드");
 		return bidDao.userSelectGoodsBidsList(bidvo);
 	}
-	@Override
-	public int modifyUserCashWithdraw(UserDetailVo userDetailVo) {
-		log.info("BidServicelmpl의 modifyUserCashWithdraw 메서드");
-		return bidDao.updateUserCashWithdraw(userDetailVo);
-	}
+
 }

@@ -44,10 +44,5 @@ public class BidDaolmpl implements BidDao {
 		/* log.debug(sessionTemplate.insert(NS+"insertBidPrice" , bidvo)); */
 		return sessionTemplate.insert(NS + "insertBidPrice", bidvo);
 	}
-	// 보증금 차감
-	@Override
-	public int updateUserCashWithdraw(UserDetailVo userDetailVo) {
-		 log.info("BidDao updateUserCashWithdraw 확인");
-		return sessionTemplate.insert(NS + "updateUserCashWithdraw", userDetailVo);
-	}
+
 }

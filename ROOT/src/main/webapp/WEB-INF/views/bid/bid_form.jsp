@@ -2,9 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:import url="/resources/module/admin_top.jsp" charEncoding="UTF-8" />
 
+<c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
+<script>
+
+</script>
+<body>
 <div class="container-fluid text-center">
+
 	<div class="row content">
 		<!-- 메인화면  -->
 		
@@ -35,11 +40,11 @@
 						<tr>
 							<div>
 								<td>
-									<form role="form" id="priceaddForm"
+									<form id = "addForm" role="form" id="priceaddForm"
 										action="${pageContext.request.contextPath}/bid/price"
 										method="post">
 										<div class="form-group">
-											<label for="bidPrice">입찰금액</label> <input type="int"
+											<label for="bidPrice">입찰금액</label> <input 
 												class="form-control" id="bidPrice" name="bidPrice"
 												placeholder="시작가 <fmt:formatNumber value="${auctionGoodsStartPrice}" groupingUsed="true"/>원">
 												<input type="hidden" name="auctionGoodsCode" value="${auctionGoodsCode}">
@@ -47,7 +52,7 @@
 												<input type="hidden" name="auctionGoodsName" value="${auctionGoodsName}">
 												<input type="hidden" name="auctionGoodsBidUnit" value="${auctionGoodsBidUnit} ">
 												<input type="hidden" name="auctionGoodsStartPrice" value="${auctionGoodsStartPrice}">
-											  <button type="submit">입찰</button>
+											  <button name = "addbutton" type="submit">입찰</button>
 										</div>
 									</form>
 								</td>
@@ -62,7 +67,6 @@
 					<tbody>
 						<c:forEach var="goodsbid" items="${goodsbidlist}">
 							<tr>
-							<td>${goodsbid.bidCode}</td>
 								<td>${goodsbid.userBuyerId}</td>
 								<td><fmt:formatNumber value="${goodsbid.bidPrice}"
 										groupingUsed="true" />원</td>
@@ -75,5 +79,5 @@
 		</div>
 	</div></div>
 	
-
+</body>
 	<c:import url="/resources/module/admin_footer.jsp" charEncoding="UTF-8" />

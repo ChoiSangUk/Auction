@@ -1,5 +1,7 @@
 package com.kpsl.auction.bid.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -69,7 +71,7 @@ public class BidController {
  		@RequestMapping(value = "/bid/price", method = RequestMethod.POST)
  		public String bidPrice(Model model, BidVo bidvo, HttpSession session 
  								, AuctionGoodsVo auctiongoodsvo, UserDetailVo userdetailvo
- 								, BidDepositVo biddepositvo  ){
+ 								, BidDepositVo biddepositvo  ) throws UnsupportedEncodingException{
 
  			/**각 각 가져오는 값들= 구매자, 물품코드, 판매자, 입찰단위, 시작가 **/
  			String userbuyerId = (String)session.getAttribute("userId");
@@ -77,7 +79,9 @@ public class BidController {
  			String userSellerID  = auctiongoodsvo.getUserId();
  			int auctionGoodsBidUnit = auctiongoodsvo.getAuctionGoodsBidUnit();
  			int auctionGoodsStartPrice = auctiongoodsvo.getAuctionGoodsStartPrice();
- 			
+ 			String aucitonGoodsName1 = auctiongoodsvo.getAuctionGoodsName();
+ 			String auctionGoodsName = URLEncoder.encode(aucitonGoodsName1, "UTF-8");
+
 			/**bid mapper 에 set 되는 값들**/
 			bidvo.setUserSellerID(userSellerID);
  			bidvo.setAuctionGoodsCode(auctionGoodsCode);
@@ -87,29 +91,44 @@ public class BidController {
  			biddepositvo.setUserBuyerId(userbuyerId);
  			biddepositvo.setUserSellerId(userSellerID);
  			
- 			
- 			/**log.info(auctionGoodsCode + "<== form 에서 code 값이 들어왔어여?");
+ 			log.info(auctionGoodsName+"");
+ 			log.info(auctionGoodsStartPrice+"<<==auctionGoodsStartPrice 시작가 들어왔나여? ");
+ 			log.info(auctionGoodsCode + "<== form 에서 code 값이 들어왔어여?");
  			log.info(userSellerID+"<-- form 에서 userId 값이 들어왔나여?");
  			log.info(auctionGoodsBidUnit +"<<==입찰 단위값 왔는가?");
- 			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");**/
+ 			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");
  			
  
  			/**입찰 서비스**/
  			bidService.setBidPrice(bidvo);	
  			
  			/**보증금 insert 하는 서비스**/
- 			 String bidCode =  bidvo.getBidCode();
+ 			
+ 			if(auctionGoodsStartPrice < 50001){
+ 			biddepositvo.setBidDepositPrice(1000);
+ 			}
+ 			else if(auctionGoodsStartPrice >= 50000 && auctionGoodsStartPrice < 200001 ){
+ 	 			biddepositvo.setBidDepositPrice(5000);
+ 	 		}
+ 			else if(auctionGoodsStartPrice >=200000 && auctionGoodsStartPrice < 500001){
+ 				biddepositvo.setBidDepositPrice(10000);
+ 			}
+ 			else if(auctionGoodsStartPrice >=500000 && auctionGoodsStartPrice < 2000001){
+ 				biddepositvo.setBidDepositPrice(30000);
+ 			}
+ 			else {
+ 				biddepositvo.setBidDepositPrice(100000);
+ 			} 			String bidCode =  bidvo.getBidCode();
  			biddepositvo.setBidCode(bidCode); 
  			biddepositservice.setBidDeposit(biddepositvo);
+
  			
  			/**보증금 차감 되는 서비스**/
  			userdetailvo.setUserId(userbuyerId);
- 			bidService.modifyUserCashWithdraw(userdetailvo);
- 			
- 			
+ 			biddepositservice.modifyUserCashWithdraw(biddepositvo);
  			
  			log.info("입찰자 입찰하기");
- 			return "redirect:/bid/bidform?userId="+userSellerID+"&auctionGoodsBidUnit="+auctionGoodsBidUnit+"&auctionGoodsStartPrice="
+ 			return "redirect:/bid/bidform?auctionGoodsName="+auctionGoodsName+"&userId="+userSellerID+"&auctionGoodsBidUnit="+auctionGoodsBidUnit+"&auctionGoodsStartPrice="
  			+auctionGoodsStartPrice+"&auctionGoodsCode="+auctionGoodsCode;
  	}
  		//본인이 입찰한 물품 리스트 보여주는 controller

@@ -19,9 +19,7 @@ public interface BidService {
 	List<BidVo> userSelectGoodsBidsList(BidVo bidvo);
 	/**입찰버튼 클릭시 인터페이스**/
 	int setBidPrice(BidVo bidvo);
-	/**입찰버튼 클릭시 보증금 차감 인터페이스**/
-	int modifyUserCashWithdraw(UserDetailVo userDetailVo);
-		
+
 	
 }
 

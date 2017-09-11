@@ -17,7 +17,6 @@ public interface BidDao{
 	List<BidVo> userSelectGoodsBidsList(BidVo bidvo);
 	/**입찰 버튼 클릭 시 insert  **/
 	int instertBidPrice(BidVo bidvo);
-   /**보증금 차감 **/
-	int updateUserCashWithdraw(UserDetailVo userDetailVo);
+
 
 }

@@ -14,6 +14,24 @@
 		<id property="bidDepositState" column="bid_deposit_state"></id>
 		<id property="bidDepositDate" column="bid_deposit_date"></id>
 	</resultMap>
+			<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
+		<id property="userId" column="user_id" />
+		<result property="userPassword" column="user_password" />
+		<result property="userLevel" column="user_level" />
+		<result property="gradeCode" column="grade_code" />
+		<result property="restrictCode" column="restrict_code" />
+		<result property="userName" column="user_name" />
+		<result property="userGender" column="user_gender" />
+		<result property="userBirth" column="user_birth" />
+		<result property="userPhone" column="user_phone" />
+		<result property="userEmail" column="user_email" />
+		<result property="userPostcode" column="user_postcode" />
+		<result property="userAddr" column="user_addr" />
+		<result property="userAddrdetail" column="user_addrdetail" />
+		<result property="userTotalcash" column="user_totalcash" />
+	</resultMap>
+	
+	<!--입찰보증금 insert  -->
 	<insert id="insertBidDeposit" parameterType="com.kpsl.auction.bid.vo.BidDepositVo" useGeneratedKeys="true" keyProperty="bidCode">
 		<selectKey keyProperty="bidDepositCode" resultType="string" order="BEFORE">
 			SELECT CONCAT("bdc",MAX(CAST(substring(bid_deposit_code,4)+1 AS
@@ -34,8 +52,15 @@
 	, #{userBuyerId}
 	, #{auctionGoodsCode}
 	, #{userSellerId}
-	, 1000
+	, #{bidDepositPrice}
 	, '보관'
 	, NOW())
 	</insert>
+		
+	<!--입찰 시에 캐쉬에서 보증금 만큼 빠져나가기.  -->
+	<update id="updateUserCashWithdraw" parameterType="com.kpsl.auction.bid.vo.BidDepositVo">
+	UPDATE user_detail_tb 
+	SET user_totalcash = user_totalcash - #{bidDepositPrice}
+	WHERE user_id = #{userBuyerId};
+	</update>
   </mapper>

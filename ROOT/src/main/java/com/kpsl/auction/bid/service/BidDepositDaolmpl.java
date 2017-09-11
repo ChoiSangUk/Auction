@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kpsl.auction.bid.vo.BidDepositVo;
+import com.kpsl.auction.user.vo.UserDetailVo;
 @Repository
 public class BidDepositDaolmpl implements BidDepositDao {
 	Logger log = Logger.getLogger(this.getClass());
@@ -19,6 +20,12 @@ public class BidDepositDaolmpl implements BidDepositDao {
 		log.info("BidDepositDao insertBidDeposit 확인");
 		return sessionTemplate.insert(NS + "insertBidDeposit", BidDepositVo);
 
+	}
+	// 보증금 차감
+	@Override
+	public int updateUserCashWithdraw(BidDepositVo BidDepositVo) {
+		 log.info("BidDao updateUserCashWithdraw 확인");
+		return sessionTemplate.insert(NS + "updateUserCashWithdraw", BidDepositVo);
 	}
 
 }
