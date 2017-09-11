@@ -51,7 +51,7 @@ th {
 								<div class="form-inline dt">
 								<div class="col-sm-3 input-group date" data-provide="datepicker" id="sdate"
 								style="margin-left: 15px;">
-									<input class="form-control" type="text" name="sDate">
+									<input class="form-control" type="text" name="sDate" id="sDate">
 									<div class="input-group-addon">
 						        		<span class="glyphicon glyphicon-th"></span>
 						    		</div>
@@ -59,7 +59,7 @@ th {
 								<span style="margin-left: 15px;">~</span>
 								<div class="col-sm-3 input-group date" data-provide="datepicker" id="edate"
 								style="margin-left: 15px;">
-									<input class="form-control" type="text" name="eDate">
+									<input class="form-control" type="text" name="eDate" id="eDate">
 									<div class="input-group-addon">
 						        		<span class="glyphicon glyphicon-th"></span>
 						    		</div>
@@ -71,14 +71,14 @@ th {
 							<th class="col-sm-2 active">검색어</th>
 							<td>
 								<div class="col-sm-2">
-									<select class="form-control" name="sk">
+									<select class="form-control" name="sk" id="sk">
 										<option value="adApplyCode">광고신청코드</option>
 										<option value="userId">아이디</option>
 										<option value="adApplyState">광고신청상태</option>
 									</select>
 								</div>
 								<div class="input-group col-sm-4">
-									<input type="text" class="form-control" name="sv" placeholder="Search">
+									<input type="text" class="form-control" name="sv" id="sv" placeholder="Search">
 									<div class="input-group-btn">
 										<button class="btn btn-default" type="submit">
 											<i class="glyphicon glyphicon-search"></i>
@@ -89,7 +89,7 @@ th {
 						</tr>
 					</tbody>
 				</table>
-				<input type="hidden" id="currentPage" value="">
+				<input type="hidden" id="currentPage" name="currentPage" value="">
 				<input type="hidden" id="lastPage" value="${lastPage}">
 				<div class="form-group text-center">
 					<input class="btn btn-info btn-lg" type="submit" id="submitBtn" value="검색">
@@ -99,7 +99,9 @@ th {
 		</div>
 		<!-- 결과값 테이블 -->
 		<div class="row content text-center">
-			<strong>${adApplyCount}</strong>
+			<strong class="pull-left">
+			총 페이지 수 : ${adApplyCount}
+			</strong>
 			<table class="table table-bordered">
 				<thead>
 					<tr class="active">
@@ -149,7 +151,6 @@ $('#edate').datepicker({
 });
 $('input:radio[name=type]').click(function(){
 	var checkVal = $('input:radio[name=type]:checked').val(); 
-	console.log(checkVal);
 	if(checkVal === '7') {
 		var subDate = moment().subtract(checkVal, 'days').format('YYYY-MM-DD');
 		var nowDate = moment().format('YYYY-MM-DD');
@@ -173,28 +174,31 @@ $('input:radio[name=type]').click(function(){
 	}
 });
 
-/* jquery pagin */
+/* jquery paging-plugin */
 
 var currentPage = parseInt($('#currentPage').val());
 var lastPage = parseInt($('#lastPage').val());
 $(function(){	
-	var locationURL = $(location).attr('href');
+	var locationURL = $(location).attr('href');	
 	var locationPathname = $(location).attr('pathname');
-	var splitURL = locationURL.split('=');
-	var a = splitURL[0]+'='+splitURL[1]+'='+splitURL[2]+'='+splitURL[3]+'='+splitURL[4];
-	console.log(a);
 	var locationSearch = $(location).attr('search');
+	var indexOfURL = locationURL.indexOf('currentPage=');
+	var splitURL = locationURL.split('=');
 
 	$('#paging').paging({
-		current: currentPage,
-		max: lastPage,		
+		current: 1,
+		max: lastPage,
 		onclick:function(e, page) {
-			if(locationSearch.length<=14) {
-			$('.paging').attr('href',locationPathname+'?currentPage='+page);
+			if(locationSearch.length <= 14) {
+				$('.paging').attr('href',locationPathname+'?currentPage='+page);
 			}else {
-				$('.paging').attr('href',a+'&currentPage='+page);
+				if(splitURL.pop() === ''){
+					$('.paging').attr('href',locationURL+page);
+				}else {
+					$('.paging').attr('href',locationURL.substring(0, indexOfURL)+'currentPage='+page);
+				}
 			}
-		}	
+		}
 	});
 });
 	
