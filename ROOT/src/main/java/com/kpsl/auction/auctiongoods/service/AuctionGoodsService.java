@@ -21,4 +21,7 @@ public interface AuctionGoodsService {
 	
 	//물품 이미지 리스트
 	List<AuctionGoodsImageVo> getAllAuctionGoodsImages(String auctionGoodsCode);
+	
+	//물품 수정
+	int updateAuctionGoods(AuctionGoodsVo auctionGoodsVo, List<String> imgList);
 }

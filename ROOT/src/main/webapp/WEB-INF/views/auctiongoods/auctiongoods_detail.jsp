@@ -5,11 +5,11 @@
 <div style="margin-right: 100px; margin-left: 100px; margin-bottom:1px;"  id="top">
 	<!-- 헤더 부분 -->
 	<div>
-		<div>
+		<div style="margin-top:5px;">
 			<span>카테고리 뿌릴 곳</span>
 		</div>
-		<div>
-			<h1>${auctionGoods.auctionGoodsName}</h1>
+		<div style="text-align:center">
+			<h1 style="font-size:300%">${auctionGoods.auctionGoodsName}</h1>
 		</div>
 	</div>
 	<!-- 헤더 부분 end -->
@@ -19,19 +19,31 @@
 	<div class="row content">
 		<!-- 왼쪽 물품 정보(사진) -->
 		<div class="col-sm-12 col-md-6 image">
-			<div class="bigImage">
-				<img src="${auctionGoodsImages[0].auctionGoodsImagePath}" style="width:333px; height:500px;"/>
+			<div class="bigImage" style="text-align:center">
+				<img src="${auctionGoodsImages[0].auctionGoodsImagePath}" style="width:400px; height:450px;"/>
 			</div>
 		</div>	
 		<!-- 왼쪽 물품 정보(사진)  end-->
 		
 		<!-- 오른쪽 물품 정보(내용) -->
 		<div class="col-sm-12 col-md-6">
-			<h3>
-				<span>현재가 : </span>
-				<span class="nowPrice">1000(임시)</span>
-				<span> 남은 시간</span>
-			</h3>
+			<div style="text-align:center">
+					<h3>
+						<span style="color:blue">현재가 : </span>
+						<span class="nowPrice" style="color:blue">1000(임시) </span>
+					</h3>
+						
+					<h4>	
+							<span>남은 시간</span>
+						
+					
+						<span style="background-color:#B2EBF4">
+							<span class="glyphicon glyphicon-hourglass"></span>
+							<span> 00:00:00 </span>
+						</span>
+					</h4>
+			</div>
+			
 			<span id="instantBuySpan" style="display:none">${auctionGoods.auctionGoodsInstantBuyPrice}</span>
 			<span id="bidSysSpan" style="display:none">${auctionGoods.auctionGoodsBidSys}</span>
 			<table class="table">
@@ -71,7 +83,7 @@
 					
 				</tbody>
 			</table>
-			<div style="text-align:center;">
+			<div style="text-align:center;" class="myButton">
 				<a class="btn btn-primary btn-lg" href="#">입찰하기 </a>
 				<a class="btn btn-default btn-lg" href="#">문의하기 </a>
 			</div>
@@ -91,7 +103,7 @@
 		</div>
 		
 		<div class="row" >
-			<div style="width:100%; height:700px;">${auctionGoods.auctionGoodsContents}</div>
+			<div style="width:100%;">${auctionGoods.auctionGoodsContents}</div>
 		</div>
 		
 		
@@ -110,6 +122,8 @@
 </div>
 <script>
 	$(document).ready(function(){
+		
+		
 		//즉시구매 
 		var auctionGoodsInstantBuyPrice = $('#instantBuySpan').text();
 		if(auctionGoodsInstantBuyPrice == 0){
@@ -120,10 +134,26 @@
 		
 		//경매 방식
 		var auctionGoodsBidSys = $('#bidSysSpan').text();
+		
 		if(auctionGoodsBidSys == 'normal'){
 			$('#bidSys').text("일반 경매");
 		}else{
 			$('#bidSys').text("블라인드 경매");
+		}
+		
+		var sellerId = "${auctionGoods.userId}";
+		var userId = "${userLoginInfo.userId}";
+		var auctionGoodsCode = "${auctionGoods.auctionGoodsCode}";
+		
+		if(sellerId == userId){
+			
+			//post 방식으로 변경해야 함
+			$('.myButton').append( '<a class="btn btn-default btn-lg"' +  
+					'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsupdate?auctionGoodsCode='+auctionGoodsCode+' ">수정하기 </a>')
+			//post 방식으로 변경해야 함
+			$('.myButton').append( '<a class="btn btn-default btn-lg"' +  
+					'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsdelete?auctionGoodsCode='+auctionGoodsCode+' ">삭제하기 </a>')
+						
 		}
 	})
 </script>

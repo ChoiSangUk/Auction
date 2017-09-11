@@ -38,5 +38,10 @@
 		WHERE auction_goods_code=#{auctionGoodsCode};
 	</select>
 	
+	<delete id="deleteAllAuctionGoodsImages" parameterType="String" >
+		DELETE FROM auction_goods_image_tb
+		WHERE auction_goods_code=#{auctionGoodsCode};
+	 </delete>
+	
 	
   </mapper>

@@ -9,4 +9,6 @@ public interface AuctionGoodsImageDao {
 	public int insertAuctionGoodsImage(AuctionGoodsImageVo auctionGoodsImageVo);
 	
 	public List<AuctionGoodsImageVo> selectAllAuctionGoodsImages(String auctionGoodsCode);
+	
+	public int deleteAllAuctionGoodsImages(String auctionGoodsCode);
 }
