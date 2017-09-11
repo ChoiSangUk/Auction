@@ -98,7 +98,6 @@ public class BidController {
  			log.info(auctionGoodsBidUnit +"<<==입찰 단위값 왔는가?");
  			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");
  			
- 
  			/**입찰 서비스**/
  			bidService.setBidPrice(bidvo);	
  			
