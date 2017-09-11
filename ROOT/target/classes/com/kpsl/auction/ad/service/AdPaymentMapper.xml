@@ -124,9 +124,41 @@
 			</if>
 			<if test="adPaymentState == 'currentAd'">
 				AND aa.ad_apply_start_date <![CDATA[<=]]> CURDATE() AND aa.ad_apply_end_date >= CURDATE()
-
 			</if>
 		</trim>
-		ORDER BY ap.ad_payment_regist_date	 
-	</select> 
+		ORDER BY ap.ad_payment_regist_date
+		LIMIT #{beginRow}, #{pagePerRow}	 
+	</select>
+	
+	<!-- 광고신청 페이징을위한 count SELECT 쿼리 -->
+	<select id="selectAdPaymentCount" parameterType="com.kpsl.auction.ad.vo.AdPaymentVo" resultType="int">
+		SELECT 	count(ad_payment_code)
+		FROM 	ad_payment_tb ap 
+			 	LEFT JOIN ad_apply_tb aa
+				ON ap.ad_apply_code = aa.ad_apply_code
+			 	LEFT JOIN ad_image_tb ai
+			 	ON ap.ad_apply_code = ai.ad_apply_code
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				ap.ad_payment_state = '결제완료'
+			<if test="adPaymentCode != null and adPaymentCode != ''">
+				AND ap.ad_payment_code LIKE #{adPaymentCode}
+			</if> 
+			<if test="adApplyCode != null and adApplyCode != ''">
+				AND ap.ad_apply_code LIKE #{adApplyCode}
+			</if>
+			<if test="userId != null and userId != ''">
+				AND ap.user_id LIKE #{userId}
+			</if>
+			<if test="adPaymentState != null and adPaymentState != '' and adPaymentState != 'currentAd'">
+				AND ap.ad_payment_state LIKE #{adPaymentState}
+			</if>
+			<if test="adPaymentRegistDate != null and adPaymentRegistDate != 'null 00:00:00null 23:59:59' and adPaymentRegistDate != ' 00:00:00 23:59:59'">
+				AND ap.ad_payment_regist_date
+				BETWEEN substring(#{adPaymentRegistDate},1,19) AND substring(#{adPaymentRegistDate},20,38)
+			</if>
+			<if test="adPaymentState == 'currentAd'">
+				AND aa.ad_apply_start_date <![CDATA[<=]]> CURDATE() AND aa.ad_apply_end_date >= CURDATE()
+			</if>
+		</trim> 
+	</select>
 </mapper>

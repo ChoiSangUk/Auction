@@ -159,7 +159,8 @@ public class AdApplyController {
 		// count/pagePerRow시 결과값이 소수점이하는 버리기 때문에 pagePerRow를 double형으로 형변환시킴
 		int lastPage = (int) (Math.ceil(adApplyCount / (double)pagePerRow));
 		log.info(lastPage+"<-- lastPage");
-		List<AdApplyVo> adApplyList = adApplyService.searchAdApplyList(adApplyVo, sk, sv, sDate, eDate, currentPage, pagePerRow);
+		List<AdApplyVo> adApplyList = 
+				adApplyService.searchAdApplyList(adApplyVo, sk, sv, sDate, eDate, currentPage, pagePerRow);
 		model.addAttribute("currentPage",currentPage);
 		model.addAttribute("adApplyCount",adApplyCount);
 		model.addAttribute("lastPage",lastPage);

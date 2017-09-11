@@ -29,28 +29,61 @@ public class AdPaymentController {
 	
 	Logger log = Logger.getLogger(this.getClass());	
 	
-	// 관리자 광고결제리스트 요청
+	// 관리자 광고결제리스트 요청(POST)
 	@RequestMapping(value = "/ad/adminAdPaymentSearch", method = RequestMethod.POST)
 	public String adPaymentSearch(Model model, AdPaymentVo adPaymentVo
 								, @RequestParam(value="sk", required=true) String sk
 								, @RequestParam(value="sv", required=true) String sv
 								, @RequestParam(value="sDate", required=true) String sDate
-								, @RequestParam(value="eDate", required=true) String eDate) {
+								, @RequestParam(value="eDate", required=true) String eDate
+								, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
 		log.info("adPaymentList 요청 확인");
+		int adPaymentCount = adPaymentService.getAdPaymentCount(adPaymentVo, sk, sv, sDate, eDate);
+		log.info(adPaymentCount+"<--adApplyCount");
+		int pagePerRow = 5;
+		// count/pagePerRow시 결과값이 소수점이하는 버리기 때문에 pagePerRow를 double형으로 형변환시킴
+		int lastPage = (int) (Math.ceil(adPaymentCount / (double)pagePerRow));
+		log.info(lastPage+"<-- lastPage");
 		log.info(adPaymentVo.getAdPaymentCode()+"<---");
-		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentList = adPaymentService.getPaymentSearchList(adPaymentVo, sk, sv, sDate, eDate);
+		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentList = 
+				adPaymentService.getPaymentSearchList(adPaymentVo, sk, sv, sDate, eDate, currentPage, pagePerRow);
+		model.addAttribute("sk",sk);
+		model.addAttribute("sv",sv);
+		model.addAttribute("sDate",sDate);
+		model.addAttribute("eDate",eDate);
+		model.addAttribute("adPaymentCount",adPaymentCount);
+		model.addAttribute("lastPage",lastPage);
 		model.addAttribute("adPaymentList", adPaymentList);
 		
 		return "/admin/ad/admin_adPayment_search";
 	}
 	
-	// 관리자 광고결제리스트 요청
+	// 관리자 광고결제리스트 요청(GET)
 	@RequestMapping(value = "/ad/adminAdPaymentSearch", method = RequestMethod.GET)
-	public String adPaymentList(Model model, AdPaymentVo adPaymentVo) {
+	public String adPaymentSearchGet(Model model, AdPaymentVo adPaymentVo
+								, @RequestParam(value="sk", required=false, defaultValue="") String sk
+								, @RequestParam(value="sv", required=false, defaultValue="") String sv
+								, @RequestParam(value="sDate", required=false, defaultValue="") String sDate
+								, @RequestParam(value="eDate", required=false, defaultValue="") String eDate
+								, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
 		log.info("adPaymentList 요청 확인");
-		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentList = adPaymentService.getPaymentList();
+		int adPaymentCount = adPaymentService.getAdPaymentCount(adPaymentVo, sk, sv, sDate, eDate);
+		log.info(adPaymentCount+"<--adApplyCount");
+		int pagePerRow = 5;
+		// count/pagePerRow시 결과값이 소수점이하는 버리기 때문에 pagePerRow를 double형으로 형변환시킴
+		int lastPage = (int) (Math.ceil(adPaymentCount / (double)pagePerRow));
+		log.info(lastPage+"<-- lastPage");
+		log.info(adPaymentVo.getAdPaymentCode()+"<---");
+		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentList = 
+				adPaymentService.getPaymentSearchList(adPaymentVo, sk, sv, sDate, eDate, currentPage, pagePerRow);
+		model.addAttribute("sk",sk);
+		model.addAttribute("sv",sv);
+		model.addAttribute("sDate",sDate);
+		model.addAttribute("eDate",eDate);
+		model.addAttribute("adPaymentCount",adPaymentCount);
+		model.addAttribute("lastPage",lastPage);
 		model.addAttribute("adPaymentList", adPaymentList);
 		
 		return "/admin/ad/admin_adPayment_search";

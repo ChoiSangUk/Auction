@@ -3,22 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/resources/module/admin_top.jsp" charEncoding="UTF-8" />
 
-<style>
-th {
-	vertical-align: middle !important;
-	text-align: center !important;
-}
-
-.btn-lg {
-	width: 125px !important;
-}
-
-.adApplyListTable > td {
-	vertical-align: middle !important;
-	text-align: center !important;
-}
-</style>
-
 <div class="container-fluid">
 	<div class="col-sm-1"></div>
 	<div class="col-sm-10">
@@ -27,7 +11,7 @@ th {
 		</div>
 		<!-- 광고신청리스트 검색 -->
 		<div class="row">			
-			<form class="form-horizontal" action="${pageContext.request.contextPath}/ad/adminAdPaymentSearch" method="post">
+			<form class="form-horizontal" id="adPaymentForm" action="${pageContext.request.contextPath}/ad/adminAdPaymentSearch" method="post">
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
@@ -46,7 +30,7 @@ th {
 								<div class="form-inline dt">
 								<div class="col-sm-3 input-group date" data-provide="datepicker" id="sdate"
 								style="margin-left: 15px;">
-									<input class="form-control" type="text" name="sDate">
+									<input class="form-control" type="text" name="sDate" value="${sDate}">
 									<div class="input-group-addon">
 						        		<span class="glyphicon glyphicon-th"></span>
 						    		</div>
@@ -54,7 +38,7 @@ th {
 								<span style="margin-left: 15px;">~</span>
 								<div class="col-sm-3 input-group date" data-provide="datepicker" id="edate"
 								style="margin-left: 15px;">
-									<input class="form-control" type="text" name="eDate">
+									<input class="form-control" type="text" name="eDate" value="${eDate}">
 									<div class="input-group-addon">
 						        		<span class="glyphicon glyphicon-th"></span>
 						    		</div>
@@ -66,7 +50,8 @@ th {
 							<th class="col-sm-2 active">검색어</th>
 							<td>
 								<div class="col-sm-2">
-									<select class="form-control" name="sk">
+									<input type="hidden" id="skVal" value="${sk}">
+									<select class="form-control" name="sk" id="sk">
 										<option value="adPaymentCode">광고결제코드</option>
 										<option value="adApplyCode">광고신청코드</option>
 										<option value="userId">아이디</option>
@@ -74,7 +59,7 @@ th {
 									</select>
 								</div>
 								<div class="input-group col-sm-4">
-									<input type="text" class="form-control" name="sv" placeholder="Search">
+									<input type="text" class="form-control" name="sv" placeholder="Search" value="${sv}">
 									<div class="input-group-btn">
 										<button class="btn btn-default" type="submit">
 											<i class="glyphicon glyphicon-search"></i>
@@ -85,14 +70,19 @@ th {
 						</tr>
 					</tbody>
 				</table>
+				<input type="hidden" id="currentPage" name="currentPage" value="">
+				<input type="hidden" id="lastPage" value="${lastPage}">
 				<div class="form-group text-center">
 					<input class="btn btn-info btn-lg" type="submit" id="submitBtn" value="검색">
-					<input class="btn btn-lg" type="reset" id="resetBtn" value="검색삭제">
+					<input class="btn btn-lg" type="button" id="resetBtn" value="검색삭제">
 				</div>
 			</form>
 		</div>
 		<!-- 결과값 테이블 -->
 		<div class="row content text-center">
+			<strong class="pull-left">
+			총 페이지 수 : ${adPaymentCount}
+			</strong>
 			<table class="table table-bordered">
 				<thead>
 					<tr class="active">
@@ -108,7 +98,7 @@ th {
 				</thead>
 				<c:forEach var="ad" items="${adPaymentList}">
 				<tbody>
-					<tr class="adApplyListTable">
+					<tr class="adminTable">
 						<td>${ad.adPaymentVo.adPaymentCode}</td>
 						<td>${ad.adPaymentVo.adApplyCode}</td>
 						<td>${ad.adPaymentVo.userId}</td>
@@ -121,6 +111,7 @@ th {
 				</tbody>
 				</c:forEach>
 			</table>
+			<div class="" id="paging"></div>
 		</div>
 	</div>
 	<div class="col-sm-1"></div>
@@ -163,6 +154,32 @@ $('input:radio[name=type]').click(function(){
 	}
 });
 
+/* jquery paging-plugin */
+var currentPage = parseInt($('#currentPage').val());
+var lastPage = parseInt($('#lastPage').val());
+console.log(lastPage);
+$(function(){
+	var locationURL = $(location).attr('href');	
+	$('#paging').paging({
+		current: 1,
+		max: lastPage,
+		onclick:function(e, page) {
+			$('#currentPage').val(page);
+			var currentPage = $('#currentPage').val();
+			$('.paging').attr('href','#');
+			$('#adPaymentForm').submit();
+		}
+	});
+});
+
+var sk = $('#skVal').val();
+if(sk !== '') {
+	$('#sk  option[value='+sk+']').attr('selected', 'true');
+}
+
+$('#resetBtn').click(function(){
+	$('input:text').val('');
+})
 </script>
 
 <c:import url="/resources/module/admin_footer.jsp" charEncoding="UTF-8" />

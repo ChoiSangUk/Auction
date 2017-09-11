@@ -21,6 +21,25 @@ footer {
 	padding: 15px;
 }
 
+th {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+
+.btn-lg {
+	width: 125px !important;
+}
+
+.adminTable > td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+
+.paging {
+	margin-left: 1px;
+	margin-right: 1px;
+}
+
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
 	.sidenav {

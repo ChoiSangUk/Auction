@@ -8,6 +8,8 @@ public class AdPaymentVo {
 	private int adPaymentPrice;
 	private String adPaymentRegistDate;
 	private String adPaymentState;
+	private int beginRow;
+	private int pagePerRow;	
 	
 	public String getAdPaymentCode() {
 		return adPaymentCode;
@@ -44,5 +46,17 @@ public class AdPaymentVo {
 	}
 	public void setAdPaymentState(String adPaymentState) {
 		this.adPaymentState = adPaymentState;
+	}
+	public int getBeginRow() {
+		return beginRow;
+	}
+	public void setBeginRow(int beginRow) {
+		this.beginRow = beginRow;
+	}
+	public int getPagePerRow() {
+		return pagePerRow;
+	}
+	public void setPagePerRow(int pagePerRow) {
+		this.pagePerRow = pagePerRow;
 	}
 }

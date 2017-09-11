@@ -3,28 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/resources/module/admin_top.jsp" charEncoding="UTF-8" />
 
-<style>
-th {
-	vertical-align: middle !important;
-	text-align: center !important;
-}
-
-.btn-lg {
-	width: 125px !important;
-}
-
-.adApplyListTable > td {
-	vertical-align: middle !important;
-	text-align: center !important;
-}
-
-.paging {
-	margin-left: 1px;
-	margin-right: 1px;
-}
-
-</style>
-
 <div class="container-fluid">
 	<div class="col-sm-1"></div>
 	<div class="col-sm-10">
@@ -117,7 +95,7 @@ th {
 				</thead>
 				<c:forEach var="ad" items="${adApplyList}">
 				<tbody>
-					<tr class="adApplyListTable">
+					<tr class="adminTable">
 						<td>${ad.adApplyCode}</td>
 						<td>${ad.userId}</td>
 						<td>${ad.adApplyRegistDate}</td>
@@ -175,7 +153,6 @@ $('input:radio[name=type]').click(function(){
 });
 
 /* jquery paging-plugin */
-
 var currentPage = parseInt($('#currentPage').val());
 var lastPage = parseInt($('#lastPage').val());
 $(function(){	

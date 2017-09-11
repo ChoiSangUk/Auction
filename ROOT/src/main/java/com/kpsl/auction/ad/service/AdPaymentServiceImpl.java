@@ -77,10 +77,14 @@ public class AdPaymentServiceImpl implements AdPaymentService {
 	}
 
 	@Override
-	public List<AdApplyAndAdImageAndAdPaymentVo> getPaymentSearchList(AdPaymentVo adPaymentVo, String sk, String sv, String sDate, String eDate) {
+	public List<AdApplyAndAdImageAndAdPaymentVo> getPaymentSearchList(AdPaymentVo adPaymentVo, String sk, String sv, String sDate, String eDate
+																	, int currentPage, int pagePerRow) {
 
 		log.info("getPaymentSearchList 호출 확인");
-		log.info(adPaymentVo.getAdPaymentCode()+"<---2");
+		int beginRow = (currentPage-1)*pagePerRow;
+		log.info(beginRow+"<-- 시작");
+		adPaymentVo.setBeginRow(beginRow);
+		adPaymentVo.setPagePerRow(pagePerRow);
 		adPaymentVo.setAdPaymentRegistDate(sDate+" 00:00:00"+eDate+" 23:59:59");
 		if(sk.equals("adPaymentCode")) {
 			adPaymentVo.setAdPaymentCode("%"+sv+"%");
@@ -101,5 +105,33 @@ public class AdPaymentServiceImpl implements AdPaymentService {
 		}
 		
 		return adPaymentDao.selectAdPaymentListByAdPaymentVo(adPaymentVo);
+	}
+
+	@Override
+	public int getAdPaymentCount(AdPaymentVo adPaymentVo, String sk, String sv, String sDate, String eDate) {
+
+		log.info("getAdPaymentCount 호출 확인");
+		adPaymentVo.setAdPaymentRegistDate(sDate+" 00:00:00"+eDate+" 23:59:59");
+		if(sk == null){			
+			return adPaymentDao.selectAdPaymentCount(adPaymentVo);
+		}else if(sk.equals("adPaymentCode")) {
+			adPaymentVo.setAdPaymentCode("%"+sv+"%");
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}else if(sk.equals("adApplyCode")) {
+			adPaymentVo.setAdApplyCode("%"+sv+"%");
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}else if(sk.equals("userId")) {
+			adPaymentVo.setUserId("%"+sv+"%");
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}else if(sk.equals("adPaymentState")) {
+			adPaymentVo.setAdPaymentState("%"+sv+"%");
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}
+		
+		return adPaymentDao.selectAdPaymentCount(adPaymentVo);
 	}
 }

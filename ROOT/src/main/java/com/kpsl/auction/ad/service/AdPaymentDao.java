@@ -17,4 +17,6 @@ public interface AdPaymentDao {
 	List<AdApplyAndAdImageAndAdPaymentVo> selectAdApplyAndAdImageAndAdPaymentList();
 	// 광고결제 조회 SELECT 메서드
 	List<AdApplyAndAdImageAndAdPaymentVo> selectAdPaymentListByAdPaymentVo(AdPaymentVo adPaymentVo);
+	// 광고결제 조회 COUNT SELECT 메서드
+	int selectAdPaymentCount(AdPaymentVo adPaymentVo);
 }

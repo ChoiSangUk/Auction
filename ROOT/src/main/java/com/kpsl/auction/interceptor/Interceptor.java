@@ -17,8 +17,10 @@ public class Interceptor extends HandlerInterceptorAdapter{
     	  
             //admin이라는 세션key를 가진 정보가 널일경우 로그인페이지로 이동
             if(session.getAttribute("userLoginInfo") == null ){
+            		// 개발시
                     response.sendRedirect("/auction/user/userLogin");
-                   
+                    // 배포시
+                    //response.sendRedirect("/user/userLogin");
                     return false;
             }
         
