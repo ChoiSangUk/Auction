@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
-<div style="margin-right: 100px; margin-left: 100px; margin-bottom:1px; ">
+<div style="margin-right: 100px; margin-left: 100px; margin-bottom:1px;"  id="top">
 	<!-- 헤더 부분 -->
 	<div>
 		<div>
@@ -68,12 +68,45 @@
 						<th>입찰 수</th>
 						<th>${auctionGoods.auctionGoodsBidHits}</th>
 					</tr>
+					
 				</tbody>
 			</table>
+			<div style="text-align:center;">
+				<a class="btn btn-primary btn-lg" href="#">입찰하기 </a>
+				<a class="btn btn-default btn-lg" href="#">문의하기 </a>
+			</div>
 		</div>
 		<!-- 오른쪽 물품 정보(내용) end -->
 	</div>
 	<!-- 물품 정보 end -->
+	
+	<!-- 물품 상세정보 -->
+	<div class="row content">
+		<div>
+			<ol class="breadcrumb" id="goodsDetail" style="font-size:large;">
+				<li><a href="#top">맨 위로</a></li>
+				<li class="breadcrumb-item active">물품 상세 내용</li>
+				<li><a href="#goodsQuestion">물품 문의</a></li>
+			</ol>
+		</div>
+		
+		<div class="row" >
+			<div style="width:100%; height:700px;">${auctionGoods.auctionGoodsContents}</div>
+		</div>
+		
+		
+		<div>
+			<ol class="breadcrumb" id="goodsQuestion" style="font-size:large;">
+				<li><a href="#top">맨 위로</a></li>
+				<li><a href="#goodsDetail">물품 상세 내용</a></li>
+				<li class="breadcrumb-item active">물품 문의</li>
+			</ol>
+		</div>
+		<div class="row" >
+			
+		</div>
+	</div>
+	
 </div>
 <script>
 	$(document).ready(function(){

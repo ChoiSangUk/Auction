@@ -63,6 +63,23 @@
 		</association>
 	</resultMap>
 	
+	<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
+		<id property="userId" column="user_id" />
+		<result property="userPassword" column="user_password" />
+		<result property="userLevel" column="user_level" />
+		<result property="gradeCode" column="grade_code" />
+		<result property="restrictCode" column="restrict_code" />
+		<result property="userName" column="user_name" />
+		<result property="userGender" column="user_gender" />
+		<result property="userBirth" column="user_birth" />
+		<result property="userPhone" column="user_phone" />
+		<result property="userEmail" column="user_email" />
+		<result property="userPostcode" column="user_postcode" />
+		<result property="userAddr" column="user_addr" />
+		<result property="userAddrdetail" column="user_addrdetail" />
+		<result property="userTotalcash" column="user_totalcash" />
+	</resultMap>
+	
 
 	<!-- 모든 물품 리스트 -->
 	<select id="selectAllAuctionGoods" resultMap="AuctionGoodsAndImage">

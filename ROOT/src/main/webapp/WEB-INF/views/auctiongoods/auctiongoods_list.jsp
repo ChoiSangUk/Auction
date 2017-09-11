@@ -156,7 +156,7 @@
 					}else{
 						var auctionGoodsInstantBuyPriceTag = $('<div class="auctionGoodsInstantBuyPrice">'+'즉시구매 불가능</strong></div>');
 					}
-					var mainDivTag = $('<div class="col-sm-2 mainDiv btn btn-default" style="border:1px solid #48BAE4; padding: 1px; margin: 8px"><span class="auctionGoodsCode" style="display:none;">'+auctionGoodsCode+'</span></div>');
+					var mainDivTag = $('<div class="col-sm-2 mainDiv btn btn-default" style="border:1px solid #48BAE4; padding: 1px; margin: 8px;"><span class="auctionGoodsCode" style="display:none;">'+auctionGoodsCode+'</span></div>');
 					var imgDivTag = $('<div class="img" style="border-bottom:none;"><img src="'+auctionGoodsImagePath+'" style="width:90%; height:200px;" onerror="#" border="0"/></div>');
 					var bottomDivTag = $('<div class="bottom"></div>');
 					var auctionGoodsNameDivTag = $('<div class="auctionGoodsName">'+auctionGoodsName+'</div>');
