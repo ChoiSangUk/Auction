@@ -25,6 +25,7 @@
 		<id property="auctionGoodsState" column="auction_goods_state" />
 		<id property="auctionGoodsBidHits" column="auction_goods_bit_hits" />
 		<id property="auctionGoodsHits" column="auction_goods_hits" />
+		<id property="auctionGoodsDepositPrice" column="auction_goods_deposit_price" />
 	</resultMap>
 
 	<resultMap
@@ -52,6 +53,7 @@
 			<id property="auctionGoodsState" column="auction_goods_state" />
 			<id property="auctionGoodsBidHits" column="auction_goods_bit_hits" />
 			<id property="auctionGoodsHits" column="auction_goods_hits" />
+			<id property="auctionGoodsDepositPrice" column="auction_goods_deposit_price" />
 		</association>
 		<association property="auctionGoodsImageVo"
 			javaType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsImageVo">
@@ -121,6 +123,7 @@
 		auction_goods_bid_unit,
 		auction_goods_instant_buy_state,
 		auction_goods_instant_buy_price,
+		auction_goods_deposit_price,
 		auction_goods_state
 		)
 		VALUES (
@@ -141,6 +144,7 @@
 		#{auctionGoodsBidUnit},
 		#{auctionGoodsInstantBuyState},
 		#{auctionGoodsInstantBuyPrice},
+		#{auctionGoodsDepositPrice},
 		'등록대기'
 		);
 	</insert>
@@ -172,7 +176,8 @@
 		auction_goods_bid_unit,
 		auction_goods_instant_buy_state,
 		auction_goods_instant_buy_price,
-		auction_goods_state
+		auction_goods_state,
+		auction_goods_deposit_price
 		FROM auction_goods_tb
 		WHERE
 		auction_goods_regist_date > now()-INTERVAL
@@ -199,6 +204,7 @@
 		auction_goods_bid_unit,
 		auction_goods_instant_buy_state,
 		auction_goods_instant_buy_price,
+		auction_goods_deposit_price,
 		auction_goods_state
 		FROM auction_goods_tb;
 	</select>

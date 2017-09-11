@@ -26,4 +26,10 @@ public class AuctionGoodsImageDaoImpl implements AuctionGoodsImageDao {
 		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsImages", auctionGoodsCode);
 	}
 
+	@Override
+	public int deleteAllAuctionGoodsImages(String auctionGoodsCode) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.delete(NS+"deleteAllAuctionGoodsImages", auctionGoodsCode);
+	}
+
 }

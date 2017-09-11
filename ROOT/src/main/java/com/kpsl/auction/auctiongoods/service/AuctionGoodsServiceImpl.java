@@ -71,5 +71,27 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 		// TODO Auto-generated method stub
 		return auctionGoodsImageDao.selectAllAuctionGoodsImages(auctionGoodsCode);
 	}
-	
+	@Override
+	public int updateAuctionGoods(AuctionGoodsVo auctionGoodsVo, List<String> imgList) {
+		
+		//기존의 이미지를 삭제함
+		auctionGoodsImageDao.deleteAllAuctionGoodsImages(auctionGoodsVo.getAuctionGoodsCode());
+		for(int i=0; i<imgList.size(); i++){
+	    	System.out.println(imgList.get(i));
+	    }
+	    //System.out.println("AuctionGoodsServiceImpl.addAuctionGoods에서 auctionGoodsVo가 잘 받아지나");
+	    //System.out.println(auctionGoodsVo.toString());
+		auctionGoodsDao.insertAuctionGoods(auctionGoodsVo);
+		System.out.println("물품코드 :"+auctionGoodsVo.getAuctionGoodsCode());
+		
+		for(int i=0; i<imgList.size(); i++){
+			AuctionGoodsImageVo auctionGoodsImageVo = new AuctionGoodsImageVo();
+			auctionGoodsImageVo.setAuctionGoodsCode(auctionGoodsVo.getAuctionGoodsCode());
+			auctionGoodsImageVo.setAuctionGoodsImagePath(imgList.get(i));
+			auctionGoodsImageVo.setAuctionGoodsImageNum(i);
+			auctionGoodsImageDao.insertAuctionGoodsImage(auctionGoodsImageVo);
+		}
+		
+		 return 0;
+	}
 }

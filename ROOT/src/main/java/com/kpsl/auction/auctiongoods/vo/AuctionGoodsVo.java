@@ -21,6 +21,7 @@ public class AuctionGoodsVo {
 	private String auctionGoodsState;		//등록상태
 	private int auctionGoodsHits; 			//조회 수
 	private int auctionGoodsBidHits;		//입찰 수 
+	private int auctionGoodsDepositPrice;   //판매 보증금
 	public String getAuctionGoodsCode() {
 		return auctionGoodsCode;
 	}
@@ -136,18 +137,12 @@ public class AuctionGoodsVo {
 		return auctionGoodsHits;
 	}
 
-	@Override
-	public String toString() {
-		return "AuctionGoodsVo [auctionGoodsCode=" + auctionGoodsCode + ", userId=" + userId + ", smallCategoryCode="
-				+ smallCategoryCode + ", middleCategoryCode=" + middleCategoryCode + ", largeCategoryCode="
-				+ largeCategoryCode + ", auctionGoodsName=" + auctionGoodsName + ", auctionGoodsSys=" + auctionGoodsSys
-				+ ", auctionGoodsBidSys=" + auctionGoodsBidSys + ", auctionGoodsContents=" + auctionGoodsContents
-				+ ", auctionGoodsRegistDate=" + auctionGoodsRegistDate + ", auctionGoodsTerm=" + auctionGoodsTerm
-				+ ", auctionGoodsStartDate=" + auctionGoodsStartDate + ", auctionGoodsEndDate=" + auctionGoodsEndDate
-				+ ", auctionGoodsStartPrice=" + auctionGoodsStartPrice + ", auctionGoodsBidUnit=" + auctionGoodsBidUnit
-				+ ", auctionGoodsInstantBuyState=" + auctionGoodsInstantBuyState + ", auctionGoodsInstantBuyPrice="
-				+ auctionGoodsInstantBuyPrice + ", auctionGoodsState=" + auctionGoodsState + ", auctionGoodsHits="
-				+ auctionGoodsHits + ", auctionGoodsBidHits=" + auctionGoodsBidHits + "]";
+	public int getAuctionGoodsDepositPrice() {
+		return auctionGoodsDepositPrice;
+	}
+
+	public void setAuctionGoodsDepositPrice(int auctionGoodsDepositPrice) {
+		this.auctionGoodsDepositPrice = auctionGoodsDepositPrice;
 	}
 
 	public void setAuctionGoodsHits(int auctionGoodsHits) {
@@ -160,6 +155,21 @@ public class AuctionGoodsVo {
 
 	public void setAuctionGoodsBidHits(int auctionGoodsBidHits) {
 		this.auctionGoodsBidHits = auctionGoodsBidHits;
+	}
+
+	@Override
+	public String toString() {
+		return "AuctionGoodsVo [auctionGoodsCode=" + auctionGoodsCode + ", userId=" + userId + ", smallCategoryCode="
+				+ smallCategoryCode + ", middleCategoryCode=" + middleCategoryCode + ", largeCategoryCode="
+				+ largeCategoryCode + ", auctionGoodsName=" + auctionGoodsName + ", auctionGoodsSys=" + auctionGoodsSys
+				+ ", auctionGoodsBidSys=" + auctionGoodsBidSys + ", auctionGoodsContents=" + auctionGoodsContents
+				+ ", auctionGoodsRegistDate=" + auctionGoodsRegistDate + ", auctionGoodsTerm=" + auctionGoodsTerm
+				+ ", auctionGoodsStartDate=" + auctionGoodsStartDate + ", auctionGoodsEndDate=" + auctionGoodsEndDate
+				+ ", auctionGoodsStartPrice=" + auctionGoodsStartPrice + ", auctionGoodsBidUnit=" + auctionGoodsBidUnit
+				+ ", auctionGoodsInstantBuyState=" + auctionGoodsInstantBuyState + ", auctionGoodsInstantBuyPrice="
+				+ auctionGoodsInstantBuyPrice + ", auctionGoodsState=" + auctionGoodsState + ", auctionGoodsHits="
+				+ auctionGoodsHits + ", auctionGoodsBidHits=" + auctionGoodsBidHits + ", auctionGoodsDepositPrice="
+				+ auctionGoodsDepositPrice + "]";
 	}
 	
 }

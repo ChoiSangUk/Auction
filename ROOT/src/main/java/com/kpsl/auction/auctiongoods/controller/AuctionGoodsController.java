@@ -29,7 +29,40 @@ public class AuctionGoodsController {
 	@Autowired
 	private AuctionGoodsService auctionGoodsService;
 
+	//물품 수정
+	@RequestMapping(value = "/auctiongoods/auctiongoodsupdate", method = RequestMethod.GET)
+	public String updateAuctionGoods(Model model, 
+			@RequestParam(value = "auctionGoodsCode", required = true) String auctionGoodsCode){
+			
+		List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
+		model.addAttribute("largeCategory", largeCategory);
+		
+		AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods(auctionGoodsCode);
+		model.addAttribute("auctionGoods", auctionGoods);
+			
+		return "auctiongoods/auctiongoods_updateForm";
+		}
 	
+	//물품 수정 액션 부분
+	@RequestMapping(value = "/auctiongoods/auctiongoodsupdate_action", method=RequestMethod.POST)
+	public String updateAuctionGoodsAction(AuctionGoodsVo auctionGoodsVo, Model model){
+		String contents = auctionGoodsVo.getAuctionGoodsContents();
+        Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
+        Matcher matcher = pattern.matcher(contents);
+        
+        
+        //img소스를 담을 list 객체 
+        List<String> imgList = new ArrayList<String>();
+        
+        //추출한 img src들을 imgList에 담아줌
+        while(matcher.find()){
+        	imgList.add(matcher.group(1));
+            //System.out.println(matcher.group(1));
+        }
+         auctionGoodsService.updateAuctionGoods(auctionGoodsVo, imgList);
+        
+		return getAuctionGoods(model, auctionGoodsVo.getAuctionGoodsCode());
+	}
 	//선택한 단일 물품 상세 페이지로
 	@RequestMapping(value = "/auctiongoods/auctiongoods_detail", method = RequestMethod.GET)
 	public String getAuctionGoods(Model model,
@@ -97,7 +130,6 @@ public class AuctionGoodsController {
 	public String auctionGoodsInsert(Model model) {
 
 		List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
-
 		model.addAttribute("largeCategory", largeCategory);
 
 		return "/auctiongoods/auctiongoods_insertForm";
