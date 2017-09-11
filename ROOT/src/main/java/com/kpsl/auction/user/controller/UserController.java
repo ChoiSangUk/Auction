@@ -152,4 +152,10 @@ public class UserController {
 		
 		return "/user/user_findPw_form";
 	}
+	//이메일 찾기 폼
+	@RequestMapping(value = "/user/userFindEmailForm", method = RequestMethod.GET)
+	public String userFindEmailForm(){
+		
+		return "/user/user_find_email_form";
+	}
 }

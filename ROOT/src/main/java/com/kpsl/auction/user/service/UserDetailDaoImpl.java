@@ -46,12 +46,14 @@ public class UserDetailDaoImpl implements UserDetailDao {
 		return sqlSessionTemplate.update(NS+"updateUser", userDetailVo);
 	}
 	@Override
-	public UserDetailVo selectUserPwFind(String userId, String userEmail) {
+	public UserDetailVo selectUserFind(String userId, String userEmail,String userName, String userBirth) {
 		Map<String,String> pwFindMap = new HashMap<String,String>();
 		pwFindMap.put("userId", userId);
 		pwFindMap.put("userEmail", userEmail);
+		pwFindMap.put("userName", userName);
+		pwFindMap.put("userBirth", userBirth);
 		return sqlSessionTemplate.selectOne(NS+"selectUserPwFind", pwFindMap);
 	}
-
+	
 
 }

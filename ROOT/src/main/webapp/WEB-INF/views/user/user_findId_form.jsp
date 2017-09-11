@@ -18,7 +18,23 @@
 		</div>
 		<!-- 내용1 -->
 		<div class="row content">				
-			
+			<form action="${pageContext.request.contextPath}/user/userFindIdForm" method="post">
+				<div>
+					<a href="${pageContext.request.contextPath}/user/userFindEmailForm">email을 잊어버렸으면 클릭</a>
+				</div>
+				<div>
+					<a href="${pageContext.request.contextPath}/user/userFindPwForm">비밀번호을 잊어버렸으면 클릭</a>
+				</div>
+				<div>
+					<ul>
+						<li>이름과 주민번호를 정확히 입력해주세요.</li>
+						<li>아이디는 메일로 발송됩니다.</li>
+					</ul>
+				</div>
+					이름 : <input type="text" id="userName" name="userName">		
+					주민번호 : <input type="text" id="userBirth" name="userBirth">
+					<button type="submit">찾기</button>
+				</form>
 		
 			
 			

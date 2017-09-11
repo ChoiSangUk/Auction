@@ -176,8 +176,16 @@
  	</update>
  	<!-- 비밀번호찾기 -->
  	<select id="selectUserPwFind" parameterType="String" resultMap="userDetail">
- 		SELECT (AES_DECRYPT(UNHEX(user_password),'ENCRYPT')) as user_password,user_name
+ 		SELECT (AES_DECRYPT(UNHEX(user_password),'ENCRYPT')) as user_password,user_name,user_id,user_email
 		FROM user_detail_tb
-		WHERE user_id=#{userId} AND user_email=#{userEmail}
- 	</select>
+		<where>
+			<if test="userId != null and userId != '' and userEmail != null and userEmail != ''">
+				user_id=#{userId} AND user_email=#{userEmail}
+			</if>
+			<if test="userName != null and userName != '' and userBirth != null and userBirth != ''">
+				user_name=#{userName} AND user_birth=#{userBirth}
+			</if>
+		</where>
+	</select>
+ 	
 </mapper>
