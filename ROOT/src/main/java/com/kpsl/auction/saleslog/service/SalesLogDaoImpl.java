@@ -51,4 +51,10 @@ public class SalesLogDaoImpl implements SalesLogDao{
 		
 		return sqlSessionTemplate.selectList(salesLogMapper+"selectMonthLogForExpenses");
 	}
+
+	@Override
+	public List<SalesLogVo> selectSalesLog(SalesLogVo salesLogVo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList(salesLogMapper+"selectSalesLog", salesLogVo);
+	}
 }

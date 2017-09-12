@@ -38,4 +38,17 @@ public class SalesLogServiceImpl implements SalesLogService{
 		
 		return salesLogDao.selectMonthLogForExpenses();
 	}
+
+	@Override
+	public List<SalesLogVo> getSalesLog(SalesLogVo salesLogVo,String sk,String sv) {
+			
+		log.info("selectgetSalesLog 호출 확인");
+		
+		if(sk.equals("salesLogUserId")) {
+			salesLogVo.setSalesLogUserId(sv+"%");
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}
+		return salesLogDao.selectSalesLog(salesLogVo);
+	}
 }

@@ -11,6 +11,10 @@ public class SalesLogVo {
 	private int salesLogPrice;
 	private String salesLogDate;
 	private String salesLogRemarks;
+	private String[] salesLogRelationArray;
+	private String salesLogDate1;
+	private String salesLogDate2;
+		
 	public String getSalesLogCode() {
 		return salesLogCode;
 	}
@@ -59,6 +63,23 @@ public class SalesLogVo {
 	public void setSalesLogRemarks(String salesLogRemarks) {
 		this.salesLogRemarks = salesLogRemarks;
 	}
-
+	public String[] getSalesLogRelationArray() {
+		return salesLogRelationArray;
+	}
+	public void setSalesLogRelationArray(String[] salesLogRelationArray) {
+		this.salesLogRelationArray = salesLogRelationArray;
+	}
+	public String getSalesLogDate1() {
+		return salesLogDate1;
+	}
+	public void setSalesLogDate1(String salesLogDate1) {
+		this.salesLogDate1 = salesLogDate1;
+	}
+	public String getSalesLogDate2() {
+		return salesLogDate2;
+	}
+	public void setSalesLogDate2(String salesLogDate2) {
+		this.salesLogDate2 = salesLogDate2;
+	}
 	
 }

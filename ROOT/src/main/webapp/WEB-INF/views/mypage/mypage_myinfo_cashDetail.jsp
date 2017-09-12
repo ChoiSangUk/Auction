@@ -90,7 +90,7 @@
 										<th class="text-center active" rowspan="2">조회방법</th>
 										<td>
 											
-											<div class="visible-lg visible-md">
+											<div>
 												<label class="radio-inline"> <input type="radio"
 													value="day" name="cashDate"> 일별보기
 												</label> <label class="radio-inline"> <input type="radio"
@@ -107,7 +107,7 @@
 									</tr>
 									<tr>
 										<td>
-											<div class="visible-lg visible-md">
+											<div>
 												<label class="radio-inline"> <input type="radio" value="dateSearch"
 													id="dateSearch" name="cashDate" > 기간검색
 												</label>
@@ -116,7 +116,7 @@
 												<div class="col-sm-2 input-group date"
 													data-provide="datepicker" id="date1">
 													<input class="form-control" type="text"
-														id="adApplyStartDate" name="cashDate1" disabled="disabled">
+														id="cashStartDate" name="cashDate1" disabled="disabled">
 													<div class="input-group-addon">
 														<span class="glyphicon glyphicon-th"></span>
 													</div>
@@ -125,7 +125,7 @@
 												<div class="col-sm-2 input-group date"
 													data-provide="datepicker" id="date2">
 													<input class="form-control" type="text"
-														id="adApplyEndDate" name="cashDate2" disabled="disabled">
+														id="cashEndDate" name="cashDate2" disabled="disabled">
 													<div class="input-group-addon">
 														<span class="glyphicon glyphicon-th"></span>
 													</div>
@@ -187,45 +187,45 @@ $('input:radio[name=cashDate]').click(function(){
 	if(checkVal === 'day') {
 		var subDate = moment().subtract(checkVal, 'days').format('YYYY-MM-DD');
 		var nowDate = moment().format('YYYY-MM-DD');
-		$('input:text[id=adApplyStartDate]').val(subDate);
-		$('input:text[id=adApplyEndDate]').val(nowDate);
-		$('#adApplyStartDate,#adApplyEndDate').attr('disabled',true); 
+		$('input:text[id=cashStartDate]').val(subDate);
+		$('input:text[id=cashEndDate]').val(nowDate);
+		$('#cashStartDate,#cashEndDate').attr('disabled',true); 
 
 	}else if(checkVal === 'range-7d') {
 		checkVal = '7';
 		var subDate = moment().subtract(checkVal, 'days').format('YYYY-MM-DD');
 		var nowDate = moment().format('YYYY-MM-DD');
-		$('input:text[id=adApplyStartDate]').val(subDate);
-		$('input:text[id=adApplyEndDate]').val(nowDate);
-		$('#adApplyStartDate,#adApplyEndDate').attr('disabled',true); 
+		$('input:text[id=cashStartDate]').val(subDate);
+		$('input:text[id=cashEndDate]').val(nowDate);
+		$('#cashStartDate,#cashEndDate').attr('disabled',true); 
 	}else if(checkVal === 'range-1m') {
 		checkVal = '1';
 		var subDate = moment().subtract(checkVal, 'months').format('YYYY-MM-DD');
 		var nowDate = moment().format('YYYY-MM-DD');
-		$('input:text[id=adApplyStartDate]').val(subDate);
-		$('input:text[id=adApplyEndDate]').val(nowDate);
-		$('#adApplyStartDate,#adApplyEndDate').attr('disabled',true); 
+		$('input:text[id=cashStartDate]').val(subDate);
+		$('input:text[id=cashEndDate]').val(nowDate);
+		$('#cashStartDate,#cashEndDate').attr('disabled',true); 
 	}else if(checkVal === 'range-3m') {
 		checkVal = '3';
 		var subDate = moment().subtract(checkVal, 'months').format('YYYY-MM-DD');
 		var nowDate = moment().format('YYYY-MM-DD');
-		$('input:text[id=adApplyStartDate]').val(subDate);
-		$('input:text[id=adApplyEndDate]').val(nowDate);
-		$('#adApplyStartDate,#adApplyEndDate').attr('disabled',true); 
+		$('input:text[id=cashStartDate]').val(subDate);
+		$('input:text[id=cashEndDate]').val(nowDate);
+		$('#cashStartDate,#cashEndDate').attr('disabled',true); 
 	}else if(checkVal === 'range-6m') {
 		checkVal = '6';
 		var subDate = moment().subtract(checkVal, 'months').format('YYYY-MM-DD');
 		var nowDate = moment().format('YYYY-MM-DD');
-		$('input:text[id=adApplyStartDate]').val(subDate);
-		$('input:text[id=adApplyEndDate]').val(nowDate);
-		$('#adApplyStartDate,#adApplyEndDate').attr('disabled',true); 
+		$('input:text[id=cashStartDate]').val(subDate);
+		$('input:text[id=cashEndDate]').val(nowDate);
+		$('#cashStartDate,#cashEndDate').attr('disabled',true); 
 	}		
 	console.log(subDate);
 	console.log(nowDate);
 });
 
 	$('#dateSearch').click(function(){
-		 $('#adApplyStartDate,#adApplyEndDate').removeAttr('disabled')
+		 $('#cashStartDate,#cashEndDate').removeAttr('disabled')
 		 
 	});
 

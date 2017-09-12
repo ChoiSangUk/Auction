@@ -55,8 +55,7 @@
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">매입매출 관리
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/saleslog/adminSalesLogList">매입/매출 리스트X</a></li>
-						<li><a href="${pageContext.request.contextPath}#">매입/매출 검색X</a></li>
+						<li><a href="${pageContext.request.contextPath}/saleslog/adminSalesLogList">매입/매출 리스트</a></li>
 						<li><a href="${pageContext.request.contextPath}#">매입/매출 월별통계X</a></li>
 					</ul>
 				<li><a href="${pageContext.request.contextPath}/logout">
