@@ -29,14 +29,13 @@ public class UserDetailController {
 		log.info(userId+"<---- login 확인");
 		log.info(userDetailVo.getUserPassword());
 		
-		
 		if (loginUser != null) {
 			session.setAttribute("userId", userId);
 			session.setAttribute("userLoginInfo", loginUser);
 			log.info("로그인 성공");
 			return "redirect:/main";
 		} else {
-
+			model.addAttribute("loginCheck", 1);
 			return "/user/user_login";
 		}
 

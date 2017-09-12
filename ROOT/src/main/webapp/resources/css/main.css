@@ -35,9 +35,10 @@
 	color: #ffffff !important;
 }
 
-th {
+th,td {
 	vertical-align: middle !important;
 	text-align: center !important;
+	height: 51px;
 }
 
 .error {

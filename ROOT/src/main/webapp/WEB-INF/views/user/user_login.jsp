@@ -31,6 +31,7 @@
 			<span>></span>
 			<span style="color: #1266FF">로그인</span>
 			<h2>로그인</h2>
+			<input type="hidden" id="loginCheck" value="${loginCheck}">
 		</div>
 		<div class="row content">	
 			<div class="row login-box well">
@@ -75,5 +76,14 @@
 	<div class="col-sm-1"></div>
 </div>
 
+<script>
+$('#loginBtn').click(function(){
+	var loginCheck = $('#loginCheck').val();
+	if(loginCheck === '1') {
+		alert('아이디,비밀번호를 확인해주세요!');
+	}
+})
+
+</script>
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8" />

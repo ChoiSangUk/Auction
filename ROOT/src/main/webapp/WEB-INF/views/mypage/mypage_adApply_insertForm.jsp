@@ -10,6 +10,13 @@
 <!-- summernote-ko-KR 한글 추가 -->
 <script src="${pageContext.request.contextPath}/resources/font/summernote-ko-KR.js"></script>
 
+<style>
+td {
+	text-align: left !important;
+}
+
+</style>
+
 <div class="container-fluid">
 	<div class="col-sm-1"></div>
 	<div class="col-sm-10">
@@ -61,7 +68,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th class="col-sm-2 text-center active">광고 등록일자</th>
+							<th class="col-sm-2 active">광고 등록일자</th>
 							<td>
 								<div class="form-inline dt" data-toggle="tooltip">
 								<div class="col-sm-3 input-group date" data-provide="datepicker" id="sdate"

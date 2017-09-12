@@ -8,6 +8,8 @@ public class AdPaymentVo {
 	private int adPaymentPrice;
 	private String adPaymentRegistDate;
 	private String adPaymentState;
+	private String adApprovalDiffDate;
+	private String adPaymentDiffDate;
 	private int beginRow;
 	private int pagePerRow;	
 	
@@ -49,6 +51,18 @@ public class AdPaymentVo {
 	}
 	public int getBeginRow() {
 		return beginRow;
+	}
+	public String getAdApprovalDiffDate() {
+		return adApprovalDiffDate;
+	}
+	public void setAdApprovalDiffDate(String adApprovalDiffDate) {
+		this.adApprovalDiffDate = adApprovalDiffDate;
+	}
+	public String getAdPaymentDiffDate() {
+		return adPaymentDiffDate;
+	}
+	public void setAdPaymentDiffDate(String adPaymentDiffDate) {
+		this.adPaymentDiffDate = adPaymentDiffDate;
 	}
 	public void setBeginRow(int beginRow) {
 		this.beginRow = beginRow;

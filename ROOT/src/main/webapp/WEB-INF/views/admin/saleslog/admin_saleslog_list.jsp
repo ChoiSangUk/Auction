@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
 	<div class="col-sm-1"></div>
-	<form name="AdminUserSeach" id="AdminUserSeach" method="post"
+	<form name="AdminSaleslogSeach" id="AdminSaleslogSeach" method="post"
 			class="form-horizontal" action="${pageContext.request.contextPath}/saleslog/adminSalesLogList">
 	<div class="col-sm-10">
 		<div class="row title">
@@ -81,7 +81,7 @@
 												<div class="col-sm-2 input-group date"
 													data-provide="datepicker" id="date1">
 													<input class="form-control" type="text"
-														id="salesStartDate" name="salesLogDate1" disabled="disabled">
+														id="salesStartDate" name="salesLogDate1" value="${salesLogDate1}" disabled="disabled">
 													<div class="input-group-addon">
 														<span class="glyphicon glyphicon-th"></span>
 													</div>
@@ -90,7 +90,7 @@
 												<div class="col-sm-2 input-group date"
 													data-provide="datepicker" id="date2">
 													<input class="form-control" type="text"
-														id="salesEndtDate" name="salesLogDate2" disabled="disabled">
+														id="salesEndtDate" name="salesLogDate2" value="${salesLogDate2}" disabled="disabled">
 													<div class="input-group-addon">
 														<span class="glyphicon glyphicon-th"></span>
 													</div>
@@ -102,6 +102,7 @@
 										<td>
 																
 											<div class="col-sm-2">
+											<input type="hidden" id="skVal" value="${sk}">
 												<select class="form-control" name="sk">
 													<option value="salesLogUserId">아이디</option>
 												</select>
@@ -109,7 +110,7 @@
 											
 											
 											<div class="input-group col-sm-4">
-												<input type="text" class="form-control" name="sv" placeholder="Search">
+												<input type="text" class="form-control" name="sv" value="${sv}" placeholder="Search">
 											</div>
 										</td>
 									</tr>
@@ -125,7 +126,7 @@
 						<input class="btn btn-lg" type="reset" id="resetBtn" value="검색삭제">
 					</div>
 			<c:if test="${list ne null}">		
-				<h1>검색결과</h1>
+				<h1>검색결과 ${test}</h1>
 			<table class="table table-bordered">
 			
 				<thead>
@@ -238,7 +239,7 @@ $('input:radio[name=salesLogDate]').click(function(){
 				$('#currentPage').val(page);
 				var currentPage = $('#currentPage').val();
 				$('.paging').attr('href','#');
-				$('#adPaymentForm').submit();
+			 	$('#AdminSaleslogSeach').submit(); 	
 			}
 		});
 	});

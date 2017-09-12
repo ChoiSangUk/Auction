@@ -17,4 +17,6 @@ public interface SalesLogDao {
 	// 회사 월별 출금 SELECT 쿼리
 	List<SalesLogChartVo> selectMonthLogForExpenses();
 	List<SalesLogVo> selectSalesLog(SalesLogVo salesLogVo); 
+	int selectSalesLogCount(SalesLogVo salesLogVo); 
+	
 }

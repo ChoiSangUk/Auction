@@ -43,6 +43,12 @@ public class BidDaolmpl implements BidDao {
 		log.info("BidDao insertBidPrice 확인");
 		/* log.debug(sessionTemplate.insert(NS+"insertBidPrice" , bidvo)); */
 		return sessionTemplate.insert(NS + "insertBidPrice", bidvo);
+	
+	//최고입찰금액
 	}
-
+	@Override
+	public BidVo bidSelectHighBidPrice(String auctionGoodsCode) {
+		log.info("BidDao bidselecthighbiduserprice 확인");
+		return sessionTemplate.selectOne(NS + "highbiduserprice", auctionGoodsCode);
+	}
 }

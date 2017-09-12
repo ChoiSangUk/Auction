@@ -166,7 +166,8 @@ $(function(){
 		onclick:function(e, page) {
 			$('#currentPage').val(page);
 			var currentPage = $('#currentPage').val();
-			$('.paging').attr('href','#');
+			event.preventDefault();
+			//$('.paging').attr('href','#');
 			$('#adPaymentForm').submit();
 		}
 	});

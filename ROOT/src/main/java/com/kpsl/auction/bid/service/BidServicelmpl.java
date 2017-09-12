@@ -39,5 +39,11 @@ public class BidServicelmpl implements BidService {
 		log.info("BidServicelmpl의 userSelectGoodsBidsList 메서드");
 		return bidDao.userSelectGoodsBidsList(bidvo);
 	}
+	//최고입찰금액
+	@Override
+	public BidVo bidSelectHighBidPrice(String auctionGoodsCode) {
+		log.info("BidServicelmpl의 bidSelectHighBidPrice 메서드");
+		return bidDao.bidSelectHighBidPrice(auctionGoodsCode);
+	}
 
 }
