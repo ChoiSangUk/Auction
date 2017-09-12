@@ -34,12 +34,11 @@
 					</h3>
 						
 					<h4>	
-							<span>남은 시간</span>
+							<span >남은 시간</span>
 						
-					
 						<span style="background-color:#B2EBF4">
 							<span class="glyphicon glyphicon-hourglass"></span>
-							<span> 00:00:00 </span>
+							<span id="timer"> 00:00:00 </span>
 						</span>
 					</h4>
 			</div>
@@ -58,7 +57,7 @@
 					</tr>
 					<tr>
 						<th>경매기간</th>
-						<th>${auctionGoods.auctionGoodsStartDate} ~ ${auctionGoods.auctionGoodsEndDate}</th>
+						<th><span>${auctionGoods.auctionGoodsStartDate}</span> ~ <span id="endDate">${auctionGoods.auctionGoodsEndDate}</span></th>
 					</tr>
 					<tr>
 						<th>시작가</th>
@@ -84,7 +83,7 @@
 				</tbody>
 			</table>
 			<div style="text-align:center;" class="myButton">
-				<a class="btn btn-primary btn-lg" href="#">입찰하기 </a>
+				<a class="btn btn-primary btn-lg" id="bidButton" href="#">입찰하기 </a>
 				<a class="btn btn-default btn-lg" href="#">문의하기 </a>
 			</div>
 		</div>
@@ -121,8 +120,33 @@
 	
 </div>
 <script>
+
+//남은 시간 타이머
+var endDate = $("#endDate").text();
+var endDateArray = endDate.split('-');
+var date = new Date(endDateArray[0]+'/'+endDateArray[1]+'/'+endDateArray[2]+' 00:00:00')
+
+var now = new Date();
+var result = date.getTime()-now.getTime()
+var resultDate = parseInt((result/(1000*60*60*24)))
+var resultHours = parseInt((result/(1000*60*60)) % 24)
+var resultMin =parseInt((result/(1000*60)) % 60)
+var resultSec = parseInt((result/1000) % 60)
+
+var timer = function(){
+	if(result > 0){
+			console.log('timer')
+			console.log(result)
+			result-=1000;
+			resultDate = parseInt((result/(1000*60*60*24)))
+			resultHours = parseInt((result/(1000*60*60)) % 24)
+			resultMin =parseInt((result/(1000*60)) % 60)
+			resultSec = parseInt((result/1000) % 60)
+			$('#timer').text(resultDate+'일'+resultHours+'시'+resultMin+'분'+resultSec+'초')
+	}
+};
+	
 	$(document).ready(function(){
-		
 		
 		//즉시구매 
 		var auctionGoodsInstantBuyPrice = $('#instantBuySpan').text();
@@ -147,6 +171,7 @@
 		
 		if(sellerId == userId){
 			
+			$('#bidButton').hide();
 			//post 방식으로 변경해야 함
 			$('.myButton').append( '<a class="btn btn-default btn-lg"' +  
 					'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsupdate?auctionGoodsCode='+auctionGoodsCode+' ">수정하기 </a>')
@@ -155,7 +180,15 @@
 					'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsdelete?auctionGoodsCode='+auctionGoodsCode+' ">삭제하기 </a>')
 						
 		}
+		
+		timerStop=setInterval("timer()",1000)
+		if(result<=0){
+				clearInterval(timerStop)
+				$('.myButton').hide();
+		}
 	})
+	
+	
 </script>
 
 

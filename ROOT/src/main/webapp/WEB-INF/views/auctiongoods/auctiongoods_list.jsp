@@ -96,6 +96,9 @@
 	</div>
 </div>
 <script>
+	
+	
+	
 		
 	$(document).ready(function(){
 		
@@ -123,75 +126,89 @@
 				console.log(obj[0].auctionGoodsVo.auctionGoodsName);
 				
 				for(var i=0; i<obj.length; i++){
-					var auctionGoodsCode = obj[i].auctionGoodsVo.auctionGoodsCode; //물품코드
-					var userId =obj[i].auctionGoodsVo.userId;							//판매자아이디
-					var auctionGoodsName=obj[i].auctionGoodsVo.auctionGoodsName; 		//물품명
-					var auctionGoodsSys=obj[i].auctionGoodsVo.auctionGoodsSys;			//경매방식
-					if(auctionGoodsSys=="normal"){
-						auctionGoodsSys="일반경매";
-					}else{
-						auctionGoodsSys="블라인드경매";
-					}
-					
-					var auctionGoodsTerm=obj[i].auctionGoodsVo.auctionGoodsTerm;		//판매기간
-					var auctionGoodsStartDate=obj[i].auctionGoodsVo.auctionGoodsStartDate;	//시작일
-					var auctionGoodsEndDate=obj[i].auctionGoodsVo.auctionGoodsEndDate;		
-					var auctionGoodsStartPrice=obj[i].auctionGoodsVo.auctionGoodsStartPrice;
-					var auctionGoodsInstantBuyState=obj[i].auctionGoodsVo.auctionGoodsInstantBuyState;
-					var auctionGoodsInstantBuyPrice=obj[i].auctionGoodsVo.auctionGoodsInstantBuyPrice;
-					
 					var auctionGoodsState=obj[i].auctionGoodsVo.auctionGoodsState;
-					var auctionGoodsHits=obj[i].auctionGoodsVo.auctionGoodsHits;
-					var auctionGoodsBidHits=obj[i].auctionGoodsVo.auctionGoodsBidHits;
-					var auctionGoodsImagePath=obj[i].auctionGoodsImageVo.auctionGoodsImagePath;
-					
-					var nowPrice=null;
-					if(nowPrice == null){
-						nowPrice=auctionGoodsStartPrice
-					};
-					//즉시구매가가 존재하면 태그를 추가
-					if(auctionGoodsInstantBuyPrice!='0'){
-						var auctionGoodsInstantBuyPriceTag = $('<div class="auctionGoodsInstantBuyPrice">'+'즉시구매가 : <strong>'+auctionGoodsInstantBuyPrice +'원</strong></div>');	
+					if(auctionGoodsState=='판매중'){
+						var auctionGoodsCode = obj[i].auctionGoodsVo.auctionGoodsCode; //물품코드
+						var userId =obj[i].auctionGoodsVo.userId;							//판매자아이디
+						var auctionGoodsName=obj[i].auctionGoodsVo.auctionGoodsName; 		//물품명
+						var auctionGoodsSys=obj[i].auctionGoodsVo.auctionGoodsSys;			//경매방식
+						if(auctionGoodsSys=="normal"){
+							auctionGoodsSys="일반경매";
+						}else{
+							auctionGoodsSys="블라인드경매";
+						}
 						
-					}else{
-						var auctionGoodsInstantBuyPriceTag = $('<div class="auctionGoodsInstantBuyPrice">'+'즉시구매 불가능</strong></div>');
+						var auctionGoodsTerm=obj[i].auctionGoodsVo.auctionGoodsTerm;		//판매기간
+						var auctionGoodsStartDate=obj[i].auctionGoodsVo.auctionGoodsStartDate;	//시작일
+						var auctionGoodsEndDate=obj[i].auctionGoodsVo.auctionGoodsEndDate;		
+						var auctionGoodsStartPrice=obj[i].auctionGoodsVo.auctionGoodsStartPrice;
+						var auctionGoodsInstantBuyState=obj[i].auctionGoodsVo.auctionGoodsInstantBuyState;
+						var auctionGoodsInstantBuyPrice=obj[i].auctionGoodsVo.auctionGoodsInstantBuyPrice;
+						
+						
+						var auctionGoodsHits=obj[i].auctionGoodsVo.auctionGoodsHits;
+						var auctionGoodsBidHits=obj[i].auctionGoodsVo.auctionGoodsBidHits;
+						var auctionGoodsImagePath=obj[i].auctionGoodsImageVo.auctionGoodsImagePath;
+						
+						var nowPrice=null;
+						if(nowPrice == null){
+							nowPrice=auctionGoodsStartPrice
+						};
+						//즉시구매가가 존재하면 태그를 추가
+						if(auctionGoodsInstantBuyPrice!='0'){
+							var auctionGoodsInstantBuyPriceTag = $('<div class="auctionGoodsInstantBuyPrice">'+'즉시구매가 : <strong>'+auctionGoodsInstantBuyPrice +'원</strong></div>');	
+							
+						}else{
+							var auctionGoodsInstantBuyPriceTag = $('<div class="auctionGoodsInstantBuyPrice">'+'즉시구매 불가능</strong></div>');
+						}
+						var mainDivTag = $('<div class="col-sm-2 mainDiv btn btn-default" style="border:1px solid #48BAE4; padding: 1px; margin: 8px;"><span class="auctionGoodsCode" style="display:none;">'+auctionGoodsCode+'</span></div>');
+						var imgDivTag = $('<div class="img" style="border-bottom:none;"><img src="'+auctionGoodsImagePath+'" style="width:90%; height:200px;" onerror="#" border="0"/></div>');
+						var bottomDivTag = $('<div class="bottom"></div>');
+						var auctionGoodsNameDivTag = $('<div class="auctionGoodsName">'+auctionGoodsName+'</div>');
+						var auctionGoodsSysTag = $('<div class="auctionGoodsSys">'+auctionGoodsSys+'</div>');
+						var nowPriceDivTag = $('<div class="nowPrice">'+'현재가 <strong>'+nowPrice +'원(입찰가로)</strong></div>');
+						var remainingTimeDivTag = $('<div class="remainingTime"><strong>'+'남은시간(미구현)'+'</strong></div>');
+						var sellerIdDivTag = $('<div class="sellerId">판매자 : <strong>'+userId +'</strong></div>');
+						var divTag = $('<div>'+
+						                '<span style="width:45%; display:inline-block;">' +
+										'입찰수 :<span class="bidCount">'+auctionGoodsBidHits +'</span>'+
+										'</span>'+
+										'<span style="width:45%; display:inline-block;">'+		
+										'조회수 : <span class="auctionGoodsHits">'+auctionGoodsHits +'</span>'+
+										'</span>'+		
+										'</div>');
+						
+						bottomDivTag.append(auctionGoodsNameDivTag);
+						bottomDivTag.append(auctionGoodsSysTag);
+						bottomDivTag.append(nowPriceDivTag);
+						bottomDivTag.append(auctionGoodsInstantBuyPriceTag);
+						bottomDivTag.append(remainingTimeDivTag);
+						bottomDivTag.append(sellerIdDivTag);
+						bottomDivTag.append(divTag);
+						
+						mainDivTag.append(imgDivTag);
+						mainDivTag.append(bottomDivTag);
+						
+						$('.goodsList').append(mainDivTag);
 					}
-					var mainDivTag = $('<div class="col-sm-2 mainDiv btn btn-default" style="border:1px solid #48BAE4; padding: 1px; margin: 8px;"><span class="auctionGoodsCode" style="display:none;">'+auctionGoodsCode+'</span></div>');
-					var imgDivTag = $('<div class="img" style="border-bottom:none;"><img src="'+auctionGoodsImagePath+'" style="width:90%; height:200px;" onerror="#" border="0"/></div>');
-					var bottomDivTag = $('<div class="bottom"></div>');
-					var auctionGoodsNameDivTag = $('<div class="auctionGoodsName">'+auctionGoodsName+'</div>');
-					var auctionGoodsSysTag = $('<div class="auctionGoodsSys">'+auctionGoodsSys+'</div>');
-					var nowPriceDivTag = $('<div class="nowPrice">'+'현재가 <strong>'+nowPrice +'원(입찰가로)</strong></div>');
-					var remainingTimeDivTag = $('<div class="remainingTime"><strong>'+'남은시간(미구현)'+'</strong></div>');
-					var sellerIdDivTag = $('<div class="sellerId">판매자 : <strong>'+userId +'</strong></div>');
-					var divTag = $('<div>'+
-					                '<span style="width:45%; display:inline-block;">' +
-									'입찰수 :<span class="bidCount">'+auctionGoodsBidHits +'</span>'+
-									'</span>'+
-									'<span style="width:45%; display:inline-block;">'+		
-									'조회수 : <span class="auctionGoodsHits">'+auctionGoodsHits +'</span>'+
-									'</span>'+		
-									'</div>');
-					
-					bottomDivTag.append(auctionGoodsNameDivTag);
-					bottomDivTag.append(auctionGoodsSysTag);
-					bottomDivTag.append(nowPriceDivTag);
-					bottomDivTag.append(auctionGoodsInstantBuyPriceTag);
-					bottomDivTag.append(remainingTimeDivTag);
-					bottomDivTag.append(sellerIdDivTag);
-					bottomDivTag.append(divTag);
-					
-					mainDivTag.append(imgDivTag);
-					mainDivTag.append(bottomDivTag);
-					
-					$('.goodsList').append(mainDivTag);
 				}
 			
 			//물품 클릭시 상세 페이지로 이동
 			$('.mainDiv').click(function(){
 				var auctionGoodsCode = $(this).find('.auctionGoodsCode').text();
-				
+				$.ajax({
+				    type : "GET",
+				    url : "${pageContext.request.contextPath}/hitsAjax",
+				    error : function(){
+				        alert('통신실패!!');
+				    },
+				    success : function(data){
+				        //alert("통신데이터 값 : " + data) ;
+				         
+				        }
+				});	
 				location.href = '${pageContext.request.contextPath}/auctiongoods/auctiongoods_detail?auctionGoodsCode='+auctionGoodsCode;
+				
 			});
 			}
 		})

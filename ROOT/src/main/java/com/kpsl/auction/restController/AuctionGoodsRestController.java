@@ -26,11 +26,15 @@ public class AuctionGoodsRestController {
 	@Autowired
 	private AuctionGoodsService auctionGoodsService;
 	
+	//조회수 올리기
+	@RequestMapping(value = "/hitsAjax")
+	public void auctionGoods_updateHits(){
+		
+	}
 	
 	//모든 물품을 뿌려주기 위한 처리
 	@RequestMapping(value = "/auctiongoods/auctiongoodslist_getallgoods", produces = "application/json; charset=UTF-8" )
 	public String auctionGoodsList_getAllGoods(){
-		System.out.println("여기는 오나 ?");
 		List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods(); 
 		System.out.println("auctionGoodsList는 있나? "+auctionGoodsList);
 		
