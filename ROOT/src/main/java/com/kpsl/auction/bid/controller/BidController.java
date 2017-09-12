@@ -125,7 +125,7 @@ public class BidController {
  			} 			String bidCode =  bidvo.getBidCode();
  			biddepositvo.setBidCode(bidCode); 
  			biddepositservice.setBidDeposit(biddepositvo);
-
+ 
  			/**보증금 차감 되는 서비스**/
  			userdetailvo.setUserId(userbuyerId);
  			biddepositservice.modifyUserCashWithdraw(biddepositvo);
