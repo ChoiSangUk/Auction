@@ -14,6 +14,8 @@ public class SalesLogVo {
 	private String[] salesLogRelationArray;
 	private String salesLogDate1;
 	private String salesLogDate2;
+	private int beginRow;
+	private int pagePerRow;	
 		
 	public String getSalesLogCode() {
 		return salesLogCode;
@@ -80,6 +82,18 @@ public class SalesLogVo {
 	}
 	public void setSalesLogDate2(String salesLogDate2) {
 		this.salesLogDate2 = salesLogDate2;
+	}
+	public int getBeginRow() {
+		return beginRow;
+	}
+	public void setBeginRow(int beginRow) {
+		this.beginRow = beginRow;
+	}
+	public int getPagePerRow() {
+		return pagePerRow;
+	}
+	public void setPagePerRow(int pagePerRow) {
+		this.pagePerRow = pagePerRow;
 	}
 	
 }

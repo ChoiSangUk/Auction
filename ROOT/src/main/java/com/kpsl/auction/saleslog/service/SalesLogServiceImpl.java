@@ -40,10 +40,13 @@ public class SalesLogServiceImpl implements SalesLogService{
 	}
 
 	@Override
-	public List<SalesLogVo> getSalesLog(SalesLogVo salesLogVo,String sk,String sv) {
-			
-		log.info("selectgetSalesLog 호출 확인");
+	public List<SalesLogVo> getSalesLog(SalesLogVo salesLogVo,String sk,String sv, int currentPage, int pagePerRow) {
 		
+		log.info("selectgetSalesLog 호출 확인");
+		int beginRow = (currentPage-1)*pagePerRow;
+		log.info(beginRow+"<-- 시작");
+		salesLogVo.setBeginRow(beginRow);
+		salesLogVo.setPagePerRow(pagePerRow);
 		if(sk.equals("salesLogUserId")) {
 			salesLogVo.setSalesLogUserId(sv+"%");
 			log.info(sk+"<-- sk확인");
@@ -51,4 +54,18 @@ public class SalesLogServiceImpl implements SalesLogService{
 		}
 		return salesLogDao.selectSalesLog(salesLogVo);
 	}
+
+	@Override
+	public int getSalesLogCount(SalesLogVo salesLogVo, String sk, String sv) {
+		log.info("selectgetSalesLogCount 호출 확인");
+		
+		
+		if(sk.equals("salesLogUserId")) {
+			salesLogVo.setSalesLogUserId(sv+"%");
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}
+		return salesLogDao.selectSalesLogCount(salesLogVo);
+	}
+
 }

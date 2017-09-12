@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kpsl.auction.saleslog.service.SalesLogService;
 import com.kpsl.auction.saleslog.vo.SalesLogVo;
@@ -22,10 +23,17 @@ public class SalesLogController {
 		return "/admin/saleslog/admin_saleslog_list";
 	}
 	@RequestMapping(value = "/saleslog/adminSalesLogList", method = RequestMethod.POST)
-	public String salesLog(SalesLogVo salesLogVo,Model model,String sk,String sv) {
-		
-		model.addAttribute("list", salesLogService.getSalesLog(salesLogVo,sk,sv));
-		
+	public String salesLog(SalesLogVo salesLogVo,Model model,String sk,String sv,
+							@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		int SalesLogCount = salesLogService.getSalesLogCount(salesLogVo, sk, sv);
+		int pagePerRow = 5;
+		// count/pagePerRow시 결과값이 소수점이하는 버리기 때문에 pagePerRow를 double형으로 형변환시킴
+		int lastPage = (int) (Math.ceil(SalesLogCount / (double)pagePerRow));
+		model.addAttribute("sk",sk);
+		model.addAttribute("sv",sv);
+		model.addAttribute("list", salesLogService.getSalesLog(salesLogVo,sk,sv,currentPage,pagePerRow));
+		model.addAttribute("test",SalesLogCount);
+		model.addAttribute("lastPage",lastPage);
 		log.info("로그확인");
 		return "/admin/saleslog/admin_saleslog_list";
 	}
