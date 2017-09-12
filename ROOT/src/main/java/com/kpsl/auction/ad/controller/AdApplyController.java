@@ -49,7 +49,7 @@ public class AdApplyController {
 		log.info(adApplyCode+"<--- adApplyCode 확인");
 		log.info(adImageCode+"<--- adImageCode 확인");
 		String userId = (String) session.getAttribute("userId");
-		/*String userId = "id002";*/
+		
 		List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> myApplyList = 
 				adApplyService.getMyAdApplyList(userId);
 		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList();
@@ -85,6 +85,7 @@ public class AdApplyController {
 	public String myAdApplyList(Model model, HttpSession session) {
 		
 		log.info("myAdApplyList 요청 확인");
+		
 		String userId = (String) session.getAttribute("userId");
 		log.info(userId);
 		List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> myApplyList = 

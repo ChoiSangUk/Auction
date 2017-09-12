@@ -22,7 +22,7 @@
 		</div>
 		<c:forEach var="ad" items="${adPaymentSuccessList}">
 		<div class="item mainBanner">
-			<a href="#">
+			<a href="${pageContext.request.contextPath}/auctiongoods/auctiongoods_detail?auctionGoodsCode=${ad.adApplyVo.auctionGoodsCode}">
 			<img src="${pageContext.request.contextPath}/resources/files/${ad.adImageVo.adImageName}" 
 			style="width: 80%; height: 500px;" alt="Image" align="middle">
 			</a>

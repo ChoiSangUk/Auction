@@ -47,6 +47,8 @@
 			<id property="adPaymentPrice" column="ad_payment_price"/>
 			<id property="adPaymentRegistDate" column="ad_payment_regist_date"/>
 			<id property="adPaymentState" column="ad_payment_state"/>
+			<id property="adApprovalDiffDate" column="ad_approval_diff_date"/>
+			<id property="adPaymentDiffDate" column="ad_payment_diff_date"/>
     	</association>
     	<association property="auctionGoodsVo" javaType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo">
     		<id property="auctionGoodsCode" column="auction_goods_code"/>
@@ -210,7 +212,11 @@
 				aa.ad_apply_start_date,
 				aa.ad_apply_end_date,
 				ad_apply_approval_date,
-				ap.ad_payment_state
+				ap.ad_payment_code,
+				ap.ad_payment_state,
+				ap.ad_payment_regist_date,
+				DATEDIFF(ADDDATE(ad_apply_approval_date,INTERVAL 1 DAY),NOW()) AS ad_approval_diff_date,
+				DATEDIFF(ADDDATE(ad_payment_regist_date,INTERVAL 1 DAY),NOW()) AS ad_payment_diff_date
 		FROM 	ad_apply_tb aa 
 				LEFT JOIN ad_unit_price_tb aup
 				ON aa.ad_unit_price_code = aup.ad_unit_price_code
@@ -221,6 +227,6 @@
 				LEFT JOIN ad_payment_tb ap
 				ON aa.ad_apply_code = ap.ad_apply_code
 		WHERE 	aa.user_id = #{userId}
-		ORDER BY ap.ad_payment_regist_date;
+		ORDER BY aa.ad_apply_regist_date DESC;
 	</select>
 </mapper>
