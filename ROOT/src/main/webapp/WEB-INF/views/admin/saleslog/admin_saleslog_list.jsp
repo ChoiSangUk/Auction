@@ -81,7 +81,7 @@
 												<div class="col-sm-2 input-group date"
 													data-provide="datepicker" id="date1">
 													<input class="form-control" type="text"
-														id="salesStartDate" name="salesLogDate1" disabled="disabled">
+														id="salesStartDate" name="salesLogDate1" value="${salesLogDate1}" disabled="disabled">
 													<div class="input-group-addon">
 														<span class="glyphicon glyphicon-th"></span>
 													</div>
@@ -90,7 +90,7 @@
 												<div class="col-sm-2 input-group date"
 													data-provide="datepicker" id="date2">
 													<input class="form-control" type="text"
-														id="salesEndtDate" name="salesLogDate2" disabled="disabled">
+														id="salesEndtDate" name="salesLogDate2" value="${salesLogDate2}" disabled="disabled">
 													<div class="input-group-addon">
 														<span class="glyphicon glyphicon-th"></span>
 													</div>
@@ -110,7 +110,7 @@
 											
 											
 											<div class="input-group col-sm-4">
-												<input type="text" class="form-control" name="sv" placeholder="Search">
+												<input type="text" class="form-control" name="sv" value="${sv}" placeholder="Search">
 											</div>
 										</td>
 									</tr>
