@@ -14,4 +14,5 @@ public interface SalesLogService {
 	List<SalesLogChartVo> getMonthLogForSales();
 	// 월별 출금 조회 DAO 호출
 	List<SalesLogChartVo> getMonthLogForExpenses();
+	List<SalesLogVo> getSalesLog(SalesLogVo salesLogVo,String sk,String sv);
 }

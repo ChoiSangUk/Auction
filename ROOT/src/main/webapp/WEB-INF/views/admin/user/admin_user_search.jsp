@@ -109,11 +109,7 @@
 						<input class="btn btn-info btn-lg" type="submit" id="submitBtn" value="검색">
 						<input class="btn btn-lg" type="reset" id="resetBtn" value="검색삭제">
 					</div>
-				</div>
-
-		<!-- 결과값 테이블 -->
-		<div class="row content text-center">
-			<c:if test="${userSearch ne null }">
+					<c:if test="${userSearch ne null }">
 				<h1>검색결과</h1>
 			<table class="table table-bordered">
 				<thead>
@@ -153,6 +149,11 @@
 				</c:forEach>
 			</table>
 		</c:if>
+				</div>
+
+		<!-- 결과값 테이블 -->
+		<div class="row content text-center">
+			
 		</div>
 	</div>
 	</form>
