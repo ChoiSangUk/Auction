@@ -19,7 +19,9 @@ public interface BidService {
 	List<BidVo> userSelectGoodsBidsList(BidVo bidvo);
 	/**입찰버튼 클릭시 인터페이스**/
 	int setBidPrice(BidVo bidvo);
-
+	/**최고입찰금액**/
+	public BidVo bidSelectHighBidPrice(String auctionGoodsCode);
 	
+
 }
 

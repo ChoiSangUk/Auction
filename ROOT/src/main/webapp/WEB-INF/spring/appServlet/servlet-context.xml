@@ -124,7 +124,8 @@
             	<value>classpath:com/kpsl/auction/goodscategory/service/LargeCategoryMapper.xml</value>
             	<value>classpath:com/kpsl/auction/goodscategory/service/MiddleCategoryMapper.xml</value>
             	<value>classpath:com/kpsl/auction/goodscategory/service/SmallCategoryMapper.xml</value>
-            	<value>classpath:com/kpsl/auction/bid/service/BidMapper.xml</value>            	
+            	<value>classpath:com/kpsl/auction/bid/service/BidMapper.xml</value> 
+            	<value>classpath:com/kpsl/auction/bid/service/BidDepositMapper.xml</value>            	
             </list>
         </property>
     </bean>
