@@ -24,4 +24,5 @@ public interface AuctionGoodsService {
 	
 	//물품 수정
 	int updateAuctionGoods(AuctionGoodsVo auctionGoodsVo, List<String> imgList);
+	
 }

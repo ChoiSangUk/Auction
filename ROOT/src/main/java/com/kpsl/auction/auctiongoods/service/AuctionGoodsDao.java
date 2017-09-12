@@ -21,5 +21,5 @@ public interface AuctionGoodsDao {
 	
 	//물품 수정
 	int updateAuctionGoods(AuctionGoodsVo auctionGoodsVo);
-
+	
 }

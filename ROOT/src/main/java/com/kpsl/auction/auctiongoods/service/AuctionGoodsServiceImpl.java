@@ -97,4 +97,5 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 		
 		 return 0;
 	}
+	
 }
