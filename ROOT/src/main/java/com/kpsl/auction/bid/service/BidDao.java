@@ -17,6 +17,7 @@ public interface BidDao{
 	List<BidVo> userSelectGoodsBidsList(BidVo bidvo);
 	/**입찰 버튼 클릭 시 insert  **/
 	int instertBidPrice(BidVo bidvo);
-
-
+   /**최고입찰금액**/
+	public BidVo bidSelectHighBidPrice(String auctionGoodsCode);
+	
 }

@@ -99,7 +99,7 @@ th {
 						<th>입찰품목명</th>
 						<th>입찰금액</th>
 						<th>입찰시간</th>
-					
+						<th>입찰종료</th>
 					</tr>
 				</thead>
 				<c:forEach var="usergoodsbid" items="${usergoodsbidlist}">
