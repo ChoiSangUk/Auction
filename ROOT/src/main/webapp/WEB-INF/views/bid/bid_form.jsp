@@ -81,11 +81,11 @@
 		var auctionGoodsBidUnit = parseInt(${auctionGoodsBidUnit});
 	    var highBidPrice  = parseInt(${highBidPrice});
     	var auctionGoodsStartPrice = parseInt(${auctionGoodsStartPrice});
-    	var a = auctionGoodsBidUnit++;
+ 
     	console.log(auctionGoodsStartPrice);
     	console.log(highBidPrice);
     	console.log(auctionGoodsBidUnit);
-    	console.log(a);
+  
          $('#addButton').click(function(){
         	var bidPrice = parseInt($('#bidPrice').val());
         	if(isNaN(bidPrice)){
@@ -94,7 +94,7 @@
         	}else if(bidPrice <= auctionGoodsStartPrice) {
             	event.preventDefault();
                 alert('입찰금액은 시작가격이상 이어야 합니다.');
-       		}else if(bidPrice = auctionGoodsStartPrice +(highBidPrice++)) {
+       		}else if(bidPrice = auctionGoodsStartPrice + highBidPrice) {
        			event.preventDefault();
                 alert('입찰단위에 맞춰 입찰해주세요.');
             }else {
