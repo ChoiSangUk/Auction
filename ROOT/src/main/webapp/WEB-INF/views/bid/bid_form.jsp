@@ -24,9 +24,10 @@
 						<div>200만원이상 : 100,000원</div>
 						<tr>
 							<h2>입찰하기</h2>
-							<th>최고가: ${highBidPrice}</th>
+							<th>최고가:<fmt:formatNumber value="${highBidPrice}"
+									groupingUsed="true" />원 </th>
 							<th>품목명: ${auctionGoodsName} </th>
-							<th id ="auctionGoodsStartPrice">시작가격:<fmt:formatNumber value="${auctionGoodsStartPrice}"
+							<th>시작가격:<fmt:formatNumber value="${auctionGoodsStartPrice}"
 									groupingUsed="true" />원
 							</th>
 							<th>입찰단위:<fmt:formatNumber value="${auctionGoodsBidUnit}"
@@ -47,7 +48,7 @@
 												<input type="hidden" name="userId" value="${userId}">
 												<input type="hidden" name="auctionGoodsName" value="${auctionGoodsName}">
 												<input type="hidden" name="auctionGoodsBidUnit" value="${auctionGoodsBidUnit} ">
-												<input type="hidden" name="auctionGoodsStartPrice" value="${auctionGoodsStartPrice}">
+												<input type="hidden" name="auctionGoodsStartPrice" value="${auctionGoodsStartPrice}">								
 											<!--   <button name = "addbutton" type="submit">입찰</button> -->
 												 <input class="btn btn-default" id="addButton" type="button" value="입찰"/>
 										</div>
@@ -75,21 +76,30 @@
 			</div>
 		</div>
 	</div></div>
-	
 </body>
-
 <script>
+		var auctionGoodsBidUnit = parseInt(${auctionGoodsBidUnit});
+	    var highBidPrice  = parseInt(${highBidPrice});
     	var auctionGoodsStartPrice = parseInt(${auctionGoodsStartPrice});
+    	var a = auctionGoodsBidUnit++;
+    	console.log(auctionGoodsStartPrice);
+    	console.log(highBidPrice);
+    	console.log(auctionGoodsBidUnit);
+    	console.log(a);
          $('#addButton').click(function(){
         	var bidPrice = parseInt($('#bidPrice').val());
-            if(bidPrice <= auctionGoodsStartPrice) {
+        	if(isNaN(bidPrice)){
+        		event.preventDefault();
+        		alert('숫자를 입력해주세요.');
+        	}else if(bidPrice <= auctionGoodsStartPrice) {
             	event.preventDefault();
-                alert('입찰금액은 시작가격이상 이어야 합니다');
-                $('#bidPrice').focus();
+                alert('입찰금액은 시작가격이상 이어야 합니다.');
+       		}else if(bidPrice = auctionGoodsStartPrice +(highBidPrice++)) {
+       			event.preventDefault();
+                alert('입찰단위에 맞춰 입찰해주세요.');
             }else {
                 $('#addForm').submit();
             }
-        }); 
-
+        });
 </script>
 	<c:import url="/resources/module/admin_footer.jsp" charEncoding="UTF-8" />

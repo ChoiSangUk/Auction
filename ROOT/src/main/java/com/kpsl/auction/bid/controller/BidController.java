@@ -50,15 +50,23 @@ public class BidController {
  		/**물품 등록자**/
  		String userId = auctiongoodsvo.getUserId();
  		model.addAttribute("userId",userId);
- 		/**품목별 입찰자 리스트(물품코드를 통한 쿼리실행)**/
- 		List<BidVo> goodsbidlist = bidService.goodsSelectBidList(bidvo);
- 		model.addAttribute("goodsbidlist", goodsbidlist);
+ 		/**입찰금액**/
+ 		BidVo highPrice = bidService.bidSelectHighBidPrice(auctionGoodsCode);
+ 		if(highPrice != null){
+ 			/**입찰시 최고입찰 금액보다 높아야 함 **/
+			int highBidPrice = highPrice.getBidPrice();
+			 model.addAttribute("highBidPrice",highBidPrice);
+			log.info(highPrice.getBidPrice()+"최고입찰금액");
+ 			/**품목별 입찰자 리스트(물품코드를 통한 쿼리실행)**/
+ 	 		List<BidVo> goodsbidlist = bidService.goodsSelectBidList(bidvo);
+ 	 		model.addAttribute("goodsbidlist", goodsbidlist);
+ 	 		log.info(goodsbidlist+"물품리스트");
+ 	 		}
  		
  		/**전체입찰자 리스트**/
  		List<BidVo> list = bidService.getBidList();
  		model.addAttribute("list",list);
  		//=====================
- 		log.info(goodsbidlist+"물품리스트");
  		log.info(auctionGoodsStartPrice+"시작가");
  		log.info(auctionGoodsName+"품목명");
  		log.info(auctionGoodsBidUnit+"입찰단위");
@@ -129,12 +137,6 @@ public class BidController {
  			/**보증금 차감 되는 서비스**/
  			userdetailvo.setUserId(userbuyerId);
  			biddepositservice.modifyUserCashWithdraw(biddepositvo);
- 			
- 			/**입찰시 최고입찰 금액보다 높아야 함**/
- 			BidVo highPrice = bidService.bidSelectHighBidPrice(auctionGoodsCode);
- 			int highBidPrice = highPrice.getBidPrice();
- 			model.addAttribute("highBidPrice",highBidPrice);
- 			log.info(highPrice.getBidPrice()+"최고입찰금액");
  			
  			log.info("입찰자 입찰하기");
  			return "redirect:/bid/bidform?auctionGoodsName="+auctionGoodsName+"&userId="+userSellerID+"&auctionGoodsBidUnit="+auctionGoodsBidUnit+"&auctionGoodsStartPrice="
