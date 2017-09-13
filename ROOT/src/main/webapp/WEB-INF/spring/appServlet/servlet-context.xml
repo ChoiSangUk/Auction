@@ -119,6 +119,7 @@
             	<value>classpath:com/kpsl/auction/ad/service/AdApplyMapper.xml</value>
             	<value>classpath:com/kpsl/auction/ad/service/AdImageMapper.xml</value>
             	<value>classpath:com/kpsl/auction/ad/service/AdPaymentMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/ad/service/AdRefundApplyMapper.xml</value>
             	<value>classpath:com/kpsl/auction/auctiongoods/service/AuctionGoodsMapper.xml</value>
             	<value>classpath:com/kpsl/auction/auctiongoods/service/AuctionGoodsImageMapper.xml</value>
             	<value>classpath:com/kpsl/auction/goodscategory/service/LargeCategoryMapper.xml</value>

@@ -80,7 +80,7 @@
 			<strong class="pull-left">
 			총 페이지 수 : ${adApplyCount}
 			</strong>
-			<table class="table table-bordered">
+			<table class="table table-bordered listTable">
 				<thead>
 					<tr class="active">
 						<th>광고신청 코드</th>
@@ -103,8 +103,9 @@
 						<td>${ad.adApplyEndDate}</td>
 						<td>${ad.adApplyState}</td>
 						<td>${ad.adApplyApprovalDate}</td>
-						<td><a class="btn btn-success"
-							href="#<%-- ${pageContext.request.contextPath}/ad/adminAdApplyDetail?adApplyCode=${ad.adApplyCode} --%>">상세보기</a>
+						<td>
+						<a class="btn btn-success" 
+						href="${pageContext.request.contextPath}/ad/adminAdApplyDetail?adApplyCode=${ad.adApplyCode}">상세보기</a>
 						</td>
 					</tr>
 				</tbody>

@@ -90,7 +90,7 @@ public class AdApplyController {
 		log.info(userId);
 		List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> myApplyList = 
 				adApplyService.getMyAdApplyList(userId);
-		model.addAttribute("myApplyList",myApplyList);
+		model.addAttribute("myApplyList",myApplyList);		
 		
 		return "/mypage/mypage_adApply_list";		
 	}

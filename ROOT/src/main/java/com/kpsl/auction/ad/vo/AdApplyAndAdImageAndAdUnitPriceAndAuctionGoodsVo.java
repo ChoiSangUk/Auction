@@ -9,6 +9,8 @@ public class AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo {
 	private AdUnitPriceVo adUnitPriceVo;
 	private AdPaymentVo adPaymentVo;
 	private AuctionGoodsVo auctionGoodsVo;
+	private AdRefundApplyVo adRefundApplyVo;
+	private String adRefundApplyCode;
 	
 	public AuctionGoodsVo getAuctionGoodsVo() {
 		return auctionGoodsVo;
@@ -40,4 +42,16 @@ public class AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo {
 	public void setAdImageVo(AdImageVo adImageVo) {
 		this.adImageVo = adImageVo;
 	}
+	public AdRefundApplyVo getAdRefundApplyVo() {
+		return adRefundApplyVo;
+	}
+	public void setAdRefundApplyVo(AdRefundApplyVo adRefundApplyVo) {
+		this.adRefundApplyVo = adRefundApplyVo;
+	}
+	public String getAdRefundApplyCode() {
+		return adRefundApplyCode;
+	}
+	public void setAdRefundApplyCode(String adRefundApplyCode) {
+		this.adRefundApplyCode = adRefundApplyCode;
+	}	
 }

@@ -14,11 +14,6 @@
 td {
 	text-align: left !important;
 }
-
-input {
-	max-width: 230px !important;
-
-}
 </style>
 
 <div class="container-fluid">
@@ -39,32 +34,35 @@ input {
 		</div>
 		<div class="row content text-left">	
 			<!-- 물품광고신청 폼 -->
-			<sf:form class="form-horizontal" commandName="adApplyVo" action="${pageContext.request.contextPath}/mypage/adApplyInsertForm"
-				id="applyForm" method="post" enctype="multipart/form-data">
-				<input class="form-control" type="hidden" name="adApplyCode">
-				<input class="form-control" type="hidden" name="userId">
+			<sf:form class="form-horizontal" commandName="adApplyVo" action="${pageContext.request.contextPath}/mypage/adRefundApplyInsertForm"
+				id="adRefundApplyForm" method="post">
+				<input class="form-control" type="hidden" name="adPaymentCode"
+				value="${adRefundDetailList.adPaymentVo.adPaymentCode}">
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
 							<th class="col-sm-2 active">물품명</th>
 							<td>
 								<div class="col-sm-8">
-									<input class="form-control refundInput" type="text" name="adUnitPriceName" value="" readonly="readonly">
+									<input class="form-control refundInput" type="text" name="auctionGoodsName" 
+									value="${adRefundDetailList.auctionGoodsVo.auctionGoodsName}" readonly="readonly">
 								</div>
 							</td>
 							<th class="col-sm-2 active">광고명</th>
 							<td>
 								<div class="col-sm-8">
-									<input class="form-control refundInput" type="text" name="adUnitPriceName" value="" readonly="readonly">
+									<input class="form-control refundInput" type="text" name="adUnitPriceName" 
+									value="${adRefundDetailList.adUnitPriceVo.adUnitPriceName}" readonly="readonly">
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<th class="col-sm-2 active">환불신청사유</th>
 							<td colspan="4">
-								<div class="col-sm-3">
-									<select class="form-control" name="adUnitPriceCode">
-										<option></option>
+								<div class="col-sm-4">
+									<select class="form-control" name="adRefundApplyReason">
+										<option>물품 파손으로 인한 환불신청</option>
+										<option>기타사유</option>
 									</select>
 								</div>
 							</td>
@@ -73,7 +71,12 @@ input {
 							<th class="col-sm-2 active">환불금액</th>
 							<td colspan="4">
 								<div class="col-sm-3">
-									<input class="form-control" type="text" name="adUnitPriceName" value="" readonly="readonly">
+									<input class="form-control" type="text" name="adRefundApplyPrice"
+									value="${adRefundDetailList.adPaymentVo.adPaymentPrice}" readonly="readonly">
+								</div>
+								<div style="margin-top: 8px;">
+								<span class="glyphicon glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+								환불금액은 광고결제시 결제금액의 10%를 차감한 금액입니다.
 								</div>
 							</td>
 						</tr>
@@ -88,5 +91,13 @@ input {
 		</div>				
 	</div>
 </div>
+
+<script>
+var adRefundApplyPrice = parseInt($('#adRefundPrice').val());
+var adRefundPricePercent = 0.9;
+var adRefundPrice = adRefundApplyPrice*adRefundPricePercent;
+console.log(adRefundPrice);
+
+</script>
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8"/>

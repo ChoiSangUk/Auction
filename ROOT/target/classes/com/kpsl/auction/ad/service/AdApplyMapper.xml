@@ -70,6 +70,16 @@
 			<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price"/>
 			<id property="auctionGoodsState" column="auction_goods_state"/>
     	</association>
+    	<association property="adRefundApplyVo" javaType="com.kpsl.auction.ad.vo.AdRefundApplyVo">
+    		<id property="adRefundApplyCode" column="ad_refund_apply_code"/>
+			<id property="adPaymentCode" column="ad_payment_code"/>
+			<id property="userId" column="user_id"/>	
+			<id property="adRefundApplyReason" column="ad_refund_apply_reason"/>
+			<id property="adRefundApplyPrice" column="ad_refund_apply_price"/>
+			<id property="adRefundApplyRegistDate" column="ad_refund_apply_regist_date"/>
+			<id property="adRefundApplyState" column="ad_refund_apply_state"/>
+			<id property="adRefundApplySuccessDate" column="ad_refund_apply_success_date"/>
+    	</association>
     </resultMap>
     
 	<!-- 키값을 먼저 조회하고 키값을 셋팅한 후 INSERT -->
@@ -215,6 +225,7 @@
 				ap.ad_payment_code,
 				ap.ad_payment_state,
 				ap.ad_payment_regist_date,
+				ara.ad_refund_apply_state,
 				DATEDIFF(ADDDATE(ad_apply_approval_date,INTERVAL 1 DAY),NOW()) AS ad_approval_diff_date,
 				DATEDIFF(ADDDATE(ad_payment_regist_date,INTERVAL 1 DAY),NOW()) AS ad_payment_diff_date
 		FROM 	ad_apply_tb aa 
@@ -226,6 +237,8 @@
 				ON aa.ad_apply_code = ai.ad_apply_code
 				LEFT JOIN ad_payment_tb ap
 				ON aa.ad_apply_code = ap.ad_apply_code
+				LEFT JOIN ad_refund_apply_tb ara
+				ON ap.ad_payment_code = ara.ad_payment_code
 		WHERE 	aa.user_id = #{userId}
 		ORDER BY aa.ad_apply_regist_date DESC;
 	</select>
