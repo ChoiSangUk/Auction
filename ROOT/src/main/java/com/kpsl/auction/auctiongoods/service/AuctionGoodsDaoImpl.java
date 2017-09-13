@@ -59,16 +59,15 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	}
 	
 	@Override
-	public int selectIncreaseHits(String auctionGoodsCode) {
-		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne(NS+"selectIncreaseHits", auctionGoodsCode);
-	}
-
-	@Override
-	public int increaseHits(Map map) {
-		// TODO Auto-generated method stub
-		return sqlSessionTemplate.update(NS+"increaseHits", map);
-	}
-	
+	 public int selectIncreaseHits(String auctionGoodsCode) {
+	 	// TODO Auto-generated method stub
+	 	return sqlSessionTemplate.selectOne(NS+"selectIncreaseHits", auctionGoodsCode);
+	 }
+	 
+	 @Override
+	 public int increaseHits(Map map) {
+	 	// TODO Auto-generated method stub
+	 	return sqlSessionTemplate.update(NS+"increaseHits", map);
+	 }
 
 }

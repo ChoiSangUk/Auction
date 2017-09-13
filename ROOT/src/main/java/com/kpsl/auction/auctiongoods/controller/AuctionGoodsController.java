@@ -166,7 +166,7 @@ public class AuctionGoodsController {
         auctionGoodsService.addAuctionGoods(auctionGoodsVo, imgList);
 
 		
-        return auctionGoodsList(model);
+        return "main";
 	}
 
 	

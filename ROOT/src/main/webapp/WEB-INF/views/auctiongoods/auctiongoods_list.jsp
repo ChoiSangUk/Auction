@@ -196,21 +196,19 @@
 			//물품 클릭시 상세 페이지로 이동
 			$('.mainDiv').click(function(){
 				var auctionGoodsCode = $(this).find('.auctionGoodsCode').text();
-				auctionGoodsCodeJson ={
+				var auctionGoodsCodeJson ={
 						"auctionGoodsCode" : auctionGoodsCode
 				}
 				$.ajax({
 				    type : "GET",
 				    data : auctionGoodsCodeJson,
 				    url : "${pageContext.request.contextPath}/hitsAjax",
-				    error : function(request,status,error){
-				        //alert('조회수 ajax실패!!');
-				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
+				    error : function(){
+				        alert('통신실패!!');
 				    },
-				    success : function(getData){
+				    success : function(data){
 				        //alert("통신데이터 값 : " + data) ;
-				        console.log('조회수ajax성공')
+				         
 				        }
 				});	
 				location.href = '${pageContext.request.contextPath}/auctiongoods/auctiongoods_detail?auctionGoodsCode='+auctionGoodsCode;

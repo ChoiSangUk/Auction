@@ -79,7 +79,7 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">물품명</label>
 						<div class="col-sm-3">
-							<input class="form-control" type="text" name="auctionGoodsName" value="">
+							<input class="form-control" type="text" id="auctionGoodsName" name="auctionGoodsName" value="">
 						</div>
 					</div>
 					
@@ -147,7 +147,7 @@
 							
 							<div class="col-sm-5" id="instantBuyPrice" style="display:none">
 								<label class="col-sm-3 control-label">즉시구매가</label>
-								<input type="text" name="auctionGoodsInstantBuyPrice" value="0">
+								<input type="text" name="auctionGoodsInstantBuyPrice" id="auctionGoodsInstantBuyPrice" value="0">
 							</div>
 						</div>
 					</div>
@@ -181,7 +181,7 @@
 							<input type="text" id="endDate" placeholder="시작 날짜를 입력하세요" name="auctionGoodsEndDate" readonly>
 						</div>
 					</div>	
-					
+					<div style="text-align:center; color:red; font-size:1.5em; font-weight:bold">사진을 등록하지않으면 물품이 등록되지 않습니다.</div>
 					<!-- 상세 내용 입력 및 사진 추가 에디터 -->
 					<div class="form-group">
 						<textarea name="auctionGoodsContents" id="ir1" rows="10" cols="100" style="width:100%; height:700px;">
@@ -250,16 +250,88 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 });
 
 	$(document).ready(function() {
+		//유효성 검사
+		
+		
+		
+		var validCheck = function(){
+			
+			//카테고리 검사
+			if($('#smallCategoryCode').val()==""){
+				  alert('대, 중, 소 카테고리를 모두 선택해주세요');
+				  return false;
+			  }
+			//물품명 검사
+			if($('#auctionGoodsName').val()==""){
+				alert('물품명을 입력하시오');
+				return false;
+			}
+			
+			//경매방식
+			if($(':radio[name="auctionGoodsSys"]:checked').length < 1){
+			    alert('경매방식을 선택하시오');
+			    $('#auctionGoodsBidSysBtn').focus();
+			    return false;
+			}
+			
+			//최소입찰가 검사
+			if($('#auctionGoodsStartPrice').val()==""){
+				alert('최소입찰가를 입력하시오')
+				$('#auctionGoodsStartPrice').focus();
+				return false;
+			}
+			
+			//즉시구매 검사
+			if($('input[name=auctionGoodsInstantBuyState]:checked').val()=="on"){
+				console.log($('#auctionGoodsInstantBuyPrice').val())
+				if($('#auctionGoodsInstantBuyPrice').val()=="0" || $('#auctionGoodsInstantBuyPrice').val()==""){
+					alert('즉시구매가를 입력하시오');
+					return false;
+				}else if($('#auctionGoodsInstantBuyPrice').val()%100!=0){
+					alert('즉시구매가를 숫자 100의 배수로 입력하시오');
+					return false;
+				}else if($('#auctionGoodsInstantBuyPrice').val() <= $('#auctionGoodsStartPrice').val()){
+					alert('즉시구매가를 최소가보다 크게 입력하시오')
+					return false;
+				}
+			}
+			
+			//시작날짜 검사
+			if($('#startDate').val()==""){
+				alert('경매시작날짜를 입력하시오')
+				return false;
+			}
+			
+			
+			
+			//스마트 에디터의 내용을 textarea로 이동
+			
+			oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+			
+			var textarea  =  $('#ir1').val()
+			var textareaSplit = textarea.split("<img", 5)
+			console.log(textareaSplit.length)
+			if($('#ir1').val()==""){
+				alert('내용을 입력하시오')
+				//이미지 추가 필수 검사
+				return false;
+			}else if(textareaSplit ==1){
+				alert('사진을 추가하시오 !')
+				return false;
+			}				
+			
+			
+			$("#frm").submit();
+		}
 		
 		//전송버튼
 		$("#savebutton").click(function(){
 		  //id가 ir1인 textarea에 에디터에서 대입
-		  oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
 
 		  	//폼 submit
 			 	// var tmp =  $('#ir1').val()
 		 		// alert(tmp+'왜 안되냐?')
-		  $("#frm").submit();
+		  validCheck();
 		});
 		
 		//최소 입찰가가 바뀔 때 보유캐쉬와 보증금을 비교

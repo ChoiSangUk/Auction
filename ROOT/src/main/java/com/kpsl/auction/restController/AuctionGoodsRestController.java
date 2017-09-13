@@ -31,8 +31,8 @@ public class AuctionGoodsRestController {
 	public void auctionGoods_updateHits(@RequestParam(value="auctionGoodsCode", required = true) String auctionGoodsCode){
 		System.out.println("조회수 ajax");
 		System.out.println(auctionGoodsCode);
-		auctionGoodsService.increaseHits(auctionGoodsCode);
-	}
+	 auctionGoodsService.increaseHits(auctionGoodsCode);
+	 }
 	
 	//모든 물품을 뿌려주기 위한 처리
 	@RequestMapping(value = "/auctiongoods/auctiongoodslist_getallgoods", produces = "application/json; charset=UTF-8" )

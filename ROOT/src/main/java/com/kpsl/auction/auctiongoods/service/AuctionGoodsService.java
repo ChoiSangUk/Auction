@@ -28,4 +28,5 @@ public interface AuctionGoodsService {
 	//조회수 증가
 	int increaseHits(String auctionGoodsCode);
 	
+	
 }

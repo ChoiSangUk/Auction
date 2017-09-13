@@ -44,6 +44,7 @@
 			</div>
 			
 			<span id="instantBuySpan" style="display:none">${auctionGoods.auctionGoodsInstantBuyPrice}</span>
+			<span id="SysSpan" style="display:none">${auctionGoods.auctionGoodsSys}</span>
 			<span id="bidSysSpan" style="display:none">${auctionGoods.auctionGoodsBidSys}</span>
 			<table class="table">
 				<tbody>
@@ -65,6 +66,10 @@
 					</tr>
 					<tr>
 						<th>경매방식</th>
+						<th id="Sys"></th>
+					</tr>
+					<tr>
+						<th>입찰방식</th>
 						<th id="bidSys"></th>
 					</tr>
 					<tr>
@@ -153,16 +158,22 @@ var timer = function(){
 		if(auctionGoodsInstantBuyPrice == 0){
 			$('#instantBuy').text("즉시구매 불가능");
 		}else{
-			$('#instantBuy').text(auctionGoodsInstantBuyPrice);
+			$('#instantBuy').text(auctionGoodsInstantBuyPrice + '<a class="btn btn-primary btn-lg" id="bidButton" href="#">입찰하기 </a>');
 		}
 		
 		//경매 방식
+		var auctionGoodsSys = $('#SysSpan').text();
 		var auctionGoodsBidSys = $('#bidSysSpan').text();
 		
-		if(auctionGoodsBidSys == 'normal'){
-			$('#bidSys').text("일반 경매");
+		if(auctionGoodsSys == 'normal'){
+			$('#Sys').text("일반 경매");
 		}else{
-			$('#bidSys').text("블라인드 경매");
+			$('#Sys').text("블라인드 경매");
+		}
+		if(auctionGoodsBidSys == 'normal'){
+			$('#bidSys').text("공개");
+		}else{
+			$('#bidSys').text("비공개");
 		}
 		
 		var sellerId = "${auctionGoods.userId}";

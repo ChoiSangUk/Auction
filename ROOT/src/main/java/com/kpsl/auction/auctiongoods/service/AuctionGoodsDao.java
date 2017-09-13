@@ -22,10 +22,9 @@ public interface AuctionGoodsDao {
 	
 	//물품 수정
 	int updateAuctionGoods(AuctionGoodsVo auctionGoodsVo);
-
-	//조회수 증가
-	int selectIncreaseHits(String auctionGoodsCode);
-	int increaseHits(Map map);
 	
+	//조회수 증가
+	 int selectIncreaseHits(String auctionGoodsCode);
+	 int increaseHits(Map map);
 	
 }
