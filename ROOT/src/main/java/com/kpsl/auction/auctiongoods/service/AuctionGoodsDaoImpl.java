@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -57,6 +58,17 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 		return sqlSessionTemplate.update(NS+"updateAuctionGoods", auctionGoodsVo);
 	}
 	
+	@Override
+	public int selectIncreaseHits(String auctionGoodsCode) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne(NS+"selectIncreaseHits", auctionGoodsCode);
+	}
+
+	@Override
+	public int increaseHits(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update(NS+"increaseHits", map);
+	}
 	
 
 }

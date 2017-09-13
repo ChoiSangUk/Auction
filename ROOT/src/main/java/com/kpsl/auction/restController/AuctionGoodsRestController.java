@@ -27,9 +27,11 @@ public class AuctionGoodsRestController {
 	private AuctionGoodsService auctionGoodsService;
 	
 	//조회수 올리기
-	@RequestMapping(value = "/hitsAjax")
-	public void auctionGoods_updateHits(){
-		
+	@RequestMapping(value = "/hitsAjax", produces = "application/json; charset=UTF-8", method = RequestMethod.GET)
+	public void auctionGoods_updateHits(@RequestParam(value="auctionGoodsCode", required = true) String auctionGoodsCode){
+		System.out.println("조회수 ajax");
+		System.out.println(auctionGoodsCode);
+		auctionGoodsService.increaseHits(auctionGoodsCode);
 	}
 	
 	//모든 물품을 뿌려주기 위한 처리

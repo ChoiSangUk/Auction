@@ -1,6 +1,9 @@
 package com.kpsl.auction.auctiongoods.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +99,17 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 		}
 		
 		 return 0;
+	}
+	@Override
+	public int increaseHits(String auctionGoodsCode) {
+		
+		int hits =  auctionGoodsDao.selectIncreaseHits(auctionGoodsCode);
+		hits++;
+		Map map=new HashMap();
+		map.put("auctionGoodsHits", hits);
+		map.put("auctionGoodsCode", auctionGoodsCode);
+		auctionGoodsDao.increaseHits(map);
+		return 0;
 	}
 	
 }

@@ -1,6 +1,7 @@
 package com.kpsl.auction.auctiongoods.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
@@ -21,5 +22,10 @@ public interface AuctionGoodsDao {
 	
 	//물품 수정
 	int updateAuctionGoods(AuctionGoodsVo auctionGoodsVo);
+
+	//조회수 증가
+	int selectIncreaseHits(String auctionGoodsCode);
+	int increaseHits(Map map);
+	
 	
 }

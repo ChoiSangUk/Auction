@@ -25,4 +25,7 @@ public interface AuctionGoodsService {
 	//물품 수정
 	int updateAuctionGoods(AuctionGoodsVo auctionGoodsVo, List<String> imgList);
 	
+	//조회수 증가
+	int increaseHits(String auctionGoodsCode);
+	
 }
