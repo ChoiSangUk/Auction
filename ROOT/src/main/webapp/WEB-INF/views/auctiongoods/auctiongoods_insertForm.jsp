@@ -320,8 +320,6 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 				return false;
 			}
 			
-			
-			
 			//스마트 에디터의 내용을 textarea로 이동
 			
 			oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
@@ -391,6 +389,12 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 			            	   $('#auctionGoodsDepositPrice').val('50000')
 			               }else if(auctionGoodsStartPrice >=200000){
 			            	   $('#auctionGoodsDepositPrice').val('100000')
+			               }
+			               
+			               if($('#auctionGoodsDepositPrice').val() > userTotalCash){
+			            	   alert('보증금이 부족합니다')
+			            	   $('#auctionGoodsStartPrice').val('');
+								$('#auctionGoodsDepositPrice').val('');
 			               }
 			               
 			               

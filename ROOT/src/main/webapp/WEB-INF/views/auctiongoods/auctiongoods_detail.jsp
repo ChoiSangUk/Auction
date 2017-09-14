@@ -91,6 +91,7 @@
 				<a class="btn btn-primary btn-lg" id="bidButton" href="#">입찰하기 </a>
 				<a class="btn btn-default btn-lg" href="#">문의하기 </a>
 			</div>
+			<div id="auctionGoodsEnd" style="display:none; font-size:300%; text-align:center; color:red">판매 종료</div>
 		</div>
 		<!-- 오른쪽 물품 정보(내용) end -->
 	</div>
@@ -140,7 +141,7 @@ var resultSec = parseInt((result/1000) % 60)
 
 var timer = function(){
 	if(result > 0){
-			//console.log('timer')
+			console.log('timer')
 			//console.log(result)
 			result-=1000;
 			resultDate = parseInt((result/(1000*60*60*24)))
@@ -150,9 +151,9 @@ var timer = function(){
 			$('#timer').text(resultDate+'일'+resultHours+'시'+resultMin+'분'+resultSec+'초')
 	}
 };
+
 	
 	$(document).ready(function(){
-		
 		//즉시구매 
 		var auctionGoodsInstantBuyPrice = $('#instantBuySpan').text();
 		if(auctionGoodsInstantBuyPrice == 0){
@@ -192,11 +193,13 @@ var timer = function(){
 						
 		}
 		
+		//타이머 실행
 		timerStop=setInterval("timer()",1000)
 		if(result<=0){
 				clearInterval(timerStop)
 				$('.myButton').hide();
 				$('.bidButton').hide();
+				$('#auctionGoodsEnd').show();
 		}
 	})
 	

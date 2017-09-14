@@ -87,7 +87,7 @@
 	<!-- 물품 상태 자동 변경 -->
 	<update id="updateAuctionGoodsStateStart">
 		UPDATE auction_goods_tb
-		SET auction_goods_state = "확인중"
+		SET auction_goods_state = "판매중"
 		WHERE auction_goods_start_date &lt;= now() 
 		AND auction_goods_end_date &gt;= now()
 		AND auction_goods_state !="낙찰"
