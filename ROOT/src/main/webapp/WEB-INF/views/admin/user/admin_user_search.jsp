@@ -169,22 +169,19 @@
 			<!-- 캐쉬내역모달 -->
 				<div id="modalLayer">
 						  <div class="modalContent">
-						    <h5>캐쉬내역</h5> 
-						    <table border="1">
-						    	<tr>
+						    <h3>캐쉬내역</h3> 
+						    <table class="table table-bordered">
+						    <thead>
+						    	<tr class="active">
+						    		<th>아이디</th>
 						    		<th>금액</th>
 						    		<th>날짜</th>
 						    		<th>상태</th>
 						    	</tr>
-						    	<c:forEach var="userList" items="${userList}">
-						    	<tr>						    	
-						    		<td>${userList.cashPrice}</td>
-						    		<td>${userList.cashDate}</td>
-						    		<td>${userList.cashState}</td>
-						    	 </tr>
-						    	</c:forEach>
+						    </thead>
+						    <tbody id="test123"></tbody>
 						    </table>
-						    
+						  
 						    
 						    
 						    <button type="button">닫기</button>
@@ -228,23 +225,38 @@ $(document).ready(function(){
 	  
 	  $('.modalLink').click(function(){
 		  var id = $(this).attr('dataCode');
-			console.log(id);
 		$.ajax({
 			url : '${pageContext.request.contextPath}/userIdAjax',
 			method: 'post',
 			data: {'userId' : id},
 			datatype : 'json',
 			success:function(data){
-				/* var Jdata = JSON.parse(data); */
-				console.log(Object.keys(data).length);
-				console.log(data);
+ 			/* 	console.log(data.length);
+				console.log(data);  */
 				
-				
-			/* 	for(int i=0; i<data.length; i++){
-					console.log(data[i]);
-				} */
-			/* 	var a = JSON.parse(data[0]);
-				console.log(a); */
+				var hi = '';				
+			if(data.length > 0) {	
+			 	for(var i=0; i<data.length; i++){
+					/* console.log(i);
+					console.log(data[i]);  */
+					var cashPrice =data[i].cashPrice;
+					var cashDate =data[i].cashDate;
+					var cashState =data[i].cashState;
+	
+					hi +='<tr>';
+						hi +='<td>'+id+'</td>';
+						hi +='<td>'+cashPrice+'원</td>';
+						hi +='<td>'+cashDate+'</td>';
+						hi +='<td>'+cashState+'</td>';
+					hi +='</tr>';
+									
+			 	}
+		 	}else{
+		 		hi += '<td>거래내역이 없습니다.</td>';
+		 	}
+				$('#test123').html(hi);		 	
+							
+	
 			},
 			error:function(){
 				 alert("error!");
