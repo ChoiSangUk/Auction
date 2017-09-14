@@ -110,12 +110,12 @@
 					<div class="form-group" >
 						<hr>
 						<div>
-							<label class="col-sm-1 control-label">최소 입찰가</label>
+							<label class="col-sm-1 control-label">최소 입찰가(변경할 수 없습니다)</label>
 							<div class="col-sm-2">
-								<input class="form-control" id ="auctionGoodsStartPrice" type="text" name="auctionGoodsStartPrice" value="">
+								<input class="form-control" id ="auctionGoodsStartPrice" type="text" name="auctionGoodsStartPrice" value="${auctionGoods.auctionGoodsStartPrice}" readonly>
 							</div>
 							<label class="col-sm-2 control-label">판매 보증금 :</label>
-							<input type="text" class="col-sm-2" id="sellerDepositPrice" name="auctionGoodsdepositPrice" readonly>
+							<input type="text" class="col-sm-2" id="sellerDepositPrice" name="auctionGoodsdepositPrice" value="${auctionGoods.auctionGoodsDepositPrice}" readonly>
 							<label class="col-sm-1 control-label">캐쉬</label>
 							<label class="col-sm-2 control-label" >보유 캐쉬 :</label>
 							<label class="col-sm-2 control-label" id="userTotalCash">${userLoginInfo.userTotalcash} 캐쉬</label>
@@ -256,66 +256,87 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 });
 
 	$(document).ready(function() {
+		//유효성 검사 후 등록
+		var validCheck = function(){
+			
+			//카테고리 검사
+			if($('#smallCategoryCode').val()==""){
+				  alert('대, 중, 소 카테고리를 모두 선택해주세요');
+				  return false;
+			  }
+			//물품명 검사
+			if($('#auctionGoodsName').val()==""){
+				alert('물품명을 입력하시오');
+				return false;
+			}
+			
+			//경매방식
+			if($(':radio[name="auctionGoodsSys"]:checked').length < 1){
+			    alert('경매방식을 선택하시오');
+			    $('#auctionGoodsBidSysBtn').focus();
+			    return false;
+			}
+			
+			//최소입찰가 검사
+			if($('#auctionGoodsStartPrice').val()==""){
+				alert('최소입찰가를 입력하시오')
+				$('#auctionGoodsStartPrice').focus();
+				return false;
+			}
+			
+			//즉시구매 검사
+			if($('input[name=auctionGoodsInstantBuyState]:checked').val()=="on"){
+				console.log($('#auctionGoodsInstantBuyPrice').val())
+				if($('#auctionGoodsInstantBuyPrice').val()=="0" || $('#auctionGoodsInstantBuyPrice').val()==""){
+					alert('즉시구매가를 입력하시오');
+					return false;
+				}else if($('#auctionGoodsInstantBuyPrice').val()%100!=0){
+					alert('즉시구매가를 숫자 100의 배수로 입력하시오');
+					return false;
+				}else if($('#auctionGoodsInstantBuyPrice').val() <= $('#auctionGoodsStartPrice').val()){
+					alert('즉시구매가를 최소가보다 크게 입력하시오')
+					return false;
+				}
+			}
+			
+			//시작날짜 검사
+			if($('#startDate').val()==""){
+				alert('경매시작날짜를 입력하시오')
+				return false;
+			}
+			
+			
+			
+			//스마트 에디터의 내용을 textarea로 이동
+			
+			oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+			
+			var textarea  =  $('#ir1').val()
+			var textareaSplit = textarea.split("<img", 5)
+			console.log(textareaSplit.length)
+			if($('#ir1').val()==""){
+				alert('내용을 입력하시오')
+				//이미지 추가 필수 검사
+				return false;
+			}else if(textareaSplit ==1){
+				alert('사진을 추가하시오 !')
+				return false;
+			}				
+			
+			
+			$("#frm").submit();
+		}
 		
 		//전송버튼
 		$("#savebutton").click(function(){
 		  //id가 ir1인 textarea에 에디터에서 대입
-		  oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
 
 		  	//폼 submit
 			 	// var tmp =  $('#ir1').val()
 		 		// alert(tmp+'왜 안되냐?')
-		  $("#frm").submit();
+		 		validCheck();
 		});
 		
-		//최소 입찰가가 바뀔 때 보유캐쉬와 보증금을 비교
-			$('#auctionGoodsStartPrice').change(function(){
-				var auctionGoodsStartPrice = $('#auctionGoodsStartPrice').val();
-				if(auctionGoodsStartPrice<5000){
-					alert('최소 입찰가를 5000원 이상으로 입력하시오!')
-					$('#auctionGoodsStartPrice').val('')
-					$('#sellerDepositPrice').val('')
-				}else{
-					if(auctionGoodsStartPrice%100 != 0){
-						alert('최소입찰가는 100의 배수로 입력해주세요!')
-						$('#auctionGoodsStartPrice').val('')
-						$('#sellerDepositPrice').val('')
-					}else{			
-					//console.log('최소입찰금액 : '+ auctionGoodsStartPrice);
-					var userTotalCash = ${userLoginInfo.userTotalcash};
-					console.log('보유금액 : '+ userTotalCash);
-					
-					$.ajax({
-			            type : "GET",
-			            url : "${pageContext.request.contextPath}/sellerdepositajax",
-			            error : function(){
-			                alert('통신실패!!');
-			            },
-			            success : function(data){
-			                //alert("통신데이터 값 : " + data) ;
-			               // console.log('ajax 후에 auctionGoodsStartPrice'+auctionGoodsStartPrice)
-			               
-			              //최소입찰가가 정해지면 보증금이 자동으로 정해짐
-			               if(auctionGoodsStartPrice <= 5000){
-			            	   $('#sellerDepositPrice').val('1000')
-			               }else if(auctionGoodsStartPrice < 50000){
-			            	   $('#sellerDepositPrice').val('5000')
-			               }else if(auctionGoodsStartPrice >=50000 && auctionGoodsStartPrice <200000){
-			            	   $('#sellerDepositPrice').val('10000')
-			               }else if(auctionGoodsStartPrice >=200000 && auctionGoodsStartPrice <500000){
-			            	   $('#sellerDepositPrice').val('30000')
-			               }else if(auctionGoodsStartPrice >=500000 && auctionGoodsStartPrice <2000000){
-			            	   $('#sellerDepositPrice').val('50000')
-			               }else if(auctionGoodsStartPrice >=200000){
-			            	   $('#sellerDepositPrice').val('100000')
-			               }
-			               
-			               
-			        	}
-					});  
-					}
-				}
-			});
 		
 		//startDate가 바뀌면 ajax로 endDate 설정
 			$('#startDate').change(function(){

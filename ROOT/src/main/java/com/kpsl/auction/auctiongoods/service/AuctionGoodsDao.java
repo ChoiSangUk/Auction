@@ -37,5 +37,9 @@ public interface AuctionGoodsDao {
 	//유저 캐쉬 가져오기
 	int selectUserCash(String userId);
 	
+	//매 일 0시마다 상태 확인하여 변경
+	int updateAuctionGoodsState();
+	int updateAuctionGoodsStateEnd();
+	
 	
 }

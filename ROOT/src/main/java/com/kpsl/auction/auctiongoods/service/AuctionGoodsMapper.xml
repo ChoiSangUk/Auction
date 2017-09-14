@@ -83,6 +83,22 @@
 		<result property="userTotalcash" column="user_totalcash" />
 	</resultMap>
 	
+	
+	<!-- 물품 상태 자동 변경 -->
+	<update id="updateAuctionGoodsStateStart">
+		UPDATE auction_goods_tb
+		SET auction_goods_state = "확인중"
+		WHERE auction_goods_start_date &lt;= now() 
+		AND auction_goods_end_date &gt;= now()
+		AND auction_goods_state !="낙찰"
+	</update>
+	<update id="updateAuctionGoodsStateEnd">
+		UPDATE auction_goods_tb
+		SET auction_goods_state = "판매종료"
+		WHERE auction_goods_end_date &lt;= now()
+		AND auction_goods_state !="낙찰"
+	</update>
+	
 	<!-- 유저 캐쉬 가져오기ㅣ -->
 	<select id = "selectUserCash" parameterType = "String" resultType="int">
 	SELECT user_totalcash
@@ -117,13 +133,11 @@
 		 auction_goods_term = #{auctionGoodsTerm},
 		 auction_goods_start_date = #{auctionGoodsStartDate},
 		 auction_goods_end_date = #{auctionGoodsEndDate},
-		 auction_goods_start_price = #{auctionGoodsStartPrice},
 		 auction_goods_bid_unit = #{auctionGoodsBidUnit},
 		 auction_goods_instant_buy_state = #{auctionGoodsInstantBuyState},
 		 auction_goods_instant_buy_price = #{auctionGoodsInstantBuyPrice},
 		 auction_goods_bid_hits = #{auctionGoodsBidHits},
-		 auction_goods_hits = #{auctionGoodsHits},
-		 auction_goods_deposit_price = #{auctionGoodsDepositPrice}
+		 auction_goods_hits = #{auctionGoodsHits}
 		WHERE auction_goods_code = #{auctionGoodsCode}
 	</update>
 	<!-- 모든 물품 리스트 -->

@@ -140,8 +140,8 @@ var resultSec = parseInt((result/1000) % 60)
 
 var timer = function(){
 	if(result > 0){
-			console.log('timer')
-			console.log(result)
+			//console.log('timer')
+			//console.log(result)
 			result-=1000;
 			resultDate = parseInt((result/(1000*60*60*24)))
 			resultHours = parseInt((result/(1000*60*60)) % 24)

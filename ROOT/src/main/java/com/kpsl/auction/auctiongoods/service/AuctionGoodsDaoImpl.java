@@ -93,6 +93,21 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 		return sqlSessionTemplate.selectOne(NS+"selectUserCash", userId);
 	}
 	
+	//물품 상태 변경
+	@Override
+	public int updateAuctionGoodsState() {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update(NS+"updateAuctionGoodsState");
+	}
+
+	@Override
+	public int updateAuctionGoodsStateEnd() {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update(NS+"updateAuctionGoodsStateEnd");
+	}
+	
+	
+	
 	
 
 }
