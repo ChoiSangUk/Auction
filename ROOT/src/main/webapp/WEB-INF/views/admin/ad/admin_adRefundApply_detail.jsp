@@ -24,12 +24,11 @@ th {
 	<div class="col-sm-1"></div>
 	<div class="col-sm-10">
 		<div class="row title">
-			<h1>광고신청 상세보기</h1>
+			<h1>광고환불신청 상세보기</h1>
 		</div>
 		<div class="row content">
 			<!-- 광고신청 상세보기 폼 -->
-			<form class="form-horizontal" action="${pageContext.request.contextPath}/ad/adminAdApplyDetail" method="post">
-				<input type="hidden" name="adApplyApprovalDate" value="now">
+			<form class="form-horizontal" action="${pageContext.request.contextPath}/ad/adminAdRefundApplyDetail" method="post">
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
@@ -100,10 +99,10 @@ th {
 							<th class="col-sm-2 active">광고환불신청상태</th>
 							<td colspan="3">
 								<div class="col-sm-10">
-									<input type="hidden" id="radioCheck" value="">
-									<label class="radio-inline"><input type="radio" name="adApplyState" value="승인대기" id="stateWait">승인대기</label>
-									<label class="radio-inline"><input type="radio" name="adApplyState" value="승인완료" id="stateSuccess">승인완료</label>
-									<label class="radio-inline"><input type="radio" name="adApplyState" value="승인반려" id="stateReject">승인반려</label>
+									<input type="hidden" id="radioCheck" value="${adRefundDetailList.adRefundApplyVo.adRefundApplyState}">
+									<label class="radio-inline"><input type="radio" name="adRefundApplyState" value="승인대기" id="stateWait">승인대기</label>
+									<label class="radio-inline"><input type="radio" name="adRefundApplyState" value="승인완료" id="stateSuccess">승인완료</label>
+									<label class="radio-inline"><input type="radio" name="adRefundApplyState" value="승인반려" id="stateReject">승인반려</label>
 								</div>
 							</td>
 						</tr>						
@@ -122,14 +121,14 @@ th {
 
 <script>
 
-/* var radioCheck = $('#radioCheck').val();
+var radioCheck = $('#radioCheck').val();
 if(radioCheck == '승인대기') {
 	$('#stateWait').attr("checked", true);
 } else if(radioCheck == '승인완료') {
 	$('#stateSuccess').attr("checked", true);
 } else if(radioCheck == '승인반려') {
 	$('#stateReject').attr("checked", true);
-} */
+} 
 </script>
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8"/>

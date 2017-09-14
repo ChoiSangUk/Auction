@@ -14,4 +14,8 @@ public interface AdRefundApplyDao {
 	List<AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo> selectAdRefundList();
 	// 광고환불신청 상세정보 SELECT 쿼리
 	AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo selectAdRefundDetailList(AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo adVo);
+	// 광고환불신청 UPDATE 쿼리
+	int updateAdRefund(AdRefundApplyVo adRefundApplyVo);
+	// 광고환불신청 UPDATE시 회원상세테이블 유저토탈캐쉬 UPDATE 쿼리
+	int updateUserTotalCashByUserId(AdRefundApplyVo adRefundApplyVo);
 }

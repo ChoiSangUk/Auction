@@ -9,15 +9,10 @@
 <!-- summernote-ko-KR 한글 추가 -->
 <script src="${pageContext.request.contextPath}/resources/font/summernote-ko-KR.js"></script>
 <style>
-.note-editor {
-	width: 100%;
-	margin: auto;
-}
 th {
 	vertical-align: middle !important;
 	text-align: center !important;
 }
-
 </style>
 
 <div class="container-fluid">

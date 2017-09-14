@@ -51,4 +51,20 @@ public class AdRefundApplyDaoImpl implements AdRefundApplyDao {
 		return sqlSessionTemplate.selectOne(AdRefundApplyMapperNS+"selectAdRefundList", adVo);
 	}
 
+	@Override
+	public int updateAdRefund(AdRefundApplyVo adRefundApplyVo) {
+		
+		log.info("updateAdRefund 호출 확인");
+		
+		return sqlSessionTemplate.update(AdRefundApplyMapperNS+"updateAdRefund", adRefundApplyVo);
+	}
+
+	@Override
+	public int updateUserTotalCashByUserId(AdRefundApplyVo adRefundApplyVo) {
+
+		log.info("updateUserTotalCashByUserId 호출 확인");
+		
+		return sqlSessionTemplate.update(AdRefundApplyMapperNS+"updateUserTotalcash",adRefundApplyVo);
+	}
+
 }

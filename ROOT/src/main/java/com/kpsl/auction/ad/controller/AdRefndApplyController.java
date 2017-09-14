@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kpsl.auction.ad.service.AdRefundApplyService;
 import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo;
 import com.kpsl.auction.ad.vo.AdRefundApplyVo;
+import com.kpsl.auction.saleslog.vo.SalesLogVo;
 
 @Controller
 public class AdRefndApplyController {
@@ -25,11 +26,16 @@ public class AdRefndApplyController {
 	
 	// 관리자 광고신청환불상세(액션) 페이지 요청
 	@RequestMapping(value = "/ad/adminAdRefundApplyDetail", method = RequestMethod.POST)
-	public String adRefundApplyDetail(Model model) {
+	public String adRefundApplyDetail(Model model, AdRefundApplyVo adRefundApplyVo, SalesLogVo salesLogVo) {
 		
 		log.info("adRefundApplyDetail 요청 확인");
+		log.info(adRefundApplyVo.getAdRefundApplyCode());
+		int result = adRefundApplyService.adRefundApplyAndUserTotalCashAndSalesLogTransaction(adRefundApplyVo, salesLogVo);
+		if(result == 0){
+			log.info("트랜잭션처리 완료");
+		}
 		
-		return "/admin/ad/admin_adRefundApply_detail";
+		return "redirect:/ad/adminAdRefundApplySearch";
 	}
 		
 	// 관리자 광고신청환불상세 페이지 요청

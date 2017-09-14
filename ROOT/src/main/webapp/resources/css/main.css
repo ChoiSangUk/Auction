@@ -35,11 +35,11 @@
 	color: #ffffff !important;
 }
 
-th,td {
+/* th,td {
 	vertical-align: middle !important;
 	text-align: center !important;
 	height: 51px;
-}
+} */
 
 .error {
     color: red;

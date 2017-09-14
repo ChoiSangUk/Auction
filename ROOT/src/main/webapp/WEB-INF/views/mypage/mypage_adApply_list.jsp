@@ -5,8 +5,11 @@
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
 
 <style>
-
-
+th,td {
+	vertical-align: middle !important;
+	text-align: center !important;
+	height: 51px;
+}
 </style>
 
 <div class="container-fluid">

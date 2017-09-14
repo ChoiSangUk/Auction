@@ -79,25 +79,41 @@
 			<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price"/>
 			<id property="auctionGoodsState" column="auction_goods_state"/>
     	</association>
-    </resultMap>
+    </resultMap>   
+	
+    <!-- 광고환불신청 UPDATE -->
+    <update id="updateAdRefund" parameterType="com.kpsl.auction.ad.vo.AdRefundApplyVo">
+	    UPDATE 	ad_refund_apply_tb
+		SET
+				ad_refund_apply_state=#{adRefundApplyState},
+				ad_refund_apply_success_date=NOW()
+		WHERE 	ad_refund_apply_code=#{adRefundApplyCode}
+    </update>
+    
+    <!-- 광고환불신청과 같이 userTotalcash가 UPDATE (트랜잭션 처리)-->
+	<update id="updateUserTotalcash" parameterType="com.kpsl.auction.ad.vo.AdRefundApplyVo">
+		UPDATE user_detail_tb
+			SET user_totalcash=user_totalcash+#{adRefundApplyPrice}
+		WHERE user_id = #{userId}
+	</update>
     
     <!-- 광고환불신청 전체리스트 OR 상세정보 SELECT -->
 	<select id="selectAdRefundList" parameterType="String" resultMap="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
-	SELECT  ara.ad_refund_apply_code,
-			ara.ad_payment_code,
-			ara.user_id,
-			ap.ad_payment_price,
-			ara.ad_refund_apply_price,
-			ara.ad_refund_apply_reason,
-			ara.ad_refund_apply_regist_date,
-			ara.ad_refund_apply_state,
-			ara.ad_refund_apply_success_date
-	FROM 	ad_refund_apply_tb ara
-			LEFT JOIN ad_payment_tb ap
-			ON ara.ad_payment_code = ap.ad_payment_code	
+		SELECT  ara.ad_refund_apply_code,
+				ara.ad_payment_code,
+				ara.user_id,
+				ap.ad_payment_price,
+				ara.ad_refund_apply_price,
+				ara.ad_refund_apply_reason,
+				ara.ad_refund_apply_regist_date,
+				ara.ad_refund_apply_state,
+				ara.ad_refund_apply_success_date
+		FROM 	ad_refund_apply_tb ara
+				LEFT JOIN ad_payment_tb ap
+				ON ara.ad_payment_code = ap.ad_payment_code	
 	<where>
 		<if test="adRefundApplyCode != null">
-			ara.ad_refund_apply_code=#{adRefundApplyCode}
+				ara.ad_refund_apply_code=#{adRefundApplyCode}
 		</if>
 	</where>			
 	</select>
