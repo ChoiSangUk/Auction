@@ -1,5 +1,6 @@
 package com.kpsl.auction.main.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kpsl.auction.ad.service.AdPaymentService;
 import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdPaymentVo;
+import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.saleslog.service.SalesLogService;
 import com.kpsl.auction.saleslog.vo.SalesLogVo;
 import com.kpsl.auction.user.service.UserDetailService;
 import com.kpsl.auction.user.service.UserService;
 import com.kpsl.auction.user.vo.GradeVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
+import com.sun.org.apache.bcel.internal.classfile.DescendingVisitor;
 
 @Controller
 public class MainController {
@@ -27,6 +31,7 @@ public class MainController {
 	@Autowired private UserService userService;
 	@Autowired private UserDetailService userDetailService;
 	@Autowired private AdPaymentService adPaymentService;
+	@Autowired private AuctionGoodsService auctionGoodsService;
 	
 	// 프로젝트 소개페이지 요청
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -42,7 +47,11 @@ public class MainController {
 
 		log.info("로그확인");
 		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentSuccessList = adPaymentService.getPaymentSuccessList();
-		model.addAttribute("adPaymentSuccessList",adPaymentSuccessList);
+		List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods();
+
+		model.addAttribute("adPaymentSuccessList", adPaymentSuccessList);
+		model.addAttribute("auctionGoodsList", auctionGoodsList);
+		
 		
 		return "main";
 	}
