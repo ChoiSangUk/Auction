@@ -59,7 +59,7 @@
 				<form class="form-horizontal"
 					action="${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert" method="post" id="frm">
 					
-						<input type="text"  name="userId" value="${userLoginInfo.userId}" style="display:none;">
+						<input type="text" id="userId" name="userId" value="${userLoginInfo.userId}" style="display:none;">
 					<!-- 카테고리 코드가 담아져서 전달되는곳 -->
 						<div style="display:none;">
 							<div class="col-sm-4">
@@ -114,10 +114,11 @@
 								<input class="form-control" id ="auctionGoodsStartPrice" type="text" name="auctionGoodsStartPrice" value="">
 							</div>
 							<label class="col-sm-2 control-label">판매 보증금 :</label>
-							<input type="text" class="col-sm-2" id="sellerDepositPrice" name="sellerDepositPrice" readonly>
+							<input type="text" class="col-sm-2" id="auctionGoodsDepositPrice" name="auctionGoodsDepositPrice" readonly>
 							<label class="col-sm-1 control-label">캐쉬</label>
 							<label class="col-sm-2 control-label" >보유 캐쉬 :</label>
-							<label class="col-sm-2 control-label" id="userTotalCash">${userLoginInfo.userTotalcash} 캐쉬</label>
+							<label class="col-sm-2 control-label" id="userTotalCash"></label>
+							<input type="text" name="userTotalCash" id="userTotalCashInput" value="" style="display:none">
 						</div>
 
 						<div class="form-group" id="bidUnit">
@@ -250,10 +251,27 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 });
 
 	$(document).ready(function() {
-		//유효성 검사
+		//보유 캐쉬 가져오기
+		var userId = $('#userId');
+		$.ajax({
+            type : "GET",
+            url : "${pageContext.request.contextPath}/getUserCashAjax",
+            data : userId,
+            dataType: "text",
+            error : function(request,status,error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+
+            },
+            success : function(getData){
+                //alert("통신데이터 값 : " + data) ;
+               // console.log('ajax 후에 auctionGoodsStartPrice'+auctionGoodsStartPrice)
+               //alert(getData)
+               $('#userTotalCash').text(getData);
+               $('#userTotalCashInput').val(getData);
+        	}
+		}); 
 		
-		
-		
+		//유효성 검사 후 등록
 		var validCheck = function(){
 			
 			//카테고리 검사
@@ -327,7 +345,6 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 		//전송버튼
 		$("#savebutton").click(function(){
 		  //id가 ir1인 textarea에 에디터에서 대입
-
 		  	//폼 submit
 			 	// var tmp =  $('#ir1').val()
 		 		// alert(tmp+'왜 안되냐?')
@@ -340,12 +357,12 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 				if(auctionGoodsStartPrice<5000){
 					alert('최소 입찰가를 5000원 이상으로 입력하시오!')
 					$('#auctionGoodsStartPrice').val('')
-					$('#sellerDepositPrice').val('')
+					$('#auctionGoodsDepositPrice').val('')
 				}else{
 					if(auctionGoodsStartPrice%100 != 0){
 						alert('최소입찰가는 100의 배수로 입력해주세요!')
 						$('#auctionGoodsStartPrice').val('')
-						$('#sellerDepositPrice').val('')
+						$('#auctionGoodsDepositPrice').val('')
 					}else{			
 					//console.log('최소입찰금액 : '+ auctionGoodsStartPrice);
 					var userTotalCash = ${userLoginInfo.userTotalcash};
@@ -363,17 +380,17 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 			               
 			              //최소입찰가가 정해지면 보증금이 자동으로 정해짐
 			               if(auctionGoodsStartPrice <= 5000){
-			            	   $('#sellerDepositPrice').val('1000')
+			            	   $('#auctionGoodsDepositPrice').val('1000')
 			               }else if(auctionGoodsStartPrice < 50000){
-			            	   $('#sellerDepositPrice').val('5000')
+			            	   $('#auctionGoodsDepositPrice').val('5000')
 			               }else if(auctionGoodsStartPrice >=50000 && auctionGoodsStartPrice <200000){
-			            	   $('#sellerDepositPrice').val('10000')
+			            	   $('#auctionGoodsDepositPrice').val('10000')
 			               }else if(auctionGoodsStartPrice >=200000 && auctionGoodsStartPrice <500000){
-			            	   $('#sellerDepositPrice').val('30000')
+			            	   $('#auctionGoodsDepositPrice').val('30000')
 			               }else if(auctionGoodsStartPrice >=500000 && auctionGoodsStartPrice <2000000){
-			            	   $('#sellerDepositPrice').val('50000')
+			            	   $('#auctionGoodsDepositPrice').val('50000')
 			               }else if(auctionGoodsStartPrice >=200000){
-			            	   $('#sellerDepositPrice').val('100000')
+			            	   $('#auctionGoodsDepositPrice').val('100000')
 			               }
 			               
 			               

@@ -11,6 +11,8 @@ import org.apache.log4j.Logger;
 
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
+import com.kpsl.auction.saleslog.service.SalesLogDao;
+import com.kpsl.auction.saleslog.vo.SalesLogVo;
 
 @Repository
 public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
@@ -18,7 +20,6 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	final String NS = "com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper.";
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
 	@Override
 	public AuctionGoodsVo selectAuctionGoods(String auctionGoodsCode) {
 		// TODO Auto-generated method stub
@@ -69,5 +70,29 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	 	// TODO Auto-generated method stub
 	 	return sqlSessionTemplate.update(NS+"increaseHits", map);
 	 }
+
+	 	//물품등록시 보증금 차감
+	@Override
+	public int addDepositPrice(Map map) {
+		// TODO Auto-generated method stub
+		
+		return sqlSessionTemplate.update(NS+"updateUserTotalCash", map);
+	}
+
+	//보증금 가격 가져오기
+	@Override
+	public int getDepositPrice(String auctionGoodsCode) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne(NS+"selectDepositPrice", auctionGoodsCode);
+	}
+	
+	//유저 캐쉬 가져오기
+	@Override
+	public int selectUserCash(String userId) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne(NS+"selectUserCash", userId);
+	}
+	
+	
 
 }

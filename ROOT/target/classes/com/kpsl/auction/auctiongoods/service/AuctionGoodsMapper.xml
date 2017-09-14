@@ -65,6 +65,7 @@
 		</association>
 	</resultMap>
 	
+	<!-- 보증금 등록하기 위한 resultMap -->
 	<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
 		<id property="userId" column="user_id" />
 		<result property="userPassword" column="user_password" />
@@ -82,7 +83,28 @@
 		<result property="userTotalcash" column="user_totalcash" />
 	</resultMap>
 	
-
+	<!-- 유저 캐쉬 가져오기ㅣ -->
+	<select id = "selectUserCash" parameterType = "String" resultType="int">
+	SELECT user_totalcash
+	FROM user_detail_tb
+	WHERE user_id = #{userId}
+	</select>
+	
+	<!--  물품의 보증금 가져오기 -->
+	<select id="selectDepositPrice" parameterType="String" resultType="int">
+	SELECT auction_goods_deposit_price
+	FROM auction_goods_tb
+	WHERE auction_goods_code = #{auctionGoodsCode}
+	</select>
+	
+	<update id="updateUserTotalCash" parameterType="java.util.Map">
+		UPDATE user_detail_tb
+		SET user_totalcash = #{resultCash}
+		WHERE user_id = #{userId}
+		
+	</update>
+	
+	<!--  물품 수정  -->
 	<update id="updateAuctionGoods" parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo">
 		UPDATE auction_goods_tb
 		SET small_category_code = #{smallCategoryCode},
