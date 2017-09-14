@@ -5,11 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
+import com.kpsl.auction.saleslog.service.SalesLogDao;
+import com.kpsl.auction.saleslog.vo.SalesLogVo;
 
 @Repository
 public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
@@ -17,7 +20,6 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	final String NS = "com.kpsl.auction.auctiongoods.service.AuctionGoodsMapper.";
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
 	@Override
 	public AuctionGoodsVo selectAuctionGoods(String auctionGoodsCode) {
 		// TODO Auto-generated method stub
@@ -56,6 +58,55 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 		System.out.println("updatedao :"+auctionGoodsVo);
 		return sqlSessionTemplate.update(NS+"updateAuctionGoods", auctionGoodsVo);
 	}
+	
+	@Override
+	 public int selectIncreaseHits(String auctionGoodsCode) {
+	 	// TODO Auto-generated method stub
+	 	return sqlSessionTemplate.selectOne(NS+"selectIncreaseHits", auctionGoodsCode);
+	 }
+	 
+	 @Override
+	 public int increaseHits(Map map) {
+	 	// TODO Auto-generated method stub
+	 	return sqlSessionTemplate.update(NS+"increaseHits", map);
+	 }
+
+	 	//물품등록시 보증금 차감
+	@Override
+	public int addDepositPrice(Map map) {
+		// TODO Auto-generated method stub
+		
+		return sqlSessionTemplate.update(NS+"updateUserTotalCash", map);
+	}
+
+	//보증금 가격 가져오기
+	@Override
+	public int getDepositPrice(String auctionGoodsCode) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne(NS+"selectDepositPrice", auctionGoodsCode);
+	}
+	
+	//유저 캐쉬 가져오기
+	@Override
+	public int selectUserCash(String userId) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne(NS+"selectUserCash", userId);
+	}
+	
+	//물품 상태 변경
+	@Override
+	public int updateAuctionGoodsState() {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update(NS+"updateAuctionGoodsState");
+	}
+
+	@Override
+	public int updateAuctionGoodsStateEnd() {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update(NS+"updateAuctionGoodsStateEnd");
+	}
+	
+	
 	
 	
 

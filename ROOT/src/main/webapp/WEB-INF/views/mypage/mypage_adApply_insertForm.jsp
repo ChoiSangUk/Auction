@@ -11,11 +11,13 @@
 <script src="${pageContext.request.contextPath}/resources/font/summernote-ko-KR.js"></script>
 
 <style>
-td {
-	text-align: left !important;
+th {
+	vertical-align: middle !important;
+	text-align: center !important;
+	height: 51px;
 }
-
 </style>
+
 
 <div class="container-fluid">
 	<div class="col-sm-1"></div>

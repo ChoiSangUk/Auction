@@ -16,10 +16,22 @@ public class BidDepositServicelmpl implements BidDepositService {
 		log.info("BidServicelmpl 부분의 setBidDeposit 메서드");
 		return bidDepositDao.insertBidDeposit(BidDepositVo);
 	}
-	//보증금 차
+	//보증금 update (차감)
 	@Override
 	public int modifyUserCashWithdraw(BidDepositVo BidDepositVo) {
-		log.info("BidServicelmpl의 modifyUserCashWithdraw 메서드");
+		log.info("BidDepostiServicelmpl의 modifyUserCashWithdraw 메서드");
 		return bidDepositDao.updateUserCashWithdraw(BidDepositVo);
 	}
+	//보증금을 위한 유저 캐쉬 select
+	@Override
+	public UserDetailVo getTotalCash(String userId) {
+		log.info("BidDepostiServicelmpl의 getTotalCash 메서드");
+		return bidDepositDao.selectTotalCash(userId);
+	}
+	@Override
+	public BidDepositVo setoverlapuserid(String auctionGoodsCode) {
+		log.info("BidDepostiServicelmpl의 setoverlapuserid 메서드 ");
+		return bidDepositDao.selectselectoverlapuserid(auctionGoodsCode);
+	}
+	
 }

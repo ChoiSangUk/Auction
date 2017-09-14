@@ -33,7 +33,7 @@
 .glyphicon.glyphicon-cloud, .glyphicon.glyphicon-pencil, .glyphicon.glyphicon-stats,
 	.glyphicon.glyphicon-list-alt {
 	font-size: 50px;
-	color: #2F9D27
+	color: #2F9D27;
 }
 
 .glyphicon.glyphicon-plus, .glyphicon.glyphicon-search {

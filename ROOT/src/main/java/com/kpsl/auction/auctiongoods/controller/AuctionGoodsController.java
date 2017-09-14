@@ -137,7 +137,8 @@ public class AuctionGoodsController {
 
 	// auctiongoodsinert action 부분
 	@RequestMapping(value = "/auctiongoods/auctiongoodsinsert", method = RequestMethod.POST)
-	public String auctionGoodsInsert_Post(AuctionGoodsVo auctionGoodsVo, Model model) {
+	public String auctionGoodsInsert_Post(AuctionGoodsVo auctionGoodsVo, Model model,
+			@RequestParam(value = "userTotalCash", required = true) int userTotalCash) {
 		System.out.println("acutiongoodsinsert_Post");
 		//System.out.println("에디터 컨텐츠 값 : " + request.getParameter("auctionGoodsContents"));
 		//System.out.println("경매 기간 : "+ request.getParameter("auctionGoodsTerm"));
@@ -163,10 +164,10 @@ public class AuctionGoodsController {
         	System.out.println(imgList.get(i)); 
         }*/
         //물품등록할 service 호출
-        auctionGoodsService.addAuctionGoods(auctionGoodsVo, imgList);
+        auctionGoodsService.addAuctionGoods(auctionGoodsVo, imgList, userTotalCash);
 
 		
-        return auctionGoodsList(model);
+        return "main";
 	}
 
 	

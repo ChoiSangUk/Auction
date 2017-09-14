@@ -1,1 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.kpsl.auction.ad.service.AdRefundApplyMapper">
+	<resultMap type="com.kpsl.auction.ad.vo.AdRefundApplyVo" id="AdRefundApplyVo">
+		<id property="adRefundApplyCode" column="ad_refund_apply_code"/>
+		<id property="adPaymentCode" column="ad_payment_code"/>
+		<id property="userId" column="user_id"/>	
+		<id property="adRefundApplyReason" column="ad_refund_apply_reason"/>
+		<id property="adRefundApplyPrice" column="ad_refund_apply_price"/>
+		<id property="adRefundApplyRegistDate" column="ad_refund_apply_regist_date"/>
+		<id property="adRefundApplyState" column="ad_refund_apply_state"/>
+		<id property="adRefundApplySuccessDate" column="ad_refund_apply_success_date"/>
+	</resultMap>
+	
+	<resultMap type="com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo" id="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
+		<association property="adRefundApplyVo" javaType="com.kpsl.auction.ad.vo.AdRefundApplyVo">
+    		<id property="adRefundApplyCode" column="ad_refund_apply_code"/>
+			<id property="adPaymentCode" column="ad_payment_code"/>
+			<id property="userId" column="user_id"/>	
+			<id property="adRefundApplyReason" column="ad_refund_apply_reason"/>
+			<id property="adRefundApplyPrice" column="ad_refund_apply_price"/>
+			<id property="adRefundApplyRegistDate" column="ad_refund_apply_regist_date"/>
+			<id property="adRefundApplyState" column="ad_refund_apply_state"/>
+			<id property="adRefundApplySuccessDate" column="ad_refund_apply_success_date"/>
+    	</association>
+    	<association property="adApplyVo" javaType="com.kpsl.auction.ad.vo.AdApplyVo">
+    		<id property="adApplyCode" column="ad_apply_code"/>
+			<id property="adUnitPriceCode" column="ad_unit_price_code"/>	
+			<id property="auctionGoodsCode" column="auction_goods_code"/>
+			<id property="userId" column="user_id"/>
+			<id property="adApplyRegistDate" column="ad_apply_regist_date"/>
+			<id property="adApplyStartDate" column="ad_apply_start_date"/>
+			<id property="adApplyEndDate" column="ad_apply_end_date"/>
+			<id property="adApplyApprovalDate" column="ad_apply_approval_date"/>
+			<id property="adApplyState" column="ad_apply_state"/>
+    	</association>
+    	<association property="adImageVo" javaType="com.kpsl.auction.ad.vo.AdImageVo">
+    		<id property="adImageCode" column="ad_image_code"/>
+			<id property="adApplyCode" column="ad_apply_code"/>
+			<id property="adImageName" column="ad_image_name"/>
+			<id property="adImagePath" column="ad_image_path"/>
+    	</association>
+    	<association property="adUnitPriceVo" javaType="com.kpsl.auction.ad.vo.AdUnitPriceVo">
+    		<id property="adUnitPriceCode" column="ad_unit_price_code"/>
+			<id property="adUnitPriceName" column="ad_unit_price_name"/>
+			<id property="adUnitPricePrice" column="ad_unit_price_price"/>
+			<id property="adUnitPriceState" column="ad_unit_price_state"/>
+    	</association>
+    	<association property="adPaymentVo" javaType="com.kpsl.auction.ad.vo.AdPaymentVo">
+    		<id property="adPaymentCode" column="ad_payment_code"/>
+			<id property="adApplyCode" column="ad_apply_code"/>	
+			<id property="userId" column="user_id"/>
+			<id property="adPaymentPrice" column="ad_payment_price"/>
+			<id property="adPaymentRegistDate" column="ad_payment_regist_date"/>
+			<id property="adPaymentState" column="ad_payment_state"/>
+			<id property="adApprovalDiffDate" column="ad_approval_diff_date"/>
+			<id property="adPaymentDiffDate" column="ad_payment_diff_date"/>
+    	</association>
+    	<association property="auctionGoodsVo" javaType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo">
+    		<id property="auctionGoodsCode" column="auction_goods_code"/>
+			<id property="userId" column="user_id"/>
+			<id property="smallCategoryCode" column="small_category_code"/>
+			<id property="middleCategoryCode" column="middle_category_code"/>
+			<id property="largeCategoryCode" column="large_category_code"/>
+			<id property="auctionGoodsName" column="auction_goods_name"/>
+			<id property="auctionGoodsSys" column="auction_goods_sys"/>
+			<id property="auctionGoodsBidSys" column="auction_goods_bid_sys"/>
+			<id property="auctionGoodsContents" column="auction_goods_contents"/>
+			<id property="auctionGoodsRegistDate" column="auction_goods_regist_date"/>
+			<id property="auctionGoodsTerm" column="auction_goods_term"/>
+			<id property="auctionGoodsStartDate" column="auction_goods_start_date"/>
+			<id property="auctionGoodsEndDate" column="auction_goods_end_date"/>
+			<id property="auctionGoodsStartPrice" column="auction_goods_start_price"/>
+			<id property="auctionGoodsBidUnit" column="auction_goods_bid_unit"/>
+			<id property="auctionGoodsInstantBuyState" column="auction_goods_instant_buy_state"/>
+			<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price"/>
+			<id property="auctionGoodsState" column="auction_goods_state"/>
+    	</association>
+    </resultMap>   
+	
+    <!-- 광고환불신청 UPDATE -->
+    <update id="updateAdRefund" parameterType="com.kpsl.auction.ad.vo.AdRefundApplyVo">
+	    UPDATE 	ad_refund_apply_tb
+		SET
+				ad_refund_apply_state=#{adRefundApplyState},
+				ad_refund_apply_success_date=NOW()
+		WHERE 	ad_refund_apply_code=#{adRefundApplyCode}
+    </update>
+    
+    <!-- 광고환불신청과 같이 userTotalcash가 UPDATE (트랜잭션 처리)-->
+	<update id="updateUserTotalcash" parameterType="com.kpsl.auction.ad.vo.AdRefundApplyVo">
+		UPDATE user_detail_tb
+			SET user_totalcash=user_totalcash+#{adRefundApplyPrice}
+		WHERE user_id = #{userId}
+	</update>
+    
+    <!-- 광고환불신청 전체리스트 OR 상세정보 SELECT -->
+	<select id="selectAdRefundList" parameterType="String" resultMap="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
+		SELECT  ara.ad_refund_apply_code,
+				ara.ad_payment_code,
+				ara.user_id,
+				ap.ad_payment_price,
+				ara.ad_refund_apply_price,
+				ara.ad_refund_apply_reason,
+				ara.ad_refund_apply_regist_date,
+				ara.ad_refund_apply_state,
+				ara.ad_refund_apply_success_date
+		FROM 	ad_refund_apply_tb ara
+				LEFT JOIN ad_payment_tb ap
+				ON ara.ad_payment_code = ap.ad_payment_code	
+	<where>
+		<if test="adRefundApplyCode != null">
+				ara.ad_refund_apply_code=#{adRefundApplyCode}
+		</if>
+	</where>			
+	</select>
+		
+    <!-- 광고환불신청한 품목 상세정보 조회 -->
+    <select id="selectAdRefundListByAdPaymentCode" parameterType="String" resultMap="AdApplyAndAdImageAndAdUnitPriceAuctionGoodsVo">
+    	SELECT  ap.ad_payment_code,
+    			ap.ad_payment_price,
+				ag.auction_goods_name,
+				aup.ad_unit_price_name
+		FROM 	ad_payment_tb ap 
+				LEFT JOIN ad_apply_tb aa
+				ON ap.ad_apply_code = aa.ad_apply_code
+				LEFT JOIN auction_goods_tb ag
+				ON aa.auction_goods_code = ag.auction_goods_code
+				LEFT JOIN ad_unit_price_tb aup
+				ON aa.ad_unit_price_code = aup.ad_unit_price_code
+		WHERE 	ap.ad_payment_code=#{adPaymentCode}  
+    </select>
+	
+	<!-- 광고환불신청 INSERT -->
+	<insert id="insertAdRefundApply" parameterType="com.kpsl.auction.ad.vo.AdRefundApplyVo">
+		<selectKey keyProperty="adRefundApplyCode" resultType="String" order="BEFORE">
+			SELECT CONCAT("ara",MAX(CAST(substring(ad_refund_apply_code,4)+1 AS DECIMAL))) 
+			FROM ad_refund_apply_tb
+		</selectKey>		
+		INSERT INTO ad_refund_apply_tb
+					(ad_refund_apply_code, 
+					ad_payment_code, 
+					user_id, 
+					ad_refund_apply_reason, 
+					ad_refund_apply_price,
+					ad_refund_apply_regist_date, 
+					ad_refund_apply_state)
+		VALUES (#{adRefundApplyCode},
+				#{adPaymentCode}, 
+				#{userId}, 
+				#{adRefundApplyReason}, 
+				#{adRefundApplyPrice},
+				NOW(), 
+				'승인대기')
+	</insert>	
+</mapper>

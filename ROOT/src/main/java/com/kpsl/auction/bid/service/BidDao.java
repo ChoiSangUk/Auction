@@ -12,11 +12,12 @@ public interface BidDao{
 	/**입찰자 리스트 조회 **/
 	List<BidVo> selectBidList();
 	/**품목별 입찰자 리스트 조회**/
-	List<BidVo> goodsSelectBidList(BidVo bidvo);
+	List<BidVo> selectGoodsBidList(BidVo bidvo);
 	/**개인 물품 입찰 리스트**/
-	List<BidVo> userSelectGoodsBidsList(BidVo bidvo);
+	List<BidVo> selectUserGoodsBidsList(BidVo bidvo);
 	/**입찰 버튼 클릭 시 insert  **/
 	int instertBidPrice(BidVo bidvo);
-
+   /**최고입찰금액**/
+	public BidVo selectBidHighBidPrice(String auctionGoodsCode);
 
 }

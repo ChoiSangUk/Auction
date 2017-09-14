@@ -3,18 +3,24 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 		
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
-	
+	<context:component-scan base-package="com.scheduler" />
+	<task:scheduler id="jobScheduler" pool-size="10" />
+	<task:annotation-driven scheduler="jobScheduler" />
+
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
@@ -119,12 +125,14 @@
             	<value>classpath:com/kpsl/auction/ad/service/AdApplyMapper.xml</value>
             	<value>classpath:com/kpsl/auction/ad/service/AdImageMapper.xml</value>
             	<value>classpath:com/kpsl/auction/ad/service/AdPaymentMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/ad/service/AdRefundApplyMapper.xml</value>
             	<value>classpath:com/kpsl/auction/auctiongoods/service/AuctionGoodsMapper.xml</value>
             	<value>classpath:com/kpsl/auction/auctiongoods/service/AuctionGoodsImageMapper.xml</value>
             	<value>classpath:com/kpsl/auction/goodscategory/service/LargeCategoryMapper.xml</value>
             	<value>classpath:com/kpsl/auction/goodscategory/service/MiddleCategoryMapper.xml</value>
             	<value>classpath:com/kpsl/auction/goodscategory/service/SmallCategoryMapper.xml</value>
-            	<value>classpath:com/kpsl/auction/bid/service/BidMapper.xml</value>            	
+            	<value>classpath:com/kpsl/auction/bid/service/BidMapper.xml</value> 
+            	<value>classpath:com/kpsl/auction/bid/service/BidDepositMapper.xml</value>            	
             </list>
         </property>
     </bean>

@@ -33,6 +33,12 @@
 			</if>
 		</where>
 	</select>
+	<!--입찰할 때 가장 높은 가격의 입찰금액  -->
+	<select id="highbiduserprice" parameterType="String" resultMap ="Bid">
+		SELECT MAX(bid_price) AS bid_price 
+		FROM bid_tb 
+		WHERE auction_goods_code = #{auctionGoodsCode};
+	</select>
 	<!--입찰쿼리문 -->
 	<insert id="insertBidPrice" parameterType="com.kpsl.auction.bid.vo.BidVo" useGeneratedKeys="true" keyProperty="bidCode">
 		<selectKey keyProperty="bidCode" resultType="string" order="BEFORE">

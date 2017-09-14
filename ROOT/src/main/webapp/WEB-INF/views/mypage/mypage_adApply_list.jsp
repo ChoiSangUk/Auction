@@ -5,8 +5,11 @@
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
 
 <style>
-
-
+th,td {
+	vertical-align: middle !important;
+	text-align: center !important;
+	height: 51px;
+}
 </style>
 
 <div class="container-fluid">
@@ -55,6 +58,7 @@
 							<c:set var="adApprovalDiffDate" value="${ad.adPaymentVo.adApprovalDiffDate}"/>
 							<c:set var="adPaymentDiffDate" value="${ad.adPaymentVo.adPaymentDiffDate}"/>
 							<c:set var="adApplyApprovalDate" value="${ad.adApplyVo.adApplyApprovalDate}"/>
+							<c:set var="adRefundApplyState" value="${ad.adRefundApplyVo.adRefundApplyState}"/>							
 							<c:choose>
 							<c:when test="${adApplyState eq '승인대기'}">
 							<td>
@@ -95,17 +99,24 @@
 							</c:otherwise>
 							</c:choose>
 							<c:choose>
-							<c:when test="${adPaymentState ne null and adPaymentDiffDate >= 0}">
+							<c:when test="${adPaymentState ne null and adPaymentDiffDate >= 0 and adRefundApplyState eq null}">
 							<td>
 							<a href="${pageContext.request.contextPath}/mypage/adRefundApplyInsertForm?adPaymentCode=${adPaymentCode}">
 							<button class="btn btn-danger refundApplyBtn">환불</button>
 							</a>
 							</td>
 							</c:when>
-							<c:when test="${adPaymentState ne null and adPaymentDiffDate < 0}">
+							<c:when test="${adPaymentState ne null and adPaymentDiffDate < 0 and adRefundApplyState eq null}">
 							<td>
 							<strong style="color: red;">
 							환불기간만료
+							</strong>
+							</td>
+							</c:when>
+							<c:when test="${adPaymentState ne null and adRefundApplyState ne null}">
+							<td>
+							<strong style="color: blue;">
+							${adRefundApplyState}
 							</strong>
 							</td>
 							</c:when>

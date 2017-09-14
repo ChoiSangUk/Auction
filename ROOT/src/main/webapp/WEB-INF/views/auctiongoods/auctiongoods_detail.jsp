@@ -34,17 +34,17 @@
 					</h3>
 						
 					<h4>	
-							<span>남은 시간</span>
+							<span >남은 시간</span>
 						
-					
 						<span style="background-color:#B2EBF4">
 							<span class="glyphicon glyphicon-hourglass"></span>
-							<span> 00:00:00 </span>
+							<span id="timer"> 00:00:00 </span>
 						</span>
 					</h4>
 			</div>
 			
 			<span id="instantBuySpan" style="display:none">${auctionGoods.auctionGoodsInstantBuyPrice}</span>
+			<span id="SysSpan" style="display:none">${auctionGoods.auctionGoodsSys}</span>
 			<span id="bidSysSpan" style="display:none">${auctionGoods.auctionGoodsBidSys}</span>
 			<table class="table">
 				<tbody>
@@ -58,7 +58,7 @@
 					</tr>
 					<tr>
 						<th>경매기간</th>
-						<th>${auctionGoods.auctionGoodsStartDate} ~ ${auctionGoods.auctionGoodsEndDate}</th>
+						<th><span>${auctionGoods.auctionGoodsStartDate}</span> ~ <span id="endDate">${auctionGoods.auctionGoodsEndDate}</span></th>
 					</tr>
 					<tr>
 						<th>시작가</th>
@@ -66,6 +66,10 @@
 					</tr>
 					<tr>
 						<th>경매방식</th>
+						<th id="Sys"></th>
+					</tr>
+					<tr>
+						<th>입찰방식</th>
 						<th id="bidSys"></th>
 					</tr>
 					<tr>
@@ -84,9 +88,10 @@
 				</tbody>
 			</table>
 			<div style="text-align:center;" class="myButton">
-				<a class="btn btn-primary btn-lg" href="#">입찰하기 </a>
+				<a class="btn btn-primary btn-lg" id="bidButton" href="#">입찰하기 </a>
 				<a class="btn btn-default btn-lg" href="#">문의하기 </a>
 			</div>
+			<div id="auctionGoodsEnd" style="display:none; font-size:300%; text-align:center; color:red">판매 종료</div>
 		</div>
 		<!-- 오른쪽 물품 정보(내용) end -->
 	</div>
@@ -121,24 +126,55 @@
 	
 </div>
 <script>
+
+//남은 시간 타이머
+var endDate = $("#endDate").text();
+var endDateArray = endDate.split('-');
+var date = new Date(endDateArray[0]+'/'+endDateArray[1]+'/'+endDateArray[2]+' 00:00:00')
+
+var now = new Date();
+var result = date.getTime()-now.getTime()
+var resultDate = parseInt((result/(1000*60*60*24)))
+var resultHours = parseInt((result/(1000*60*60)) % 24)
+var resultMin =parseInt((result/(1000*60)) % 60)
+var resultSec = parseInt((result/1000) % 60)
+
+var timer = function(){
+	if(result > 0){
+			console.log('timer')
+			//console.log(result)
+			result-=1000;
+			resultDate = parseInt((result/(1000*60*60*24)))
+			resultHours = parseInt((result/(1000*60*60)) % 24)
+			resultMin =parseInt((result/(1000*60)) % 60)
+			resultSec = parseInt((result/1000) % 60)
+			$('#timer').text(resultDate+'일'+resultHours+'시'+resultMin+'분'+resultSec+'초')
+	}
+};
+
+	
 	$(document).ready(function(){
-		
-		
 		//즉시구매 
 		var auctionGoodsInstantBuyPrice = $('#instantBuySpan').text();
 		if(auctionGoodsInstantBuyPrice == 0){
 			$('#instantBuy').text("즉시구매 불가능");
 		}else{
-			$('#instantBuy').text(auctionGoodsInstantBuyPrice);
+			$('#instantBuy').text(auctionGoodsInstantBuyPrice + '<a class="btn btn-primary btn-lg" id="bidButton" href="#">즉시구매 </a>');
 		}
 		
 		//경매 방식
+		var auctionGoodsSys = $('#SysSpan').text();
 		var auctionGoodsBidSys = $('#bidSysSpan').text();
 		
-		if(auctionGoodsBidSys == 'normal'){
-			$('#bidSys').text("일반 경매");
+		if(auctionGoodsSys == 'normal'){
+			$('#Sys').text("일반 경매");
 		}else{
-			$('#bidSys').text("블라인드 경매");
+			$('#Sys').text("블라인드 경매");
+		}
+		if(auctionGoodsBidSys == 'normal'){
+			$('#bidSys').text("공개");
+		}else{
+			$('#bidSys').text("비공개");
 		}
 		
 		var sellerId = "${auctionGoods.userId}";
@@ -147,6 +183,7 @@
 		
 		if(sellerId == userId){
 			
+			$('#bidButton').hide();
 			//post 방식으로 변경해야 함
 			$('.myButton').append( '<a class="btn btn-default btn-lg"' +  
 					'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsupdate?auctionGoodsCode='+auctionGoodsCode+' ">수정하기 </a>')
@@ -155,7 +192,18 @@
 					'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsdelete?auctionGoodsCode='+auctionGoodsCode+' ">삭제하기 </a>')
 						
 		}
+		
+		//타이머 실행
+		timerStop=setInterval("timer()",1000)
+		if(result<=0){
+				clearInterval(timerStop)
+				$('.myButton').hide();
+				$('.bidButton').hide();
+				$('#auctionGoodsEnd').show();
+		}
 	})
+	
+	
 </script>
 
 

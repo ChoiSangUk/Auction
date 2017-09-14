@@ -65,6 +65,7 @@
 		</association>
 	</resultMap>
 	
+	<!-- 보증금 등록하기 위한 resultMap -->
 	<resultMap type="com.kpsl.auction.user.vo.UserDetailVo" id="userDetail">
 		<id property="userId" column="user_id" />
 		<result property="userPassword" column="user_password" />
@@ -82,7 +83,44 @@
 		<result property="userTotalcash" column="user_totalcash" />
 	</resultMap>
 	
-
+	
+	<!-- 물품 상태 자동 변경 -->
+	<update id="updateAuctionGoodsStateStart">
+		UPDATE auction_goods_tb
+		SET auction_goods_state = "판매중"
+		WHERE auction_goods_start_date &lt;= now() 
+		AND auction_goods_end_date &gt;= now()
+		AND auction_goods_state !="낙찰"
+	</update>
+	<update id="updateAuctionGoodsStateEnd">
+		UPDATE auction_goods_tb
+		SET auction_goods_state = "판매종료"
+		WHERE auction_goods_end_date &lt;= now()
+		AND auction_goods_state !="낙찰"
+	</update>
+	
+	<!-- 유저 캐쉬 가져오기ㅣ -->
+	<select id = "selectUserCash" parameterType = "String" resultType="int">
+	SELECT user_totalcash
+	FROM user_detail_tb
+	WHERE user_id = #{userId}
+	</select>
+	
+	<!--  물품의 보증금 가져오기 -->
+	<select id="selectDepositPrice" parameterType="String" resultType="int">
+	SELECT auction_goods_deposit_price
+	FROM auction_goods_tb
+	WHERE auction_goods_code = #{auctionGoodsCode}
+	</select>
+	
+	<update id="updateUserTotalCash" parameterType="java.util.Map">
+		UPDATE user_detail_tb
+		SET user_totalcash = #{resultCash}
+		WHERE user_id = #{userId}
+		
+	</update>
+	
+	<!--  물품 수정  -->
 	<update id="updateAuctionGoods" parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo">
 		UPDATE auction_goods_tb
 		SET small_category_code = #{smallCategoryCode},
@@ -95,13 +133,11 @@
 		 auction_goods_term = #{auctionGoodsTerm},
 		 auction_goods_start_date = #{auctionGoodsStartDate},
 		 auction_goods_end_date = #{auctionGoodsEndDate},
-		 auction_goods_start_price = #{auctionGoodsStartPrice},
 		 auction_goods_bid_unit = #{auctionGoodsBidUnit},
 		 auction_goods_instant_buy_state = #{auctionGoodsInstantBuyState},
 		 auction_goods_instant_buy_price = #{auctionGoodsInstantBuyPrice},
 		 auction_goods_bid_hits = #{auctionGoodsBidHits},
-		 auction_goods_hits = #{auctionGoodsHits},
-		 auction_goods_deposit_price = #{auctionGoodsDepositPrice}
+		 auction_goods_hits = #{auctionGoodsHits}
 		WHERE auction_goods_code = #{auctionGoodsCode}
 	</update>
 	<!-- 모든 물품 리스트 -->
@@ -229,6 +265,18 @@
 		auction_goods_state
 		FROM auction_goods_tb;
 	</select>
+	
+	<!-- 조회수 증가 -->
+	<select id="selectIncreaseHits" resultType="int" parameterType="String">
+ 	SELECT auction_goods_hits
+ 	FROM auction_goods_tb
+ 	WHERE auction_goods_code=#{auctionGoodsCode}
+ 	</select>
+ 	<update id="increaseHits" parameterType="java.util.Map">
+ 		UPDATE auction_goods_tb
+ 		SET  auction_goods_hits = #{auctionGoodsHits}
+ 		WHERE auction_goods_code = #{auctionGoodsCode}
+ 	</update>
 
 </mapper>
   

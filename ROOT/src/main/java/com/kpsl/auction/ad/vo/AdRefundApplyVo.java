@@ -3,7 +3,9 @@ package com.kpsl.auction.ad.vo;
 public class AdRefundApplyVo {
 	private String adRefundApplyCode;
 	private String adPaymentCode;
+	private String userId;
 	private String adRefundApplyReason;
+	private int adRefundApplyPrice;
 	private String adRefundApplyRegistDate;
 	private String adRefundApplyState;
 	private String adRefundApplySuccessDate;
@@ -20,11 +22,23 @@ public class AdRefundApplyVo {
 	public void setAdPaymentCode(String adPaymentCode) {
 		this.adPaymentCode = adPaymentCode;
 	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getAdRefundApplyReason() {
 		return adRefundApplyReason;
 	}
 	public void setAdRefundApplyReason(String adRefundApplyReason) {
 		this.adRefundApplyReason = adRefundApplyReason;
+	}
+	public int getAdRefundApplyPrice() {
+		return adRefundApplyPrice;
+	}
+	public void setAdRefundApplyPrice(int adRefundApplyPrice) {
+		this.adRefundApplyPrice = adRefundApplyPrice;
 	}
 	public String getAdRefundApplyRegistDate() {
 		return adRefundApplyRegistDate;

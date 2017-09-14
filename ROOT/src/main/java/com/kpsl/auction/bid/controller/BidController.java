@@ -34,7 +34,9 @@ public class BidController {
 
 	//입찰자 리스트(각각의 물품마다의 입찰자 리스트, 전체리스트)
 	@RequestMapping(value = "/bid/bidform", method =  {RequestMethod.GET, RequestMethod.POST})
-  	public String bidList(Model model, AuctionGoodsVo auctiongoodsvo, BidVo bidvo){
+  	public String bidList(Model model, AuctionGoodsVo auctiongoodsvo
+  						, BidVo bidvo, BidDepositVo biddepositvo
+  						, HttpSession session, UserDetailVo userdetailvo){
 		/**물품코드**/
 		String auctionGoodsCode = auctiongoodsvo.getAuctionGoodsCode();
   		model.addAttribute("auctionGoodsCode",auctionGoodsCode);
@@ -50,9 +52,22 @@ public class BidController {
  		/**물품 등록자**/
  		String userId = auctiongoodsvo.getUserId();
  		model.addAttribute("userId",userId);
- 		/**품목별 입찰자 리스트(물품코드를 통한 쿼리실행)**/
- 		List<BidVo> goodsbidlist = bidService.goodsSelectBidList(bidvo);
- 		model.addAttribute("goodsbidlist", goodsbidlist);
+ 		/**최고 입찰금액**/
+ 		BidVo highPrice = bidService.getBidHighBidPrice(auctionGoodsCode);
+ 		if(highPrice != null){
+ 			/**입찰시 최고입찰 금액 **/
+			int highBidPrice = highPrice.getBidPrice();
+			 model.addAttribute("highBidPrice",highBidPrice);
+			log.info(highPrice.getBidPrice()+"최고입찰금액");
+ 			/**품목별 입찰자 리스트(물품코드를 통한 쿼리실행)**/
+ 	 		List<BidVo> goodsbidlist = bidService.getGoodsBidList(bidvo);
+ 	 		model.addAttribute("goodsbidlist", goodsbidlist);
+ 	 		log.info(goodsbidlist+"물품리스트");
+ 	 		}
+ 		/**보증금 을 위한 캐쉬 조회**/
+ 		String buyerId = (String)session.getAttribute("userId");
+ 		UserDetailVo totalcash = biddepositservice.getTotalCash(buyerId);
+ 		model.addAttribute("totalcash", totalcash.getUserTotalcash());
  		
  		/**전체입찰자 리스트**/
  		List<BidVo> list = bidService.getBidList();
@@ -91,40 +106,52 @@ public class BidController {
  			biddepositvo.setUserBuyerId(userbuyerId);
  			biddepositvo.setUserSellerId(userSellerID);
  			
- 			log.info(auctionGoodsName+"");
+ 			
  			log.info(auctionGoodsStartPrice+"<<==auctionGoodsStartPrice 시작가 들어왔나여? ");
  			log.info(auctionGoodsCode + "<== form 에서 code 값이 들어왔어여?");
  			log.info(userSellerID+"<-- form 에서 userId 값이 들어왔나여?");
  			log.info(auctionGoodsBidUnit +"<<==입찰 단위값 왔는가?");
  			log.info(bidvo.getBidPrice()+"<--bidPrice form 에서 오는 값");
  			
+ 			
+ 			
  			/**입찰 서비스**/
  			bidService.setBidPrice(bidvo);	
  			
- 			/**보증금 insert 하는 서비스**/
- 			
- 			if(auctionGoodsStartPrice < 50001){
- 			biddepositvo.setBidDepositPrice(1000);
- 			}
- 			else if(auctionGoodsStartPrice >= 50000 && auctionGoodsStartPrice < 200001 ){
- 	 			biddepositvo.setBidDepositPrice(5000);
- 	 		}
- 			else if(auctionGoodsStartPrice >=200000 && auctionGoodsStartPrice < 500001){
- 				biddepositvo.setBidDepositPrice(10000);
- 			}
- 			else if(auctionGoodsStartPrice >=500000 && auctionGoodsStartPrice < 2000001){
- 				biddepositvo.setBidDepositPrice(30000);
- 			}
- 			else {
- 				biddepositvo.setBidDepositPrice(100000);
- 			} 			String bidCode =  bidvo.getBidCode();
- 			biddepositvo.setBidCode(bidCode); 
- 			biddepositservice.setBidDeposit(biddepositvo);
-
- 			
- 			/**보증금 차감 되는 서비스**/
- 			userdetailvo.setUserId(userbuyerId);
- 			biddepositservice.modifyUserCashWithdraw(biddepositvo);
+ 			/**재입찰**/
+ 			/*BidDepositVo overlapuserid = biddepositservice.setoverlapuserid(auctionGoodsCode);
+ 			log.info(overlapuserid.getAuctionGoodsCode()+"overlapuserid");
+ 			if(auctionGoodsCode != overlapuserid.getAuctionGoodsCode()){*/
+ 				/**보증금 insert 하는 서비스(가격에 따라 보증금의 가격)**/
+ 	 			int DepositPrice1 = 1000;  //5만원 미만
+ 	 			int DepositPrice2 = 5000;  //5만원 이상 20만원 미만
+ 	 			int DepositPrice3 = 10000; //20만원 이상 50만원 미만
+ 	 			int DepositPrice4 = 30000; //50만원 이상 200만원 미만
+ 	 			int DepositPrice5 = 100000;//200만원 이상
+ 	 			
+ 	 			if(auctionGoodsStartPrice < 50001){
+ 	 			biddepositvo.setBidDepositPrice(DepositPrice1);
+ 	 			}
+ 	 			else if(auctionGoodsStartPrice >= 50000 && auctionGoodsStartPrice < 200001 ){
+ 	 	 			biddepositvo.setBidDepositPrice(DepositPrice2);
+ 	 	 		}
+ 	 			else if(auctionGoodsStartPrice >=200000 && auctionGoodsStartPrice < 500001){
+ 	 				biddepositvo.setBidDepositPrice(DepositPrice3);
+ 	 			}
+ 	 			else if(auctionGoodsStartPrice >=500000 && auctionGoodsStartPrice < 2000001){
+ 	 				biddepositvo.setBidDepositPrice(DepositPrice4);
+ 	 			}
+ 	 			else {
+ 	 				biddepositvo.setBidDepositPrice(DepositPrice5);
+ 	 			} 			String bidCode =  bidvo.getBidCode();
+ 	 			biddepositvo.setBidCode(bidCode); 
+ 	 			biddepositservice.setBidDeposit(biddepositvo);
+ 	 
+ 	 			/**보증금 차감 되는 서비스**/
+ 	 			userdetailvo.setUserId(userbuyerId);
+ 	 			biddepositservice.modifyUserCashWithdraw(biddepositvo);
+ 			/*}
+ 		*/	
  			
  			log.info("입찰자 입찰하기");
  			return "redirect:/bid/bidform?auctionGoodsName="+auctionGoodsName+"&userId="+userSellerID+"&auctionGoodsBidUnit="+auctionGoodsBidUnit+"&auctionGoodsStartPrice="
@@ -138,7 +165,7 @@ public class BidController {
  			String buyerId = (String)session.getAttribute("userId");	
  			bidvo.setUserBuyerId(buyerId);
  			log.info(buyerId+"세션을 통해 들어온 아이디");
- 			List<BidVo> usergoodsbidlist = bidService.userSelectGoodsBidsList(bidvo);
+ 			List<BidVo> usergoodsbidlist = bidService.getUserGoodsBidsList(bidvo);
  			model.addAttribute("usergoodsbidlist",usergoodsbidlist);
  			
  			return "/bid/bid_usergoodsbidlist";	 

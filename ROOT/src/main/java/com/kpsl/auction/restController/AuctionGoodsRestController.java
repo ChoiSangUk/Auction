@@ -26,11 +26,24 @@ public class AuctionGoodsRestController {
 	@Autowired
 	private AuctionGoodsService auctionGoodsService;
 	
+	//현재 캐쉬 가져오기
+	@RequestMapping(value = "/getUserCashAjax", method = RequestMethod.GET)
+	public int get_userCash(@RequestParam(value="userId",required = true)String userId){
+		System.out.println("캐쉬 가져오기 ajax");
+		return auctionGoodsService.getUserCash(userId);
+	}
+	
+	//조회수 올리기
+	@RequestMapping(value = "/hitsAjax", produces = "application/json; charset=UTF-8", method = RequestMethod.GET)
+	public void auctionGoods_updateHits(@RequestParam(value="auctionGoodsCode", required = true) String auctionGoodsCode){
+		System.out.println("조회수 ajax");
+		System.out.println(auctionGoodsCode);
+	 auctionGoodsService.increaseHits(auctionGoodsCode);
+	 }
 	
 	//모든 물품을 뿌려주기 위한 처리
 	@RequestMapping(value = "/auctiongoods/auctiongoodslist_getallgoods", produces = "application/json; charset=UTF-8" )
 	public String auctionGoodsList_getAllGoods(){
-		System.out.println("여기는 오나 ?");
 		List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods(); 
 		System.out.println("auctionGoodsList는 있나? "+auctionGoodsList);
 		
