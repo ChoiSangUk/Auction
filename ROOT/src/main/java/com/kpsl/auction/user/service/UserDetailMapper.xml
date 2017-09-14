@@ -109,7 +109,8 @@
 			, user_postcode
 			, user_addr
 			, user_addrdetail
-			, user_totalcash)
+			, user_totalcash
+			, user_joindate)
 		VALUES (
 			#{userId}
 			, (HEX(AES_ENCRYPT(#{userPassword},'ENCRYPT')))
@@ -124,7 +125,8 @@
 			, #{userPostcode}
 			, #{userAddr}
 			, #{userAddrdetail}
-			, 0);
+			, 0
+			, now());
 		
 	
  	</insert>
@@ -144,7 +146,8 @@
 			, user_postcode
 			, user_addr
 			, user_addrdetail
-			, user_totalcash)
+			, user_totalcash
+			, user_joindate)
 		VALUES (
 			#{userId}
 			, (HEX(AES_ENCRYPT(#{userPassword},'ENCRYPT')))
@@ -159,7 +162,8 @@
 			, #{userPostcode}
 			, #{userAddr}
 			, #{userAddrdetail}
-			, 0);
+			, 0
+			, now());
 	</insert>
  	<!-- 아이디를 삭제를해도 같은 아이디를 만들수없도록 하기위한 수단 -->
  	<insert id="insertUser" parameterType="com.kpsl.auction.user.vo.UserDetailVo">INSERT INTO user_tb(user_id) VALUES (#{userId})</insert>

@@ -40,13 +40,8 @@ public class SalesLogServiceImpl implements SalesLogService{
 	}
 
 	@Override
-	public List<SalesLogVo> getSalesLog(SalesLogVo salesLogVo,String sk,String sv, int currentPage, int pagePerRow) {
+	public List<SalesLogVo> getSalesLog(SalesLogVo salesLogVo,String sk,String sv) {
 		
-		log.info("selectgetSalesLog 호출 확인");
-		int beginRow = (currentPage-1)*pagePerRow;
-		log.info(beginRow+"<-- 시작");
-		salesLogVo.setBeginRow(beginRow);
-		salesLogVo.setPagePerRow(pagePerRow);
 		if(sk.equals("salesLogUserId")) {
 			salesLogVo.setSalesLogUserId(sv+"%");
 			log.info(sk+"<-- sk확인");

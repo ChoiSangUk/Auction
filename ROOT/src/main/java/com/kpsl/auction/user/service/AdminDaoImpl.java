@@ -9,10 +9,12 @@ import org.springframework.stereotype.Repository;
 
 import com.kpsl.auction.user.vo.AdminUserSearchVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
+import com.kpsl.auction.user.vo.UserRemoveVo;
 
 @Repository
 public class AdminDaoImpl implements AdminUserDao {
 	final String NS ="com.kpsl.auction.user.service.AdminUserMapper.";
+
 	Logger log = Logger.getLogger(this.getClass());
 	
 	@Autowired
@@ -20,9 +22,8 @@ public class AdminDaoImpl implements AdminUserDao {
 
 	@Override
 	public List<AdminUserSearchVo> selectUserSearch(UserDetailVo userDetailVo) {
-		log.info("AdminUserDao Class selectCashDetail : "+ userDetailVo);
+		log.info("AdminUserDao Class selectUserSearch : "+ userDetailVo);
 		return sqlSessionTemplate.selectList(NS+"selectUserSearch", userDetailVo);
 	}
-
 
 }

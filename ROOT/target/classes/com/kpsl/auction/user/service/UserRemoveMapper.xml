@@ -11,6 +11,7 @@
 		<result property="userJoindate" column="user_joindate" />
 		<result property="userRemoveDate" column="user_remove_date" />
 	</resultMap>
+	<!-- 회원삭제 -->
 	<insert id="insertUserDelete" parameterType="com.kpsl.auction.user.vo.UserRemoveVo"
 		useGeneratedKeys="true" keyProperty="userRemoveCode">
 		<selectKey keyProperty="userRemoveCode" resultType="string" order="BEFORE">
@@ -37,7 +38,43 @@
 				);
 	
 	</insert>
-
+	<!-- 유저검색 -->
+	<select id="selectRemoveUserSearch" parameterType="String" resultMap="userRemoveVo">
+		SELECT user_remove_code, 
+			   user_id, 
+			   user_remove_reason, 
+			   user_remove_reason_detail, 
+			   user_joindate, 
+			   user_remove_date
+		FROM user_remove_tb
+		<where>
+			<if test="userRemoveReason != null and userRemoveReason != ''">
+				user_remove_reason =#{userRemoveReason}
+			</if>
+			<if test="userRemoveReasonArray != null">
+				user_remove_reason
+				<foreach collection="userRemoveReasonArray"
+						item="userRemoveReason"
+						open="IN("
+						close=")"
+						separator=",">
+					#{userRemoveReason}
+				</foreach>
+			</if>
+			<if test="userRemoveDate == 'day'">AND user_remove_date >CURDATE()</if>
+			<if test="userRemoveDate == 'range-7d'">AND user_remove_date >DATE_SUB(NOW(),INTERVAL 1 WEEK)</if>
+			<if test="userRemoveDate == 'range-1m'">AND user_remove_date >DATE_SUB(NOW(),INTERVAL 1 MONTH)</if>
+			<if test="userRemoveDate == 'range-3m'">AND user_remove_date >DATE_SUB(NOW(),INTERVAL 3 MONTH)</if>
+			<if test="userRemoveDate == 'range-6m'">AND user_remove_date >DATE_SUB(NOW(),INTERVAL 6 MONTH)</if>
+			<if test="userRemoveDate == 'dateSearch'">
+				AND user_remove_date >= #{userRemoveDate1} AND #{userRemoveDate2} >= user_remove_date 
+			</if>
+			<if test="userId != null and userId != '' ">
+				AND user_id LIKE #{userId}
+			</if>
+		</where>
+		
+	</select>
 
 
 </mapper>

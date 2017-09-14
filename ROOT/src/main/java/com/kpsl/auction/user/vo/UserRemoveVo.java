@@ -9,6 +9,9 @@ public class UserRemoveVo {
 	private String userRemoveReasonDetail;
 	private String userJoindate;
 	private String userRemoveDate;
+	private String[] userRemoveReasonArray;
+	private String userRemoveDate1;
+	private String userRemoveDate2;
 	
 	public String getUserRemoveCode() {
 		return userRemoveCode;
@@ -46,6 +49,24 @@ public class UserRemoveVo {
 	public void setUserRemoveDate(String userRemoveDate) {
 		this.userRemoveDate = userRemoveDate;
 	}
-
+	public String[] getUserRemoveReasonArray() {
+		return userRemoveReasonArray;
+	}
+	public void setUserRemoveReasonArray(String[] userRemoveReasonArray) {
+		this.userRemoveReasonArray = userRemoveReasonArray;
+	}
+	public String getUserRemoveDate1() {
+		return userRemoveDate1;
+	}
+	public void setUserRemoveDate1(String userRemoveDate1) {
+		this.userRemoveDate1 = userRemoveDate1;
+	}
+	public String getUserRemoveDate2() {
+		return userRemoveDate2;
+	}
+	public void setUserRemoveDate2(String userRemoveDate2) {
+		this.userRemoveDate2 = userRemoveDate2;
+	}
+	
 	
 }

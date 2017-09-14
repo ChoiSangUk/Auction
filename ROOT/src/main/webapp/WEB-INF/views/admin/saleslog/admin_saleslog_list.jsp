@@ -10,7 +10,7 @@
 	<div class="col-sm-10">
 		<div class="row title">
 		<!-- 메인화면  -->
-		<h1>매입/매출검색</h1>
+		<h1>매입/매출검색 </h1>
 		</div>
 		
 		<div class="row content">
@@ -23,12 +23,18 @@
 									<td>
 										
 											<div>
-												<label class="checkbox-inline" style="margin-left: 15px;"> <input
-													type="checkbox" value="ad_payment_tb" name="salesLogRelationArray"> 광고
+												<label class="checkbox-inline" style="margin-left: 15px;"> 
+												
+												<input
+													id="chk1" type="checkbox" value="ad_payment_tb" name="salesLogRelationArray"> 광고결제
 												</label><label class="checkbox-inline"> <input
-													type="checkbox" value="cash_tb" name="salesLogRelationArray"> 캐쉬
+													id="chk2" type="checkbox" value="ad_refund_apply_tb" name="salesLogRelationArray"> 광고환불
 												</label><label class="checkbox-inline"> <input
-													type="checkbox" value="test_tb" name="salesLogRelationArray"> 테스트
+													id="chk2" type="checkbox" value="auction_goods_tb" name="salesLogRelationArray"> 판매자보증금
+												</label><label class="checkbox-inline"> <input
+													id="chk2" type="checkbox" value="cash_tb" name="salesLogRelationArray"> 캐쉬
+												</label><label class="checkbox-inline"> <input
+													id="chk3" type="checkbox" value="test_tb" name="salesLogRelationArray"> 테스트
 												</label>
 												
 											</div>
@@ -102,7 +108,6 @@
 										<td>
 																
 											<div class="col-sm-2">
-											<input type="hidden" id="skVal" value="${sk}">
 												<select class="form-control" name="sk">
 													<option value="salesLogUserId">아이디</option>
 												</select>
@@ -117,8 +122,6 @@
 								</tbody>
 
 							</table>
-							<input type="hidden" id="currentPage" name="currentPage" value="">
-							<input type="hidden" id="lastPage" value="${lastPage}">
 						</div>
 					</div>
 					<div class="row text-center btn-col-2">
@@ -126,7 +129,7 @@
 						<input class="btn btn-lg" type="reset" id="resetBtn" value="검색삭제">
 					</div>
 			<c:if test="${list ne null}">		
-				<h1>검색결과 ${test}</h1>
+				<h1>검색결과 </h1>
 			<table class="table table-bordered">
 			
 				<thead>
@@ -157,7 +160,6 @@
 					</tbody>
 				
 			</table>
-			<div class="" id="paging"></div>
 		</c:if>
 				</div>
 
@@ -225,9 +227,9 @@ $('input:radio[name=salesLogDate]').click(function(){
 		 
 	});
 
-	
+ 	
 	/* jquery paging-plugin */
-	var currentPage = parseInt($('#currentPage').val());
+/* 	var currentPage = parseInt($('#currentPage').val());
 	var lastPage = parseInt($('#lastPage').val());
 	console.log(lastPage);
 	$(function(){
@@ -239,10 +241,16 @@ $('input:radio[name=salesLogDate]').click(function(){
 				$('#currentPage').val(page);
 				var currentPage = $('#currentPage').val();
 				$('.paging').attr('href','#');
+
+				
 			 	$('#AdminSaleslogSeach').submit(); 	
 			}
 		});
 	});
+ */
 
+ 
+ 
 </script>
+
 <c:import url="/resources/module/admin_footer.jsp" charEncoding="UTF-8" />

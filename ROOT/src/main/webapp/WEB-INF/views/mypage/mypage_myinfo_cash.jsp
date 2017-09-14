@@ -65,7 +65,7 @@
 		action="${pageContext.request.contextPath}/mypage/myinfo/Cash">
 		<input type="hidden" name="cmd" id="cmd" value="in">
 				<!-- 조회 테이블 -->
-		<div class="row mt50">
+		<div>
 			<div class="tableDefault mb30 table-bordered well form-search">
 				<table class="table-vertical">
 					<tbody>
@@ -127,7 +127,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>입금<br class="visible-xs">예정인
+							<th>입금<br>예정인
 							</th>
 							<td>
 								<div class="form-inline">

@@ -12,8 +12,7 @@
 		<result property="salesLogPrice" column="sales_log_price" />
 		<result property="salesLogDate" column="sales_log_date" />
 		<result property="salesLogRemarks" column="sales_log_remarks" />	
-		<result property="salesLogDate1" column="sales_log_date" />
-		<result property="salesLogDate2" column="sales_log_date" />
+	
 		
 			
 	</resultMap>
@@ -122,8 +121,7 @@
 			</if>		
 		</where>
 		ORDER BY sales_log_date DESC
-		LIMIT #{beginRow}, #{pagePerRow}
-		 			   
+			 			   
 	
 	
 	</select>

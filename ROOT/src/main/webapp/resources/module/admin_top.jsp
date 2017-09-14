@@ -35,8 +35,8 @@
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">회원관리
 				<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-							<li><a href="${pageContext.request.contextPath}/user/adminUserSearch">회원검색</a></li>
-						
+						<li><a href="${pageContext.request.contextPath}/user/adminUserSearch">회원검색</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/adminRemoveUserSearch">탈퇴회원검색</a></li>
 					</ul>
 				</li>
 				

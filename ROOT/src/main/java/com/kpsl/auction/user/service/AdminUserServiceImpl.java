@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import com.kpsl.auction.user.vo.AdminUserSearchVo;
 import com.kpsl.auction.user.vo.GradeVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
+import com.kpsl.auction.user.vo.UserRemoveVo;
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
 	@Autowired private AdminUserDao adminUserDao;
+	@Autowired private UserRemoveDao userRemoveDao;
 	Logger log = Logger.getLogger(this.getClass());
 	@Override
 	public List<AdminUserSearchVo> getUserSearch(UserDetailVo userDetailVo, String sk, String sv) {
@@ -40,6 +42,16 @@ public class AdminUserServiceImpl implements AdminUserService {
 		}
 		
 		return adminUserDao.selectUserSearch(userDetailVo);
+	}
+	@Override
+	public List<UserRemoveVo> getRemoveUserSearch(UserRemoveVo userRemoveVo,String sk, String sv) {
+		log.info("AdminUserService Class getRemoveUserSearch : " +userRemoveVo);
+		if(sk.equals("userId")) {
+			userRemoveVo.setUserId(sv+"%");
+			log.info(sk+"<-- sk확인");
+			log.info(sv+"<-- sv확인");
+		}
+		return userRemoveDao.selectRemoveUserSearch(userRemoveVo);
 	}
 	
 
