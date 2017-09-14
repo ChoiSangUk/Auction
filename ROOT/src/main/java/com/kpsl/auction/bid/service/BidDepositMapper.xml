@@ -63,4 +63,16 @@
 	SET user_totalcash = user_totalcash - #{bidDepositPrice}
 	WHERE user_id = #{userBuyerId};
 	</update>
+	
+	<!--입찰자 보증금을 위한 캐쉬 조회  -->
+	<select id="selecttotalcash" parameterType = "String" resultMap="userDetail" >
+	SELECT user_totalcash 
+	FROM user_detail_tb
+	WHERE user_id = #{userId}
+	</select>
+	
+	<select id="selectoverlapuserid" parameterType ="String" resultMap = "BidDepositMapper" >
+	SELECT   user_buyer_id
+	FROM bid_deposit_tb WHERE auction_goods_code  = #{auctionGoodsCode}
+	</select>
   </mapper>

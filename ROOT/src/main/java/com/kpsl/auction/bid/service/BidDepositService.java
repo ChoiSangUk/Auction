@@ -11,5 +11,8 @@ public interface BidDepositService {
 	int setBidDeposit(BidDepositVo BidDepositVo);
 	/**입찰버튼 클릭시 보증금 차감 인터페이스**/
 	int modifyUserCashWithdraw(BidDepositVo BidDepositVo);
-		
+	/**보증금 차감 전 캐쉬 잔액 표시**/
+	UserDetailVo getTotalCash(String userId);
+	/**재입찰**/
+	public BidDepositVo setoverlapuserid(String auctionGoodsCode);
 }

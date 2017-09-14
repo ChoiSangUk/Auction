@@ -5,10 +5,10 @@ import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+
 
 import com.kpsl.auction.bid.vo.BidVo;
-import com.kpsl.auction.user.vo.UserDetailVo;
+
 
 @Service
 public class BidServicelmpl implements BidService {
@@ -22,10 +22,10 @@ public class BidServicelmpl implements BidService {
 	}
 	//물품별 입찰자 리스트 
 	@Override
-	public List<BidVo> goodsSelectBidList(BidVo bidvo) {
+	public List<BidVo> getGoodsBidList(BidVo bidvo) {
 		//log.info(auctionGoodsCode+ "<<==BidService 에 들어오는 물품코드의 값이 있는가?");
 		log.info("BidServicelmpl 부분의 물품별 입찰자 리스트 메서드");
-		return bidDao.goodsSelectBidList(bidvo);
+		return bidDao.selectGoodsBidList(bidvo);
 	}
 	//입찰하기
 	@Override
@@ -35,15 +35,15 @@ public class BidServicelmpl implements BidService {
 	}
 	//개인 입찰 리스트
 	@Override
-	public List<BidVo> userSelectGoodsBidsList(BidVo bidvo) {
+	public List<BidVo> getUserGoodsBidsList(BidVo bidvo) {
 		log.info("BidServicelmpl의 userSelectGoodsBidsList 메서드");
-		return bidDao.userSelectGoodsBidsList(bidvo);
+		return bidDao.selectUserGoodsBidsList(bidvo);
 	}
 	//최고입찰금액
 	@Override
-	public BidVo bidSelectHighBidPrice(String auctionGoodsCode) {
+	public BidVo getBidHighBidPrice(String auctionGoodsCode) {
 		log.info("BidServicelmpl의 bidSelectHighBidPrice 메서드");
-		return bidDao.bidSelectHighBidPrice(auctionGoodsCode);
+		return bidDao.selectBidHighBidPrice(auctionGoodsCode);
 	}
 
 }

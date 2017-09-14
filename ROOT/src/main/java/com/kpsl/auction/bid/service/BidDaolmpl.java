@@ -26,14 +26,14 @@ public class BidDaolmpl implements BidDao {
 	}
 	// 물품별입찰자 리스트
 	@Override
-	public List<BidVo> goodsSelectBidList(BidVo bidvo) {
+	public List<BidVo> selectGoodsBidList(BidVo bidvo) {
 		// log.info(auctionGoodsCode +" --> BidDao 물품코드 들어오는 것인가.?");
 		log.info("BidDao goodsselectBidList 확인");
 		return sessionTemplate.selectList(NS + "selectBidList", bidvo);
 	}
 	// 개인 입찰 리스트
 	@Override
-	public List<BidVo> userSelectGoodsBidsList(BidVo bidvo) {
+	public List<BidVo> selectUserGoodsBidsList(BidVo bidvo) {
 		log.info("BidDao userSelectGoodsBidsList 확인");
 		return sessionTemplate.selectList(NS + "selectBidList", bidvo);
 	}
@@ -47,7 +47,7 @@ public class BidDaolmpl implements BidDao {
 	//최고입찰금액
 	}
 	@Override
-	public BidVo bidSelectHighBidPrice(String auctionGoodsCode) {
+	public BidVo selectBidHighBidPrice(String auctionGoodsCode) {
 		log.info("BidDao bidselecthighbiduserprice 확인");
 		return sessionTemplate.selectOne(NS + "highbiduserprice", auctionGoodsCode);
 	}

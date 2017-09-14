@@ -11,6 +11,8 @@
 		<!-- 메인화면  -->
 		<div class="col-sm-12 text-left">
 			<h1>입찰창</h1>
+			<tr>보유캐쉬:<fmt:formatNumber value="${totalcash}"
+									groupingUsed="true" />캐쉬</tr>
 			<div class="table-responsive">
 				<table class="table table-hover">
 
@@ -78,6 +80,7 @@
 	</div></div>
 </body>
 <script>
+		var totalcash = parseInt(${totalcash});
 		var auctionGoodsBidUnit = parseInt(${auctionGoodsBidUnit});
 	    var highBidPrice  = parseInt(${highBidPrice});
     	var auctionGoodsStartPrice = parseInt(${auctionGoodsStartPrice});
@@ -88,16 +91,20 @@
   
          $('#addButton').click(function(){
         	var bidPrice = parseInt($('#bidPrice').val());
-        	if(isNaN(bidPrice)){
+        	if(totalcash < 1000){
+        		event.preventDefault();
+        		alert('캐쉬가 부족합니다 충전 후 다시 입찰해주세요.');
+        		
+        	}else if(isNaN(bidPrice)){
         		event.preventDefault();
         		alert('숫자를 입력해주세요.');
         	}else if(bidPrice <= auctionGoodsStartPrice) {
             	event.preventDefault();
                 alert('입찰금액은 시작가격이상 이어야 합니다.');
-       		}else if(bidPrice = auctionGoodsStartPrice + highBidPrice) {
+       		}/* else if(bidPrice = auctionGoodsBidUnit + highBidPrice) {
        			event.preventDefault();
                 alert('입찰단위에 맞춰 입찰해주세요.');
-            }else {
+            } */else {
                 $('#addForm').submit();
             }
         });

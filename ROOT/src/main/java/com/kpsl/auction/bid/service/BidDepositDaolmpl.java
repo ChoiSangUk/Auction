@@ -24,8 +24,19 @@ public class BidDepositDaolmpl implements BidDepositDao {
 	// 보증금 차감
 	@Override
 	public int updateUserCashWithdraw(BidDepositVo BidDepositVo) {
-		 log.info("BidDao updateUserCashWithdraw 확인");
+		 log.info("BidDepostitDao updateUserCashWithdraw 확인");
 		return sessionTemplate.insert(NS + "updateUserCashWithdraw", BidDepositVo);
+	}
+	//보증금 차감을 위한 캐쉬 조회
+	@Override
+	public UserDetailVo selectTotalCash(String userId) {
+		log.info("BidDepostitDao selectTotalCash 확인");
+		return sessionTemplate.selectOne(NS+"selecttotalcash", userId);
+	}
+	@Override
+	public BidDepositVo selectselectoverlapuserid(String auctionGoodsCode) {
+		// TODO Auto-generated method stub
+		return sessionTemplate.selectOne(NS+"selectoverlapuserid", auctionGoodsCode);
 	}
 
 }
