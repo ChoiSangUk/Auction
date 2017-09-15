@@ -153,6 +153,21 @@
 		agi.auction_goods_image_num=0;
 	</select>
 	
+	<select id="selectAllAuctionGoodsOrderBy" parameterType="String" resultMap="AuctionGoodsAndImage">
+		SELECT
+		ag.*,
+		agi.auction_goods_image_path
+		FROM auction_goods_tb AS ag INNER JOIN
+		auction_goods_image_tb AS agi
+		ON ag.auction_goods_code =
+		agi.auction_goods_code
+		AND
+		agi.auction_goods_image_num=0
+		WHERE ag.auction_goods_state='판매중'
+		ORDER BY #{sortSeperator} DESC
+		 
+	</select>
+	
 	<insert id="insertAuctionGoods" parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo"
 		useGeneratedKeys="true" keyProperty="auctionGoodsCode">
 		<selectKey keyProperty="auctionGoodsCode" resultType="string"

@@ -250,26 +250,31 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
     }
 });
 
-	$(document).ready(function() {
-		//보유 캐쉬 가져오기
-		var userId = $('#userId');
-		$.ajax({
-            type : "GET",
-            url : "${pageContext.request.contextPath}/getUserCashAjax",
-            data : userId,
-            dataType: "text",
-            error : function(request,status,error){
-                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
 
-            },
-            success : function(getData){
-                //alert("통신데이터 값 : " + data) ;
-               // console.log('ajax 후에 auctionGoodsStartPrice'+auctionGoodsStartPrice)
-               //alert(getData)
-               $('#userTotalCash').text(getData);
-               $('#userTotalCashInput').val(getData);
-        	}
-		}); 
+
+	
+	$(document).ready(function() {
+		var userId = $('#userId');
+		 $.ajax({
+     	    type : "GET",
+     	    url : "${pageContext.request.contextPath}/getUserCashAjax",
+     	    data : userId,
+     	    dataType: "text",
+     	    error : function(request,status,error){
+     	        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+
+     	    },
+     	    success : function(getData){
+     	        //alert("통신데이터 값 : " + data) ;
+     	       // console.log('ajax 후에 auctionGoodsStartPrice'+auctionGoodsStartPrice)
+     	       //alert(getData)
+     	       
+     	       $('#userTotalCash').text(getData);
+     	       $('#userTotalCashInput').val(getData);
+     	       console.log('보유 캐쉬 :'+$('#userTotalCash').text())
+     		}
+     	}); 
+		
 		
 		//유효성 검사 후 등록
 		var validCheck = function(){
@@ -363,7 +368,7 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 						$('#auctionGoodsDepositPrice').val('')
 					}else{			
 					//console.log('최소입찰금액 : '+ auctionGoodsStartPrice);
-					var userTotalCash = ${userLoginInfo.userTotalcash};
+					var userTotalCash = $('#userTotalCash').text();
 					console.log('보유금액 : '+ userTotalCash);
 					
 					$.ajax({
@@ -390,7 +395,8 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 			               }else if(auctionGoodsStartPrice >=200000){
 			            	   $('#auctionGoodsDepositPrice').val('100000')
 			               }
-			               
+			              
+			              
 			               if($('#auctionGoodsDepositPrice').val() > userTotalCash){
 			            	   alert('보증금이 부족합니다')
 			            	   $('#auctionGoodsStartPrice').val('');

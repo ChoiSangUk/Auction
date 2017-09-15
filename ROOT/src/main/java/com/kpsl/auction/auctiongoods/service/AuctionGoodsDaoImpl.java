@@ -106,6 +106,13 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 		return sqlSessionTemplate.update(NS+"updateAuctionGoodsStateEnd");
 	}
 	
+	//정렬된 물품 가져오기
+	@Override
+	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsOrderBy(String sortSeperator) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsOrderBy", sortSeperator);
+	}
+	
 	
 	
 	

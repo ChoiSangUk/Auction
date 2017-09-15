@@ -155,5 +155,12 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 	public int getUserCash(String userId) {
 		return auctionGoodsDao.selectUserCash(userId);
 	}
+
+	//물품 정렬
+	@Override
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsOrderBy(String sortSeperator) {
+		// TODO Auto-generated method stub
+		return auctionGoodsDao.selectAllAuctionGoodsOrderBy(sortSeperator);
+	}
 	
 }

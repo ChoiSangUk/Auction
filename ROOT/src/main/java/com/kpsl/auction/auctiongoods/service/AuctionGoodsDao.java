@@ -41,5 +41,8 @@ public interface AuctionGoodsDao {
 	int updateAuctionGoodsState();
 	int updateAuctionGoodsStateEnd();
 	
+	//정렬된 물품 가져오기
+	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsOrderBy(String sortSeperator);
+	
 	
 }
