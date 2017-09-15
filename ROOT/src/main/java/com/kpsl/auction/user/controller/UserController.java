@@ -1,5 +1,6 @@
 package com.kpsl.auction.user.controller;
 
+import java.util.List;
 import java.util.Locale;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.kpsl.auction.ad.service.AdPaymentService;
+import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdPaymentVo;
 import com.kpsl.auction.user.service.UserDetailService;
 import com.kpsl.auction.user.service.UserService;
 import com.kpsl.auction.user.vo.UserDetailVo;
@@ -26,6 +29,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private UserDetailService userDetailService;
+	@Autowired
+	private AdPaymentService adPaymentService;
 	//회원가입폼
 	@RequestMapping(value = "/user/userJoin", method = RequestMethod.GET)
 	public String join(Locale locale, Model model) {
@@ -49,8 +54,11 @@ public class UserController {
 	//로그인폼
 	@RequestMapping(value = "/user/userLogin", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
-
+		
 		log.info("회원로그인창");
+		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentSuccessList = adPaymentService.getPaymentSuccessList();
+		model.addAttribute("adPaymentSuccessList", adPaymentSuccessList);		
+		
 		return "/user/user_login";
 	}
 
