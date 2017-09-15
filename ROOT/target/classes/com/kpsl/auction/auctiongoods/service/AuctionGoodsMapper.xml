@@ -87,16 +87,16 @@
 	<!-- 물품 상태 자동 변경 -->
 	<update id="updateAuctionGoodsStateStart">
 		UPDATE auction_goods_tb
-		SET auction_goods_state = "판매중"
-		WHERE auction_goods_start_date &lt;= now() 
-		AND auction_goods_end_date &gt;= now()
-		AND auction_goods_state !="낙찰"
+		SET auction_goods_state = '판매중'
+		WHERE auction_goods_start_date &lt;= CURDATE() 
+		AND auction_goods_end_date &gt;= CURDATE()
+		AND auction_goods_state !='낙찰'
 	</update>
 	<update id="updateAuctionGoodsStateEnd">
 		UPDATE auction_goods_tb
-		SET auction_goods_state = "판매종료"
-		WHERE auction_goods_end_date &lt;= now()
-		AND auction_goods_state !="낙찰"
+		SET auction_goods_state = '판매종료'
+		WHERE auction_goods_end_date &lt;= CURDATE()
+		AND auction_goods_state !='낙찰'
 	</update>
 	
 	<!-- 유저 캐쉬 가져오기ㅣ -->

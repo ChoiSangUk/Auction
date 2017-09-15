@@ -43,13 +43,13 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	}
 
 	@Override
-	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoods() {
+	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoods(Map map) {
 		// TODO Auto-generated method stub
 		System.out.println("daoimpl까지");
 		System.out.println(sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods"));
-		List<AuctionGoodsAndFirstImageVo> list=sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods");
+		List<AuctionGoodsAndFirstImageVo> list=sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods", map);
 		System.out.println("daoimpl에서"+list.toString());
-		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods");
+		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods", map);
 	}
 
 	@Override

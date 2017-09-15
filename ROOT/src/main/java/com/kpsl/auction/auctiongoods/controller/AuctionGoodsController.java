@@ -113,12 +113,19 @@ public class AuctionGoodsController {
 	@RequestMapping(value = "/auctiongoods/auctiongoodslist_small", method = RequestMethod.GET)
 	public String auctionGoodsListSmall(Model model,
 			@RequestParam(value = "largeCategoryCode", required = true) String largeCategoryCode,
-			@RequestParam(value = "middleCategoryCode", required = true) String middleCategoryCode) {
+			@RequestParam(value = "middleCategoryCode", required = true) String middleCategoryCode,
+			@RequestParam(value = "smallCategoryCode", required = false) String smallCategoryCode) {
 
 		List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
 		List<MiddleCategoryVo> middleCategoryList = goodsCategoryService.getMiddleCategoryList(largeCategoryCode);
 		List<SmallCategoryVo> smallCategoryList = goodsCategoryService.getSmallCategoryList(largeCategoryCode,
 				middleCategoryCode);
+		if(smallCategoryCode!=null){
+			System.out.println("스몰카테고리가 널이 아니면" + smallCategoryCode);
+			model.addAttribute("smallCategoryCode",smallCategoryCode);
+		}else{
+			System.out.println("스몰카테고리가 널이다");
+		}
 		
 		model.addAttribute("largeCategoryCode", largeCategoryCode);
 		model.addAttribute("middleCategoryCode", middleCategoryCode);

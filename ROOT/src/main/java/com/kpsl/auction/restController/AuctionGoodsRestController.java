@@ -1,6 +1,8 @@
 package com.kpsl.auction.restController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,15 +47,33 @@ public class AuctionGoodsRestController {
 	 }
 	
 	//모든 물품을 뿌려주기 위한 처리
-	@RequestMapping(value = "/auctiongoods/auctiongoodslist_getallgoods", produces = "application/json; charset=UTF-8", method = RequestMethod.POST )
-	public String auctionGoodsList_getAllGoods(HttpServletRequest request,HttpServletResponse response ){
+	@RequestMapping(value = "/auctiongoods/auctiongoodslist_getallgoods", produces = "application/json; charset=UTF-8", method = RequestMethod.GET )
+	public String auctionGoodsList_getAllGoods(Model model,
+			@RequestParam(value = "largeCategoryCode", required = true) String largeCategoryCode,
+			@RequestParam(value = "middleCategoryCode", required = true) String middleCategoryCode,
+			@RequestParam(value = "smallCategoryCode", required = true) String smallCategoryCode){
 		System.out.println("/auctiongoods/auctiongoodslist_getallgoods");
-		String largeCategoryCode = request.getParameter("largeCategoryCode");
+		//String largeCategoryCode = request.getParameter("largeCategoryCode");
 		System.out.println(largeCategoryCode);
-		//System.out.println(middleCategoryCode);
-		//System.out.println(smallCategoryCode);
+		System.out.println(middleCategoryCode);
+		System.out.println(smallCategoryCode);
+		Map map = new HashMap<String, String>();
+		if(middleCategoryCode.equals("") && smallCategoryCode.equals("")){
+			map.put("largeCategoryCode", largeCategoryCode);
+			System.out.println(" 큰거 맵에 추가 되나");
+		}else if(!middleCategoryCode.equals("") && smallCategoryCode.equals("")){
+			map.put("largeCategoryCode", largeCategoryCode);
+			map.put("middleCategoryCode", middleCategoryCode);
+			System.out.println(" 중간거 맵에 추가 되나");
+		}else if(!middleCategoryCode.equals("") && !smallCategoryCode.equals("")){
+			map.put("smallCategoryCode", smallCategoryCode);
+			map.put("largeCategoryCode", largeCategoryCode);
+			map.put("middleCategoryCode", middleCategoryCode);
+			System.out.println(" 작은거 맵에 추가 되나");
+			
+		}
 		
-		List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods(); 
+		List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods(map); 
 		System.out.println("auctionGoodsList는 있나? "+auctionGoodsList);
 		
 		Gson gson = new Gson();
@@ -84,7 +104,8 @@ public class AuctionGoodsRestController {
 	@RequestMapping(value = "/auctiongoods/auctiongoodsinsert_small", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	public String auctionGoodsInsert_Small(Model model,
 			@RequestParam(value = "largeCategoryCode", required = true) String largeCategoryCode,
-			@RequestParam(value = "middleCategoryCode", required = true) String middleCategoryCode) {
+			@RequestParam(value = "middleCategoryCode", required = true) String middleCategoryCode
+			) {
 
 		log.info("auctionGoodsInsert_Small에서 largeCategoryCode :" + largeCategoryCode);
 		// List<LargeCategoryVo> largeCategory =

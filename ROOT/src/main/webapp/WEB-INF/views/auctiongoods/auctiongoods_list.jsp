@@ -46,8 +46,8 @@
 			<div class="list-group" style="overflow: auto; height: 300px;">
 				<a class="list-group-item list-group-item-info" href="#">전체보기</a>
 				<c:forEach var="smallCategory" items="${smallCategoryList}">
-					<a class="list-group-item" href="#">${smallCategory.smallCategoryName}
-					<span class="middleCategoryCode" style="display:none;">${smallCategory.smallCategoryCode}</span></a>
+					<a class="list-group-item" href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist_small?largeCategoryCode=${smallCategory.largeCategoryCode}&middleCategoryCode=${smallCategory.middleCategoryCode}&smallCategoryCode=${smallCategory.smallCategoryCode}">${smallCategory.smallCategoryName}
+					<span id="smallCategoryCode" style="display:none;">${smallCategoryCode}</span></a>
 				</c:forEach>
 			</div>
 		</div>
@@ -58,6 +58,17 @@
 		<div class="row content">
 			<div class="col-sm-12">
 				<h1>경매물품 리스트</h1>
+				<div class="sort-list">
+					<ul class="list-group" style="display:inline-block">
+						<li style="display:list-item"><a href="#none" onclick="setSort(2);" class="active">인기경매순</a></li>
+						<li style="display:list-item"><a href="#none" onclick="setSort(0);" class="">마감임박순</a></li>
+						<li><a href="#none" onclick="setSort(1);" class="">신규경매순</a></li>
+						<li><a href="#none" onclick="setSort(3);" class="">높은가격순</a></li>
+						<li><a href="#none" onclick="setSort(4);" class="">낮은가격순</a></li>
+						<li><a href="#none" onclick="setSort(5);" class="">조회많은순</a></li>
+						<li><a href="#none" onclick="setSort(6);" class="">조회적은순</a></li>
+					</ul>
+				</div>
 				<hr>
 				<div class="row goodsList" style="margin-left: 20px">
 				<!-- -----------------물품이 보여지는 곳 start----------------- -->
@@ -96,23 +107,23 @@
 	</div>
 </div>
 <script>
+//카테고리별로 뿌려주기 위한 코드
+var largeCategoryCode = "${largeCategoryCode}";
+var middleCategoryCode = "${middleCategoryCode}";
+var smallCategoryCode = $('#smallCategoryCode').text();
+console.log('라지 카테고리 :'+largeCategoryCode)
+console.log('미들 카테고리 :'+middleCategoryCode)
+console.log('스몰 카테고리 :'+smallCategoryCode)
 
+var categoryCode = {
+	"largeCategoryCode" : largeCategoryCode,
+	"middleCategoryCode" : middleCategoryCode,
+	"smallCategoryCode" : smallCategoryCode
+}
 		
 	$(document).ready(function(){
 		//카테고리별 물품 뽑기위한 변수
-		var largeCategoryCode = "${largeCategoryCode}";
-		var middleCategoryCode = "${middleCategoryCode}";
-		var smallCategoryCode = "${smallCategoryCode}";
-		console.log('라지 카테고리 :'+largeCategoryCode)
-		console.log('미들 카테고리 :'+middleCategoryCode)
-		console.log('스몰 카테고리 :'+smallCategoryCode)
 		
-		var categoryCode = {
-			"largeCategoryCode" : largeCategoryCode,
-			"middleCategoryCode" : middleCategoryCode,
-			"smallCategoryCode" : smallCategoryCode
-		}
-		console.log(JSON.stringify(categoryCode))
 		
 		//대분류 코드를 뽑아서 
 		/* var largeCategoryList =  $('.largeCategoryCode') //선택자를 변수에 담고
@@ -125,8 +136,8 @@
 		//전체 물품을 뿌려주기 위한 ajax
 		$.ajax({
 			url : '${pageContext.request.contextPath}/auctiongoods/auctiongoodslist_getallgoods',
-			type : 'post',
-			data : JSON.stringify(categoryCode),
+			type : 'get',
+			data : categoryCode,
 			dataType : 'json',
 			error : function(xhr, status, e) {
 				alert('auction goodsList ajax Error');

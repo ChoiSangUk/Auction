@@ -97,12 +97,12 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 	
 	//모든 물품 리스트
 	@Override
-	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoods() {
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoods(Map map) {
 		// TODO Auto-generated method stub
 		System.out.println("serviceimpl까지");
-		List<AuctionGoodsAndFirstImageVo> list =auctionGoodsDao.selectAllAuctionGoods();
+		List<AuctionGoodsAndFirstImageVo> list =auctionGoodsDao.selectAllAuctionGoods(map);
 		System.out.println("옥션굿즈서비스"+list.toString());
-		return auctionGoodsDao.selectAllAuctionGoods();
+		return auctionGoodsDao.selectAllAuctionGoods(map);
 	}
 	
 	//물품에 대한 모든 이미지 리스트

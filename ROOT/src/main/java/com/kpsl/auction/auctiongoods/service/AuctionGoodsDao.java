@@ -16,7 +16,7 @@ public interface AuctionGoodsDao {
 	List<AuctionGoodsVo> selectAuctionGoodss();
 	
 	//모든 물픔 리스트
-	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoods();
+	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoods(Map map);
 	
 	//단일 물품
 	public AuctionGoodsVo selectAuctionGoods(String auctionGoodsCode);
