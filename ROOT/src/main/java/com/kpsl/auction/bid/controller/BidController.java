@@ -116,11 +116,12 @@ public class BidController {
 		
 		/*BidDepositVo overlapuserid = biddepositservice.setoverlapuserid(auctionGoodsCode);
 		log.info(overlapuserid.getUserBuyerId()+"overlapuserid");*/
- 			
-		BidVo a = bidService.getOverlapUser(bidvo);
+ 		/**입찰 중복 아이디 계수**/
+		BidVo getOverlapbidUsercount = bidService.getOverlapUser(bidvo);
+		log.info(getOverlapbidUsercount.getUserBuyerId()+ "중복아이디 계수");
+		if(getOverlapbidUsercount.getUserBuyerId() == null){
 		
-		if(a != null){
-		/** 입찰 서비스 **/
+			/** 입찰 서비스 **/
 		bidService.setBidPrice(bidvo);
 
 		/** 보증금 insert 하는 서비스(가격에 따라 보증금의 가격) **/
@@ -151,14 +152,13 @@ public class BidController {
 		}
 		else{
 			bidService.modifyBidPrcie(bidvo);
-			log.info("보증금 차감 불가 및 입찰금액변동");
+			
 		}
 		log.info("입찰자 입찰하기");
 		return "redirect:/bid/bidform?auctionGoodsName=" + auctionGoodsName + "&userId=" + userSellerID
 				+ "&auctionGoodsBidUnit=" + auctionGoodsBidUnit + "&auctionGoodsStartPrice=" + auctionGoodsStartPrice
 				+ "&auctionGoodsCode=" + auctionGoodsCode;
-	}
-	
+	}	
 	// 본인이 입찰한 물품 리스트 보여주는 controller
 	@RequestMapping(value = "/bid/bidusergoodsbidlist", method = RequestMethod.GET)
 	public String user(HttpSession session, BidVo bidvo, Model model) {

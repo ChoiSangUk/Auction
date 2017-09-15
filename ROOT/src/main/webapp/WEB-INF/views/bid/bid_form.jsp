@@ -89,7 +89,7 @@
     	console.log(auctionGoodsStartPrice);
     	console.log(highBidPrice);
     	console.log(auctionGoodsBidUnit);
-  
+    	
          $('#addButton').click(function(){
         	var bidPrice = parseInt($('#bidPrice').val());
         	if(totalcash < 999){
@@ -102,12 +102,13 @@
         	}else if(bidPrice <= auctionGoodsStartPrice) {
             	event.preventDefault();
                 alert('입찰금액은 시작가격이상 이어야 합니다.');
-       		}/* else if(bidPrice = auctionGoodsBidUnit + highBidPrice) {
+       		}else if(bidPrice = auctionGoodsBidUnit + highBidPrice) {
        			event.preventDefault();
                 alert('입찰단위에 맞춰 입찰해주세요.');
-            } */else {
+            }else {
                 $('#addForm').submit();
             }
         });
+   
 </script>
 	<c:import url="/resources/module/admin_footer.jsp" charEncoding="UTF-8" />

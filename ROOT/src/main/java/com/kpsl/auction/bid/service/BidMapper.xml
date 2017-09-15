@@ -74,8 +74,9 @@
 	<update id="updateRebid" parameterType = "com.kpsl.auction.bid.vo.BidVo">
 		UPDATE bid_tb
 		SET
-		bid_price = 60000,
+		bid_price = #{bidPrice},
 		bid_date= NOW()
-		WHERE user_buyer_id = 'id002'
+		WHERE auction_goods_code = #{auctionGoodsCode} 
+		AND user_buyer_id = #{userBuyerId}
 	</update>
 </mapper>
