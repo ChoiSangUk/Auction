@@ -17,6 +17,7 @@
 /* 이미지 보더를 위한 DIV */
 .agImgBorderDib {
 	border: 1px solid #BDBDBD;
+	background-color: white;
 }
 /* 메인배너 물품리스트 제목 */
 .mainAgListTitle {
@@ -99,6 +100,12 @@
 	min-width: 100%;
 	color: #7A7A7A;
 }
+
+.bidHighList {
+	margin-left: 0px !important;
+	background: url("${pageContext.request.contextPath}/resources/img/mainAgBackground.jpg");
+	background-size: cover !important;
+}
 </style>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 	<!-- 메인배너 -->
@@ -140,8 +147,9 @@
 <div class="container mainAgList text-center">
 	<h3>물품등록 리스트</h3>
 	<br>
-	<div class="row">
+	<div class="row content">
 		<div class="text-left">
+		<!-- 인기경매(조회순  내림차순 정렬 8개) -->
 		<h3 class="mainAgListTitle">
 		Auction<strong> 인기경매</strong>
 		<a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist" class="pull-right agAllListLink">
@@ -149,10 +157,13 @@
 		전체보기
 		</a>
 		</h3>
-		<c:forEach var="ag" items="${auctionGoodsList}" begin="0" end="7">
+		<c:forEach var="ag" items="${auctionGoodsListByHits}" begin="0" end="7">
+		<c:set var="auctionGoodsState" value="${ag.auctionGoodsVo.auctionGoodsState}"/>
+		<c:choose>
+		<c:when test="${auctionGoodsState eq '판매중'}">
 		<div class="col-sm-3 agImgDiv">
 			<div class="col-sm-12 agImgBorderDib">
-			<a href="${pageContext.request.contextPath}/auctiongoods/auctiongoods_detail?auctionGoodsCode=${ad.adApplyVo.auctionGoodsCode}"
+			<a href="${pageContext.request.contextPath}/auctiongoods/auctiongoods_detail?auctionGoodsCode=${ag.auctionGoodsVo.auctionGoodsCode}"
 			class="agImgLink">
 			<img src="${ag.auctionGoodsImageList.auctionGoodsImagePath}"
 				class="img-responsive agListImg" style="width: 100%" alt="Image" 
@@ -177,8 +188,60 @@
 			</a>
 			</div>
 		</div>
+		</c:when>
+		</c:choose>
 		</c:forEach>
 		</div>
+	</div>
+</div>
+<div class="container-fluid  bidHighList">
+	<div class="container">
+	<div class="row content">
+		<div class="text-left">
+		<!-- 인기경매(조회순  내림차순 정렬 8개) -->
+		<h3 class="mainAgListTitle">
+		Auction<strong> 입찰률이 높은 경매</strong>
+		<a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist" class="pull-right agAllListLink">
+		<span class="pull-right glyphicon glyphicon-plus"></span>
+		전체보기
+		</a>
+		</h3>
+		<c:forEach var="ag" items="${auctionGoodsListByBidHits}" begin="0" end="7">
+		<c:set var="auctionGoodsState" value="${ag.auctionGoodsVo.auctionGoodsState}"/>
+		<c:choose>
+		<c:when test="${auctionGoodsState eq '판매중'}">
+		<div class="col-sm-3 agImgDiv">
+			<div class="col-sm-12 agImgBorderDib">
+			<a href="${pageContext.request.contextPath}/auctiongoods/auctiongoods_detail?auctionGoodsCode=${ag.auctionGoodsVo.auctionGoodsCode}"
+			class="agImgLink">
+			<img src="${ag.auctionGoodsImageList.auctionGoodsImagePath}"
+				class="img-responsive agListImg" style="width: 100%" alt="Image" 
+				onERROR="this.src='${pageContext.request.contextPath}/resources/files/1504677731332_도자기.jpg'">
+			<span class="agInfoTitleSpan">
+			${ag.auctionGoodsVo.auctionGoodsName}
+			</span>
+			<span class="agInfoPriceSpan">
+			경매시작가 <strong>${ag.auctionGoodsVo.auctionGoodsStartPrice}</strong> 원
+			</span>
+			<span class="agInfoSpan">
+				<span class="adInfoBidSpan">입찰&nbsp;&nbsp;&nbsp;${ag.auctionGoodsVo.auctionGoodsBidHits}</span>
+				<span class="adInfoBidSpan">조회수&nbsp;&nbsp;&nbsp;${ag.auctionGoodsVo.auctionGoodsHits}</span>
+			</span>
+			<span class="adInfoUserSpan">
+			판매자&nbsp;&nbsp;${ag.auctionGoodsVo.userId}
+			</span>
+			<span class="adInfoEndDateSpan">
+			<i class="glyphicon glyphicon-time"></i>
+			경매마감일&nbsp;&nbsp;${ag.auctionGoodsVo.auctionGoodsEndDate}
+			</span>
+			</a>
+			</div>
+		</div>
+		</c:when>
+		</c:choose>
+		</c:forEach>
+		</div>
+	</div>
 	</div>
 </div>
 

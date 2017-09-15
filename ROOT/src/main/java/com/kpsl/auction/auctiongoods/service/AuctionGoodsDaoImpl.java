@@ -111,7 +111,7 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsOrderBy(AuctionGoodsVo auctionGoodsVo) {
 		// TODO Auto-generated method stub
 		
-		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsOrderBy", auctionGoodsVo.getSortSeperator());
+		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsOrderBy", auctionGoodsVo);
 	}
 	
 	

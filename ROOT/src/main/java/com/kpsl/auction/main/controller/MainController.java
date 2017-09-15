@@ -16,6 +16,7 @@ import com.kpsl.auction.ad.service.AdPaymentService;
 import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdPaymentVo;
 import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.saleslog.service.SalesLogService;
 import com.kpsl.auction.saleslog.vo.SalesLogVo;
 import com.kpsl.auction.user.service.UserDetailService;
@@ -27,9 +28,7 @@ import com.sun.org.apache.bcel.internal.classfile.DescendingVisitor;
 @Controller
 public class MainController {
 	Logger log = Logger.getLogger(this.getClass());
-	@Autowired private SalesLogService salesLogService;
 	@Autowired private UserService userService;
-	@Autowired private UserDetailService userDetailService;
 	@Autowired private AdPaymentService adPaymentService;
 	@Autowired private AuctionGoodsService auctionGoodsService;
 	
@@ -43,15 +42,24 @@ public class MainController {
 	
 	// 프로젝트 메인페이지 요청
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String main(Model model) {
+	public String main(Model model, AuctionGoodsVo auctionGoodsVo) {
 
 		log.info("로그확인");
 		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentSuccessList = adPaymentService.getPaymentSuccessList();
 		List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods();
-
+		
+		// 메인페이지 인기순위(조회수)
+		String auctionGoodsHits = "auction_goods_hits";
+		auctionGoodsVo.setSortSeperator(auctionGoodsHits);
+		List<AuctionGoodsAndFirstImageVo> auctionGoodsListByHits = auctionGoodsService.getAllAuctionGoodsOrderBy(auctionGoodsVo);
+		String auctionGoodsBidHits = "auction_goods_bid_hits";
+		auctionGoodsVo.setSortSeperator(auctionGoodsBidHits);
+		List<AuctionGoodsAndFirstImageVo> auctionGoodsListByBidHits = auctionGoodsService.getAllAuctionGoodsOrderBy(auctionGoodsVo);
+		log.info(auctionGoodsListByBidHits.get(7).getAuctionGoodsVo().getAuctionGoodsBidHits()+"<-- 입찰");
 		model.addAttribute("adPaymentSuccessList", adPaymentSuccessList);
 		model.addAttribute("auctionGoodsList", auctionGoodsList);
-		
+		model.addAttribute("auctionGoodsListByHits", auctionGoodsListByHits);
+		model.addAttribute("auctionGoodsListByBidHits", auctionGoodsListByBidHits);
 		
 		return "main";
 	}
