@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class AuctionGoodsImageController {
@@ -154,5 +155,12 @@ public class AuctionGoodsImageController {
 				e.printStackTrace();
 			}
 	}
+		private String getSaveLocation(HttpServletRequest request) {
+
+			String uploadPath = request.getSession().getServletContext().getRealPath("/");
+			String attachPath = "resources/files/";
+
+			return uploadPath + attachPath;
+		}
 			
 }

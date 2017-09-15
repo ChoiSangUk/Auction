@@ -43,10 +43,10 @@ public class MainController {
 	// 프로젝트 메인페이지 요청
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main(Model model, AuctionGoodsVo auctionGoodsVo) {
-
+		
 		log.info("로그확인");
 		List<AdApplyAndAdImageAndAdPaymentVo> adPaymentSuccessList = adPaymentService.getPaymentSuccessList();
-		List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods();
+		//List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods();
 		
 		// 메인페이지 인기순위(조회수)
 		String auctionGoodsHits = "auction_goods_hits";
@@ -57,7 +57,6 @@ public class MainController {
 		List<AuctionGoodsAndFirstImageVo> auctionGoodsListByBidHits = auctionGoodsService.getAllAuctionGoodsOrderBy(auctionGoodsVo);
 		log.info(auctionGoodsListByBidHits.get(7).getAuctionGoodsVo().getAuctionGoodsBidHits()+"<-- 입찰");
 		model.addAttribute("adPaymentSuccessList", adPaymentSuccessList);
-		model.addAttribute("auctionGoodsList", auctionGoodsList);
 		model.addAttribute("auctionGoodsListByHits", auctionGoodsListByHits);
 		model.addAttribute("auctionGoodsListByBidHits", auctionGoodsListByBidHits);
 		
