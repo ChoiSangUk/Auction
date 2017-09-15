@@ -90,9 +90,6 @@
 		FROM 
 			   sales_log_tb
 		<where>
-			<if test="salesLogRelation != null and salesLogRelation != ''">
-				sales_log_relation =#{salesLogRelation}
-			</if>
 			<if test="salesLogRelationArray != null">
 				sales_log_relation
 				<foreach 

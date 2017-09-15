@@ -26,15 +26,15 @@
 												<label class="checkbox-inline" style="margin-left: 15px;"> 
 												
 												<input
-													id="chk1" type="checkbox" value="ad_payment_tb" name="salesLogRelationArray"> 광고결제
+													id="chk1" type="checkbox" value="ad_payment_tb" name="salesLogRelationArray"> 광고
+												</label><input
+													id="chk2" type="checkbox" value="ad_refund_apply_tb" name="salesLogRelationArray" hidden=""> 
+												<label class="checkbox-inline"> <input
+													id="chk3" type="checkbox" value="auction_goods_tb" name="salesLogRelationArray"> 판매자보증금
 												</label><label class="checkbox-inline"> <input
-													id="chk2" type="checkbox" value="ad_refund_apply_tb" name="salesLogRelationArray"> 광고환불
+													id="chk4" type="checkbox" value="cash_tb" name="salesLogRelationArray"> 캐쉬
 												</label><label class="checkbox-inline"> <input
-													id="chk2" type="checkbox" value="auction_goods_tb" name="salesLogRelationArray"> 판매자보증금
-												</label><label class="checkbox-inline"> <input
-													id="chk2" type="checkbox" value="cash_tb" name="salesLogRelationArray"> 캐쉬
-												</label><label class="checkbox-inline"> <input
-													id="chk3" type="checkbox" value="test_tb" name="salesLogRelationArray"> 테스트
+													id="chk5" type="checkbox" value="test_tb" name="salesLogRelationArray"> 테스트
 												</label>
 												
 											</div>
@@ -226,31 +226,13 @@ $('input:radio[name=salesLogDate]').click(function(){
 		 $('#salesStartDate,#salesEndtDate').removeAttr('disabled')
 		 
 	});
+	
+	$('#chk1').click(function(){
+		$("#chk2").prop('checked', true) ;
+	
 
- 	
-	/* jquery paging-plugin */
-/* 	var currentPage = parseInt($('#currentPage').val());
-	var lastPage = parseInt($('#lastPage').val());
-	console.log(lastPage);
-	$(function(){
-		var locationURL = $(location).attr('href');	
-		$('#paging').paging({
-			current: 1,
-			max: lastPage,
-			onclick:function(e, page) {
-				$('#currentPage').val(page);
-				var currentPage = $('#currentPage').val();
-				$('.paging').attr('href','#');
-
-				
-			 	$('#AdminSaleslogSeach').submit(); 	
-			}
-		});
-	});
- */
-
- 
- 
+	});								
+		
 </script>
 
 <c:import url="/resources/module/admin_footer.jsp" charEncoding="UTF-8" />

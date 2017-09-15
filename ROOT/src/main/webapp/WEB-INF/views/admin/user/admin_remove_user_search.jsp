@@ -18,7 +18,6 @@
 							href="${pageContext.request.contextPath}/user/adminUserSearch">회원검색</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/user/adminRemoveUserSearch">탈퇴회원검색</a></li>
-						<li><a href="#">사용자캐쉬내역검색</a></li>
 					</ul>
 				</div>
 

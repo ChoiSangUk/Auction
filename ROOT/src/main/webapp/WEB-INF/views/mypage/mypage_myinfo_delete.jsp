@@ -35,7 +35,6 @@ dd {
 						<strong>회원 탈퇴</strong>를 하시겠습니까?
 					</h2>
 					<p>아래 약관 내용을 참조하신 후 신중하게 버튼을 클릭하여 주시기 바랍니다.</p>
-					<p>(미구현)</p>
 				</div>
 				<div class="tableDefault table-vertical">
 

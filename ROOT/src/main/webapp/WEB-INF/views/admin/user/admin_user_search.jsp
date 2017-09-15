@@ -23,7 +23,6 @@
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/user/adminUserSearch">회원검색</a></li>
 			<li><a href="${pageContext.request.contextPath}/user/adminRemoveUserSearch">탈퇴회원검색</a></li>
-			<li><a href="#">사용자캐쉬내역검색</a></li>
 		</ul>
 		</div>
 
@@ -40,9 +39,9 @@
 										
 											<div>
 												<label class="checkbox-inline" style="margin-left: 15px;"> <input
-													type="checkbox" value="구매자" name="userLevel"> 구매자
+													id="userLevelchk1" type="checkbox" value="구매자" name="userLevel"> 구매자
 												</label><label class="checkbox-inline"> <input
-													type="checkbox" value="판매자" name="userLevel"> 판매자
+													id="userLevelchk2" type="checkbox" value="판매자" name="userLevel"> 판매자
 												</label>
 												
 											</div>
@@ -55,9 +54,9 @@
 										
 											<div>
 												<label class="radio-inline" style="margin-left: 15px;"> <input
-													type="radio" value="남" name="userGender"> 남
+													id="userGenderRadio1" type="radio" value="남" name="userGender"> 남
 												</label><label class="radio-inline"> <input
-													type="radio" value="여" name="userGender"> 여
+													id="userGenderRadio2" type="radio" value="여" name="userGender"> 여
 												</label>
 												
 											</div>
@@ -69,13 +68,13 @@
 										<td>
 											<div>
 												<label class="radio-inline" style="margin-left: 15px;"> <input type="radio"
-													value="grade4" name="gradeCode"> 일반회원
+													id="gradeCodeRadio1" value="grade4" name="gradeCode"> 일반회원
 												</label> <label class="radio-inline"> <input type="radio"
-													value="grade3" name="gradeCode"> 우수회원
+													id="gradeCodeRadio2" value="grade3" name="gradeCode"> 우수회원
 												</label> <label class="radio-inline"> <input type="radio"
-													value="grade2" name="gradeCode"> VIP
+													id="gradeCodeRadio3" value="grade2" name="gradeCode"> VIP
 												</label> <label class="radio-inline"> <input type="radio"
-													value="grade1" name="gradeCode"> VVIP
+													id="gradeCodeRadio4" value="grade1" name="gradeCode"> VVIP
 												</label> 
 											</div>
 											
@@ -88,11 +87,11 @@
 											
 											<div>
 												<label class="radio-inline" style="margin-left: 15px;"> <input type="radio"
-													value="restrict1" name="restrictCode"> 정상
+													id="restrictRadio1" value="restrict1" name="restrictCode"> 정상
 												</label> <label class="radio-inline"> <input type="radio"
-													value="restrict2" name="restrictCode"> 입찰제한
+													id="restrictRadio2" value="restrict2" name="restrictCode"> 입찰제한
 												</label> <label class="radio-inline"> <input type="radio"
-													value="restrict3" name="restrictCode"> 판매제한
+													id="restrictRadio3" value="restrict3" name="restrictCode"> 판매제한
 												</label>
 											</div>
 										</td>
@@ -167,8 +166,8 @@
 			</table>
 
 			<!-- 캐쉬내역모달 -->
-				<div id="modalLayer">
-						  <div class="modalContent">
+				<div id="modalLayer" >
+						  <div class="modalContent" style="overflow:scroll;">
 						    <h3>캐쉬내역</h3> 
 						    <table class="table table-bordered">
 						    <thead>
@@ -179,7 +178,7 @@
 						    		<th>상태</th>
 						    	</tr>
 						    </thead>
-						    <tbody id="test123"></tbody>
+						    <tbody id="test123" ></tbody>
 						    </table>
 						  
 						    
@@ -207,6 +206,7 @@ $(document).ready(function(){
 	  var marginLeft = modalCont.outerWidth()/2;
 	  var marginTop = modalCont.outerHeight()/2; 
 	  
+	  //모달띄우기
 	  modalLink.click(function(){
 	    
 		  modalLayer.fadeIn("slow");
@@ -222,7 +222,7 @@ $(document).ready(function(){
 	  });	
 	  
 	  
-	  
+	  //캐쉬내역모달
 	  $('.modalLink').click(function(){
 		  var id = $(this).attr('dataCode');
 		$.ajax({
@@ -264,48 +264,37 @@ $(document).ready(function(){
 		}); 
 	  });
 });
-/* $.ajax({
-	url : './boardSearchList',
-	method : 'get',
-	data : { 'userId': $('#userId').val()	// 검색창에 입력한 게시자 아이디
-			,'snsBoardWeather'	: $('#snsBoardWeather').val()	// 선택한 날씨
-			,'snsBoardTall'		: $('#snsBoardTall').val()		// 선택한 키
-			,'snsBoardSize'		: $('#snsBoardSize').val()		// 선택한 체형
-			,'snsBoardLoc'		: $('#snsBoardLoc').val()		// 선택한 지형
-			,'snsBoardGender'	: $(":input:radio[name=snsBoardGender]:checked").val() // 선택한 성별(라디오 버튼)
-			,'snsBoardAge'		: $('#snsBoardAge').val()		// 선택한 연령대
-			,'colorValue'		: colorValue					// 선택한 색상 체크박스 배열
-			,'styleValue'		: styleValue					// 선택한 스타일 체크박스 배열 
-			,'situationValue'	: situationValue				// 선택한 상황 체크박스 배열
-			},
-	datatype : 'json',
-	success : function(data){
-		console.log(data);
-		var boardHtml = '';	// 검색 결과를 html으로 나타낼 변수 초기화
-		if(data.length > 0) {	// 검색 조건에 해당하는 검색 결과가 존재하는 경우
-			for(var i=0; i<data.length; i++) {
-				boardHtml += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" >';
-				boardHtml += '<div class="sns-photo-box cursor-click" value="'+data[i].snsBoardNo+'">';
-				boardHtml += '<div class="image-wrap" style="float: left; margin: 5px; overflow: hidden;">';
-				boardHtml += '<img style="display: inline-block; width: 100%; min-height: 100%;" height: auto" alt="no image" onError="this.src=\'resources/files/images/defaut.jpg\';" src="'+data[i].snsBoardImg+'">';
-				boardHtml += '<div class="likes">';
-				boardHtml += '<i class="material-icons center" style="color:#FFB2F5;font-size:24px;">thumb_up</i>';
-				boardHtml += '<span class="center">&nbsp;'+data[i].snsLikeCount+'&nbsp;&nbsp;&nbsp;</span>';
-				boardHtml += '<i class="fa fa-commenting center" style="font-size:24px"></i>';
-				boardHtml += '<span class="center">&nbsp;'+data[i].snsCommentCount+'</span>';
-				boardHtml += '</div>';
-				boardHtml += '</div>';
-				boardHtml += '</div>';
-				boardHtml += '</div>';
-				
-			}
-		} else {	// 검색 조건에 해당하는 결과가 없을 경우
-			boardHtml += '<span>일치하는 결과가 없습니다.</span>';
-		}	
-		$('#boardOutput').html(boardHtml);	// 작성한 문장을 출력
-		likeAndComment();	// 검색 결과 게시물의 추천수, 댓글수 감추기 및 보이기 함수 호출
-		showDetail(data);	// 게시물 상세보기 활성화 함수에 검색 결과를 대입하여 호출
+
+$(document).ready(function(){
+
+	if('${param.userLevel}' == '구매자'){
+		$("input:checkbox[id='userLevelchk1']").prop("checked", true);
+	}if('${param.userLevel}' == '판매자'){
+		$("input:checkbox[id='userLevelchk2']").prop("checked", true);
+	}if('${param.userGender}' == '남'){
+		$("input:radio[id='userGenderRadio1']").prop("checked", true);
+	}if('${param.userGender}' == '여'){
+		$("input:radio[id='userGenderRadio2']").prop("checked", true);
+	}if('${param.gradeCode}' == 'grade4'){
+		$("input:radio[id='gradeCodeRadio1']").prop("checked", true);
+	}if('${param.gradeCode}' == 'grade3'){
+		$("input:radio[id='gradeCodeRadio2']").prop("checked", true);
+	}if('${param.gradeCode}' == 'grade2'){
+		$("input:radio[id='gradeCodeRadio3']").prop("checked", true);
+	}if('${param.gradeCode}' == 'grade1'){
+		$("input:radio[id='gradeCodeRadio4']").prop("checked", true);
+	}if('${param.restrictCode}' == 'restrict1'){
+		$("input:radio[id='restrictRadio1']").prop("checked", true);
+	}if('${param.restrictCode}' == 'restrict2'){
+		$("input:radio[id='restrictRadio2']").prop("checked", true);
+	}if('${param.restrictCode}' == 'restrict3'){
+		$("input:radio[id='restrictRadio3']").prop("checked", true);
+	}if('${param.restrictCode}' == 'restrict4'){
+		$("input:radio[id='restrictRadio4']").prop("checked", true);
 	}
-}); */
+	
+	
+});
+	
 </script>
 <c:import url="/resources/module/admin_footer.jsp" charEncoding="UTF-8" />
