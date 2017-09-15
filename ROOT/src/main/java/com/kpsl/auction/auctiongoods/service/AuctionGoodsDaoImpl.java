@@ -97,7 +97,7 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	@Override
 	public int updateAuctionGoodsState() {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.update(NS+"updateAuctionGoodsState");
+		return sqlSessionTemplate.update(NS+"updateAuctionGoodsStateStart");
 	}
 
 	@Override
