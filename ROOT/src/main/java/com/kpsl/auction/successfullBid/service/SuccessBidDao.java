@@ -1,5 +1,9 @@
 package com.kpsl.auction.successfullBid.service;
 
-public interface SuccessBidDao {
+import java.util.List;
 
+import com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo;
+
+public interface SuccessBidDao {
+	List<SuccessBidAndBidAndAuctionGoodsVo> selectMaxBid();
 }

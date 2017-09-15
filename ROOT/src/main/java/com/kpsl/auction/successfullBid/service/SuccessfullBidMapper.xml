@@ -1,1 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kpsl.auction.successfullBid.service.SuccessfullBidMapper">
+	<resultMap type="com.kpsl.auction.successfullBid.vo.SuccessBidVo" id="SuccessfullBid">
+		<id property="successfulBidCode" column="successful_bid_code"></id>
+		<id property="bidCode" column="bid_code"></id>
+		<id property="userBuyerId" column="user_buyer_id"></id>
+		<id property="successfulBidPrice" column="successful_bid_price"></id>
+		<id property="successfulBidDate" column="successful_bid_date"></id>
+		<id property="auctionGoodsCode" column="auction_goods_code"></id>
+		<id property="userSellerId" column="user_seller_id"></id>
+	</resultMap>
+	
+	<resultMap type="com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo" id="SuccessBidAndBidAndAuctionGoods">
+		<association property="successBidVo" javaType="com.kpsl.auction.successfullBid.vo.SuccessBidVo">
+			<id property="successfulBidCode" column="successful_bid_code"></id>
+			<id property="bidCode" column="bid_code"></id>
+			<id property="userBuyerId" column="user_buyer_id"></id>
+			<id property="successfulBidPrice" column="successful_bid_price"></id>
+			<id property="successfulBidDate" column="successful_bid_date"></id>
+			<id property="auctionGoodsCode" column="auction_goods_code"></id>
+			<id property="userSellerId" column="user_seller_id"></id>
+		</association>
+		<association property="bidVo" javaType="com.kpsl.auction.bid.vo.BidVo">
+			<id property="bidCode" column="bid_code"></id>
+			<id property="userBuyerId" column="user_buyer_id"></id>
+			<id property="auctionGoodsCode" column="auction_goods_code"></id>
+			<id property="userSellerId" column="user_seller_id"></id>
+			<id property="bidPrice" column="bid_price"></id>
+			<id property="bidDate" column="bid_date"></id>
+		</association>
+		<association property="auctionGoodsVo" javaType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo">
+			<id property="auctionGoodsCode" column="auction_goods_code" />
+			<id property="userId" column="user_id" />
+			<id property="smallCategoryCode" column="small_category_code" />
+			<id property="middleCategoryCode" column="middle_category_code" />
+			<id property="largeCategoryCode" column="large_category_code" />
+			<id property="auctionGoodsName" column="auction_goods_name" />
+			<id property="auctionGoodsSys" column="auction_goods_sys" />
+			<id property="auctionGoodsBidSys" column="auction_goods_bid_sys" />
+			<id property="auctionGoodsContents" column="auction_goods_contents" />
+			<id property="auctionGoodsRegistDate" column="auction_goods_regist_date" />
+			<id property="auctionGoodsTerm" column="auction_goods_term" />
+			<id property="auctionGoodsStartDate" column="auction_goods_start_date" />
+			<id property="auctionGoodsEndDate" column="auction_goods_end_date" />
+			<id property="auctionGoodsStartPrice" column="auction_goods_start_price" />
+			<id property="auctionGoodsBidUnit" column="auction_goods_bid_unit" />
+			<id property="auctionGoodsInstantBuyState" column="auction_goods_instant_buy_state" />
+			<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price" />
+			<id property="auctionGoodsState" column="auction_goods_state" />
+			<id property="auctionGoodsBidHits" column="auction_goods_bit_hits" />
+			<id property="auctionGoodsHits" column="auction_goods_hits" />
+			<id property="auctionGoodsDepositPrice" column="auction_goods_deposit_price" />
+		</association>
+	</resultMap>
+	
+	<select id="selectMaxBid" resultMap="SuccessBidAndBidAndAuctionGoods">
+		SELECT 	ag.auction_goods_code, 
+				ag.auction_goods_name, 
+				ag.auction_goods_state,
+				ag.auction_goods_end_date,
+				b.bid_code,
+				MAX(b.bid_price) AS bid_price, 
+				b.user_buyer_id,
+				b.user_seller_id
+		FROM 	auction_goods_tb ag 
+				LEFT JOIN bid_tb b
+				ON ag.auction_goods_code = b.auction_goods_code
+		WHERE 	ag.auction_goods_state='판매중' 
+				AND ag.auction_goods_end_date = CURDATE()
+				AND b.bid_code is not null
+		GROUP BY ag.auction_goods_code	
+	</select>
+</mapper>
+
