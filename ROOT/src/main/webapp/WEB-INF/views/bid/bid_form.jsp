@@ -11,7 +11,7 @@
 		<!-- 메인화면  -->
 		<div class="col-sm-12 text-left">
 			<h1>입찰창</h1>
-			<tr>보유캐쉬:<fmt:formatNumber value="${totalcash}"
+			<tr id = "totalcash">보유캐쉬:<fmt:formatNumber  value="${totalcash}"
 									groupingUsed="true" />캐쉬</tr>
 			<div class="table-responsive">
 				<table class="table table-hover">
@@ -49,8 +49,8 @@
 												<input type="hidden" name="auctionGoodsCode" value="${auctionGoodsCode}">
 												<input type="hidden" name="userId" value="${userId}">
 												<input type="hidden" name="auctionGoodsName" value="${auctionGoodsName}">
-												<input type="hidden" name="auctionGoodsBidUnit" value="${auctionGoodsBidUnit} ">
-												<input type="hidden" name="auctionGoodsStartPrice" value="${auctionGoodsStartPrice}">								
+												<input type="hidden" id="auctionGoodsBidUnit" name="auctionGoodsBidUnit" value="${auctionGoodsBidUnit} ">
+												<input type="hidden" id="auctionGoodsStartPrice" name="auctionGoodsStartPrice" value="${auctionGoodsStartPrice}">								
 											<!--   <button name = "addbutton" type="submit">입찰</button> -->
 												 <input class="btn btn-default" id="addButton" type="button" value="입찰"/>
 										</div>
@@ -80,10 +80,11 @@
 	</div></div>
 </body>
 <script>
-		var totalcash = parseInt(${totalcash});
-		var auctionGoodsBidUnit = parseInt(${auctionGoodsBidUnit});
-	    var highBidPrice  = parseInt(${highBidPrice});
-    	var auctionGoodsStartPrice = parseInt(${auctionGoodsStartPrice});
+
+		var totalcash = parseInt($('#totalcash').val());
+		var auctionGoodsBidUnit = parseInt($('#auctionGoodsBidUnit').val());
+	    var highBidPrice  = parseInt($('#highBidPrice').val());
+    	var auctionGoodsStartPrice = parseInt($('#auctionGoodsStartPrice').val());
  
     	console.log(auctionGoodsStartPrice);
     	console.log(highBidPrice);
@@ -91,7 +92,7 @@
   
          $('#addButton').click(function(){
         	var bidPrice = parseInt($('#bidPrice').val());
-        	if(totalcash < 1000){
+        	if(totalcash < 999){
         		event.preventDefault();
         		alert('캐쉬가 부족합니다 충전 후 다시 입찰해주세요.');
         		

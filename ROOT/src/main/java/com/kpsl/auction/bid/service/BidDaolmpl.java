@@ -50,5 +50,18 @@ public class BidDaolmpl implements BidDao {
 	public BidVo selectBidHighBidPrice(String auctionGoodsCode) {
 		log.info("BidDao bidselecthighbiduserprice 확인");
 		return sessionTemplate.selectOne(NS + "highbiduserprice", auctionGoodsCode);
+	}	
+	//중복확인
+	@Override
+	public BidVo selectOverlapUser(BidVo bidvo) {
+		log.info("BidDao selectOverlapUser 확인");
+		return sessionTemplate.selectOne(NS + "selectbiduercount", bidvo);
 	}
+	//재입찰시 입찰금액 수정
+	@Override
+	public int updateBidPrice(BidVo bidvo) {
+		log.info("BidDao updateBidPrice 확인");
+		return sessionTemplate.selectOne(NS + "updateRebid", bidvo);
+	}
+
 }

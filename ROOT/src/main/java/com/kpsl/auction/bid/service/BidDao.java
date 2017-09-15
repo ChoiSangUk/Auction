@@ -17,7 +17,10 @@ public interface BidDao{
 	List<BidVo> selectUserGoodsBidsList(BidVo bidvo);
 	/**입찰 버튼 클릭 시 insert  **/
 	int instertBidPrice(BidVo bidvo);
-   /**최고입찰금액**/
+    /**최고입찰금액**/
 	public BidVo selectBidHighBidPrice(String auctionGoodsCode);
-
+	/**중복확인**/
+	BidVo selectOverlapUser(BidVo bidvo); 
+	/**재입찰시 입찰금액 수정**/
+	int updateBidPrice(BidVo bidvo);
 }

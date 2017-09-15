@@ -45,5 +45,17 @@ public class BidServicelmpl implements BidService {
 		log.info("BidServicelmpl의 bidSelectHighBidPrice 메서드");
 		return bidDao.selectBidHighBidPrice(auctionGoodsCode);
 	}
+	//중복확인
+	@Override
+	public BidVo getOverlapUser(BidVo bidvo) {
+		log.info("BidServicelmpl의 getOverlapUser");
+		return bidDao.selectOverlapUser(bidvo);
+	}
+	//입찰금액 수정
+	@Override
+	public int modifyBidPrcie(BidVo bidvo) {
+		log.info("BidServicelmpl의 modifyBidPrcie");
+		return bidDao.updateBidPrice(bidvo);
+	}
 
 }

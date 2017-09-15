@@ -33,10 +33,11 @@ public class BidDepositDaolmpl implements BidDepositDao {
 		log.info("BidDepostitDao selectTotalCash 확인");
 		return sessionTemplate.selectOne(NS+"selecttotalcash", userId);
 	}
+/*	//재입찰 시 보증금 유지를 위한 서비스 
 	@Override
 	public BidDepositVo selectselectoverlapuserid(String auctionGoodsCode) {
 		// TODO Auto-generated method stub
 		return sessionTemplate.selectOne(NS+"selectoverlapuserid", auctionGoodsCode);
-	}
+	}*/
 
 }

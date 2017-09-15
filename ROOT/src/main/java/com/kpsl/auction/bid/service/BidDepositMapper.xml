@@ -70,9 +70,9 @@
 	FROM user_detail_tb
 	WHERE user_id = #{userId}
 	</select>
-	
+<!-- 	
 	<select id="selectoverlapuserid" parameterType ="String" resultMap = "BidDepositMapper" >
 	SELECT   user_buyer_id
 	FROM bid_deposit_tb WHERE auction_goods_code  = #{auctionGoodsCode}
-	</select>
+	</select> -->
   </mapper>

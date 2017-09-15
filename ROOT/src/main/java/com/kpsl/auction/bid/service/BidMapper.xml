@@ -14,33 +14,36 @@
 	</resultMap>
 
 	<!--입찰자 리스트 쿼리문(각 물품마다의 리스트) -->
-	<select id="selectBidList" parameterType="com.kpsl.auction.bid.vo.BidVo" resultMap="Bid">
+	<select id="selectBidList" parameterType="com.kpsl.auction.bid.vo.BidVo"
+		resultMap="Bid">
 		SELECT bid_code
 		,user_buyer_id
 		,auction_goods_code
 		,user_seller_id
 		,bid_price
 		,bid_date
-		FROM bid_tb	  
+		FROM bid_tb
 		<where>
-		<!--물품에 입찰된 금액 리스트(내림차순)  -->
+			<!--물품에 입찰된 금액 리스트(내림차순) -->
 			<if test="auctionGoodsCode != null">
-				auction_goods_code=#{auctionGoodsCode} ORDER BY bid_price DESC 
+				auction_goods_code=#{auctionGoodsCode} ORDER BY bid_price
+				DESC
 			</if>
-			<!--개인 입찰  리스트  -->
-			<if test ="userBuyerId != null">
+			<!--개인 입찰 리스트 -->
+			<if test="userBuyerId != null">
 				user_buyer_id = #{userBuyerId}
 			</if>
 		</where>
 	</select>
-	<!--입찰할 때 가장 높은 가격의 입찰금액  -->
-	<select id="highbiduserprice" parameterType="String" resultMap ="Bid">
-		SELECT MAX(bid_price) AS bid_price 
-		FROM bid_tb 
+	<!--입찰할 때 가장 높은 가격의 입찰금액 -->
+	<select id="highbiduserprice" parameterType="String" resultMap="Bid">
+		SELECT MAX(bid_price) AS bid_price
+		FROM bid_tb
 		WHERE auction_goods_code = #{auctionGoodsCode};
 	</select>
 	<!--입찰쿼리문 -->
-	<insert id="insertBidPrice" parameterType="com.kpsl.auction.bid.vo.BidVo" useGeneratedKeys="true" keyProperty="bidCode">
+	<insert id="insertBidPrice" parameterType="com.kpsl.auction.bid.vo.BidVo"
+		useGeneratedKeys="true" keyProperty="bidCode">
 		<selectKey keyProperty="bidCode" resultType="string" order="BEFORE">
 			SELECT CONCAT("bid",MAX(CAST(substring(bid_code,4)+1 AS
 			DECIMAL)))
@@ -50,7 +53,8 @@
 		(bid_code
 		, user_buyer_id
 		, auction_goods_code
-		, user_seller_id
+		,
+		user_seller_id
 		, bid_price
 		, bid_date)
 		VALUES
@@ -61,4 +65,17 @@
 		, #{bidPrice}
 		, NOW());
 	</insert>
+	<!--재입찰시 중복아이디 체크(1 or null)-->
+	<select id="selectbiduercount" parameterType = "com.kpsl.auction.bid.vo.BidVo" resultMap="Bid">
+		SELECT   COUNT(user_buyer_id = #{userBuyerId}) AS user_buyer_id
+		FROM bid_tb WHERE auction_goods_code  = #{auctionGoodsCode}
+	</select>
+	<!--재입찰시에 수정될 입찰금액 -->
+	<update id="updateRebid" parameterType = "com.kpsl.auction.bid.vo.BidVo">
+		UPDATE bid_tb
+		SET
+		bid_price = 60000,
+		bid_date= NOW()
+		WHERE user_buyer_id = 'id002'
+	</update>
 </mapper>

@@ -28,10 +28,11 @@ public class BidDepositServicelmpl implements BidDepositService {
 		log.info("BidDepostiServicelmpl의 getTotalCash 메서드");
 		return bidDepositDao.selectTotalCash(userId);
 	}
+/*	//재입찰 시 보증금 유지를 위한 서비스 
 	@Override
 	public BidDepositVo setoverlapuserid(String auctionGoodsCode) {
 		log.info("BidDepostiServicelmpl의 setoverlapuserid 메서드 ");
 		return bidDepositDao.selectselectoverlapuserid(auctionGoodsCode);
 	}
-	
+	*/
 }
