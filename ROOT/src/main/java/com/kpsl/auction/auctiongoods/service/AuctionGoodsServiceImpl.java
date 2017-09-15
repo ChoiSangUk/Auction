@@ -158,9 +158,9 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 
 	//물품 정렬
 	@Override
-	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsOrderBy(String sortSeperator) {
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsOrderBy(AuctionGoodsVo auctionGoodsVo) {
 		// TODO Auto-generated method stub
-		return auctionGoodsDao.selectAllAuctionGoodsOrderBy(sortSeperator);
+		return auctionGoodsDao.selectAllAuctionGoodsOrderBy(auctionGoodsVo);
 	}
 	
 }

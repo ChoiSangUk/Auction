@@ -108,9 +108,10 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	
 	//정렬된 물품 가져오기
 	@Override
-	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsOrderBy(String sortSeperator) {
+	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsOrderBy(AuctionGoodsVo auctionGoodsVo) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsOrderBy", sortSeperator);
+		
+		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsOrderBy", auctionGoodsVo.getSortSeperator());
 	}
 	
 	

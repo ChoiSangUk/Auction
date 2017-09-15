@@ -36,5 +36,5 @@ public interface AuctionGoodsService {
 	int addSalesLog(SalesLogVo salesLogVo);
 	
 	//정렬된 물품 
-	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsOrderBy(String sortSeperator);
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsOrderBy(AuctionGoodsVo auctionGoodsVo);
 }

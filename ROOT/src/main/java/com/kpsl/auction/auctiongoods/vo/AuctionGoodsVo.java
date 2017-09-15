@@ -22,6 +22,7 @@ public class AuctionGoodsVo {
 	private int auctionGoodsHits; 			//조회 수
 	private int auctionGoodsBidHits;		//입찰 수 
 	private int auctionGoodsDepositPrice;   //판매 보증금
+	private String sortSeperator; //구분자
 	public String getAuctionGoodsCode() {
 		return auctionGoodsCode;
 	}
@@ -170,6 +171,20 @@ public class AuctionGoodsVo {
 				+ auctionGoodsInstantBuyPrice + ", auctionGoodsState=" + auctionGoodsState + ", auctionGoodsHits="
 				+ auctionGoodsHits + ", auctionGoodsBidHits=" + auctionGoodsBidHits + ", auctionGoodsDepositPrice="
 				+ auctionGoodsDepositPrice + "]";
+	}
+
+	/**
+	 * @return the sortSeperator
+	 */
+	public String getSortSeperator() {
+		return sortSeperator;
+	}
+
+	/**
+	 * @param sortSeperator the sortSeperator to set
+	 */
+	public void setSortSeperator(String sortSeperator) {
+		this.sortSeperator = sortSeperator;
 	}
 	
 }

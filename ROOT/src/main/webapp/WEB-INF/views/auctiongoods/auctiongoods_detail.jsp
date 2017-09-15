@@ -182,15 +182,19 @@ var timer = function(){
 		var auctionGoodsCode = "${auctionGoods.auctionGoodsCode}";
 		
 		if(sellerId == userId){
-			
+			auctionGoodsState="${auctionGoods.auctionGoodsState}";
+			console.log(auctionGoodsState)
 			$('#bidButton').hide();
-			//post 방식으로 변경해야 함
-			$('.myButton').append( '<a class="btn btn-default btn-lg"' +  
-					'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsupdate?auctionGoodsCode='+auctionGoodsCode+' ">수정하기 </a>')
-			//post 방식으로 변경해야 함
-			$('.myButton').append( '<a class="btn btn-default btn-lg"' +  
-					'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsdelete?auctionGoodsCode='+auctionGoodsCode+' ">삭제하기 </a>')
-						
+			
+			//
+			if(auctionGoodsState=="등록대기" || result>0){
+				//post 방식으로 변경해야 함
+				$('.myButton').append( '<a class="btn btn-default btn-lg"' +  
+						'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsupdate?auctionGoodsCode='+auctionGoodsCode+' ">수정하기 </a>')
+				//post 방식으로 변경해야 함
+				$('.myButton').append( '<a class="btn btn-default btn-lg"' +  
+						'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsdelete?auctionGoodsCode='+auctionGoodsCode+' ">삭제하기 </a>')
+			}
 		}
 		
 		//타이머 실행

@@ -41,6 +41,7 @@ public class AuctionGoodsImageController {
 			
 			try{
 				if(file_data != null && file_data.getOriginalFilename() != null){
+					
 					String original_name = file_data.getOriginalFilename();
 					String filename_extension = original_name.substring(original_name.lastIndexOf(".")+1);
 					filename_extension = filename_extension.toLowerCase();
@@ -82,52 +83,76 @@ public class AuctionGoodsImageController {
 			System.out.println("멀티 파일");
 			try{
 				String sFileInfo=""; //파일 정보
+				//파일명을 받는다 - 일반 원본파일명
 				String filename = request.getHeader("file-name");
+				//파일 확장자
 				String filename_extension = filename.substring(filename.lastIndexOf(".")+1);
+				//확장자를소문자로 변경
 				filename_extension = filename_extension.toLowerCase();
-				String defaultPath = request.getSession().getServletContext().getRealPath("/");
-				String path = defaultPath + "resources" + File.separator + "upload" + File.separator + "image" + File.separator;
 				
-				File file = new File(path);
-				if(!file.exists()){
-					file.mkdirs();
+				//이미지 검증 배열변수 
+				String[] allow_file = {"jpg","png","bmp","gif"};
+
+				//돌리면서 확장자가 이미지인지
+				int cnt = 0; 
+				for(int i=0; i<allow_file.length; i++) { 
+						if(filename_extension.equals(allow_file[i])){
+							cnt++; 
+							} 
+					} 
+				//이미지가 아님 
+				if(cnt == 0) { 
+					System.out.println("NOTALLOW_"+filename); 
+				} else {
+					//기본 경로
+					String defaultPath = request.getSession().getServletContext().getRealPath("/");
+					//상세 경로
+					String path = defaultPath + "resources" + File.separator + "upload" + File.separator + "image" + File.separator;
+					
+					// 배포할때에
+					//path = getSaveLocation(request);
+					File file = new File(path);
+					if(!file.exists()){
+						file.mkdirs();
+					}
+					
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+					String today = formatter.format(new java.util.Date());
+					
+					String modify_name = today + "-" + UUID.randomUUID().toString().substring(20)+"."+filename_extension;
+					
+					//서버에 파일 쓰기
+					InputStream is = request.getInputStream();
+					OutputStream os = new FileOutputStream(path + modify_name);
+					int numRead;
+					byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
+					while((numRead = is.read(b,0,b.length))!= -1){
+						os.write(b,0,numRead);
+					}
+					if(is != null){
+						is.close();
+					}
+					os.flush();
+					os.close();
+					
+					sFileInfo += "&bNewLine=true";
+					sFileInfo += "&sFileName="+filename;
+					sFileInfo += "&sFileURL="+request.getContextPath()+"/resources/upload/image/"+modify_name;
+					PrintWriter print = response.getWriter();
+					print.print(sFileInfo);
+					print.flush();
+					print.close();
+					
+					System.out.println("upload 정보");
+					System.out.println("defaultpath:"+defaultPath);
+					System.out.println("path:"+ path);
+					System.out.println("original_name"+filename);
+					System.out.println("modify_name"+modify_name);
+					System.out.println("sFileInfo:"+ sFileInfo);
 				}
-				
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-				String today = formatter.format(new java.util.Date());
-				
-				String modify_name = today + "-" + UUID.randomUUID().toString().substring(20)+"."+filename_extension;
-				
-				//서버에 파일 쓰기
-				InputStream is = request.getInputStream();
-				OutputStream os = new FileOutputStream(path + modify_name);
-				int numRead;
-				byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
-				while((numRead = is.read(b,0,b.length))!= -1){
-					os.write(b,0,numRead);
-				}
-				if(is != null){
-					is.close();
-				}
-				os.flush();
-				os.close();
-				
-				sFileInfo += "&bNewLine=true";
-				sFileInfo += "&sFileName="+filename;
-				sFileInfo += "&sFileURL="+request.getContextPath()+"/resources/upload/image/"+modify_name;
-				PrintWriter print = response.getWriter();
-				print.print(sFileInfo);
-				print.flush();
-				print.close();
-				
-				System.out.println("upload 정보");
-				System.out.println("defaultpath:"+defaultPath);
-				System.out.println("path:"+ path);
-				System.out.println("original_name"+filename);
-				System.out.println("modify_name"+modify_name);
-				System.out.println("sFileInfo:"+ sFileInfo);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}
+	}
+			
 }
