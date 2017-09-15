@@ -153,7 +153,7 @@
 		agi.auction_goods_image_num=0;
 	</select>
 	
-	<select id="selectAllAuctionGoodsOrderBy" parameterType="String" resultMap="AuctionGoodsAndImage">
+	<select id="selectAllAuctionGoodsOrderBy" parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo" resultMap="AuctionGoodsAndImage">
 		SELECT
 		ag.*,
 		agi.auction_goods_image_path
@@ -164,7 +164,7 @@
 		AND
 		agi.auction_goods_image_num=0
 		WHERE ag.auction_goods_state='판매중'
-		ORDER BY #{sortSeperator} DESC
+		ORDER BY ${sortSeperator} DESC
 		 
 	</select>
 	
