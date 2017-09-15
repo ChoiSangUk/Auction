@@ -23,7 +23,7 @@
 		<id property="auctionGoodsInstantBuyState" column="auction_goods_instant_buy_state" />
 		<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price" />
 		<id property="auctionGoodsState" column="auction_goods_state" />
-		<id property="auctionGoodsBidHits" column="auction_goods_bit_hits" />
+		<id property="auctionGoodsBidHits" column="auction_goods_bid_hits" />
 		<id property="auctionGoodsHits" column="auction_goods_hits" />
 		<id property="auctionGoodsDepositPrice" column="auction_goods_deposit_price" />
 	</resultMap>
@@ -51,7 +51,7 @@
 			<id property="auctionGoodsInstantBuyState" column="auction_goods_instant_buy_state" />
 			<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price" />
 			<id property="auctionGoodsState" column="auction_goods_state" />
-			<id property="auctionGoodsBidHits" column="auction_goods_bit_hits" />
+			<id property="auctionGoodsBidHits" column="auction_goods_bid_hits" />
 			<id property="auctionGoodsHits" column="auction_goods_hits" />
 			<id property="auctionGoodsDepositPrice" column="auction_goods_deposit_price" />
 		</association>

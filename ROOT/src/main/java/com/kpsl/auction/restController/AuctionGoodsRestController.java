@@ -2,6 +2,9 @@ package com.kpsl.auction.restController;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -42,8 +45,14 @@ public class AuctionGoodsRestController {
 	 }
 	
 	//모든 물품을 뿌려주기 위한 처리
-	@RequestMapping(value = "/auctiongoods/auctiongoodslist_getallgoods", produces = "application/json; charset=UTF-8" )
-	public String auctionGoodsList_getAllGoods(){
+	@RequestMapping(value = "/auctiongoods/auctiongoodslist_getallgoods", produces = "application/json; charset=UTF-8", method = RequestMethod.POST )
+	public String auctionGoodsList_getAllGoods(HttpServletRequest request,HttpServletResponse response ){
+		System.out.println("/auctiongoods/auctiongoodslist_getallgoods");
+		String largeCategoryCode = request.getParameter("largeCategoryCode");
+		System.out.println(largeCategoryCode);
+		//System.out.println(middleCategoryCode);
+		//System.out.println(smallCategoryCode);
+		
 		List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods(); 
 		System.out.println("auctionGoodsList는 있나? "+auctionGoodsList);
 		

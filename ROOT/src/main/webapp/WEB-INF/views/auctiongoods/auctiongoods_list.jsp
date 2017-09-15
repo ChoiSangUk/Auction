@@ -7,17 +7,16 @@
 	<div class="col-md-12 container-fluid">
 		<!-- ---------------------------대분류 부분------------------------ -->
 		<div class="col-md-4 visible-lg visible-sm ">
+			
 			<h3 class="visible-lg visible-md visible-sm">대분류 전체</h3>
 			<br>
 			<div class="list-group largeCategoryList" style="overflow: auto; height: 300px;">
 				<a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist" class="list-group-item list-group-item-info">전체보기</a>
 				<c:forEach var="largeCategory" items="${largeCategory}">
-					<a class="list-group-item"
-						href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist_middle?largeCategoryCode=${largeCategory.largeCategoryCode}">
+					<a class="list-group-item" href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist_middle?largeCategoryCode=${largeCategory.largeCategoryCode}">
 						<span class="largeCategoryCode" style="display:none;">${largeCategory.largeCategoryCode}</span>
 						${largeCategory.largeCategoryName} <!-- 대분류 코드 값을 넣어 전달하여 중분류 선택  -->
 					</a>
-
 				</c:forEach>
 			</div>
 		</div>
@@ -30,9 +29,9 @@
 			<div class="list-group" style="overflow: auto; height: 300px;">
 				<a class="list-group-item list-group-item-info" href="#">전체보기</a>
 				<c:forEach var="middleCategory" items="${middleCategoryList}">
-					<a class="list-group-item"
-						href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist_small?largeCategoryCode=${middleCategory.largeCategoryCode}&middleCategoryCode=${middleCategory.middleCategoryCode}">
-						${middleCategory.middleCategoryName }
+					<a class="list-group-item" href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist_small?largeCategoryCode=${middleCategory.largeCategoryCode}&middleCategoryCode=${middleCategory.middleCategoryCode}">
+						${middleCategory.middleCategoryName}
+						<span class="middleCategoryCode" style="display:none;">${middleCategory.middleCategoryCode}</span>
 						</a>
 				</c:forEach>
 			</div>
@@ -47,7 +46,8 @@
 			<div class="list-group" style="overflow: auto; height: 300px;">
 				<a class="list-group-item list-group-item-info" href="#">전체보기</a>
 				<c:forEach var="smallCategory" items="${smallCategoryList}">
-					<a class="list-group-item" href="#">${smallCategory.smallCategoryName }</a>
+					<a class="list-group-item" href="#">${smallCategory.smallCategoryName}
+					<span class="middleCategoryCode" style="display:none;">${smallCategory.smallCategoryCode}</span></a>
 				</c:forEach>
 			</div>
 		</div>
@@ -96,22 +96,37 @@
 	</div>
 </div>
 <script>
+
 		
 	$(document).ready(function(){
+		//카테고리별 물품 뽑기위한 변수
+		var largeCategoryCode = "${largeCategoryCode}";
+		var middleCategoryCode = "${middleCategoryCode}";
+		var smallCategoryCode = "${smallCategoryCode}";
+		console.log('라지 카테고리 :'+largeCategoryCode)
+		console.log('미들 카테고리 :'+middleCategoryCode)
+		console.log('스몰 카테고리 :'+smallCategoryCode)
 		
+		var categoryCode = {
+			"largeCategoryCode" : largeCategoryCode,
+			"middleCategoryCode" : middleCategoryCode,
+			"smallCategoryCode" : smallCategoryCode
+		}
+		console.log(JSON.stringify(categoryCode))
 		
 		//대분류 코드를 뽑아서 
-		var largeCategoryList =  $('.largeCategoryCode') //선택자를 변수에 담고
+		/* var largeCategoryList =  $('.largeCategoryCode') //선택자를 변수에 담고
 		var largeCategoryCode = new Array(); 			//선택자의 내용을 담을 변수 선언
 		largeCategoryList.each(function(index){
 		 	largeCategoryCode[index] = $(this).text();	//선택자의 개수만큼 각각의 largeCategoryCode[index]에 해당 선택자의 text 입력
-		})
+		}) */
 		
 		
 		//전체 물품을 뿌려주기 위한 ajax
 		$.ajax({
 			url : '${pageContext.request.contextPath}/auctiongoods/auctiongoodslist_getallgoods',
-			type : 'get',
+			type : 'post',
+			data : JSON.stringify(categoryCode),
 			dataType : 'json',
 			error : function(xhr, status, e) {
 				alert('auction goodsList ajax Error');
@@ -124,7 +139,6 @@
 				
 				for(var i=0; i<obj.length; i++){
 					var auctionGoodsState=obj[i].auctionGoodsVo.auctionGoodsState;
-				
 					var auctionGoodsCode = obj[i].auctionGoodsVo.auctionGoodsCode; //물품코드
 					var userId =obj[i].auctionGoodsVo.userId;							//판매자아이디
 					var auctionGoodsName=obj[i].auctionGoodsVo.auctionGoodsName; 		//물품명
@@ -146,7 +160,7 @@
 					var auctionGoodsHits=obj[i].auctionGoodsVo.auctionGoodsHits;
 					var auctionGoodsBidHits=obj[i].auctionGoodsVo.auctionGoodsBidHits;
 					var auctionGoodsImagePath=obj[i].auctionGoodsImageVo.auctionGoodsImagePath;
-					
+					console.log('입찰수'+auctionGoodsBidHits)
 					var nowPrice=null;
 					if(nowPrice == null){
 						nowPrice=auctionGoodsStartPrice

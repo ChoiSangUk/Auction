@@ -101,7 +101,8 @@ public class AuctionGoodsController {
 
 		List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
 		List<MiddleCategoryVo> middleCategoryList = goodsCategoryService.getMiddleCategoryList(largeCategoryCode);
-
+		
+		model.addAttribute("largeCategoryCode", largeCategoryCode);
 		model.addAttribute("largeCategory", largeCategory);
 		model.addAttribute("middleCategoryList", middleCategoryList);
 
@@ -118,7 +119,9 @@ public class AuctionGoodsController {
 		List<MiddleCategoryVo> middleCategoryList = goodsCategoryService.getMiddleCategoryList(largeCategoryCode);
 		List<SmallCategoryVo> smallCategoryList = goodsCategoryService.getSmallCategoryList(largeCategoryCode,
 				middleCategoryCode);
-
+		
+		model.addAttribute("largeCategoryCode", largeCategoryCode);
+		model.addAttribute("middleCategoryCode", middleCategoryCode);
 		model.addAttribute("largeCategory", largeCategory);
 		model.addAttribute("middleCategoryList", middleCategoryList);
 		model.addAttribute("smallCategoryList", smallCategoryList);

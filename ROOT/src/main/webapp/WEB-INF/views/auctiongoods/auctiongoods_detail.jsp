@@ -159,7 +159,8 @@ var timer = function(){
 		if(auctionGoodsInstantBuyPrice == 0){
 			$('#instantBuy').text("즉시구매 불가능");
 		}else{
-			$('#instantBuy').text(auctionGoodsInstantBuyPrice + '<a class="btn btn-primary btn-lg" id="bidButton" href="#">즉시구매 </a>');
+			$('#instantBuy').text(auctionGoodsInstantBuyPrice);
+			$('#instantBuy').append('<a class="btn btn-primary" id="bidButton" href="#"> 즉시구매</a>');
 		}
 		
 		//경매 방식
