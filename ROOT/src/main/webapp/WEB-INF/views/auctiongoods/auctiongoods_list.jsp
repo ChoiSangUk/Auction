@@ -137,7 +137,8 @@ var categoryCode = {
 			type : 'get',
 			data : categoryCode,
 			dataType : 'json',
-			error : function(xhr, status, e) {
+			error : function(request,status,error) {
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
 				alert('auction goodsList ajax Error');
 			},
 			success : function(getData){
