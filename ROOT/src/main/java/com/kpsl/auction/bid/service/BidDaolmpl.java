@@ -59,7 +59,7 @@ public class BidDaolmpl implements BidDao {
 	}
 	//재입찰시 입찰금액 수정
 	@Override
-	public int updateBidPrice(BidVo bidvo) {
+	public BidVo updateBidPrice(BidVo bidvo) {
 		log.info("BidDao updateBidPrice 확인");
 		return sessionTemplate.selectOne(NS + "updateRebid", bidvo);
 	}

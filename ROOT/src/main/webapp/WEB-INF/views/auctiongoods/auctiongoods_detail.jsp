@@ -88,7 +88,12 @@
 				</tbody>
 			</table>
 			<div style="text-align:center;" class="myButton">
-				<a class="btn btn-primary btn-lg" id="bidButton" href="#">입찰하기 </a>
+				<a class="btn btn-primary btn-lg" id="bidButton" href="${pageContext.request.contextPath}
+								/bid/bidform?auctionGoodsName=${auctionGoods.auctionGoodsName}
+								&userId=${auctionGoods.userId}
+								&auctionGoodsBidUnit=${auctionGoods.auctionGoodsBidUnit}
+								&auctionGoodsStartPrice=${auctionGoods.auctionGoodsStartPrice}
+								&auctionGoodsCode=${auctionGoods.auctionGoodsCode}">입찰하기 </a>
 				<a class="btn btn-default btn-lg" href="#">문의하기 </a>
 			</div>
 			<div id="auctionGoodsEnd" style="display:none; font-size:300%; text-align:center; color:red">판매 종료</div>

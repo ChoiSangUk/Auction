@@ -53,7 +53,7 @@ public class BidServicelmpl implements BidService {
 	}
 	//입찰금액 수정
 	@Override
-	public int modifyBidPrcie(BidVo bidvo) {
+	public BidVo modifyBidPrcie(BidVo bidvo) {
 		log.info("BidServicelmpl의 modifyBidPrcie");
 		return bidDao.updateBidPrice(bidvo);
 	}

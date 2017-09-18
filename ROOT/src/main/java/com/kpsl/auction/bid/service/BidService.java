@@ -24,7 +24,7 @@ public interface BidService {
 	/**중복확인**/
 	BidVo getOverlapUser(BidVo bidvo);
 	/**재입찰시 입찰금액 수정**/
-	int modifyBidPrcie(BidVo bidvo);
+	BidVo modifyBidPrcie(BidVo bidvo);
 	
 }
 
