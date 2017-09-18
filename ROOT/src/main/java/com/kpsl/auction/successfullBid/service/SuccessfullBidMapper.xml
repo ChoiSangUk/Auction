@@ -14,6 +14,31 @@
 		<id property="userSellerId" column="user_seller_id"></id>
 	</resultMap>
 	
+	<resultMap type="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo"
+		id="AuctionGoods">
+		<id property="auctionGoodsCode" column="auction_goods_code" />
+		<id property="userId" column="user_id" />
+		<id property="smallCategoryCode" column="small_category_code" />
+		<id property="middleCategoryCode" column="middle_category_code" />
+		<id property="largeCategoryCode" column="large_category_code" />
+		<id property="auctionGoodsName" column="auction_goods_name" />
+		<id property="auctionGoodsSys" column="auction_goods_sys" />
+		<id property="auctionGoodsBidSys" column="auction_goods_bid_sys" />
+		<id property="auctionGoodsContents" column="auction_goods_contents" />
+		<id property="auctionGoodsRegistDate" column="auction_goods_regist_date" />
+		<id property="auctionGoodsTerm" column="auction_goods_term" />
+		<id property="auctionGoodsStartDate" column="auction_goods_start_date" />
+		<id property="auctionGoodsEndDate" column="auction_goods_end_date" />
+		<id property="auctionGoodsStartPrice" column="auction_goods_start_price" />
+		<id property="auctionGoodsBidUnit" column="auction_goods_bid_unit" />
+		<id property="auctionGoodsInstantBuyState" column="auction_goods_instant_buy_state" />
+		<id property="auctionGoodsInstantBuyPrice" column="auction_goods_instant_buy_price" />
+		<id property="auctionGoodsState" column="auction_goods_state" />
+		<id property="auctionGoodsBidHits" column="auction_goods_bid_hits" />
+		<id property="auctionGoodsHits" column="auction_goods_hits" />
+		<id property="auctionGoodsDepositPrice" column="auction_goods_deposit_price" />
+	</resultMap>
+	
 	<resultMap type="com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo" id="SuccessBidAndBidAndAuctionGoods">
 		<association property="successBidVo" javaType="com.kpsl.auction.successfullBid.vo.SuccessBidVo">
 			<id property="successfulBidCode" column="successful_bid_code"></id>
@@ -74,5 +99,38 @@
 				AND b.bid_code is not null
 		GROUP BY ag.auction_goods_code	
 	</select>
+	
+	<insert id="insertSuccessfulBid" parameterType="com.kpsl.auction.successfullBid.vo.SuccessBidVo">
+		<selectKey keyProperty="successfulBidCode" resultType="string"
+				order="BEFORE">
+			SELECT CONCAT("sb",MAX(CAST(substring(successful_bid_code,3)+1
+			AS DECIMAL)))
+			FROM successful_bid_tb
+		</selectKey>
+		INSERT INTO successful_bid_tb
+				(successful_bid_code
+				, bid_code
+				, user_buyer_id
+				, successful_bid_price
+				, successful_bid_date
+				, auction_goods_code
+				, user_seller_id)
+				VALUES 
+				(#{successfulBidCode}, 
+				#{bidCode}, 
+				#{userBuyerId}, 
+				#{successfulBidPrice}, 
+				NOW(), 
+				#{auctionGoodsCode}, 
+				#{userSellerId})
+	</insert>
+	
+	<update id="updateAuctionGoodsState" parameterType="String">
+		UPDATE  auction_goods_tb
+		SET
+				auction_goods_state='낙찰'
+		WHERE 	auction_goods_code=#{auctionGoodsCode}
+	
+	</update>
 </mapper>
 

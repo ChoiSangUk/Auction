@@ -4,7 +4,7 @@ public class SuccessBidVo {
 	private String successfulBidCode;
 	private String bidCode;
 	private String userBuyerId;
-	private String successfulBidPrice;
+	private int successfulBidPrice;
 	private String successfulBidDate;
 	private String auctionGoodsCode;
 	private String userSellerId;
@@ -32,10 +32,10 @@ public class SuccessBidVo {
 	public void setUserBuyerId(String userBuyerId) {
 		this.userBuyerId = userBuyerId;
 	}
-	public String getSuccessfulBidPrice() {
+	public int getSuccessfulBidPrice() {
 		return successfulBidPrice;
 	}
-	public void setSuccessfulBidPrice(String successfulBidPrice) {
+	public void setSuccessfulBidPrice(int successfulBidPrice) {
 		this.successfulBidPrice = successfulBidPrice;
 	}
 	

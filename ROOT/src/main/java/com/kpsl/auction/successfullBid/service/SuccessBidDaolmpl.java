@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo;
+import com.kpsl.auction.successfullBid.vo.SuccessBidVo;
 
 @Repository
 public class SuccessBidDaolmpl implements SuccessBidDao {
@@ -24,6 +25,22 @@ public class SuccessBidDaolmpl implements SuccessBidDao {
 		log.info("selectMaxBid");
 		
 		return sqlSessionTemplate.selectList(SuccessfullBidMapperNS+"selectMaxBid");
+	}
+
+	@Override
+	public int insertSuccessfulBid(SuccessBidVo successBidVo) {
+		
+		log.info("insertSuccessfulBid");
+		
+		return sqlSessionTemplate.insert(SuccessfullBidMapperNS+"insertSuccessfulBid",successBidVo);
+	}
+
+	@Override
+	public int updateAuctionGoodsState(String auctionGoodsCode) {
+		
+		log.info("updateAuctionGoodsState 호출 확인");
+		
+		return sqlSessionTemplate.update(SuccessfullBidMapperNS+"updateAuctionGoodsState", auctionGoodsCode);
 	}
 
 }
