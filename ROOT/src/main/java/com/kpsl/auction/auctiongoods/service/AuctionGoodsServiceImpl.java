@@ -163,21 +163,24 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 		return auctionGoodsDao.selectAllAuctionGoodsOrderBy(auctionGoodsVo);
 	}
 
-	@Override
-	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsSort(Map map) {
-		System.out.println("맵은 뭔가"+map.get("sort"));
-		if(map.get("sort").equals("3") || map.get("sort").equals("5")){
-			return auctionGoodsDao.selectAllAuctionGoodsSortDesc(map);
-		}else{
-			return auctionGoodsDao.selectAllAuctionGoodsSortAsc(map);
-		}
-	}
 	
 	//내 등록 물품
 	@Override
 	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsByUserId(String userId) {
 		System.out.println("serviceimpl까지");
 		return auctionGoodsDao.selectAllAuctionGoodsByUserId(userId);
+	}
+
+	@Override
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsSortDesc(Map map) {
+		System.out.println("맵은 뭔가"+map.get("sort"));
+		
+			return auctionGoodsDao.selectAllAuctionGoodsSortDesc(map);
+	}
+	@Override
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsSortAsc(Map map) {
+		// TODO Auto-generated method stub
+		  return auctionGoodsDao.selectAllAuctionGoodsSortAsc(map);
 	}
 	
 }

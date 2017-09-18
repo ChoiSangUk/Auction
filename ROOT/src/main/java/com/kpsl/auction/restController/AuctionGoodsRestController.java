@@ -93,42 +93,47 @@ public class AuctionGoodsRestController {
 			System.out.println(middleCategoryCode);
 			System.out.println(smallCategoryCode);
 			System.out.println(sort);
+			String sortName=null;
 			if(sort.equals("1")){
-				sort="auction_goods_end_date";
+				 sortName="auction_goods_end_date";
 			}else if(sort.equals("2")){
-				sort="auction_goods_start_date";
+				 sortName="auction_goods_start_date";
 			}else if(sort.equals("3")){
-				sort="auction_goods_start_price";
+				 sortName="auction_goods_start_price";
 			}else if(sort.equals("4")){
-				sort="auction_goods_start_date";
+				 sortName="auction_goods_start_price";
 			}else if(sort.equals("5")){
-				sort="auction_goods_hits";
+				 sortName="auction_goods_hits";
 			}else if(sort.equals("6")){
-				sort="auction_goods_hits";
+				 sortName="auction_goods_hits";
 			}
 			System.out.println(sort);
 			Map map = new HashMap<String, String>();
 			if(largeCategoryCode.equals("") && middleCategoryCode.equals("") && smallCategoryCode.equals("")){
-				map.put("sort", sort);
+				map.put("sort", sortName);
 			}else if(!largeCategoryCode.equals("") && middleCategoryCode.equals("") && smallCategoryCode.equals("")){
 				map.put("largeCategoryCode", largeCategoryCode);
-				map.put("sort", sort);
+				map.put("sort", sortName);
 				System.out.println(" 큰거 맵에 추가 되나");
 			}else if(!largeCategoryCode.equals("") && !middleCategoryCode.equals("") && smallCategoryCode.equals("")){
 				map.put("largeCategoryCode", largeCategoryCode);
 				map.put("middleCategoryCode", middleCategoryCode);
-				map.put("sort", sort);
+				map.put("sort", sortName);
 				System.out.println(" 중간거 맵에 추가 되나");
 			}else if(!largeCategoryCode.equals("") && !middleCategoryCode.equals("") && !smallCategoryCode.equals("")){
 				map.put("smallCategoryCode", smallCategoryCode);
 				map.put("largeCategoryCode", largeCategoryCode);
 				map.put("middleCategoryCode", middleCategoryCode);
-				map.put("sort", sort);
+				map.put("sort", sortName);
 				System.out.println(" 작은거 맵에 추가 되나");
 				
 			}
-			
-			List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoodsSort(map); 
+			List<AuctionGoodsAndFirstImageVo> auctionGoodsList;
+			if(sort.equals("3") || sort.equals("5")){
+				 auctionGoodsList = auctionGoodsService.getAllAuctionGoodsSortDesc(map);
+			}else{
+				 auctionGoodsList = auctionGoodsService.getAllAuctionGoodsSortAsc(map); 
+			}
 			System.out.println("auctionGoodsList는 있나? "+auctionGoodsList);
 			
 			Gson gson = new Gson();

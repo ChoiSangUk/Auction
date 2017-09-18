@@ -203,7 +203,7 @@
 			
 			AND ag.small_category_code = #{smallCategoryCode} 
 			</if>
-			AND auction_goods_state !='판매중'
+			AND auction_goods_state ='판매중'
 		</trim>
 		ORDER BY ${sort} DESC
 	</select>

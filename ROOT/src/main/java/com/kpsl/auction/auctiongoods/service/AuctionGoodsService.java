@@ -42,5 +42,6 @@ public interface AuctionGoodsService {
 	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsOrderBy(AuctionGoodsVo auctionGoodsVo);
 	
 	//물품 정렬
-	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsSort(Map map);
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsSortDesc(Map map);
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsSortAsc(Map map);
 }
