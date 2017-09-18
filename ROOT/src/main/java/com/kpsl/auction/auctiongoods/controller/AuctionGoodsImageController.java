@@ -107,6 +107,7 @@ public class AuctionGoodsImageController {
 				} else {
 					//기본 경로
 					String defaultPath = request.getSession().getServletContext().getRealPath("/");
+					//배포시
 					//defaultPath =getSaveLocation(request);
 					//상세 경로
 					String path = defaultPath + "resources" + File.separator + "upload" + File.separator + "image" + File.separator;
