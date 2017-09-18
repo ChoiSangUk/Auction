@@ -331,12 +331,11 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 			
 			var textarea  =  $('#ir1').val()
 			var textareaSplit = textarea.split("<img", 5)
-			console.log(textareaSplit.length)
-			if($('#ir1').val()==""){
+			if($('#ir1').val()=="" || $('#ir1').val()==" " || $('#ir1').val() == "<p>&nbsp;</p>"){
 				alert('내용을 입력하시오')
 				//이미지 추가 필수 검사
 				return false;
-			}else if(textareaSplit ==1){
+			}else if(textareaSplit.length == 1){
 				alert('사진을 추가하시오 !')
 				return false;
 			}				
@@ -395,9 +394,9 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 			               }else if(auctionGoodsStartPrice >=200000){
 			            	   $('#auctionGoodsDepositPrice').val('100000')
 			               }
-			              
-			              
-			               if($('#auctionGoodsDepositPrice').val() > userTotalCash){
+				            var auctionGoodsDepositPrice = parseInt($('#auctionGoodsDepositPrice').val())  
+				            var userTotalCashInt = parseInt(userTotalCash)
+			               if(auctionGoodsDepositPrice > userTotalCashInt){
 			            	   alert('보증금이 부족합니다')
 			            	   $('#auctionGoodsStartPrice').val('');
 								$('#auctionGoodsDepositPrice').val('');

@@ -58,16 +58,14 @@
 		<div class="row content">
 			<div class="col-sm-12">
 				<h1>경매물품 리스트</h1>
-				<div class="sort-list">
-					<ul class="list-group" style="display:inline-block">
-						<li style="display:list-item"><a href="#none" onclick="setSort(2);" class="active">인기경매순</a></li>
-						<li style="display:list-item"><a href="#none" onclick="setSort(0);" class="">마감임박순</a></li>
-						<li><a href="#none" onclick="setSort(1);" class="">신규경매순</a></li>
-						<li><a href="#none" onclick="setSort(3);" class="">높은가격순</a></li>
-						<li><a href="#none" onclick="setSort(4);" class="">낮은가격순</a></li>
-						<li><a href="#none" onclick="setSort(5);" class="">조회많은순</a></li>
-						<li><a href="#none" onclick="setSort(6);" class="">조회적은순</a></li>
-					</ul>
+				<div class="btn-group">
+						<a id="sort1" class="btn btn-default" href="#none" >인기경매순</a>
+						<a id="sort2" class="btn btn-default" href="#none" >마감임박순</a>
+						<a id="sort3" class="btn btn-default" href="#none" >신규경매순</a>
+						<a id="sort4" class="btn btn-default" href="#none" >높은가격순</a>
+						<a id="sort5" class="btn btn-default" href="#none" >낮은가격순</a>
+						<a id="sort6" class="btn btn-default" href="#none" >조회많은순</a>
+						<a id="sort7" class="btn btn-default" href="#none" >조회적은순</a>
 				</div>
 				<hr>
 				<div class="row goodsList" style="margin-left: 20px">
