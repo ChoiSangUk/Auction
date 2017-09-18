@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo;
+import com.kpsl.auction.successfullBid.vo.SuccessBidVo;
 
 @Service
 @Transactional
@@ -22,7 +23,18 @@ public class SuccessfullBidServicelmpl implements SuccessfullBidService {
 		
 		return successBidDao.selectMaxBid();
 	}
-
-	
-	
+	@Override
+	public int addSuccessfulBid(SuccessBidVo successBidVo) {
+		
+		log.info("addSuccessfulBid");
+		
+		return successBidDao.insertSuccessfulBid(successBidVo);
+	}
+	@Override
+	public int modifyAuctionGoodsState(String auctionGoodsCode) {
+		
+		log.info("modifyAuctionGoodsState 호출 확인");
+		
+		return successBidDao.updateAuctionGoodsState(auctionGoodsCode);
+	}
 }
