@@ -23,6 +23,7 @@
     display: table-row;
 }
 .stepwizard {
+	padding: 50px 0 20px 0;
     display: table;
     width: 50%;
     position: relative;
@@ -31,16 +32,7 @@
     opacity: 1 !important;
     filter: alpha(opacity=100) !important;
 }
-.stepwizard-row:before {
-    top: 14px;
-    bottom: 0;
-    position: absolute;
-    content: " ";
-    width: 100%;
-    height: 1px;
-    background-color: #ccc;
-    z-order: 0;
-}
+
 .stepwizard-step {
     display: table-cell;
     text-align: center;
@@ -58,6 +50,18 @@
 .setup-panel {
 	
 }
+.btn-circle {
+	min-width: 130px;
+    min-height: 130px;
+    font-size: 15px;
+    padding-top: 33px;
+}
+.next-step {
+	padding: 0px 30px 0px 30px;
+}
+.glyphicon-hand-right {
+	vertical-align: middle;
+}
 </style>
 <div class="container-fluid">
 	<!-- 왼쪽 여백 -->
@@ -71,30 +75,28 @@
 			<span style="color: #1266FF">회원가입</span> <span>></span> <span
 				style="color: #1266FF">회원선택</span>
 			<h1>회원가입</h1>
-			<div class="stepwizard col-md-offset-3">
+			<div class="stepwizard col-md-offset-2">
 			    <div class="stepwizard-row setup-panel">
 			      <div class="stepwizard-step">
-			        <a class="btn btn-primary btn-lg" >1</a>
-			        <p>회원선택</p>
+			        <a class="btn btn-primary btn-circle step">STEP1<br><strong style="font-size: 25px;">회원선택</strong></a>			        
 			      </div>
-			      <div>
-			      	<span class="glyphicon glyphicon-hand-right" style="font-size: 30px; "></span>
+			      <div class="next-step">
+			      	<span class="glyphicon glyphicon-hand-right" style="font-size: 30px; color: #286090"></span>
 			      </div>
 			      <div class="stepwizard-step">
-			       <a class="btn btn-default btn-lg" disabled="disabled">2</a>
-			        <p>약관동의</p>
+			       <a class="btn btn-default btn-circle step" disabled="disabled">STEP2<br><strong style="font-size: 25px;">약관동의</strong></a>
 			       </div>
-			         <div>
+			         <div class="next-step">
 			      		<span class="glyphicon glyphicon-hand-right" style="font-size: 30px"></span>
 			     	 </div>
-			      <div class="stepwizard-step">
-			       <a class="btn btn-default btn-lg" disabled="disabled">3</a>
-			        <p>정보입력</p>
+			      <div class="stepwizard-step step">
+			       <a class="btn btn-default btn-circle" disabled="disabled">STEP3<br><strong style="font-size: 25px;">정보입력</strong></a>
 			      </div>
-			       <div class="stepwizard-step">
-			        <a class="btn btn-lg btn-default" disabled="disabled">4</a>
-			        <p>가입완료</p>
-			       
+			      	<div class="next-step">
+			      		<span class="glyphicon glyphicon-hand-right" style="font-size: 30px"></span>
+			     	 </div>
+			       <div class="stepwizard-step step">
+			        <a class="btn btn-default btn-circle" disabled="disabled">STEP4<br><strong style="font-size: 25px;">가입완료</strong></a>			       
 			      </div>
 			    </div>
 			  </div>
