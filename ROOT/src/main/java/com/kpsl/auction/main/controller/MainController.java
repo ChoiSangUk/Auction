@@ -55,7 +55,6 @@ public class MainController {
 		String auctionGoodsBidHits = "auction_goods_bid_hits";
 		auctionGoodsVo.setSortSeperator(auctionGoodsBidHits);
 		List<AuctionGoodsAndFirstImageVo> auctionGoodsListByBidHits = auctionGoodsService.getAllAuctionGoodsOrderBy(auctionGoodsVo);
-		log.info(auctionGoodsListByBidHits.get(7).getAuctionGoodsVo().getAuctionGoodsBidHits()+"<-- 입찰");
 		model.addAttribute("adPaymentSuccessList", adPaymentSuccessList);
 		model.addAttribute("auctionGoodsListByHits", auctionGoodsListByHits);
 		model.addAttribute("auctionGoodsListByBidHits", auctionGoodsListByBidHits);
