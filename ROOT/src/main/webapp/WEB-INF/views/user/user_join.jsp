@@ -78,23 +78,20 @@
 			        <p>회원선택</p>
 			      </div>
 			      <div>
-			      	<span class="glyphicon glyphicon-hand-right" style="font-size: 30px; position: absolute;"></span>
+			      	<span class="glyphicon glyphicon-hand-right" style="font-size: 30px; "></span>
 			      </div>
 			      <div class="stepwizard-step">
 			       <a class="btn btn-default btn-lg" disabled="disabled">2</a>
 			        <p>약관동의</p>
 			       </div>
 			         <div>
-			      	<span class="glyphicon glyphicon-hand-right" style="font-size: 30px"></span>
-			      </div>
+			      		<span class="glyphicon glyphicon-hand-right" style="font-size: 30px"></span>
+			     	 </div>
 			      <div class="stepwizard-step">
 			       <a class="btn btn-default btn-lg" disabled="disabled">3</a>
 			        <p>정보입력</p>
 			      </div>
-			        <div>
-			      	<span class="glyphicon glyphicon-hand-right" style="font-size: 30px"></span>
-			      </div>
-			      <div class="stepwizard-step">
+			       <div class="stepwizard-step">
 			        <a class="btn btn-lg btn-default" disabled="disabled">4</a>
 			        <p>가입완료</p>
 			       
