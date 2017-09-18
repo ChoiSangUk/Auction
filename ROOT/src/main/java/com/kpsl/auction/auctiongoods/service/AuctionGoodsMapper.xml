@@ -141,7 +141,7 @@
 		WHERE auction_goods_code = #{auctionGoodsCode}
 	</update>
 	<!-- 모든 물품 리스트 -->
-	<select id="selectAllAuctionGoods" resultMap="AuctionGoodsAndImage">
+	<select id="selectAllAuctionGoods" resultMap="AuctionGoodsAndImage" parameterType="java.util.Map">
 		SELECT
 		ag.*,
 		agi.auction_goods_image_path
@@ -150,7 +150,20 @@
 		ON ag.auction_goods_code =
 		agi.auction_goods_code
 		AND
-		agi.auction_goods_image_num=0;
+		agi.auction_goods_image_num=0
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="largeCategoryCode!=null">
+			ag.large_category_code =#{largeCategoryCode}
+			</if>
+			<if test="middleCategoryCode != null">
+			
+			AND ag.middle_category_code = #{middleCategoryCode} 
+			</if>
+			<if test="smallCategoryCode != null">
+			
+			AND ag.small_category_code = #{smallCategoryCode} 
+			</if>
+		</trim>
 	</select>
 	
 	<select id="selectAllAuctionGoodsOrderBy" parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo" resultMap="AuctionGoodsAndImage">

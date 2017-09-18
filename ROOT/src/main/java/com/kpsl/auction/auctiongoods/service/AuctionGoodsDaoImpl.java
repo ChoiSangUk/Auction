@@ -45,10 +45,11 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	@Override
 	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoods(Map map) {
 		// TODO Auto-generated method stub
-		System.out.println("daoimpl까지");
-		System.out.println(sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods"));
+		System.out.println("파라미터 확인");
+		System.out.println(map.toString());
+		 
+		
 		List<AuctionGoodsAndFirstImageVo> list=sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods", map);
-		System.out.println("daoimpl에서"+list.toString());
 		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoods", map);
 	}
 
@@ -67,6 +68,7 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 	 
 	 @Override
 	 public int increaseHits(Map map) {
+		 
 	 	// TODO Auto-generated method stub
 	 	return sqlSessionTemplate.update(NS+"increaseHits", map);
 	 }

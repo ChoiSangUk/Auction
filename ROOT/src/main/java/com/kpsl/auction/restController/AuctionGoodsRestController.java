@@ -58,14 +58,14 @@ public class AuctionGoodsRestController {
 		System.out.println(middleCategoryCode);
 		System.out.println(smallCategoryCode);
 		Map map = new HashMap<String, String>();
-		if(middleCategoryCode.equals("") && smallCategoryCode.equals("")){
+		if(!largeCategoryCode.equals("") && middleCategoryCode.equals("") && smallCategoryCode.equals("")){
 			map.put("largeCategoryCode", largeCategoryCode);
 			System.out.println(" 큰거 맵에 추가 되나");
-		}else if(!middleCategoryCode.equals("") && smallCategoryCode.equals("")){
+		}else if(!largeCategoryCode.equals("") && !middleCategoryCode.equals("") && smallCategoryCode.equals("")){
 			map.put("largeCategoryCode", largeCategoryCode);
 			map.put("middleCategoryCode", middleCategoryCode);
 			System.out.println(" 중간거 맵에 추가 되나");
-		}else if(!middleCategoryCode.equals("") && !smallCategoryCode.equals("")){
+		}else if(!largeCategoryCode.equals("") && !middleCategoryCode.equals("") && !smallCategoryCode.equals("")){
 			map.put("smallCategoryCode", smallCategoryCode);
 			map.put("largeCategoryCode", largeCategoryCode);
 			map.put("middleCategoryCode", middleCategoryCode);
