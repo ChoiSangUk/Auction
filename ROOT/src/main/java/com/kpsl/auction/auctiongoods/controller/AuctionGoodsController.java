@@ -28,7 +28,7 @@ public class AuctionGoodsController {
 	private GoodsCategoryService goodsCategoryService;
 	@Autowired
 	private AuctionGoodsService auctionGoodsService;
-
+	
 	//물품 수정
 	@RequestMapping(value = "/auctiongoods/auctiongoodsupdate", method = RequestMethod.GET)
 	public String updateAuctionGoods(Model model, 

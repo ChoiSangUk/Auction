@@ -80,6 +80,61 @@ public class AuctionGoodsRestController {
 		return gson.toJson(auctionGoodsList);
 	}
 	
+	//정렬된 물품을 뿌려주기 위한 처리
+		@RequestMapping(value = "/auctiongoods/auctiongoodslist_sort", produces = "application/json; charset=UTF-8", method = RequestMethod.GET )
+		public String auctionGoodsList_sort(Model model,
+				@RequestParam(value = "largeCategoryCode", required = true) String largeCategoryCode,
+				@RequestParam(value = "middleCategoryCode", required = true) String middleCategoryCode,
+				@RequestParam(value = "smallCategoryCode", required = true) String smallCategoryCode,
+				@RequestParam(value = "sort", required = true) String sort){
+			System.out.println("/auctiongoods/auctiongoodslist_getallgoods");
+			//String largeCategoryCode = request.getParameter("largeCategoryCode");
+			System.out.println(largeCategoryCode);
+			System.out.println(middleCategoryCode);
+			System.out.println(smallCategoryCode);
+			System.out.println(sort);
+			if(sort.equals("1")){
+				sort="auction_goods_end_date";
+			}else if(sort.equals("2")){
+				sort="auction_goods_start_date";
+			}else if(sort.equals("3")){
+				sort="auction_goods_start_price";
+			}else if(sort.equals("4")){
+				sort="auction_goods_start_date";
+			}else if(sort.equals("5")){
+				sort="auction_goods_hits";
+			}else if(sort.equals("6")){
+				sort="auction_goods_hits";
+			}
+			System.out.println(sort);
+			Map map = new HashMap<String, String>();
+			if(largeCategoryCode.equals("") && middleCategoryCode.equals("") && smallCategoryCode.equals("")){
+				map.put("sort", sort);
+			}else if(!largeCategoryCode.equals("") && middleCategoryCode.equals("") && smallCategoryCode.equals("")){
+				map.put("largeCategoryCode", largeCategoryCode);
+				map.put("sort", sort);
+				System.out.println(" 큰거 맵에 추가 되나");
+			}else if(!largeCategoryCode.equals("") && !middleCategoryCode.equals("") && smallCategoryCode.equals("")){
+				map.put("largeCategoryCode", largeCategoryCode);
+				map.put("middleCategoryCode", middleCategoryCode);
+				map.put("sort", sort);
+				System.out.println(" 중간거 맵에 추가 되나");
+			}else if(!largeCategoryCode.equals("") && !middleCategoryCode.equals("") && !smallCategoryCode.equals("")){
+				map.put("smallCategoryCode", smallCategoryCode);
+				map.put("largeCategoryCode", largeCategoryCode);
+				map.put("middleCategoryCode", middleCategoryCode);
+				map.put("sort", sort);
+				System.out.println(" 작은거 맵에 추가 되나");
+				
+			}
+			
+			List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoodsSort(map); 
+			System.out.println("auctionGoodsList는 있나? "+auctionGoodsList);
+			
+			Gson gson = new Gson();
+			return gson.toJson(auctionGoodsList);
+		}
+	
 	// 판매 보증금 비교 ajax
 	@RequestMapping(value = "/sellerdepositajax")
 	public void sellerDepositCompare() {

@@ -193,8 +193,8 @@ var timer = function(){
 				$('.myButton').append( '<a class="btn btn-default btn-lg"' +  
 						'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsupdate?auctionGoodsCode='+auctionGoodsCode+' ">수정하기 </a>')
 				//post 방식으로 변경해야 함
-				$('.myButton').append( '<a class="btn btn-default btn-lg"' +  
-						'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsdelete?auctionGoodsCode='+auctionGoodsCode+' ">삭제하기 </a>')
+				//$('.myButton').append( '<a class="btn btn-default btn-lg"' +  
+				//		'href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsdelete?auctionGoodsCode='+auctionGoodsCode+' ">삭제하기 </a>')
 			}
 		}
 		

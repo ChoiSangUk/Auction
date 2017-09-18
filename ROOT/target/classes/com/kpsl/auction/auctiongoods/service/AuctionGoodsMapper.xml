@@ -164,6 +164,62 @@
 			AND ag.small_category_code = #{smallCategoryCode} 
 			</if>
 		</trim>
+		 
+	</select>
+	
+	<!-- 정렬된 모든 물품 리스트 -->
+	<select id="selectAllAuctionGoodsSortDesc" resultMap="AuctionGoodsAndImage" parameterType="java.util.Map">
+		SELECT
+		ag.*,
+		agi.auction_goods_image_path
+		FROM auction_goods_tb AS ag INNER JOIN
+		auction_goods_image_tb AS agi
+		ON ag.auction_goods_code =
+		agi.auction_goods_code
+		AND
+		agi.auction_goods_image_num=0
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="largeCategoryCode!=null">
+			ag.large_category_code =#{largeCategoryCode}
+			</if>
+			<if test="middleCategoryCode != null">
+			
+			AND ag.middle_category_code = #{middleCategoryCode} 
+			</if>
+			<if test="smallCategoryCode != null">
+			
+			AND ag.small_category_code = #{smallCategoryCode} 
+			</if>
+			AND auction_goods_state !='판매중'
+		</trim>
+		ORDER BY ${sort} DESC
+	</select>
+	<!-- 정렬된 모든 물품 리스트 -->
+	<select id="selectAllAuctionGoodsSortAsc" resultMap="AuctionGoodsAndImage" parameterType="java.util.Map">
+		SELECT
+		ag.*,
+		agi.auction_goods_image_path
+		FROM auction_goods_tb AS ag INNER JOIN
+		auction_goods_image_tb AS agi
+		ON ag.auction_goods_code =
+		agi.auction_goods_code
+		AND
+		agi.auction_goods_image_num=0
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="largeCategoryCode!=null">
+			ag.large_category_code =#{largeCategoryCode}
+			</if>
+			<if test="middleCategoryCode != null">
+			
+			AND ag.middle_category_code = #{middleCategoryCode} 
+			</if>
+			<if test="smallCategoryCode != null">
+			
+			AND ag.small_category_code = #{smallCategoryCode} 
+			</if>
+			AND auction_goods_state ='판매중' 
+		</trim>
+		ORDER BY ${sort} ASC
 	</select>
 	
 	<select id="selectAllAuctionGoodsOrderBy" parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo" resultMap="AuctionGoodsAndImage">

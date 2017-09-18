@@ -116,6 +116,25 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsOrderBy", auctionGoodsVo);
 	}
 	
+	//정렬된 물품 내거
+	@Override
+	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsSortAsc(Map map) {
+		System.out.println("파라미터 확인");
+		System.out.println(map.toString());
+		 
+		
+		List<AuctionGoodsAndFirstImageVo> list=sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsSortAsc", map);
+		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsSortAsc", map);
+	}
+	@Override
+	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsSortDesc(Map map) {
+		System.out.println("파라미터 확인");
+		System.out.println(map.toString());
+		 
+		
+		List<AuctionGoodsAndFirstImageVo> list=sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsSortDesc", map);
+		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsSortDesc", map);
+	}
 	
 	
 	

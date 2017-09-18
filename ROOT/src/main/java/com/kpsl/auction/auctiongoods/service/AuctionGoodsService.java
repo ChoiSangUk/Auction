@@ -38,4 +38,7 @@ public interface AuctionGoodsService {
 	
 	//정렬된 물품 
 	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsOrderBy(AuctionGoodsVo auctionGoodsVo);
+	
+	//물품 정렬
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsSort(Map map);
 }

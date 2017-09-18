@@ -162,5 +162,15 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 		// TODO Auto-generated method stub
 		return auctionGoodsDao.selectAllAuctionGoodsOrderBy(auctionGoodsVo);
 	}
+
+	@Override
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsSort(Map map) {
+		System.out.println("맵은 뭔가"+map.get("sort"));
+		if(map.get("sort").equals("3") || map.get("sort").equals("5")){
+			return auctionGoodsDao.selectAllAuctionGoodsSortDesc(map);
+		}else{
+			return auctionGoodsDao.selectAllAuctionGoodsSortAsc(map);
+		}
+	}
 	
 }

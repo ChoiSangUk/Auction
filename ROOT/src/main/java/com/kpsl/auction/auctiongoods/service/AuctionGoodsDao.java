@@ -44,5 +44,8 @@ public interface AuctionGoodsDao {
 	//정렬된 물품 가져오기
 	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsOrderBy(AuctionGoodsVo auctionGoodsVo);
 	
+	//정렬된 물품 내거
+	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsSortAsc(Map map);
+	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsSortDesc(Map map);
 	
 }
