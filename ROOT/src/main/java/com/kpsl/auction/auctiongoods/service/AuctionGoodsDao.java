@@ -48,4 +48,7 @@ public interface AuctionGoodsDao {
 	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsSortAsc(Map map);
 	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsSortDesc(Map map);
 	
+	//개인 판매물품 목록
+	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsByUserId(String userId);
+	
 }

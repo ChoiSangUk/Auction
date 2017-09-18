@@ -10,6 +10,13 @@ public class AuctionGoodsAndFirstImageVo {
 	public void setAuctionGoodsVo(AuctionGoodsVo auctionGoodsVo) {
 		this.auctionGoodsVo = auctionGoodsVo;
 	}
+	
+	public AuctionGoodsImageVo getAuctionGoodsImageVo() {
+		return auctionGoodsImageVo;
+	}
+	public void setAuctionGoodsImageVo(AuctionGoodsImageVo auctionGoodsImageVo) {
+		this.auctionGoodsImageVo = auctionGoodsImageVo;
+	}
 	public AuctionGoodsImageVo getAuctionGoodsImageList() {
 		return auctionGoodsImageVo;
 	}

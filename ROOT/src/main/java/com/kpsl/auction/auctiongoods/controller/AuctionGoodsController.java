@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.goodscategory.service.GoodsCategoryService;
@@ -29,6 +30,17 @@ public class AuctionGoodsController {
 	@Autowired
 	private AuctionGoodsService auctionGoodsService;
 	
+	//내 판매물품
+	@RequestMapping(value = "/auctiongoods/mySalesGoods", method = RequestMethod.GET)
+	public String getMySalesGoodsList(Model model,
+			@RequestParam(value = "userId", required = true) String userId){
+		List<AuctionGoodsAndFirstImageVo> mySalesGoodsList = auctionGoodsService.getAllAuctionGoodsByUserId(userId); 
+		System.out.println("controller 에서");
+		System.out.println(mySalesGoodsList.toString());
+		model.addAttribute("mySalesGoodsList", mySalesGoodsList);
+				return "mypage/mypage_my_sales_goods_list";
+		
+	}
 	//물품 수정
 	@RequestMapping(value = "/auctiongoods/auctiongoodsupdate", method = RequestMethod.GET)
 	public String updateAuctionGoods(Model model, 

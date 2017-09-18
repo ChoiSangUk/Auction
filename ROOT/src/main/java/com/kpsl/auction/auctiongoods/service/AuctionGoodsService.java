@@ -9,6 +9,8 @@ import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.saleslog.vo.SalesLogVo;
 
 public interface AuctionGoodsService {
+	//id의 판매물품목록
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsByUserId(String userId);
 	//단일 물품
 	public AuctionGoodsVo getAuctionGoods(String auctionGoodsCode);
 	

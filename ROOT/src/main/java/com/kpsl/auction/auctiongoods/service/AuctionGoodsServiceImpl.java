@@ -173,4 +173,11 @@ public class AuctionGoodsServiceImpl implements AuctionGoodsService {
 		}
 	}
 	
+	//내 등록 물품
+	@Override
+	public List<AuctionGoodsAndFirstImageVo> getAllAuctionGoodsByUserId(String userId) {
+		System.out.println("serviceimpl까지");
+		return auctionGoodsDao.selectAllAuctionGoodsByUserId(userId);
+	}
+	
 }

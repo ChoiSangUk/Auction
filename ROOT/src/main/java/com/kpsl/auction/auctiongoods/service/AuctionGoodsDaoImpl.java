@@ -135,6 +135,15 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 		List<AuctionGoodsAndFirstImageVo> list=sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsSortDesc", map);
 		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsSortDesc", map);
 	}
+
+	//사용자의 판매물품 목록
+	@Override
+	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsByUserId(String userId) {
+		// TODO Auto-generated method stub
+		System.out.println("내 판매물품");
+		System.out.println("user id : "+userId);
+		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsByUserId",userId);
+	}
 	
 	
 	
