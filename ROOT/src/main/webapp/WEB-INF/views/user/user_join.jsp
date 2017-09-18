@@ -2,7 +2,63 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
+<style>
 
+.join-ico {
+ position: absolute;
+    top: 50px;
+    right: 150px;
+    width: 100px;
+    height: 100px;
+}
+.boxBar {
+    border: 1px solid #e0e0e0;
+    padding: 50px 70px;
+    border-top: 2px solid #111;
+}
+.stepwizard-step p {
+    margin-top: 10px;
+}
+.stepwizard-row {
+    display: table-row;
+}
+.stepwizard {
+    display: table;
+    width: 50%;
+    position: relative;
+}
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-order: 0;
+}
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+.setup-panel {
+	
+}
+</style>
 <div class="container-fluid">
 	<!-- 왼쪽 여백 -->
 	<div class="col-sm-1"></div>
@@ -15,7 +71,37 @@
 			<span style="color: #1266FF">회원가입</span> <span>></span> <span
 				style="color: #1266FF">회원선택</span>
 			<h1>회원가입</h1>
-			<div>
+			<div class="stepwizard col-md-offset-3">
+			    <div class="stepwizard-row setup-panel">
+			      <div class="stepwizard-step">
+			        <a class="btn btn-primary btn-lg" >1</a>
+			        <p>회원선택</p>
+			      </div>
+			      <div>
+			      	<span class="glyphicon glyphicon-hand-right" style="font-size: 30px; position: absolute;"></span>
+			      </div>
+			      <div class="stepwizard-step">
+			       <a class="btn btn-default btn-lg" disabled="disabled">2</a>
+			        <p>약관동의</p>
+			       </div>
+			         <div>
+			      	<span class="glyphicon glyphicon-hand-right" style="font-size: 30px"></span>
+			      </div>
+			      <div class="stepwizard-step">
+			       <a class="btn btn-default btn-lg" disabled="disabled">3</a>
+			        <p>정보입력</p>
+			      </div>
+			        <div>
+			      	<span class="glyphicon glyphicon-hand-right" style="font-size: 30px"></span>
+			      </div>
+			      <div class="stepwizard-step">
+			        <a class="btn btn-lg btn-default" disabled="disabled">4</a>
+			        <p>가입완료</p>
+			       
+			      </div>
+			    </div>
+			  </div>
+			<!-- <div>
 				<ul>
 					<li class="on"><span class="step">STEP01</span><span
 						class="step-tit">회원선택</span><a
@@ -24,42 +110,57 @@
 					<li><span class="step">STEP03</span><span class="step-tit">정보입력</span></li>
 					<li><span class="step">STEP04</span><span class="step-tit">가입완료</span></li>
 				</ul>
-			</div>
-			<div class="row content">
+			</div> -->
+			<div>
 
-				<h3>
-					<strong>구매자 회원</strong>
-				</h3>
-				<p>
-					실명확인이 가능한 14세 이상<br> 구매회원
-				</p>
-				<div>
-					<p>
-						<a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/user/userBuyerClause">가입하기
-						</a>
-					</p>
-				</div>
-			
-				<div>
+				
+				<div class="row col-sm-6">
+					<div class="boxBar">
 					<h3>
-						<strong>판매자 회원</strong>
+						<strong>구매자 회원</strong>
 					</h3>
 					<p>
-						실명확인이 가능한 14세 이상<br>구매/판매회원
+						실명확인이 가능한 14세 이상<br> 구매회원				
 					</p>
-					<div>
+					
 						<p>
-							<a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/user/userSellerClause">가입하기</a>
+							<a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/user/userBuyerClause">가입하기
+							</a>
 						</p>
+					<div class="join-ico">
+							<img alt="" src="${pageContext.request.contextPath}/resources/img/userJoin.png">
+					</div>
+					
 					</div>
 					
 				</div>
+			
+				<div class="row col-sm-6">
+					<div class="boxBar">
+						<h3>
+							<strong>판매자 회원</strong>
+						</h3>
+						<p>
+							실명확인이 가능한 14세 이상<br>구매/판매회원
+						</p>
+						<div>
+							<p>
+								<a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/user/userSellerClause">가입하기</a>
+							</p>
+						<div class="join-ico">
+							<img alt="" src="${pageContext.request.contextPath}/resources/img/userJoin.png">
+						</div>
+						</div>
+					</div>
+				</div>
+				
+				<div>
 				<ul>
 					<li>회원 유형별로 가입절차가 다르게 이루어지니, 반드시 해당하시는 유형을 선택하여 회원가입을 해주시기
 						바랍니다.</li>
 					<li>회원가입시 제공하신 개인정보는 강박송이 서비스에 이용되며, 그 이외 용도로는 절대 사용되지 않습니다.</li>
 				</ul>
-
+				</div>
 			</div>
 		</div>
 
