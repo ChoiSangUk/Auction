@@ -206,5 +206,10 @@ public class AuctionGoodsController {
 		return "/auctiongoods/auctiongoods_list1";
 	}
 	
+	@RequestMapping(value = "/sellInfo", method = RequestMethod.GET)
+	public String sellInfo(Model model){
+		return "/mypage/mypage_sell_info";
+	}
+	
 	
 }

@@ -383,7 +383,7 @@ $('input[name=auctionGoodsInstantBuyState]').click(function (){
 			              //최소입찰가가 정해지면 보증금이 자동으로 정해짐
 			               if(auctionGoodsStartPrice <= 5000){
 			            	   $('#auctionGoodsDepositPrice').val('1000')
-			               }else if(auctionGoodsStartPrice < 50000){
+			               }else if(auctionGoodsStartPrice > 5000 && auctionGoodsStartPrice < 50000){
 			            	   $('#auctionGoodsDepositPrice').val('5000')
 			               }else if(auctionGoodsStartPrice >=50000 && auctionGoodsStartPrice <200000){
 			            	   $('#auctionGoodsDepositPrice').val('10000')

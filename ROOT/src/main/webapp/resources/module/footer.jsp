@@ -21,7 +21,7 @@
 				</a>
 			</div>
 			<div class="col-sm-3">
-				<a class="glyphiconLink" href="#">
+				<a class="glyphiconLink" href="${pageContext.request.contextPath}/sellInfo">
 				<span class="glyphicon glyphicon-file" style="font-size: 50px;">
 				</span><br>
 				판매안내

@@ -5,9 +5,9 @@
 <div style="margin-right: 100px; margin-left: 100px; margin-bottom:1px;"  id="top">
 	<!-- 헤더 부분 -->
 	<div>
-		<div style="margin-top:5px;">
+		<!-- <div style="margin-top:5px;">
 			<span>카테고리 뿌릴 곳</span>
-		</div>
+		</div> -->
 		<div style="text-align:center">
 			<h1 style="font-size:300%">${auctionGoods.auctionGoodsName}</h1>
 		</div>
