@@ -29,9 +29,11 @@
 .mypage-a {
 	color: #000000 !important;
 }
-
-.glyphicon.glyphicon-cloud, .glyphicon.glyphicon-pencil, .glyphicon.glyphicon-stats,
-	.glyphicon.glyphicon-list-alt {
+.mypage-a:HOVER {	
+	text-decoration: none !important;
+	color: #2F9D27 !important;
+}
+.glyphiconMyInfo {
 	font-size: 50px;
 	color: #2F9D27;
 }
@@ -106,25 +108,25 @@ a:hover {text-decoration: underline; color: #000000;} */
 				<div class="lg-box panel-body">
 					<div class="col-sm-3">
 						<a class="mypage-a" href="${pageContext.request.contextPath}/mypage/mypageMyinfoUpdate"> <span
-							class="glyphicon glyphicon-pencil" aria-hidden="true"
+							class="glyphicon glyphicon-pencil glyphiconMyInfo" aria-hidden="true"
 							aria-hidden="true"></span> <br>내 정보<br>수정
 						</a>
 					</div>
 					<div class="col-sm-3">
 						<a class="mypage-a" href="${pageContext.request.contextPath}/mypage/mypageMyinfoCredit"> <span
-							class="glyphicon glyphicon-stats" aria-hidden="true"
+							class="glyphicon glyphicon-stats glyphiconMyInfo" aria-hidden="true"
 							aria-hidden="true"></span> <br>내 신용도<br>조회
 						</a>
 					</div>
 					<div class="col-sm-3">
 						<a class="mypage-a" href="${pageContext.request.contextPath}/mypage/myinfo/MyinfoAccount"> <span
-							class="glyphicon glyphicon-cloud" aria-hidden="true"
+							class="glyphicon glyphicon-cloud glyphiconMyInfo" aria-hidden="true"
 							aria-hidden="true"></span> <br>내 계좌<br>관리
 						</a>
 					</div>
 					<div class="col-sm-3">
 						<a class="mypage-a" href="${pageContext.request.contextPath}/mypage/myinfo/CashDetail"> <span
-							class="glyphicon glyphicon-list-alt" aria-hidden="true"
+							class="glyphicon glyphicon-list-alt glyphiconMyInfo" aria-hidden="true"
 							aria-hidden="true"></span> <br>캐쉬 내역<br>조회
 						</a>
 					</div>
@@ -235,32 +237,6 @@ a:hover {text-decoration: underline; color: #000000;} */
 				</table>
 			</div>
 			</c:if>
-		</div>
-		<!-- 문의관리 버튼 -->
-		<div class="row content">
-			<div class="col-sm-12">
-				<div class="col-sm-2">
-					<a class="btn btn-danger btn-lg" href="#">1:1문의하기</a>
-				</div>
-				<div class="col-sm-2">
-					<a class="btn btn-danger btn-lg" href="#">문의게시판</a>
-				</div>
-				<div class="col-sm-2">
-					<a class="btn btn-blue btn-lg"
-						href="${pageContext.request.contextPath}/mypage/mypageAdInfo">물품광고</a>
-				</div>
-				<div class="col-sm-2">
-					<a class="btn btn-danger btn-lg" href="#">구매안내</a>
-				</div>
-				<c:if test="${userLoginInfo.userLevel eq '판매자'}">
-					<div class="col-sm-2">
-						<a class="btn btn-danger btn-lg" href="#">판매자수수료</a>
-					</div>
-					<div class="col-sm-2">
-						<a class="btn btn-danger btn-lg" href="#">판매안내</a>
-					</div>
-				</c:if>
-			</div>
 		</div>
 	</div>
 	<div class="col-sm-1"></div>

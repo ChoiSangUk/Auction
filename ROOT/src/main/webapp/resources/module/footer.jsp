@@ -1,6 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
+<!-- 문의관리 버튼 -->
+<div class="container-fluid footerContainer">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10 text-center">
+		<div class="row footerBox content">
+			<div class="col-sm-3">
+				<a class="glyphiconLink" href="#">
+				<span class="glyphicon glyphicon-phone-alt" style="font-size: 50px;">
+				</span><br>
+				1:1문의
+				</a>
+			</div>
+			<div class="col-sm-3">
+				<a class="glyphiconLink" href="#">
+				<span class="glyphicon glyphicon-list-alt" style="font-size: 50px;">
+				</span><br>
+				구매안내
+				</a>
+			</div>
+			<div class="col-sm-3">
+				<a class="glyphiconLink" href="#">
+				<span class="glyphicon glyphicon-file" style="font-size: 50px;">
+				</span><br>
+				판매안내
+				</a>
+			</div>
+			<div class="col-sm-3">
+				<a class="glyphiconLink" href="${pageContext.request.contextPath}/mypage/mypageAdInfo">
+				<span class="glyphicon glyphicon-check" style="font-size: 50px;">
+				</span><br>
+				광고안내
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-1"></div>
+</div>
 <footer class="container-fluid text-center">
 	<p>kpsl</p>	
 </footer>

@@ -22,7 +22,7 @@
 /* 메인배너 물품리스트 제목 */
 .mainAgListTitle {
 	padding-bottom:16px;
-	margin: 0px 5px 42px 5px;
+	margin: 17px 5px 42px 5px;
 	border-bottom: 1px;
 	border-bottom-color: black;
 	border-bottom-style: solid;
@@ -33,7 +33,7 @@
 }
 
 .glyphicon-time {
-	top: 2.5px !important;
+	top: 0px !important;
 }
 
 .glyphicon-plus {
@@ -145,8 +145,6 @@
 </div>
 
 <div class="container mainAgList text-center">
-	<h3>물품등록 리스트</h3>
-	<br>
 	<div class="row content">
 		<div class="text-left">
 		<!-- 인기경매(조회순  내림차순 정렬 8개) -->

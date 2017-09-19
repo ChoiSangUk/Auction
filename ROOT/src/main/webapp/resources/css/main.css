@@ -51,8 +51,25 @@
 
 /* Add a gray background color and some padding to the footer */
 footer {
-	background-color: #f2f2f2;
+	background-color: #ffffff;
 	padding: 25px;
+}
+
+.footerContainer {
+	background-color: #f9f6f6;
+}
+
+.footerBox {
+	
+}
+
+.glyphiconLink {
+	color: #6F6F6F !important;
+}
+
+.glyphiconLink:HOVER {
+	color: #000093;
+	text-decoration:none !important;
 }
 
 .carousel-inner img {
