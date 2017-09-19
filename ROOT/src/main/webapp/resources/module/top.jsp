@@ -87,7 +87,7 @@
 				<a class="dropdown-toggle" data-toggle="dropdown/button" href="${pageContext.request.contextPath}/auctiongoods/auctiongoodslist">온라인 경매</a>
 				<c:if test="${userLoginInfo.userLevel eq '판매자'}"> 
 				<li><a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert">물품등록</a></li>
-				<li><a onclick="window.open('/auction/auctiongoods/goodslist','win2','scrollbars=yes width=650, height=700');return false">품목리스트</a>			
+				<!-- <li><a onclick="window.open('/auction/auctiongoods/goodslist','win2','scrollbars=yes width=650, height=700');return false">품목리스트</a> -->			
 				</c:if>
 				
 				<c:if test="${userLoginInfo.userLevel ne null}">

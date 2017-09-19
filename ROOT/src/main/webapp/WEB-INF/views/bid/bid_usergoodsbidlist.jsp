@@ -99,16 +99,17 @@ th {
 						<th>입찰품목명</th>
 						<th>입찰금액</th>
 						<th>입찰시간</th>
-						<th>입찰종료</th>
+						<th>입찰종료날짜</th>
 					</tr>
 				</thead>
 				<c:forEach var="usergoodsbid" items="${usergoodsbidlist}">
 				<tbody>
 					<tr class="adApplyListTable">
 						<td>${usergoodsbid.bidCode}</td>
-						<td>${usergoodsbid.userBuyerId}</td>
+						<td>${usergoodsbid.auctionGoodsName}</td>
 						<td><fmt:formatNumber value="${usergoodsbid.bidPrice}" groupingUsed="true"/>원</td>
 						<td>${usergoodsbid.bidDate}</td>
+						<td>${usergoodsbid.auctionGoodsEndDate}</td>
 					
 					</tr>
 				</tbody>

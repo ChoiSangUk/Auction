@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
 import com.kpsl.auction.bid.vo.BidVo;
+import com.kpsl.auction.bid.vo.BidVoANDAucntionGoodsVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
 
 @Repository
@@ -33,9 +34,9 @@ public class BidDaolmpl implements BidDao {
 	}
 	// 개인 입찰 리스트
 	@Override
-	public List<BidVo> selectUserGoodsBidsList(BidVo bidvo) {
+	public List<BidVoANDAucntionGoodsVo> selectUserGoodsBidsList(BidVoANDAucntionGoodsVo bidvoandaucntiongoodsvo) {
 		log.info("BidDao userSelectGoodsBidsList 확인");
-		return sessionTemplate.selectList(NS + "selectBidList", bidvo);
+		return sessionTemplate.selectList(NS + "selectUserBidList", bidvoandaucntiongoodsvo);
 	}
 	// 입찰하기
 	@Override

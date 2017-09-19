@@ -12,6 +12,16 @@
 		<id property="bidPrice" column="bid_price"></id>
 		<id property="bidDate" column="bid_date"></id>
 	</resultMap>
+	<resultMap type="com.kpsl.auction.bid.vo.BidVoANDAucntionGoodsVo"
+		id="BidVoANDAucntionGoodsVo">
+		<id property="bidCode" column="bid_code"></id>
+		<id property="auctionGoodsName" column="auction_goods_name"></id>
+		<id property="bidPrice" column="bid_price"></id>
+		<id property="bidDate" column="bid_date"></id>
+		<id property="auctionGoodsEndDate" column="auciton_goods_end_date"></id>
+		<id property="userBuyerId" column="user_buyer_id"></id>
+		<id property="auctionGoodsCode" column="auction_goods_code"></id>
+	</resultMap>
 
 	<!--입찰자 리스트 쿼리문(각 물품마다의 리스트) -->
 	<select id="selectBidList" parameterType="com.kpsl.auction.bid.vo.BidVo"
@@ -39,7 +49,8 @@
 	<select id="highbiduserprice" parameterType="String" resultMap="Bid">
 		SELECT MAX(bid_price) AS bid_price
 		FROM bid_tb
-		WHERE auction_goods_code = #{auctionGoodsCode};
+		WHERE auction_goods_code
+		= #{auctionGoodsCode};
 	</select>
 	<!--입찰쿼리문 -->
 	<insert id="insertBidPrice" parameterType="com.kpsl.auction.bid.vo.BidVo"
@@ -65,18 +76,36 @@
 		, #{bidPrice}
 		, NOW());
 	</insert>
-	<!--재입찰시 중복아이디 체크(1 or null)-->
-	<select id="selectbiduercount" parameterType = "com.kpsl.auction.bid.vo.BidVo" resultMap="Bid">
-		SELECT   COUNT(user_buyer_id = #{userBuyerId}) AS user_buyer_id
-		FROM bid_tb WHERE auction_goods_code  = #{auctionGoodsCode}
+	<!--재입찰시 중복아이디 체크(1 or null) -->
+	<select id="selectbiduercount" parameterType="com.kpsl.auction.bid.vo.BidVo"
+		resultMap="Bid">
+		SELECT COUNT(user_buyer_id = #{userBuyerId}) AS
+		user_buyer_id
+		FROM bid_tb WHERE auction_goods_code =
+		#{auctionGoodsCode}
 	</select>
 	<!--재입찰시에 수정될 입찰금액 -->
-	<update id="updateRebid" parameterType = "com.kpsl.auction.bid.vo.BidVo">
+	<update id="updateRebid" parameterType="com.kpsl.auction.bid.vo.BidVo">
 		UPDATE bid_tb
 		SET
 		bid_price = #{bidPrice},
 		bid_date= NOW()
-		WHERE auction_goods_code = #{auctionGoodsCode} 
+		WHERE auction_goods_code =
+		#{auctionGoodsCode}
 		AND user_buyer_id = #{userBuyerId}
 	</update>
+	<select id="selectUserBidList" parameterType="com.kpsl.auction.bid.vo.BidVoANDAucntionGoodsVo"
+		resultMap="BidVoANDAucntionGoodsVo">
+		SELECT b.bid_code
+		, a.auction_goods_name
+		, b.bid_price
+		, b.bid_date
+		, a.auction_goods_end_date
+		FROM auction_goods_tb a
+		INNER JOIN
+		bid_tb b
+		ON b.auction_goods_code = a.auction_goods_code
+		WHERE
+		user_buyer_id =#{userBuyerId} ORDER BY bid_price
+	</select>
 </mapper>

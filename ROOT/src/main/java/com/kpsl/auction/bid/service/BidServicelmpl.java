@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.kpsl.auction.bid.vo.BidVo;
+import com.kpsl.auction.bid.vo.BidVoANDAucntionGoodsVo;
 
 
 @Service
@@ -35,9 +36,9 @@ public class BidServicelmpl implements BidService {
 	}
 	//개인 입찰 리스트
 	@Override
-	public List<BidVo> getUserGoodsBidsList(BidVo bidvo) {
+	public List<BidVoANDAucntionGoodsVo> getUserGoodsBidsList(BidVoANDAucntionGoodsVo bidvoandaucntiongoodsvo) {
 		log.info("BidServicelmpl의 userSelectGoodsBidsList 메서드");
-		return bidDao.selectUserGoodsBidsList(bidvo);
+		return bidDao.selectUserGoodsBidsList(bidvoandaucntiongoodsvo);
 	}
 	//최고입찰금액
 	@Override

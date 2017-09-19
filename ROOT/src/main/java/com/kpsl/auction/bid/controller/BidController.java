@@ -18,6 +18,7 @@ import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
 import com.kpsl.auction.bid.service.BidService;
 import com.kpsl.auction.bid.vo.BidDepositVo;
 import com.kpsl.auction.bid.vo.BidVo;
+import com.kpsl.auction.bid.vo.BidVoANDAucntionGoodsVo;
 import com.kpsl.auction.cash.service.CashService;
 import com.kpsl.auction.user.vo.UserDetailVo;
 import com.kpsl.auction.bid.service.BidDepositService;
@@ -162,13 +163,14 @@ public class BidController {
 	}	
 	// 본인이 입찰한 물품 리스트 보여주는 controller
 	@RequestMapping(value = "/bid/bidusergoodsbidlist", method = RequestMethod.GET)
-	public String user(HttpSession session, BidVo bidvo, Model model) {
+	public String user(HttpSession session, BidVoANDAucntionGoodsVo bidvoandaucntiongoodsvo, Model model) {
 
 		/** 개인 입찰품목 리스트(session을 통해 가져온 아이디로 쿼리실행) **/
 		String buyerId = (String) session.getAttribute("userId");
-		bidvo.setUserBuyerId(buyerId);
+		bidvoandaucntiongoodsvo.setUserBuyerId(buyerId);
 		log.info(buyerId + "세션을 통해 들어온 아이디");
-		List<BidVo> usergoodsbidlist = bidService.getUserGoodsBidsList(bidvo);
+		List<BidVoANDAucntionGoodsVo> usergoodsbidlist = bidService.getUserGoodsBidsList(bidvoandaucntiongoodsvo);
+		log.info(bidvoandaucntiongoodsvo.getAuctionGoodsEndDate()+"끝나는 날짜 이색기야");
 		model.addAttribute("usergoodsbidlist", usergoodsbidlist);
 
 		return "/bid/bid_usergoodsbidlist";
