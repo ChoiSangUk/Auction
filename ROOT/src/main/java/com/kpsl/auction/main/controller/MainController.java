@@ -61,7 +61,15 @@ public class MainController {
 		
 		return "main";
 	}
-
+	
+	@RequestMapping(value = "/main", method = RequestMethod.POST)
+	public String main(Model model) {
+		
+		log.info("로그확인");
+		
+		return "redirect:/main";
+	}
+	
 	// 관리자 로그인페이지 요청
 	@RequestMapping(value = "/admin/adminLogin", method = RequestMethod.GET)
 	public String adminLogin(Model model) {
@@ -128,9 +136,9 @@ public class MainController {
 		return "/mypage/mypage_myinfo_credit";
 	}
 	// 구매안내
-		@RequestMapping(value = "/mypage/mypageBuyInfo", method = RequestMethod.GET)
-		public String mypageBuyInfo(HttpSession session) {
-			
-			return "/mypage/mypage_buy_info";
-		}
+	@RequestMapping(value = "/mypage/mypageBuyInfo", method = RequestMethod.GET)
+	public String mypageBuyInfo(HttpSession session) {
+		
+		return "/mypage/mypage_buy_info";
+	}
 }

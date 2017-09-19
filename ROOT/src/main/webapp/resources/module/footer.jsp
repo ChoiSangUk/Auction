@@ -7,7 +7,7 @@
 	<div class="col-sm-10 text-center">
 		<div class="row footerBox content">
 			<div class="col-sm-3">
-				<a class="glyphiconLink" href="${pageContext.request.contextPath}/customerOto">
+				<a class="glyphiconLink" id="otoBtn" href="${pageContext.request.contextPath}/board/boardOtoInsertForm">
 				<span class="glyphicon glyphicon-phone-alt" style="font-size: 50px;">
 				</span><br>
 				1:1문의
@@ -65,6 +65,12 @@ $(function() {
         $("#time").text(NowTime);
     }, 1000);
 });
+$('#otoBtn').click(function(){
+	var userId = '${userId}';
+	if(userId === '') {	
+		alert('로그인이 필요한 화면입니다');
+	}
+})
 
 </script>
 </html>
