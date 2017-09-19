@@ -7,14 +7,14 @@
 	<div class="col-sm-10 text-center">
 		<div class="row footerBox content">
 			<div class="col-sm-3">
-				<a class="glyphiconLink" href="#">
+				<a class="glyphiconLink" href="${pageContext.request.contextPath}/customerOto">
 				<span class="glyphicon glyphicon-phone-alt" style="font-size: 50px;">
 				</span><br>
 				1:1문의
 				</a>
 			</div>
 			<div class="col-sm-3">
-				<a class="glyphiconLink" href="#">
+				<a class="glyphiconLink" href="${pageContext.request.contextPath}/mypage/mypageBuyInfo">
 				<span class="glyphicon glyphicon-list-alt" style="font-size: 50px;">
 				</span><br>
 				구매안내
