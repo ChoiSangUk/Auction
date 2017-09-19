@@ -89,7 +89,7 @@
 				<li><a href="${pageContext.request.contextPath}/auctiongoods/auctiongoodsinsert">물품등록</a></li>
 				<li><a onclick="window.open('/auction/auctiongoods/goodslist','win2','scrollbars=yes width=650, height=700');return false">품목리스트</a>			
 				</c:if>
-				<li><a href="aa">고객센터</a></li>
+				
 				<c:if test="${userLoginInfo.userLevel ne null}">
 			 </c:if>					 
 			</ul>

@@ -127,4 +127,10 @@ public class MainController {
 
 		return "/mypage/mypage_myinfo_credit";
 	}
+	// 구매안내
+		@RequestMapping(value = "/mypage/mypageBuyInfo", method = RequestMethod.GET)
+		public String mypageBuyInfo(HttpSession session) {
+			
+			return "/mypage/mypage_buy_info";
+		}
 }
