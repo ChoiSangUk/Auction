@@ -43,7 +43,9 @@ td,th {
 					 
 					</th>
 					<td rowspan="3">
-						<a class="btn btn-primary" href="#">상세보기</a><br>
+						<a class="btn btn-primary" 
+						href="${pageContext.request.contextPath}/auctiongoods/auctiongoods_detail?auctionGoodsCode=${mySalesGoods.auctionGoodsVo.auctionGoodsCode}">
+						상세보기</a><br>
 						입찰 수 : ${mySalesGoods.auctionGoodsVo.auctionGoodsBidHits}<br>
 						조회 수 : ${mySalesGoods.auctionGoodsVo.auctionGoodsHits}
 					</td>
