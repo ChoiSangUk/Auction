@@ -94,9 +94,24 @@
 		agi.auction_goods_code
 		AND
 		agi.auction_goods_image_num=0
-		WHERE user_id = #{userId}
-		 
+		WHERE user_id = #{userId}		 
 	</select>
+	
+	<!-- 내 판매물품 등록상태로 가져오기 -->
+	<select id="selectAllAuctionGoodsByUserIdAndAuctionGoodsState" resultMap="AuctionGoodsAndImage" 
+	parameterType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo">
+		SELECT
+		ag.*,
+		agi.auction_goods_image_path
+		FROM auction_goods_tb AS ag INNER JOIN
+		auction_goods_image_tb AS agi
+		ON ag.auction_goods_code =
+		agi.auction_goods_code
+		AND
+		agi.auction_goods_image_num=0
+		WHERE user_id = #{userId} AND ag.auction_goods_state = #{auctionGoodsState}
+	</select>
+	
 	<!-- 물품 상태 자동 변경 -->
 	<update id="updateAuctionGoodsStateStart">
 		UPDATE auction_goods_tb

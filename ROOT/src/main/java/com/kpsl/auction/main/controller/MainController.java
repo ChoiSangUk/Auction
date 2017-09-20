@@ -116,7 +116,7 @@ public class MainController {
 	
 	// 마이페이지 메인 요청
 	@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.GET)
-	public String mypage(HttpSession session) {
+	public String mypage(Model model, HttpSession session, AuctionGoodsVo auctionGoodsVo) {
 		String userId = (String) session.getAttribute("userId");
 		log.info(userId + "<----- page1 확인");
 		session.getAttribute("userLoginInfo");
@@ -124,7 +124,17 @@ public class MainController {
 		session.setAttribute("userDetailInfo", userDetailInfo);
 		GradeVo gradeVo = userService.getUserGrade(userId);
 		log.info(gradeVo.getGradeName() + "<---- 확인");
+		auctionGoodsVo.setUserId(userId);
+		auctionGoodsVo.setAuctionGoodsState("판매중");
+		int ingCount = auctionGoodsService.getAllAuctionGoodsByUserIdAndAuctionGoodsState(auctionGoodsVo).size();
+		auctionGoodsVo.setAuctionGoodsState("판매종료");
+		int stopCount = auctionGoodsService.getAllAuctionGoodsByUserIdAndAuctionGoodsState(auctionGoodsVo).size();
+		auctionGoodsVo.setAuctionGoodsState("낙찰");
+		int successCount = auctionGoodsService.getAllAuctionGoodsByUserIdAndAuctionGoodsState(auctionGoodsVo).size();
 		session.setAttribute("grade", gradeVo);
+		model.addAttribute("ingCount", ingCount);
+		model.addAttribute("stopCount", stopCount);
+		model.addAttribute("successCount", successCount);
 		
 		return "/mypage/mypage_main";
 	}

@@ -144,6 +144,14 @@ public class AuctionGoodsDaoImpl implements AuctionGoodsDao {
 		System.out.println("user id : "+userId);
 		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsByUserId",userId);
 	}
+
+	@Override
+	public List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsByUserIdAndAuctionGoodsState(
+			AuctionGoodsVo auctionGoodsVo) {
+		
+		
+		return sqlSessionTemplate.selectList(NS+"selectAllAuctionGoodsByUserIdAndAuctionGoodsState", auctionGoodsVo);
+	}
 	
 	
 	

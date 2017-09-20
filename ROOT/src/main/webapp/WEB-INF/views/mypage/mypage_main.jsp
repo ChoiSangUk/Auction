@@ -210,15 +210,24 @@ a:hover {text-decoration: underline; color: #000000;} */
 							</tr>
 							<tr class="active">
 								<th>판매중</th>
-								<th>판매완료</th>
-								<th>결제완료</th>
+								<th>판매종료</th>
+								<th>낙찰완료</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>1</td>
-								<td>2</td>
-								<td>3</td>
+								<td>
+								<a href="${pageContext.request.contextPath}/auctiongoods/mySales?auctionGoodsState=판매중">
+								${ingCount}</a>
+								</td>
+								<td>
+								<a href="${pageContext.request.contextPath}/auctiongoods/mySales?auctionGoodsState=판매종료">
+								${stopCount}</a>
+								</td>
+								<td>
+								<a href="${pageContext.request.contextPath}/auctiongoods/mySales?auctionGoodsState=낙찰">
+								${successCount}</a>
+								</td>
 							</tr>
 						</tbody>
 					</table>

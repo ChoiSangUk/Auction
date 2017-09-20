@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,20 @@ public class AuctionGoodsController {
 		System.out.println(mySalesGoodsList.toString());
 		model.addAttribute("mySalesGoodsList", mySalesGoodsList);
 				return "mypage/mypage_my_sales_goods_list";
+		
+	}
+	
+	@RequestMapping(value = "/auctiongoods/mySales", method = RequestMethod.GET)
+	public String getMySalesList(Model model, HttpSession session, AuctionGoodsVo auctionGoodsVo
+								,@RequestParam(value="auctionGoodsState", required = true) String auctionGoodsState){
+		String userId = (String) session.getAttribute("userId");
+		auctionGoodsVo.setUserId(userId);
+		auctionGoodsVo.setAuctionGoodsState(auctionGoodsState);
+		List<AuctionGoodsAndFirstImageVo> mySalesGoodsList = auctionGoodsService.getAllAuctionGoodsByUserIdAndAuctionGoodsState(auctionGoodsVo);
+		System.out.println("controller 에서");
+		System.out.println(mySalesGoodsList.toString());
+		model.addAttribute("mySalesGoodsList", mySalesGoodsList);
+				return "mypage/mypage_my_sales_list";
 		
 	}
 	//물품 수정

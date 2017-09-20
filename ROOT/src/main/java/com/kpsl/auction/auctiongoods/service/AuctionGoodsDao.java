@@ -50,5 +50,6 @@ public interface AuctionGoodsDao {
 	
 	//개인 판매물품 목록
 	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsByUserId(String userId);
+	List<AuctionGoodsAndFirstImageVo> selectAllAuctionGoodsByUserIdAndAuctionGoodsState(AuctionGoodsVo auctionGoodsVo);
 	
 }
