@@ -95,21 +95,23 @@ th {
 			<table class="table table-bordered">
 				<thead>
 					<tr class="active">
-						<th>입찰코드</th>
-						<th>입찰품목명</th>
-						<th>입찰금액</th>
-						<th>입찰시간</th>
+						<th>물품명</th>
+						<th>낙찰금액</th>
+						<th>낙찰일자</th>
+						<th>결제</th>
 		
 					</tr>
 				</thead>
-				<c:forEach var="usergoodsbid" items="${usergoodsbidlist}">
+				<c:forEach var="usersuccessbidlist" items="${usersuccessbidlist}">
 				<tbody>
 					<tr class="adApplyListTable">
-						<td>${usergoodsbid.bidCode}</td>
-						<td>${usergoodsbid.auctionGoodsName}</td>
-						<td><fmt:formatNumber value="${usergoodsbid.bidPrice}" groupingUsed="true"/>원</td>
-						<td>${usergoodsbid.bidDate}</td>
-					
+						<td>${usersuccessbidlist.auctionGoodsName}</td>
+						<td><fmt:formatNumber value="${usersuccessbidlist.successfulBidPrice}" groupingUsed="true"/>원</td>
+						<td>${usersuccessbidlist.successfulBidDate}</td>
+						<td>
+						<a href="${pageContext.request.contextPath}/mypage/purchasePaymentInserForm?successfulBidCode=${usersuccessbidlist.successfulBidCode}" 
+						class="btn btn-info">결제하기</a>
+						</td>
 					</tr>
 				</tbody>
 				</c:forEach>

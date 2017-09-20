@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kpsl.auction.successfullBid.service.SuccessfullBidMapper">
-	<resultMap type="com.kpsl.auction.successfullBid.vo.SuccessBidVo" id="SuccessfullBid">
+	<resultMap type="com.kpsl.auction.successfullBid.vo.SuccessBidVo"
+		id="SuccessfullBid">
 		<id property="successfulBidCode" column="successful_bid_code"></id>
 		<id property="bidCode" column="bid_code"></id>
 		<id property="userBuyerId" column="user_buyer_id"></id>
@@ -13,7 +14,7 @@
 		<id property="auctionGoodsCode" column="auction_goods_code"></id>
 		<id property="userSellerId" column="user_seller_id"></id>
 	</resultMap>
-	
+
 	<resultMap type="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo"
 		id="AuctionGoods">
 		<id property="auctionGoodsCode" column="auction_goods_code" />
@@ -38,9 +39,12 @@
 		<id property="auctionGoodsHits" column="auction_goods_hits" />
 		<id property="auctionGoodsDepositPrice" column="auction_goods_deposit_price" />
 	</resultMap>
-	
-	<resultMap type="com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo" id="SuccessBidAndBidAndAuctionGoods">
-		<association property="successBidVo" javaType="com.kpsl.auction.successfullBid.vo.SuccessBidVo">
+
+	<resultMap
+		type="com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo"
+		id="SuccessBidAndBidAndAuctionGoods">
+		<association property="successBidVo"
+			javaType="com.kpsl.auction.successfullBid.vo.SuccessBidVo">
 			<id property="successfulBidCode" column="successful_bid_code"></id>
 			<id property="bidCode" column="bid_code"></id>
 			<id property="userBuyerId" column="user_buyer_id"></id>
@@ -57,7 +61,8 @@
 			<id property="bidPrice" column="bid_price"></id>
 			<id property="bidDate" column="bid_date"></id>
 		</association>
-		<association property="auctionGoodsVo" javaType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo">
+		<association property="auctionGoodsVo"
+			javaType="com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo">
 			<id property="auctionGoodsCode" column="auction_goods_code" />
 			<id property="userId" column="user_id" />
 			<id property="smallCategoryCode" column="small_category_code" />
@@ -81,56 +86,87 @@
 			<id property="auctionGoodsDepositPrice" column="auction_goods_deposit_price" />
 		</association>
 	</resultMap>
-	
+	<resultMap
+		type="com.kpsl.auction.successfullBid.vo.SuccessfullBidVoANDauctionGoodsVo"
+		id="SuccessfullBidVoANDauctionGoodsVo">
+		<id property="auctionGoodsName" column="auction_goods_name" />
+		<id property="successfulBidCode" column="successful_bid_code" />
+		<id property="userSellerId" column="user_seller_id" />
+		<id property="successfulBidPrice" column="successful_bid_price" />
+		<id property="successfulBidDate" column="successful_bid_date" />
+		<id property="auctionGoodsCode" column="auction_goods_code" />
+		<id property="userBuyerId" column="user_buyer_id" />
+	</resultMap>
+
 	<select id="selectMaxBid" resultMap="SuccessBidAndBidAndAuctionGoods">
-		SELECT 	ag.auction_goods_code, 
-				ag.auction_goods_name, 
-				ag.auction_goods_state,
-				ag.auction_goods_end_date,
-				b.bid_code,
-				MAX(b.bid_price) AS bid_price, 
-				b.user_buyer_id,
-				b.user_seller_id
-		FROM 	auction_goods_tb ag 
-				LEFT JOIN bid_tb b
-				ON ag.auction_goods_code = b.auction_goods_code
-		WHERE 	ag.auction_goods_state='판매중' 
-				AND ag.auction_goods_end_date = CURDATE()
-				AND b.bid_code is not null
-		GROUP BY ag.auction_goods_code	
+		SELECT
+		ag.auction_goods_code,
+		ag.auction_goods_name,
+		ag.auction_goods_state,
+		ag.auction_goods_end_date,
+		b.bid_code,
+		MAX(b.bid_price) AS bid_price,
+		b.user_buyer_id,
+		b.user_seller_id
+		FROM auction_goods_tb ag
+		LEFT JOIN
+		bid_tb b
+		ON ag.auction_goods_code = b.auction_goods_code
+		WHERE
+		ag.auction_goods_state='판매중'
+		AND ag.auction_goods_end_date = CURDATE()
+		AND b.bid_code is not null
+		GROUP BY ag.auction_goods_code
 	</select>
-	
+
 	<insert id="insertSuccessfulBid" parameterType="com.kpsl.auction.successfullBid.vo.SuccessBidVo">
 		<selectKey keyProperty="successfulBidCode" resultType="string"
-				order="BEFORE">
+			order="BEFORE">
 			SELECT CONCAT("sb",MAX(CAST(substring(successful_bid_code,3)+1
 			AS DECIMAL)))
 			FROM successful_bid_tb
 		</selectKey>
 		INSERT INTO successful_bid_tb
-				(successful_bid_code
-				, bid_code
-				, user_buyer_id
-				, successful_bid_price
-				, successful_bid_date
-				, auction_goods_code
-				, user_seller_id)
-				VALUES 
-				(#{successfulBidCode}, 
-				#{bidCode}, 
-				#{userBuyerId}, 
-				#{successfulBidPrice}, 
-				NOW(), 
-				#{auctionGoodsCode}, 
-				#{userSellerId})
+		(successful_bid_code
+		, bid_code
+		,
+		user_buyer_id
+		, successful_bid_price
+		, successful_bid_date
+		,
+		auction_goods_code
+		, user_seller_id)
+		VALUES
+		(#{successfulBidCode},
+		#{bidCode},
+		#{userBuyerId},
+		#{successfulBidPrice},
+		NOW(),
+		#{auctionGoodsCode},
+		#{userSellerId})
 	</insert>
-	
+
 	<update id="updateAuctionGoodsState" parameterType="String">
-		UPDATE  auction_goods_tb
+		UPDATE
+		auction_goods_tb
 		SET
-				auction_goods_state='낙찰'
-		WHERE 	auction_goods_code=#{auctionGoodsCode}
-	
+		auction_goods_state='낙찰'
+		WHERE
+		auction_goods_code=#{auctionGoodsCode}
+
 	</update>
+	<select id="selectsuccessfullist"
+		parameterType="com.kpsl.auction.successfullBid.vo.SuccessfullBidVoANDauctionGoodsVo"
+		resultMap="SuccessfullBidVoANDauctionGoodsVo">
+		SELECT a.auction_goods_name
+		,b.successful_bid_code
+		,b.user_seller_id
+		,b.successful_bid_price
+		,b.successful_bid_date
+		FROM auction_goods_tb a
+		INNER JOIN successful_bid_tb b
+		ON a.auction_goods_code = b.auction_goods_code
+		WHERE user_buyer_id = #{userBuyerId}
+	</select>
 </mapper>
 

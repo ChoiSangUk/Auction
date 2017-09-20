@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo;
 import com.kpsl.auction.successfullBid.vo.SuccessBidVo;
+import com.kpsl.auction.successfullBid.vo.SuccessfullBidVoANDauctionGoodsVo;
 
 public interface SuccessBidDao {
 	// 판매중인물품중 입찰최고가 SELECT 쿼리
@@ -12,4 +13,7 @@ public interface SuccessBidDao {
 	int insertSuccessfulBid(SuccessBidVo successBidVo);
 	// 경매물품테이블 등록상태 UPDATE 쿼리
 	int updateAuctionGoodsState(String auctionGoodsCode);
+	//개인 낙찰 리스트 
+	List<SuccessfullBidVoANDauctionGoodsVo> selectSuccessbidList(SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo);
+	
 }

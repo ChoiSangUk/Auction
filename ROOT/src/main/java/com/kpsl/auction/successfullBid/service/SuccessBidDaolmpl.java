@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo;
 import com.kpsl.auction.successfullBid.vo.SuccessBidVo;
+import com.kpsl.auction.successfullBid.vo.SuccessfullBidVoANDauctionGoodsVo;
 
 @Repository
 public class SuccessBidDaolmpl implements SuccessBidDao {
@@ -18,29 +19,27 @@ public class SuccessBidDaolmpl implements SuccessBidDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
 	@Override
 	public List<SuccessBidAndBidAndAuctionGoodsVo> selectMaxBid() {
-		
-		log.info("selectMaxBid");
-		
+		log.info("selectMaxBid");	
 		return sqlSessionTemplate.selectList(SuccessfullBidMapperNS+"selectMaxBid");
 	}
-
 	@Override
 	public int insertSuccessfulBid(SuccessBidVo successBidVo) {
-		
-		log.info("insertSuccessfulBid");
-		
+		log.info("insertSuccessfulBid");	
 		return sqlSessionTemplate.insert(SuccessfullBidMapperNS+"insertSuccessfulBid",successBidVo);
 	}
-
 	@Override
 	public int updateAuctionGoodsState(String auctionGoodsCode) {
-		
 		log.info("updateAuctionGoodsState 호출 확인");
-		
 		return sqlSessionTemplate.update(SuccessfullBidMapperNS+"updateAuctionGoodsState", auctionGoodsCode);
+	}
+	//개인 낙찰 리스트 
+	@Override
+	public List<SuccessfullBidVoANDauctionGoodsVo> selectSuccessbidList(
+			SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo) {
+		log.info("SuccessBidDaolmpl의 selectSuccessbidList 확인");
+		return sqlSessionTemplate.selectList(SuccessfullBidMapperNS+"selectsuccessfullist" ,successfullbidVoANDauctiongoodsvo);
 	}
 
 }
