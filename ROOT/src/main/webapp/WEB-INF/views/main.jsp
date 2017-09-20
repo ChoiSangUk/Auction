@@ -119,7 +119,7 @@
 	<div class="carousel-inner" role="listbox">
 		<div class="item active mainBanner">
 			<a href="${pageContext.request.contextPath}/mypageAdInfo">
-			<img src="${pageContext.request.contextPath}/resources/img/mainBanner.jpg" 
+			<img src="${pageContext.request.contextPath}/resources/img/mainBanner.jpg"
 			style="width: 80%; height: 500px;" alt="Image" align="middle">
 			</a>
 		</div>
