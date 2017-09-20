@@ -175,4 +175,18 @@ public class BidController {
 
 		return "/bid/bid_usergoodsbidlist";
 	}
+	// 본인 낙찰 물품 리스트
+	@RequestMapping(value = "/bid/bidsuccessfull", method = RequestMethod.GET)
+	public String successbid(HttpSession session, BidVoANDAucntionGoodsVo bidvoandaucntiongoodsvo, Model model) {
+
+		/** 개인 입찰품목 리스트(session을 통해 가져온 아이디로 쿼리실행) **/
+		String buyerId = (String) session.getAttribute("userId");
+		bidvoandaucntiongoodsvo.setUserBuyerId(buyerId);
+		log.info(buyerId + "세션을 통해 들어온 아이디");
+		List<BidVoANDAucntionGoodsVo> usergoodsbidlist = bidService.getUserGoodsBidsList(bidvoandaucntiongoodsvo);
+		log.info(bidvoandaucntiongoodsvo.getAuctionGoodsEndDate()+"끝나는 날짜 이색기야");
+		model.addAttribute("usergoodsbidlist", usergoodsbidlist);
+
+		return "/bid/bid_successfulllist";
+	}
 }

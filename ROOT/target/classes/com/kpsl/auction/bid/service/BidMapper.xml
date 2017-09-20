@@ -106,6 +106,6 @@
 		bid_tb b
 		ON b.auction_goods_code = a.auction_goods_code
 		WHERE
-		user_buyer_id =#{userBuyerId} ORDER BY bid_price
+		user_buyer_id =#{userBuyerId} ORDER BY bid_date
 	</select>
 </mapper>

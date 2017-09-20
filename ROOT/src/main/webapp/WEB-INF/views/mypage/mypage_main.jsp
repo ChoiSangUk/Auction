@@ -154,11 +154,11 @@ a:hover {text-decoration: underline; color: #000000;} */
 						class="mypage-a" href="#"> <span
 						class="pull-right glyphicon glyphicon-plus"></span> <span
 						class="pull-right">구매관리 바로가기</span>
-					</a> <a class="mypage-a"
+					</a> <%-- <a class="mypage-a"
 						href="${pageContext.request.contextPath}/bid/bidusergoodsbidlist">
 						<span class="pull-right glyphicon glyphicon-plus"></span> <span
 						class="pull-right">입찰관리 바로가기</span>
-					</a>
+					</a> --%>
 				</h3>
 			</div>
 			<div class="table">
@@ -186,8 +186,9 @@ a:hover {text-decoration: underline; color: #000000;} */
 					<tbody>
 						<tr>
 							<td><a
-								href="${pageContext.request.contextPath}/bid/bidusergoodsbidlist"></a>1</td>
-							<td>2</td>
+								href="${pageContext.request.contextPath}/bid/bidusergoodsbidlist">1</a></td>
+							<td><a
+								href="${pageContext.request.contextPath}/bid/bidsuccessfull">2</a></td>
 							<td>3</td>
 							<td>4</td>
 							<td>5</td>
