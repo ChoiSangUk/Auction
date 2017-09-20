@@ -1,5 +1,7 @@
 package com.kpsl.auction.question.controller;
 
-public class QuestionController {
+import org.springframework.stereotype.Controller;
 
-}
+@Controller
+public class QuestionController {
+}	

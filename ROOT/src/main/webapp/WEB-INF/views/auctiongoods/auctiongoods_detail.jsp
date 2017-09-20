@@ -2,6 +2,39 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/resources/module/top.jsp" charEncoding="UTF-8" />
+<style>
+
+.question {
+    padding: 20px 10px;
+    padding-left: 70px;
+    border-bottom: 1px dashed #ddd;
+    background: no-repeat 15px 15px;
+}
+.questionCell{
+	display: table-cell;
+    vertical-align: middle;
+    padding: 12px 0;
+    font-size:medium;
+}
+.questionDiv{
+	border-top:1px solid;
+	border-bottom:1px solid #C3C3C3; 
+	margin:0px 200px 0px 200px;
+	
+}
+.width100{
+	width:100px;
+}
+.width180{
+	width:180px;
+}
+.width270{
+	width:270px;
+}
+.width500{
+	width:500px;
+}
+</style>
 <div style="margin-right: 100px; margin-left: 100px; margin-bottom:1px;"  id="top">
 	<!-- 헤더 부분 -->
 	<div>
@@ -94,7 +127,7 @@
 								&auctionGoodsBidUnit=${auctionGoods.auctionGoodsBidUnit}
 								&auctionGoodsStartPrice=${auctionGoods.auctionGoodsStartPrice}
 								&auctionGoodsCode=${auctionGoods.auctionGoodsCode}">입찰하기 </a>
-				<a class="btn btn-default btn-lg" href="#">문의하기 </a>
+				<a class="btn btn-default btn-lg questionBtn" href="#questionMain" data-toggle="modal" data-target="#doQuestion">문의하기 </a>
 			</div>
 			<div id="auctionGoodsEnd" style="display:none; font-size:300%; text-align:center; color:red">판매 종료</div>
 		</div>
@@ -123,14 +156,189 @@
 				<li><a href="#goodsDetail">물품 상세 내용</a></li>
 				<li class="breadcrumb-item active">물품 문의</li>
 			</ol>
-		</div>
-		<div class="row" >
 			
+			<div id="questionMain">
+				<div class="questionDiv" align="center" style="background-color:#E7E7E7">
+					<ul style="table">
+						<li class="questionCell width100">번호</li>
+						<li class="questionCell width180">질문구분</li>
+						<li class="questionCell width500">제목</li>
+						<li class="questionCell width270">등록자</li>
+						<li class="questionCell width180">등록일</li>
+					</ul>
+				</div>
+			</div>
+			<div class="text-right questionBtn" style="margin:10px 200px 0px 0px">
+				<a href="#none" class="btn btn-success " data-toggle="modal" data-target="#doQuestion">문의하기 <span class="glyphicon glyphicon-pencil"></span></a>
+			</div>
+						<!-- Modal -->
+				<div class="modal fade" id="doQuestion" tabindex="-1" role="dialog" 
+			    	 aria-labelledby="myModalLabel" aria-hidden="true">
+			   	 <div class="modal-dialog">
+			        	<div class="modal-content">
+				           	 <!-- Modal Header -->
+				           	 <div class="modal-header">
+				                <button type="button" class="close" 
+				                   data-dismiss="modal">
+				                       <span aria-hidden="true">&times;</span>
+				                       <span class="sr-only">Close</span>
+				                </button>
+				                <h4 class="modal-title" id="myModalLabel">
+				                    ${auctionGoods.auctionGoodsName}
+				                </h4>
+				            </div>
+			            
+			            <!-- Modal Body -->
+				            <div class="row modal-body">
+				                
+				                <form class="form-horizontal" id="questionForm"
+				                action="${pageContext.request.contextPath}/question/questionInsert" method="post">
+				                <div class="form-group">
+				                    <label class="control-label col-sm-2">물품 번호</label> 
+				                    <div class="col-sm-10">
+				                    	<input type="text" class="form-control" name="auctionGoodsCode" value="${auctionGoods.auctionGoodsCode}" readonly/>
+				                    </div>
+				                  </div>
+				                  <div class="form-group">
+				                    <label class="control-label col-sm-2">판매자</label> 
+				                    <div class="col-sm-10">
+				                    	<input type="text" class="form-control" name="userSellerId" value="${auctionGoods.userId}" readonly/>
+				                    </div>
+				                  </div>
+				                  <div class="form-group">
+				                    <label class="control-label col-sm-2">질문자</label> 
+				                    <div class="col-sm-10">
+				                    	<input id="questioner" type="text" class="form-control" name="userBuyerId" value="${userLoginInfo.userId}" readonly/>
+				                    </div>
+				                  </div>
+				                   <div class="form-group">
+				                    <label class="control-label col-sm-2">문의 유형</label> 
+				                    <div class="col-sm-10">
+				                    	<label class="radio-inline">
+										<input type="radio" name="questionType" value="auctionGoods">상품</label> 
+										<label class="radio-inline">
+										<input type="radio" name="questionType" value="delivery">배송</label>
+										<label class="radio-inline">
+										<input type="radio" name="questionType" value="etc">기타</label>
+				                    </div>
+				                  </div>
+				                  <label class="control-label col-sm-2">문의 형식</label> 
+				                  <div class="col-sm-10" style="margin-bottom:10px">
+				                    	<label class="radio-inline">
+										<input type="radio" name="questionState" value="normal">공개</label> 
+										<label class="radio-inline">
+										<input type="radio" name="questionState" value="blind">비공개</label>
+				                    </div>
+				                    <div class="form-group">
+				                    <label class="control-label col-sm-2">제목</label> 
+				                    <div class="col-sm-10">
+				                    	<input type="text" name="questionTitle" class="form-control"/>
+				                    </div>
+				                  </div>
+				                  <div class="form-group">
+				                    <label class="control-label col-sm-2">내용</label> 
+										<textarea class="form-control" style="width:80%" name="questionContents" rows="8" placeholder="문의 내용을 입력하시오">
+										</textarea>
+				                  </div>
+				                    <!-- Modal Footer -->
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-default"
+					                        data-dismiss="modal">
+					                            닫기
+					                </button>
+					                <input type="submit" class="btn btn-primary" id="questionSubmit" value=" 문의 등록">
+					                   
+					            </div>
+				                </form>
+				                
+				            </div>
+			            
+			          
+			        </div>
+			    </div>
+			</div>
+			<!-- modal end -->
 		</div>
+		 
 	</div>
 	
 </div>
 <script>
+
+
+
+var buyerId = "${userLoginInfo.userId}"
+var sellerId = "${auctionGoods.userId}"
+if(buyerId == sellerId){
+	$('.questionBtn').hide();
+}
+
+
+
+
+//물품문의 등록
+$('#questionSubmit').click(function(){
+	var params = $('#questionForm').serialize();
+	console.log(params)
+		$.ajax({
+	        type: 'post',
+	        data: params,
+	        url: '${pageContext.request.contextPath}/question/questionInsert',
+	        success: function(data){
+	        	var auctionGoodsCode= "${auctionGoods.auctionGoodsCode}"
+	        	var auctionGoodsCodeJson = {
+	        			"auctionGoodsCode" : auctionGoodsCode
+	        	}
+	        	console.log(auctionGoodsCode)
+	            $.ajax({
+	    	        type: 'get',
+	    	        data : auctionGoodsCodeJson,
+	    	        datatype : 'json',
+	    	        url: '${pageContext.request.contextPath}/question/getQuestion',
+	    	        error : function(request,status,error) {
+	    	        	console.log("물품받기ajax 에러")
+	    				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+	    				alert('auction goodsList ajax Error');
+	    			},
+	    	        success: function(getData){
+	    	        	var questionObj = jQuery.parseJSON(JSON.stringify(getData));
+	    	        	console.log(questionObj)
+	    	        	$('#questionMain').empty();
+	    	        	 for(i=0; i<questionObj.length; i++){
+	    	        		 if(questionObj[i].questionState=="blind" && buyerId!=sellerId){
+	    	        			 questionObj[i].questionTitle="비공개 문의 입니다"
+	    	        		 }
+	    	        		 $('#questionMain').append('<div class="questionDiv" align="center">'
+	    	     					+'<ul style="table">'
+	    							+'<li class="questionCell width100" class="questionCode">'+questionObj[i].questionCode+'</li>'
+	    							+'<li class="questionCell width180">'+questionObj[i].questionType+'</li>'
+	    							+'<li class="questionCell width500">'+questionObj[i].questionTitle+'</li>'
+	    							+'<li class="questionCell width270">'+questionObj[i].userBuyerId+'</li>'
+	    							+'<li class="questionCell width180">'+questionObj[i].questionDate+'</li>'
+	    							+'</ul>'
+		    					 	+	'<div class="question" align="center" style="display:none">'+questionObj[i].questionContents+'</div>'
+	    							+'</div>')
+	    	        	}
+	    	        	 $('.questionDiv').click(function(){
+	    		     			console.log('물품 버튼')
+	    		     			if($(this).find('.question').css('display') == "none"){
+	    		     				console.log('보여주기');
+	    		     				$(this).find('.question').show();
+	    		     			}else{
+	    		     				$(this).find('.question').hide();
+	    		     				console.log('숨기기')
+	    		     			}
+	    		     		})
+	    	        }
+	    	   });
+	        }
+	   });
+	
+	 return false; //<- 이 문장으로 새로고침(reload)이 방지됨
+	 $('#doQuestion').dialog('close');
+});
+ 
+
 
 //남은 시간 타이머
 var endDate = $("#endDate").text();
@@ -159,6 +367,57 @@ var timer = function(){
 
 	
 	$(document).ready(function(){
+			var auctionGoodsCode= "${auctionGoods.auctionGoodsCode}"
+        	var auctionGoodsCodeJson = {
+        			"auctionGoodsCode" : auctionGoodsCode
+        	}
+		$.ajax({
+	        type: 'get',
+	        data : auctionGoodsCodeJson,
+	        datatype : 'json',
+	        url: '${pageContext.request.contextPath}/question/getQuestion',
+	        error : function(request,status,error) {
+	        	console.log("물품받기ajax 에러")
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+				alert('auction goodsList ajax Error');
+			},
+	        success: function(getData){
+	        	var questionObj = jQuery.parseJSON(JSON.stringify(getData));
+	        	console.log(questionObj)
+	        	 for(i=0; i<questionObj.length; i++){
+	        		 if(questionObj[i].questionState=="blind" && buyerId!=sellerId){
+	        			 questionObj[i].questionTitle="비공개 문의 입니다"
+	        		 }
+	        		 
+	        		 $('#questionMain').append('<div class="questionDiv btn btn-default" align="center">'
+	     					+'<ul style="table">'
+							+'<li class="questionCell width100">'+questionObj[i].questionCode+'</li>'
+							+'<li class="questionCell width180">'+questionObj[i].questionType+'</li>'
+							+'<li class="questionCell width500">'+questionObj[i].questionTitle+'</li>'
+							+'<li class="questionCell width270">'+questionObj[i].userBuyerId+'</li>'
+							+'<li class="questionCell width180">'+questionObj[i].questionDate+'</li>'
+							+'</ul>'
+					 	+'<div class="question" style="display:none"><hr><span>'+questionObj[i].questionContents+'</span></div>'
+					 +'</div>')
+	        	}
+	        	$('.questionDiv').click(function(){
+	     			console.log('물품 버튼')
+	     			if($(this).find('.question').css('display') == "none"){
+	     				console.log('보여주기')
+	     				$(this).find('.question').show()
+	     			}else{
+	     				$(this).find('.question').hide()
+	     				console.log('숨기기')
+	     			}
+	     		})
+	            
+	        }
+	   });
+		
+		
+		if($('#questioner').val()==""){
+			$('#questioner').val('guest');
+		}
 		//즉시구매 
 		var auctionGoodsInstantBuyPrice = $('#instantBuySpan').text();
 		if(auctionGoodsInstantBuyPrice == 0){
@@ -211,10 +470,11 @@ var timer = function(){
 				$('.bidButton').hide();
 				$('#auctionGoodsEnd').show();
 		}
+		
+		
 	})
 	
 	
 </script>
-
 
 <c:import url="/resources/module/footer.jsp" charEncoding="UTF-8" />

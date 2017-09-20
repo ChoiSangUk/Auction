@@ -1,1 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.kpsl.auction.question.service.QuestionMapper">
+	<resultMap type="com.kpsl.auction.question.vo.QuestionVo"
+		id="Question">
+		<id property="questionCode" column="question_code" />
+		<id property="auctionGoodsCode" column="auction_goods_code" />
+		<id property="userSellerId" column="user_seller_id" />
+		<id property="userBuyerId" column="user_buyer_id" />
+		<id property="questionType" column="question_type" />
+		<id property="questionContents" column="question_contents" />
+		<id property="questionDate" column="question_date" />
+		<id property="questionState" column="question_state" />
+		<id property="questionTitle" column="question_title" />
+		<id property="questionReplyState" column="question_reply_state" />
+	</resultMap>
+
+
+	<insert id="insertQuestion" parameterType="com.kpsl.auction.question.vo.QuestionVo"
+		useGeneratedKeys="true" keyProperty="questionCode">
+		<selectKey keyProperty="questionCode" resultType="string"
+			order="BEFORE">
+			SELECT CONCAT("qc",MAX(CAST(substring(question_code,3)+1
+			AS DECIMAL)))
+			FROM question_tb
+		</selectKey>
+		INSERT INTO question_tb
+		(
+		question_code,
+		auction_goods_code,
+		question_title,
+		user_seller_id,
+		user_buyer_id,
+		question_type,
+		question_contents,
+		question_state,
+		question_reply_state,
+		question_date
+		)
+		VALUES (
+		#{questionCode},
+		#{auctionGoodsCode},
+		#{questionTitle},
+		#{userSellerId},
+		#{userBuyerId},
+		#{questionType},
+		#{questionContents},
+		#{questionState},
+		'답변대기',
+		NOW() <!-- 등록 날짜 시간 -->
+		);
+	</insert>
+	
+	<select id="selectQuestions" parameterType="String"
+		resultMap="Question">
+		SELECT question_code,
+		auction_goods_code,
+		question_title,
+		user_seller_id,
+		user_buyer_id,
+		question_type,
+		question_contents,
+		question_state,
+		question_date
+		FROM question_tb
+		WHERE
+		auction_goods_code=
+		#{auctionGoodsCode};
+	</select>
+
+</mapper>
+  

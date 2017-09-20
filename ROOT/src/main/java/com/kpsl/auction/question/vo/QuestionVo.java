@@ -1,50 +1,52 @@
 package com.kpsl.auction.question.vo;
 
 public class QuestionVo {
-	private String question_code; 		//경매물품문의코드(PK)
-	private String auction_goodsCode; 	//경매물품코드(PK)(FK)
-	private String user_sellerId; 		//판매자아이디(PK)(FK)
-	private String user_buyerId;		// 구매자아이디(FK)
+	private String questionCode; 		//경매물품문의코드(PK)
+	private String auctionGoodsCode; 	//경매물품코드(PK)(FK)
+	private String userSellerId; 		//판매자아이디(PK)(FK)
+	private String userBuyerId;			// 구매자아이디(FK)
 	private String questionType;		//문의유형
-	private String questionForm;		// 문의형식
 	private String questionContents; 	//문의내용
+	private String questionTitle;
 	private String questionDate; 		//문의날짜
+	private String questionState;		//공개 , 비공개
+	public String getQuestionTitle() {
+		return questionTitle;
+	}
+	public void setQuestionTitle(String questionTitle) {
+		this.questionTitle = questionTitle;
+	}
+	private String questionReplyState;	//답변상태
 	
-	public String getQuestion_code() {
-		return question_code;
+	public String getQuestionCode() {
+		return questionCode;
 	}
-	public void setQuestion_code(String question_code) {
-		this.question_code = question_code;
+	public void setQuestionCode(String questionCode) {
+		this.questionCode = questionCode;
 	}
-	public String getAuction_goodsCode() {
-		return auction_goodsCode;
+	public String getAuctionGoodsCode() {
+		return auctionGoodsCode;
 	}
-	public void setAuction_goodsCode(String auction_goodsCode) {
-		this.auction_goodsCode = auction_goodsCode;
+	public void setAuctionGoodsCode(String auctionGoodsCode) {
+		this.auctionGoodsCode = auctionGoodsCode;
 	}
-	public String getUser_sellerId() {
-		return user_sellerId;
+	public String getUserSellerId() {
+		return userSellerId;
 	}
-	public void setUser_sellerId(String user_sellerId) {
-		this.user_sellerId = user_sellerId;
+	public void setUserSellerId(String userSellerId) {
+		this.userSellerId = userSellerId;
 	}
-	public String getUser_buyerId() {
-		return user_buyerId;
+	public String getUserBuyerId() {
+		return userBuyerId;
 	}
-	public void setUser_buyerId(String user_buyerId) {
-		this.user_buyerId = user_buyerId;
+	public void setUserBuyerId(String userBuyerId) {
+		this.userBuyerId = userBuyerId;
 	}
 	public String getQuestionType() {
 		return questionType;
 	}
 	public void setQuestionType(String questionType) {
 		this.questionType = questionType;
-	}
-	public String getQuestionForm() {
-		return questionForm;
-	}
-	public void setQuestionForm(String questionForm) {
-		this.questionForm = questionForm;
 	}
 	public String getQuestionContents() {
 		return questionContents;
@@ -58,13 +60,25 @@ public class QuestionVo {
 	public void setQuestionDate(String questionDate) {
 		this.questionDate = questionDate;
 	}
+	public String getQuestionState() {
+		return questionState;
+	}
+	public void setQuestionState(String questionState) {
+		this.questionState = questionState;
+	}
+	public String getQuestionReplyState() {
+		return questionReplyState;
+	}
+	public void setQuestionReplyState(String questionReplyState) {
+		this.questionReplyState = questionReplyState;
+	}
 	@Override
 	public String toString() {
-		return "QuestionVo [question_code=" + question_code + ", auction_goodsCode=" + auction_goodsCode
-				+ ", user_sellerId=" + user_sellerId + ", user_buyerId=" + user_buyerId + ", questionType="
-				+ questionType + ", questionForm=" + questionForm + ", questionContents=" + questionContents
-				+ ", questionDate=" + questionDate + "]";
+		return "QuestionVo [questionCode=" + questionCode + ", auctionGoodsCode=" + auctionGoodsCode + ", userSellerId="
+				+ userSellerId + ", userBuyerId=" + userBuyerId + ", questionType=" + questionType
+				+ ", questionContents=" + questionContents + ", questionDate=" + questionDate + ", questionState="
+				+ questionState + ", questionReplyState=" + questionReplyState + "]";
 	}
-
-
+	
+	
 }
