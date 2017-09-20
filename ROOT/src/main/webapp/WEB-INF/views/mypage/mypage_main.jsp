@@ -170,7 +170,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 						</tr>
 						<tr class="active">
 							<th>입찰횟수</th>
-							<th>입금확인중</th>
+							<th>낙찰횟수</th>
 							<th>결제완료<br>배송준비중
 							</th>
 							<th>배송중</th>
