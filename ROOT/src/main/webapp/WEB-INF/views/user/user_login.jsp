@@ -106,7 +106,7 @@
 					<!-- 메인배너 링크,이미지 -->
 					<div class="carousel-inner" role="listbox">
 						<div class="item active mainBanner">
-							<a href="${pageContext.request.contextPath}/mypage/mypageAdInfo">
+							<a href="${pageContext.request.contextPath}/mypageAdInfo">
 							<img src="${pageContext.request.contextPath}/resources/img/mainBanner.jpg" 
 							style="width: 100%; height: 300px;" alt="Image" align="middle">
 							</a>
