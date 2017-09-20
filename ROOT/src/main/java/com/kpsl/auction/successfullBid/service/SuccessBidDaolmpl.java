@@ -41,5 +41,10 @@ public class SuccessBidDaolmpl implements SuccessBidDao {
 		log.info("SuccessBidDaolmpl의 selectSuccessbidList 확인");
 		return sqlSessionTemplate.selectList(SuccessfullBidMapperNS+"selectsuccessfullist" ,successfullbidVoANDauctiongoodsvo);
 	}
+	@Override
+	public SuccessfullBidVoANDauctionGoodsVo selectSuccessbid(SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo) {
+		log.info("SuccessBidDaolmpl의 selectSuccessbid 확인");
+		return sqlSessionTemplate.selectOne(SuccessfullBidMapperNS+"selectsuccessful" ,successfullbidVoANDauctiongoodsvo);
+	}
 
 }

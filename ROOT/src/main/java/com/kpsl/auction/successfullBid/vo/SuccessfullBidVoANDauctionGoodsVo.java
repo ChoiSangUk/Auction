@@ -8,7 +8,7 @@ public class SuccessfullBidVoANDauctionGoodsVo {
 	private String successfulBidDate;
 	private String auctionGoodsCode;
 	private String userBuyerId;
-	
+	private String userTotalcash;
 	
 	public String getAuctionGoodsCode() {
 		return auctionGoodsCode;
@@ -52,6 +52,13 @@ public class SuccessfullBidVoANDauctionGoodsVo {
 	public void setSuccessfulBidCode(String successfulBidCode) {
 		this.successfulBidCode = successfulBidCode;
 	}
+	public String getUserTotalcash() {
+		return userTotalcash;
+	}
+	public void setUserTotalcash(String userTotalcash) {
+		this.userTotalcash = userTotalcash;
+	}
+
 	
 	
 }

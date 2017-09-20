@@ -28,14 +28,21 @@ public class SuccessBidController {
 		String buyerId = (String) session.getAttribute("userId");
 		successfullbidVoANDauctiongoodsvo.setUserBuyerId(buyerId);
 		log.info(buyerId + "세션을 통해 들어온 아이디");
+
 		List<SuccessfullBidVoANDauctionGoodsVo> usersuccessbidlist = successfullBidService.getSuccessBidList(successfullbidVoANDauctiongoodsvo);
 		model.addAttribute("usersuccessbidlist", usersuccessbidlist);
 
 		return "/bid/bid_successfullist";
 	}
 	@RequestMapping(value = "/mypage/purchasePaymentInserForm", method = RequestMethod.GET)
-	public String purchasePayment(Model model) {
-
+	public String purchasePayment(HttpSession session,Model model,SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo) {
+	String buyerId = (String) session.getAttribute("userId");
+		successfullbidVoANDauctiongoodsvo.setUserBuyerId(buyerId);
+		log.info(buyerId + "세션을 통해 들어온 아이디");
+		log.info(successfullbidVoANDauctiongoodsvo.getSuccessfulBidCode());
+		
+		SuccessfullBidVoANDauctionGoodsVo gogo =successfullBidService.getSuccessBid(successfullbidVoANDauctiongoodsvo);
+		model.addAttribute("usersuccessbid", gogo);
 		/** 개인 입찰품목 리스트(session을 통해 가져온 아이디로 쿼리실행) **/
 		log.info("purchasePayment 요청");
 

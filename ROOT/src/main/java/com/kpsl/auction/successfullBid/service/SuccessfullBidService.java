@@ -15,4 +15,5 @@ public interface SuccessfullBidService {
 	// 경매물품상태 UPDATE DAO 호출 메서드
 	int modifyAuctionGoodsState(String auctionGoodsCode);
 	List<SuccessfullBidVoANDauctionGoodsVo> getSuccessBidList (SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo);
+	SuccessfullBidVoANDauctionGoodsVo getSuccessBid (SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo);
 }

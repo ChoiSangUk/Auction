@@ -96,6 +96,7 @@
 		<id property="successfulBidDate" column="successful_bid_date" />
 		<id property="auctionGoodsCode" column="auction_goods_code" />
 		<id property="userBuyerId" column="user_buyer_id" />
+		<id property="userTotalcash" column="user_totalcash" />
 	</resultMap>
 
 	<select id="selectMaxBid" resultMap="SuccessBidAndBidAndAuctionGoods">
@@ -168,5 +169,22 @@
 		ON a.auction_goods_code = b.auction_goods_code
 		WHERE user_buyer_id = #{userBuyerId}
 	</select>
+	<select id="selectsuccessful"
+		parameterType="com.kpsl.auction.successfullBid.vo.SuccessfullBidVoANDauctionGoodsVo"
+		resultMap="SuccessfullBidVoANDauctionGoodsVo">
+		SELECT a.auction_goods_name
+		,b.successful_bid_code
+		,b.user_seller_id
+		,b.successful_bid_price
+		,b.successful_bid_date
+		,u.user_totalcash
+		FROM auction_goods_tb a
+		INNER JOIN successful_bid_tb b
+		ON a.auction_goods_code = b.auction_goods_code
+		INNER JOIN user_detail_tb u
+		ON b.user_buyer_id = u.user_id 
+		WHERE b.user_buyer_id = #{userBuyerId} AND b.successful_bid_code=#{successfulBidCode}
+	</select>
+		
 </mapper>
 

@@ -15,5 +15,5 @@ public interface SuccessBidDao {
 	int updateAuctionGoodsState(String auctionGoodsCode);
 	//개인 낙찰 리스트 
 	List<SuccessfullBidVoANDauctionGoodsVo> selectSuccessbidList(SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo);
-	
+	SuccessfullBidVoANDauctionGoodsVo selectSuccessbid(SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo);
 }

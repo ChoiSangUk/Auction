@@ -45,4 +45,9 @@ public class SuccessfullBidServicelmpl implements SuccessfullBidService {
 		log.info("SuccessfullBidServicelmpl 부분 getSuccessBidList 메서드 확인");
 		return successBidDao.selectSuccessbidList(successfullbidVoANDauctiongoodsvo);
 	}
+	@Override
+	public SuccessfullBidVoANDauctionGoodsVo getSuccessBid(SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo) {
+		log.info("SuccessfullBidServicelmpl 부분 getSuccessBid 메서드 확인");
+		return successBidDao.selectSuccessbid(successfullbidVoANDauctiongoodsvo);
+	}
 }
