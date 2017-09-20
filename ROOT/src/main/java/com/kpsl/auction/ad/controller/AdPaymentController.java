@@ -98,7 +98,7 @@ public class AdPaymentController {
 		String userId = (String) session.getAttribute("userId");
 		AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo adPaymentList
 			= adApplyService.getAdApplyDetail(adApplyCode);
-		UserDetailVo userDetailList = userService.getUser(userId);		
+		UserDetailVo userDetailList = userService.getUser(userId);
 		model.addAttribute("adPaymentList",adPaymentList);
 		model.addAttribute("userDetailList",userDetailList);
 		

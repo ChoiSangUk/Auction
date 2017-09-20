@@ -85,7 +85,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>                        
 	      	</button>
-			<a class="navbar-brand" href="${pageContext.request.contextPath}/main">Auction</a>
+			<a class="navbar-brand mainLogo" href="${pageContext.request.contextPath}/main"><strong>Auction</strong></a>
 		</div>
 		<div class="collapse navbar-collapse" id="mainNavbar">
 			<ul class="nav navMenu navbar-nav navbar-left " >

@@ -21,17 +21,18 @@
 <body>
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#myNavbar">
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${pageContext.request.contextPath}/admin/adminMain">Admin</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/admin/adminMain" style="color: white; font-size: 25px;">Auction</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">회원관리
 				<span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -55,7 +56,6 @@
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="${pageContext.request.contextPath}/saleslog/adminSalesLogList">매입/매출 리스트</a></li>
-						<li><a href="${pageContext.request.contextPath}#">매입/매출 월별통계X</a></li>
 					</ul>
 				<li><a href="${pageContext.request.contextPath}/logout">
 				<button class="btn btn-danger btn-xs">경매사이트 바로가기</button></a>
@@ -71,5 +71,7 @@
 						Logout</a></li>
 			</ul>
 		</div>
+		</div>
+		<div class="col-sm-1"></div>
 	</div>
 </nav>

@@ -11,10 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.kpsl.auction.bid.service.BidService;
-import com.kpsl.auction.bid.vo.BidVoANDAucntionGoodsVo;
 import com.kpsl.auction.successfullBid.service.SuccessfullBidService;
-import com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo;
 import com.kpsl.auction.successfullBid.vo.SuccessfullBidVoANDauctionGoodsVo;
 
 @Controller
@@ -32,10 +29,17 @@ public class SuccessBidController {
 		successfullbidVoANDauctiongoodsvo.setUserBuyerId(buyerId);
 		log.info(buyerId + "세션을 통해 들어온 아이디");
 		List<SuccessfullBidVoANDauctionGoodsVo> usersuccessbidlist = successfullBidService.getSuccessBidList(successfullbidVoANDauctiongoodsvo);
-		log.info(usersuccessbidlist.get(0).getSuccessfulBidDate()+"<--낙찰일");
 		model.addAttribute("usersuccessbidlist", usersuccessbidlist);
 
 		return "/bid/bid_successfullist";
+	}
+	@RequestMapping(value = "/mypage/purchasePaymentInserForm", method = RequestMethod.GET)
+	public String purchasePayment(Model model) {
+
+		/** 개인 입찰품목 리스트(session을 통해 가져온 아이디로 쿼리실행) **/
+		log.info("purchasePayment 요청");
+
+		return "/mypage/mypage_purchase_payment_insertForm";
 	}
 	
 }
