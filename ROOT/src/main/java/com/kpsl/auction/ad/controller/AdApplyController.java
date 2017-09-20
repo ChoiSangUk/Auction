@@ -171,7 +171,7 @@ public class AdApplyController {
 	}
 	
 	// 광고정보 및 정책 페이지 요청
-	@RequestMapping(value = "/mypage/mypageAdInfo", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypageAdInfo", method = RequestMethod.GET)
 	public String adApplyInfo(Model model) {
 		
 		log.info("adApplyInfo 확인");

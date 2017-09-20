@@ -50,6 +50,7 @@
         <mvc:interceptor>
 	        <mvc:mapping path="/mypage/**"/>
 	        <mvc:mapping path="/auctiongoods/auctiongoodsinsert"/>
+	        <mvc:mapping path="/bid/**"/>
 	           <!-- 여러개 컨트롤러 추가 가능 -->
 	           
 	             <!--   <mvc:mapping path="/mypage/mypage_main"/> -->

@@ -14,7 +14,7 @@
 				</a>
 			</div>
 			<div class="col-sm-3">
-				<a class="glyphiconLink" href="${pageContext.request.contextPath}/mypage/mypageBuyInfo">
+				<a class="glyphiconLink" href="${pageContext.request.contextPath}/BuyInfo">
 				<span class="glyphicon glyphicon-list-alt" style="font-size: 50px;">
 				</span><br>
 				구매안내
