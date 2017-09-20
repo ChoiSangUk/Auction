@@ -22,6 +22,8 @@
 <body>
 <nav class="navbar navbar-inverse" id="topMenuNavar">
 	<div class="container-fluid" id="topMenu">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
 		<div class="navbar-header">
 			<!-- 화면 축소시 화면리스트 버튼 생성 -->
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavbar">
@@ -69,9 +71,13 @@
 			</ul>
 		</div>
 	</div>
+	<div class="col-sm-1"></div>
+	</div>
 </nav>
 <nav class="navbar navbar-inverse" id="mainMenuNabar">
 	<div class="container-fluid" id="mainMenu">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
 		<div class="navbar-header">
 			<!-- 화면 축소시 화면리스트 버튼 생성 -->
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
@@ -100,6 +106,8 @@
 					</span>
 				</c:if>
 			</div>
-		</div>			
+		</div>
+		</div>	
+		<div class="col-sm-1"></div>		
 	</div>
 </nav>
