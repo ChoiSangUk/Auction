@@ -1,1 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kpsl.auction.goodspayment.service.GoodsPaymentMapper">
+	<resultMap type="com.kpsl.auction.goodspayment.vo.GoodsPaymentVo" id="GoodsPaymentVo">
+		<id property="goodsPaymentCode" column="goods_payment_code" />
+		<id property="userId" column="userId" />
+		<result property="successfulBidCode" column="successful_bid_code"/>
+		<result property="goodsPaymentDate" column="goods_payment_date" />
+		<result property="goodsPaymentPrice" column="goods_payment_price" />
+		<result property="goodsPaymentFees" column="goods_payment_fees" />
+		<result property="goodsPaymentState" column="goods_payment_state" />
+		<result property="goodsPaymentRemarks" column="goods_payment_remarks" />
+	</resultMap>
+
+	<insert id="insertGoodsPayment" parameterType="com.kpsl.auction.goodspayment.vo.GoodsPaymentVo">
+		<selectKey keyProperty="goodsPaymentCode" resultType="String" order="BEFORE">
+			SELECT CONCAT("gp",MAX(CAST(substring(goods_payment_code,3)+1 AS DECIMAL)))
+			FROM 	goods_payment_tb
+		</selectKey>
+		INSERT INTO goods_payment_tb
+					(goods_payment_code, 
+					user_id, 
+					successful_bid_code, 
+					goods_payment_date, 
+					goods_payment_price, 
+					goods_payment_fees, 
+					goods_payment_state)
+		VALUES 		(#{goodsPaymentCode}, 
+					#{userId}, 
+					#{successfulBidCode}, 
+					NOW(), 
+					#{goodsPaymentPrice}, 
+					#{goodsPaymentFees}, 
+					'결제완료')
+	</insert>
+	<update id="updateSellerTotalcash">
+		UPDATE user_detail_tb
+			SET user_totalcash=user_totalcash+#{successfulBidPrice}
+		WHERE user_id = #{userSellerId}
+	</update>
+	
+	<update id="updatebuyerTotalcash">
+		UPDATE user_detail_tb
+			SET user_totalcash=user_totalcash-#{successfulBidPrice}
+		WHERE user_id = #{userBuyerId}
+	</update>
+</mapper>

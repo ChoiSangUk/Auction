@@ -175,6 +175,7 @@
 		SELECT a.auction_goods_name
 		,b.successful_bid_code
 		,b.user_seller_id
+		,b.user_buyer_id
 		,b.successful_bid_price
 		,b.successful_bid_date
 		,u.user_totalcash

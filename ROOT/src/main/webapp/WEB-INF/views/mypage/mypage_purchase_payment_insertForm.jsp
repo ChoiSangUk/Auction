@@ -17,8 +17,8 @@
 		</div>			
 		<div class="row content">
 			<!-- 물품광고결제 폼 -->			
-			<form class="form-horizontal" id="paymentForm" action="${pageContext.request.contextPath}" method="post">
-				<input type="hidden" name="adApplyCode" value="낙찰코드">
+			<form class="form-horizontal" id="paymentForm" action="${pageContext.request.contextPath}/goodsPaymentInsert" method="post">
+				<input type="hidden" name="successfulBidCode" value="${usersuccessbid.successfulBidCode}">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="form-group">
@@ -30,13 +30,17 @@
 							<div class="col-sm-2">
 								<input class="form-control" type="text" name="" value="${usersuccessbid.successfulBidDate}" readonly="readonly">
 							</div>
+							<label class="col-sm-2 control-label">판매자</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" name="userSellerId" value="${usersuccessbid.userSellerId}" readonly="readonly">
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-1 control-label">입찰금액</label>
 							<div class="col-sm-2">
 								<input class="form-control" type="text" name="" value="${usersuccessbid.successfulBidPrice}" readonly="readonly">
 							</div>
-							<label class="col-sm-1 control-label">낙찰금액</label>
+							<label class="col-sm-2 control-label">낙찰금액</label>
 							<div class="col-sm-2">
 								<input class="form-control" type="text" name="" value="${usersuccessbid.successfulBidPrice}" readonly="readonly">
 							</div>
@@ -46,7 +50,7 @@
 						<div class="form-group">
 							<label class="col-sm-1 control-label">결제금액</label>
 							<div class="col-sm-2">
-								<input class="form-control" type="number" name="adPaymentPrice" id="paymentPrice" value="${usersuccessbid.successfulBidPrice}" readonly="readonly">
+								<input class="form-control" type="number" name="goodsPaymentPrice" id="paymentPrice" value="${usersuccessbid.successfulBidPrice}" readonly="readonly">
 							</div>
 							<label class="col-sm-2 control-label">사용 가능한 캐쉬금액 </label>
 							<div class="col-sm-2">

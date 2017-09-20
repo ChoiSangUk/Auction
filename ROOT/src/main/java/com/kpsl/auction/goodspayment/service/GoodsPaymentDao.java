@@ -1,5 +1,12 @@
 package com.kpsl.auction.goodspayment.service;
 
-public interface GoodsPaymentDao {
+import com.kpsl.auction.goodspayment.vo.GoodsPaymentVo;
+import com.kpsl.auction.successfullBid.vo.SuccessBidVo;
 
+public interface GoodsPaymentDao {
+	int insertGoodsPayment(GoodsPaymentVo goodsPaymentVo);
+	
+	int updateSellerTotalcash(SuccessBidVo successBidVo);
+	
+	int updateBuyerTotalcash(SuccessBidVo successBidV);
 }

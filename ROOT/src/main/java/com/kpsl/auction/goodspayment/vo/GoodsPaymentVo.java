@@ -3,6 +3,7 @@ package com.kpsl.auction.goodspayment.vo;
 public class GoodsPaymentVo {
 
 	private String goodsPaymentCode;
+	private String userId;
 	private String successfulBidCode;
 	private String goodsPaymentDate;
 	private int goodsPaymentPrice;
@@ -64,6 +65,14 @@ public class GoodsPaymentVo {
 
 	public void setGoodsPaymentRemarks(String goodsPaymentRemarks) {
 		this.goodsPaymentRemarks = goodsPaymentRemarks;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 }
