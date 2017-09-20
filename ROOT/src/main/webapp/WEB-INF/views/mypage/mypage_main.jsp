@@ -54,6 +54,11 @@
 	width: 147px;
 }
 
+th,td {
+	text-align: center;
+	vertical-align: middle;
+	width: 33.3%;
+}
 /* a:link {text-decoration: none; color: #ffffff;}
 a:visited {text-decoration: none; color: #ffffff;}
 a:active {text-decoration: none; color: #blue;}
@@ -153,7 +158,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 					<span class="glyphicon glyphicon-search"></span> 구매현황 <a
 						class="mypage-a" href="#"> <span
 						class="pull-right glyphicon glyphicon-plus"></span> <span
-						class="pull-right">구매관리 바로가기</span>
+						class="pull-right">내 구매물품</span>
 					</a> <%-- <a class="mypage-a"
 						href="${pageContext.request.contextPath}/bid/bidusergoodsbidlist">
 						<span class="pull-right glyphicon glyphicon-plus"></span> <span
@@ -165,22 +170,12 @@ a:hover {text-decoration: underline; color: #000000;} */
 				<table class="table table-bordered">
 					<thead>
 						<tr class="active">
-							<th colspan="5">주문/배송 조회</th>
-							<th colspan="5">취소/반품/미수령</th>
+							<th colspan="3">구매/결제 조회</th>
 						</tr>
 						<tr class="active">
-							<th>입찰횟수</th>
-							<th>낙찰횟수</th>
-							<th>결제완료<br>배송준비중
-							</th>
-							<th>배송중</th>
-							<th>구매결정<br>대기
-							</th>
-							<th>구매거부</th>
-							<th>반품</th>
-							<th>미수령</th>
-							<th>미입금</th>
-							<th>판매거부</th>
+							<th>입찰중</th>
+							<th>낙찰완료</th>
+							<th>결제완료</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -190,13 +185,6 @@ a:hover {text-decoration: underline; color: #000000;} */
 							<td><a
 								href="${pageContext.request.contextPath}/bid/bidsuccessfull">2</a></td>
 							<td>3</td>
-							<td>4</td>
-							<td>5</td>
-							<td>6</td>
-							<td>7</td>
-							<td>8</td>
-							<td>9</td>
-							<td>0</td>
 						</tr>
 					</tbody>
 				</table>
@@ -218,21 +206,12 @@ a:hover {text-decoration: underline; color: #000000;} */
 					<table class="table table-bordered">
 						<thead>
 							<tr class="active">
-								<th colspan="5">주문/배송 조회</th>
-								<th colspan="5">취소/반품/미수령</th>
+								<th colspan="3">판매/결제 조회</th>
 							</tr>
 							<tr class="active">
-								<th>입금요청</th>
-								<th>입금확인중</th>
-								<th>배송요청</th>
-								<th>배송중</th>
-								<th>구매결정<br>대기
-								</th>
-								<th>구매거부</th>
-								<th>반품</th>
-								<th>미수령</th>
-								<th>미입금</th>
-								<th>판매거부</th>
+								<th>판매중</th>
+								<th>판매완료</th>
+								<th>결제완료</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -240,13 +219,6 @@ a:hover {text-decoration: underline; color: #000000;} */
 								<td>1</td>
 								<td>2</td>
 								<td>3</td>
-								<td>4</td>
-								<td>5</td>
-								<td>6</td>
-								<td>7</td>
-								<td>8</td>
-								<td>9</td>
-								<td>0</td>
 							</tr>
 						</tbody>
 					</table>
