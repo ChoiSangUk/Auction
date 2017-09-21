@@ -18,7 +18,7 @@ public class GoodsPaymentServicelmpl implements GoodsPaymentService {
 		log.info("addGoodsPayment 호출 확인");
 		int goodsPaymentPrice = goodsPaymentVo.getGoodsPaymentPrice();
 		if(goodsPaymentPrice >= 100000) {
-			int goodsPaymentFees = (int) (goodsPaymentPrice*0.1);
+			int goodsPaymentFees = (int) (goodsPaymentPrice*0.09);
 			goodsPaymentVo.setGoodsPaymentFees(goodsPaymentFees);
 			goodsPaymentDao.insertGoodsPayment(goodsPaymentVo);
 			successBidVo.setSuccessfulBidPrice(goodsPaymentPrice);
@@ -28,7 +28,7 @@ public class GoodsPaymentServicelmpl implements GoodsPaymentService {
 			goodsPaymentDao.updateSellerTotalcash(successBidVo);
 			return 0;
 		}else {
-			int goodsPaymentFees = (int) (goodsPaymentPrice*0.1);
+			int goodsPaymentFees = (int) (goodsPaymentPrice*0.05);
 			goodsPaymentVo.setGoodsPaymentFees(goodsPaymentFees);
 			goodsPaymentDao.insertGoodsPayment(goodsPaymentVo);
 			successBidVo.setSuccessfulBidPrice(goodsPaymentPrice);
