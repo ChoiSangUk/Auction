@@ -126,15 +126,15 @@ public class MainController {
 		log.info(gradeVo.getGradeName() + "<---- 확인");
 		auctionGoodsVo.setUserId(userId);
 		auctionGoodsVo.setAuctionGoodsState("판매중");
-		int ingCount = auctionGoodsService.getAllAuctionGoodsByUserIdAndAuctionGoodsState(auctionGoodsVo).size();
+		int salesIngCount = auctionGoodsService.getAllAuctionGoodsByUserIdAndAuctionGoodsState(auctionGoodsVo).size();
 		auctionGoodsVo.setAuctionGoodsState("판매종료");
-		int stopCount = auctionGoodsService.getAllAuctionGoodsByUserIdAndAuctionGoodsState(auctionGoodsVo).size();
+		int salesStopCount = auctionGoodsService.getAllAuctionGoodsByUserIdAndAuctionGoodsState(auctionGoodsVo).size();
 		auctionGoodsVo.setAuctionGoodsState("낙찰");
-		int successCount = auctionGoodsService.getAllAuctionGoodsByUserIdAndAuctionGoodsState(auctionGoodsVo).size();
+		int salesSuccessCount = auctionGoodsService.getAllAuctionGoodsByUserIdAndAuctionGoodsState(auctionGoodsVo).size();
 		session.setAttribute("grade", gradeVo);
-		model.addAttribute("ingCount", ingCount);
-		model.addAttribute("stopCount", stopCount);
-		model.addAttribute("successCount", successCount);
+		model.addAttribute("ingCount", salesIngCount);
+		model.addAttribute("stopCount", salesStopCount);
+		model.addAttribute("successCount", salesSuccessCount);
 		
 		return "/mypage/mypage_main";
 	}

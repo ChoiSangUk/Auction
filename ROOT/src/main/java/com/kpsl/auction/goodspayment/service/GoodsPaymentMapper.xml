@@ -13,7 +13,16 @@
 		<result property="goodsPaymentState" column="goods_payment_state" />
 		<result property="goodsPaymentRemarks" column="goods_payment_remarks" />
 	</resultMap>
-
+	<resultMap type="com.kpsl.auction.goodspayment.vo.GoodsPaymentVoANDAuctionGoodsVoANDSuccessBidVo" 
+		id="GoodsPaymentVoANDAuctionGoodsVoANDSuccessBidVo">
+		<id property="auctionGoodsName" column="auction_goods_name"/>
+		<id property="goodsPaymentPrice" column="goods_payment_price"/>
+		<id property="goodsPaymentDate" column="goods_payment_date"/>
+		<id property="auctionGoodsCode" column="auction_goods_code"/>
+		<id property="successfulBidCode" column="successful_Bid_code"/>
+		<id property="userBuyerId" column="user_buyer_id"/>
+		<id property="goodsPaymentState" column="goods_payment_state"/>
+	</resultMap>
 	<insert id="insertGoodsPayment" parameterType="com.kpsl.auction.goodspayment.vo.GoodsPaymentVo">
 		<selectKey keyProperty="goodsPaymentCode" resultType="String" order="BEFORE">
 			SELECT CONCAT("gp",MAX(CAST(substring(goods_payment_code,3)+1 AS DECIMAL)))
@@ -46,4 +55,17 @@
 			SET user_totalcash=user_totalcash-#{successfulBidPrice}
 		WHERE user_id = #{userBuyerId}
 	</update>
+	<select id="selectuserpaymentlist" parameterType="com.kpsl.auction.goodspayment.vo.GoodsPaymentVoANDAuctionGoodsVoANDSuccessBidVo"
+	resultMap = "GoodsPaymentVoANDAuctionGoodsVoANDSuccessBidVo"  >
+		SELECT a.auction_goods_name
+		,c.goods_payment_price
+		,c.goods_payment_date
+		FROM auction_goods_tb a
+		LEFT JOIN successful_bid_tb b
+		ON a.auction_goods_code = b.auction_goods_code
+		LEFT JOIN goods_payment_tb c
+		ON b.successful_bid_code = c.successful_bid_code
+		WHERE b.user_buyer_id = #{userBuyerId}
+		AND c.goods_payment_state = '결제완료'
+	</select>
 </mapper>

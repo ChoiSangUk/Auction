@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo;
 import com.kpsl.auction.successfullBid.vo.SuccessBidVo;
 import com.kpsl.auction.successfullBid.vo.SuccessfullBidVoANDauctionGoodsVo;
+import com.kpsl.auction.successfullBid.vo.SuccessfullBidVoANDauctionGoodsVoANDgoodsPaymentVo;
 
 @Repository
 public class SuccessBidDaolmpl implements SuccessBidDao {
@@ -37,9 +38,9 @@ public class SuccessBidDaolmpl implements SuccessBidDao {
 	//개인 낙찰 리스트 
 	@Override
 	public List<SuccessfullBidVoANDauctionGoodsVo> selectSuccessbidList(
-			SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo) {
+			SuccessfullBidVoANDauctionGoodsVoANDgoodsPaymentVo successfullbidvoANDauctiongoodsVoANDgoodspaymentvo) {
 		log.info("SuccessBidDaolmpl의 selectSuccessbidList 확인");
-		return sqlSessionTemplate.selectList(SuccessfullBidMapperNS+"selectsuccessfullist" ,successfullbidVoANDauctiongoodsvo);
+		return sqlSessionTemplate.selectList(SuccessfullBidMapperNS+"selectsuccessfullist" ,successfullbidvoANDauctiongoodsVoANDgoodspaymentvo);
 	}
 	@Override
 	public SuccessfullBidVoANDauctionGoodsVo selectSuccessbid(SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo) {

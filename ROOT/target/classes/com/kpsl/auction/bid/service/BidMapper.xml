@@ -94,6 +94,7 @@
 		#{auctionGoodsCode}
 		AND user_buyer_id = #{userBuyerId}
 	</update>
+	<!--개인 입찰 리스트  -->
 	<select id="selectUserBidList" parameterType="com.kpsl.auction.bid.vo.BidVoANDAucntionGoodsVo"
 		resultMap="BidVoANDAucntionGoodsVo">
 		SELECT b.bid_code

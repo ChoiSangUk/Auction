@@ -184,7 +184,8 @@ a:hover {text-decoration: underline; color: #000000;} */
 								href="${pageContext.request.contextPath}/bid/bidusergoodsbidlist">1</a></td>
 							<td><a
 								href="${pageContext.request.contextPath}/bid/bidsuccessfull">2</a></td>
-							<td>3</td>
+							<td><a
+								href="${pageContext.request.contextPath}/goodsPaymentlist">3</a></td>
 						</tr>
 					</tbody>
 				</table>

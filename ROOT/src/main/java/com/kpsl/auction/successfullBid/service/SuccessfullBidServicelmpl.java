@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kpsl.auction.successfullBid.vo.SuccessBidAndBidAndAuctionGoodsVo;
 import com.kpsl.auction.successfullBid.vo.SuccessBidVo;
 import com.kpsl.auction.successfullBid.vo.SuccessfullBidVoANDauctionGoodsVo;
+import com.kpsl.auction.successfullBid.vo.SuccessfullBidVoANDauctionGoodsVoANDgoodsPaymentVo;
 
 @Service
 @Transactional
@@ -38,12 +39,12 @@ public class SuccessfullBidServicelmpl implements SuccessfullBidService {
 		
 		return successBidDao.updateAuctionGoodsState(auctionGoodsCode);
 	}
-	//개인 낙찰 리스트
+	//개인 낙찰 상태 리스트
 	@Override
 	public List<SuccessfullBidVoANDauctionGoodsVo> getSuccessBidList(
-			SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo) {
+			SuccessfullBidVoANDauctionGoodsVoANDgoodsPaymentVo successfullbidvoANDauctiongoodsVoANDgoodspaymentvo) {
 		log.info("SuccessfullBidServicelmpl 부분 getSuccessBidList 메서드 확인");
-		return successBidDao.selectSuccessbidList(successfullbidVoANDauctiongoodsvo);
+		return successBidDao.selectSuccessbidList(successfullbidvoANDauctiongoodsVoANDgoodspaymentvo);
 	}
 	@Override
 	public SuccessfullBidVoANDauctionGoodsVo getSuccessBid(SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo) {

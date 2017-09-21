@@ -13,7 +13,7 @@
 			<a href="${pageContext.request.contextPath}">낙찰리스트</a>
 			<span>></span>
 			<span style="color: #1266FF">낙찰물품 결제</span>
-			<h2>광고 결제</h2>
+			<h2>물품 결제</h2>
 		</div>			
 		<div class="row content">
 			<!-- 물품광고결제 폼 -->			

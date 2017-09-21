@@ -1,10 +1,13 @@
 package com.kpsl.auction.goodspayment.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kpsl.auction.goodspayment.vo.GoodsPaymentVo;
+import com.kpsl.auction.goodspayment.vo.GoodsPaymentVoANDAuctionGoodsVoANDSuccessBidVo;
 import com.kpsl.auction.successfullBid.vo.SuccessBidVo;
 
 @Service
@@ -14,7 +17,7 @@ public class GoodsPaymentServicelmpl implements GoodsPaymentService {
 	
 	@Override
 	public int addGoodsPayment(GoodsPaymentVo goodsPaymentVo, SuccessBidVo successBidVo) {
-		
+		//결제 버튼 클릭시 
 		log.info("addGoodsPayment 호출 확인");
 		int goodsPaymentPrice = goodsPaymentVo.getGoodsPaymentPrice();
 		if(goodsPaymentPrice >= 100000) {
@@ -39,4 +42,12 @@ public class GoodsPaymentServicelmpl implements GoodsPaymentService {
 			return 0;
 		}
 	}
+	//결제 완료 된 리스트
+	@Override
+	public List<GoodsPaymentVoANDAuctionGoodsVoANDSuccessBidVo> selectuserpaymentlist(
+			GoodsPaymentVoANDAuctionGoodsVoANDSuccessBidVo goodspaymentvoANDauctiongoodsvoANDsuccessbidvo) {
+		log.info("GoodsPaymentServicelmpl의 selectuserpaymentlist 메서드");
+		return goodsPaymentDao.selectGoodsPaymentlist(goodspaymentvoANDauctiongoodsvoANDsuccessbidvo);
+	}
+
 }

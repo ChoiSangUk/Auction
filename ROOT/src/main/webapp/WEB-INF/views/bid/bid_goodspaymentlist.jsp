@@ -96,34 +96,20 @@ th {
 				<thead>
 					<tr class="active">
 						<th>물품명</th>
-						<th>낙찰금액</th>
-						<th>낙찰일자</th>
-						<th>결제상태</th>
-							
+						<th>결제금액</th>
+						<th>결제시간</th>
 					</tr>
 				</thead>
-				<c:forEach var="usersuccessbidlist" items="${usersuccessbidlist}">
-				<c:set var="goodsPaymentState" value="${usersuccessbidlist.goodsPaymentState}"></c:set>
+				<c:forEach var="goodspaymentlis" items="${goodspaymentlis}">
 				<tbody>
 					<tr class="adApplyListTable">
-						<td>${usersuccessbidlist.auctionGoodsName}</td>
-						<td><fmt:formatNumber value="${usersuccessbidlist.successfulBidPrice}" groupingUsed="true"/>원</td>
-						<td>${usersuccessbidlist.successfulBidDate}</td>
-						<c:choose>
-						<c:when test="${goodsPaymentState eq null}">
-						<td>
-						<a href="${pageContext.request.contextPath}/mypage/purchasePaymentInserForm?successfulBidCode=${usersuccessbidlist.successfulBidCode}" 
-						class="btn btn-info">결제하기</a>
-						</td>
-						</c:when>
-						<c:when test="${goodsPaymentState ne null}">
-						<td style="color: blue;">${goodsPaymentState}</td>
-						</c:when>
-						</c:choose>
+						<td>${goodspaymentlis.auctionGoodsName}</td>
+						<td><fmt:formatNumber value="${goodspaymentlis.goodsPaymentPrice}" groupingUsed="true"/>원</td>
+						<td>${goodspaymentlis.goodsPaymentDate}</td>
+					
 					</tr>
 				</tbody>
 				</c:forEach>
-				
 			</table>
 		</div>
 	</div>
