@@ -28,7 +28,7 @@
 				</a>
 			</div>
 			<div class="col-sm-3">
-				<a class="glyphiconLink" href="${pageContext.request.contextPath}/mypage/mypageAdInfo">
+				<a class="glyphiconLink" href="${pageContext.request.contextPath}/mypageAdInfo">
 				<span class="glyphicon glyphicon-check" style="font-size: 50px;">
 				</span><br>
 				광고안내

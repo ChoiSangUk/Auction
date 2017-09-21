@@ -20,7 +20,8 @@ public class AdUnitPriceDaoImpl implements AdUnitPriceDao {
 	@Override
 	/** 광고단가 리스트를 조회하는 메서드 */
 	public List<AdUnitPriceVo> selectAdUnitPriceList() {
-		log.info("selectAdUnitPriceList 확인");
+		
+		log.info("selectAdUnitPriceList 호출 확인");
 		
 		return sqlSessionTemplate.selectList(AdUnitPriceMapperNS+"selectAdUnitPriceList");
 	}
@@ -28,15 +29,26 @@ public class AdUnitPriceDaoImpl implements AdUnitPriceDao {
 	@Override
 	/** 광고단가 업데이트를 위한 조회 */
 	public AdUnitPriceVo selectAdUnitPriceByAdUnitPriceCode(String adUnitPriceCode) {
-		log.info(adUnitPriceCode);
+		
+		log.info("selectAdUnitPriceByAdUnitPriceCode 호출 확인");
 		
 		return sqlSessionTemplate.selectOne(AdUnitPriceMapperNS+"selectAdUnitPriceByAdUnitPirceCode",adUnitPriceCode);
 	}
 
 	@Override
 	public int updateAdUnitPrice(AdUnitPriceVo adUnitPriceVo) {
-		log.info(adUnitPriceVo);
+		
+		log.info("updateAdUnitPrice 호출 확인");
+		
 		return sqlSessionTemplate.update(AdUnitPriceMapperNS+"updateAdUnitPrice", adUnitPriceVo);
+	}
+
+	@Override
+	public List<AdUnitPriceVo> selectAdUnitPriceListByAdUnitPriceState() {
+
+		log.info("selectAdUnitPriceListByAdUnitPriceState 호출 확인");
+		
+		return sqlSessionTemplate.selectList(AdUnitPriceMapperNS+"selectAdUnitPriceListByAdUnitPriceState");
 	}
 	
 }

@@ -11,6 +11,8 @@ public interface AdUnitPriceService {
 	
 	// 광고단가리스트 인터페이스 
 	List<AdUnitPriceVo> getAdUnitPirceList();
+	// 광고신청시 on인 광고만 조회
+	List<AdUnitPriceVo> getAdUnitPirceListByAdUnitPriceState();
 	// 광고단가 업데이트를 위한 조회 인터페이스 
 	AdUnitPriceVo getAdUnitPriceByAdUnitPriceCode(String adUnitPriceCode);
 	// 광고단가 업데이트를 위한 업데이트 인터페이스

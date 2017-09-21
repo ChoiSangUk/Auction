@@ -123,27 +123,6 @@ public class AdApplyController {
 		return "/admin/ad/admin_adApply_detail";
 	}
 	
-	// 관리자 광고신청 리스트 페이지 요청
-/*	@RequestMapping(value = "/ad/adminAdApplyList", method = RequestMethod.GET)
-	public String adApplyList(Model model, AdApplyVo adApplyVo
-							,@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
-		
-		log.info("adApplyList get 확인");
-		int adApplyCount = adApplyService.getAdApplyCount();
-		int pagePerRow = 5;
-		// count/pagePerRow시 결과값이 소수점이하는 버리기 때문에 pagePerRow를 double형으로 형변환시킴
-		int lastPage = (int) (Math.ceil(adApplyCount / (double)pagePerRow));
-		log.info(lastPage+"<-- lastPage");
-		List<AdApplyVo> adApplyList = adApplyService.getAdApplyList(adApplyVo, currentPage, pagePerRow);
-		model.addAttribute("currentPage",currentPage);
-		model.addAttribute("adApplyCount",adApplyCount);
-		model.addAttribute("lastPage",lastPage);
-		model.addAttribute("adApplyList",adApplyList);
-		
-		
-		return "/admin/ad/admin_adApply_search";
-	}*/
-	
 	// 광고신청 리스트 조회 요청
 	@RequestMapping(value = "/ad/adminAdApplySearch", method = RequestMethod.GET)
 	public String adApplySearch(Model model, AdApplyVo adApplyVo
@@ -186,7 +165,7 @@ public class AdApplyController {
 		
 		log.info("adApplyAdd 확인");
 		userId = (String) session.getAttribute("userId");
-		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceList();
+		List<AdUnitPriceVo> adUnitPriceList = adUnitPriceService.getAdUnitPirceListByAdUnitPriceState();
 		List<AuctionGoodsVo> auctionGoodsList = adApplyService.getAuctionGoodsListByUserId(userId);
 		List<AdApplyAndAdImageAndAdPaymentVo> currentAdList = adPaymentService.getPaymentSuccessList();
 		model.addAttribute("adUnitPriceList", adUnitPriceList);
