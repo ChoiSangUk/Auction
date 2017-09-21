@@ -24,4 +24,6 @@ public interface BidDao{
 	BidVo selectOverlapUser(BidVo bidvo); 
 	/**재입찰시 입찰금액 수정**/
 	BidVo updateBidPrice(BidVo bidvo);
+	/**개인 입찰 갯수 **/
+	BidVo slectBidcount(BidVo bidvo);
 }

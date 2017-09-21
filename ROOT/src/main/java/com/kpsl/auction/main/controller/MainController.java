@@ -17,10 +17,13 @@ import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdPaymentVo;
 import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
+
 import com.kpsl.auction.saleslog.service.SalesLogService;
 import com.kpsl.auction.saleslog.vo.SalesLogVo;
 import com.kpsl.auction.user.service.UserDetailService;
 import com.kpsl.auction.user.service.UserService;
+import com.kpsl.auction.bid.service.BidService;
+import com.kpsl.auction.bid.vo.BidVo;
 import com.kpsl.auction.user.vo.GradeVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
 import com.sun.org.apache.bcel.internal.classfile.DescendingVisitor;
@@ -31,7 +34,7 @@ public class MainController {
 	@Autowired private UserService userService;
 	@Autowired private AdPaymentService adPaymentService;
 	@Autowired private AuctionGoodsService auctionGoodsService;
-	
+	@Autowired private BidService bidService;
 	// 프로젝트 소개페이지 요청
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -116,7 +119,8 @@ public class MainController {
 	
 	// 마이페이지 메인 요청
 	@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.GET)
-	public String mypage(Model model, HttpSession session, AuctionGoodsVo auctionGoodsVo) {
+	public String mypage(Model model, HttpSession session, AuctionGoodsVo auctionGoodsVo
+						,BidVo bidvo) {
 		String userId = (String) session.getAttribute("userId");
 		log.info(userId + "<----- page1 확인");
 		session.getAttribute("userLoginInfo");
@@ -135,6 +139,15 @@ public class MainController {
 		model.addAttribute("ingCount", salesIngCount);
 		model.addAttribute("stopCount", salesStopCount);
 		model.addAttribute("successCount", salesSuccessCount);
+		bidvo.setUserBuyerId(userId);
+		//입찰 갯수
+		BidVo  bidingcount= bidService.getBidCount(bidvo);
+		int bidIngCount  = Integer.parseInt(bidingcount.getBidCode());
+		model.addAttribute("bidIngCount", bidIngCount);
+		//낙찰완료 갯수 
+		
+		//결재완료 갯수
+		
 		
 		return "/mypage/mypage_main";
 	}

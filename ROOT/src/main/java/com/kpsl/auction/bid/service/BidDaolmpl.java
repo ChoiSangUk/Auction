@@ -64,5 +64,11 @@ public class BidDaolmpl implements BidDao {
 		log.info("BidDao updateBidPrice 확인");
 		return sessionTemplate.selectOne(NS + "updateRebid", bidvo);
 	}
+	//개인 입찰 갯수 
+	@Override
+	public BidVo slectBidcount(BidVo bidvo) {
+		log.info("BidDao slectBidcount 확인");
+		return sessionTemplate.selectOne(NS + "selectbidcount", bidvo);
+	}
 
 }

@@ -13,6 +13,5 @@ public interface BidDepositService {
 	int modifyUserCashWithdraw(BidDepositVo BidDepositVo);
 	/**보증금 차감 전 캐쉬 잔액 표시**/
 	UserDetailVo getTotalCash(String userId);
-	/**재입찰 시 보증금 유지를 위한 서비스 **/
-/*	public BidDepositVo setoverlapuserid(String auctionGoodsCode);*/
+	
 }

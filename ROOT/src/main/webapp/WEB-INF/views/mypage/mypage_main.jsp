@@ -181,7 +181,7 @@ a:hover {text-decoration: underline; color: #000000;} */
 					<tbody>
 						<tr>
 							<td><a
-								href="${pageContext.request.contextPath}/bid/bidusergoodsbidlist">1</a></td>
+								href="${pageContext.request.contextPath}/bid/bidusergoodsbidlist">${bidIngCount}</a></td>
 							<td><a
 								href="${pageContext.request.contextPath}/bid/bidsuccessfull">2</a></td>
 							<td><a

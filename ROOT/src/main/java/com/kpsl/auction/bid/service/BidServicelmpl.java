@@ -58,5 +58,10 @@ public class BidServicelmpl implements BidService {
 		log.info("BidServicelmpl의 modifyBidPrcie");
 		return bidDao.updateBidPrice(bidvo);
 	}
+	@Override
+	public BidVo getBidCount(BidVo bidvo) {
+		log.info("BidServicelmpl의 getBidCount");
+		return bidDao.slectBidcount(bidvo);
+	}
 
 }

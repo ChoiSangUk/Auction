@@ -109,4 +109,9 @@
 		WHERE
 		user_buyer_id =#{userBuyerId} ORDER BY bid_date
 	</select>
+	<!--개인 입찰 수 mypage 에 출력   -->
+	<select id = "selectbidcount" parameterType="com.kpsl.auction.bid.vo.BidVo" resultMap = "Bid">
+	SELECT COUNT(bid_code) AS bid_code
+ 	FROM bid_tb WHERE user_buyer_id = #{userBuyerId}
+ 	</select>
 </mapper>
