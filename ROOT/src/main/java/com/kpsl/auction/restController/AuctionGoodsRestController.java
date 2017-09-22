@@ -1,5 +1,6 @@
 package com.kpsl.auction.restController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
+import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageAndNowPriceVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
+import com.kpsl.auction.bid.service.BidService;
+import com.kpsl.auction.bid.vo.BidVo;
 import com.kpsl.auction.goodscategory.service.GoodsCategoryService;
 import com.kpsl.auction.goodscategory.vo.MiddleCategoryVo;
 import com.kpsl.auction.goodscategory.vo.SmallCategoryVo;
@@ -30,6 +34,8 @@ public class AuctionGoodsRestController {
 	private GoodsCategoryService goodsCategoryService;
 	@Autowired
 	private AuctionGoodsService auctionGoodsService;
+	@Autowired
+	private BidService bidService;
 	
 	//현재 캐쉬 가져오기
 	@RequestMapping(value = "/getUserCashAjax", method = RequestMethod.GET)
@@ -73,9 +79,22 @@ public class AuctionGoodsRestController {
 			
 		}
 		
-		List<AuctionGoodsAndFirstImageVo> auctionGoodsList = auctionGoodsService.getAllAuctionGoods(map); 
-		System.out.println("auctionGoodsList는 있나? "+auctionGoodsList);
-		
+		//현재가 추가해서 전송
+		List<AuctionGoodsAndFirstImageVo> auctionGoodsAndFirstImageList = auctionGoodsService.getAllAuctionGoods(map); 
+		System.out.println("auctionGoodsList는 있나? "+auctionGoodsAndFirstImageList);
+		List<AuctionGoodsAndFirstImageAndNowPriceVo> auctionGoodsList = new ArrayList<AuctionGoodsAndFirstImageAndNowPriceVo>();
+		for(int i=0; i<auctionGoodsAndFirstImageList.size(); i++){
+			BidVo nowPriceBid = bidService.getBidHighBidPrice(auctionGoodsAndFirstImageList.get(i).getAuctionGoodsVo().getAuctionGoodsCode());
+			AuctionGoodsAndFirstImageAndNowPriceVo nowGoods = new AuctionGoodsAndFirstImageAndNowPriceVo();
+			nowGoods.setAuctionGoodsImageVo(auctionGoodsAndFirstImageList.get(i).getAuctionGoodsImageVo());
+			nowGoods.setAuctionGoodsVo(auctionGoodsAndFirstImageList.get(i).getAuctionGoodsVo());
+			if(nowPriceBid == null){
+				nowGoods.setNowPrice(auctionGoodsAndFirstImageList.get(i).getAuctionGoodsVo().getAuctionGoodsStartPrice());
+			}else{
+				nowGoods.setNowPrice(nowPriceBid.getBidPrice());
+			}
+			auctionGoodsList.add(nowGoods);
+		}
 		Gson gson = new Gson();
 		return gson.toJson(auctionGoodsList);
 	}
