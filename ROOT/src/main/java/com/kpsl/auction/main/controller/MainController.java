@@ -23,6 +23,10 @@ import com.kpsl.auction.saleslog.vo.SalesLogVo;
 import com.kpsl.auction.user.service.UserDetailService;
 import com.kpsl.auction.user.service.UserService;
 import com.kpsl.auction.bid.service.BidService;
+import com.kpsl.auction.successfullBid.service.SuccessfullBidService;
+import com.kpsl.auction.goodspayment.service.GoodsPaymentService;
+import com.kpsl.auction.goodspayment.vo.GoodsPaymentVoANDAuctionGoodsVoANDSuccessBidVo;
+import com.kpsl.auction.successfullBid.vo.SuccessfullBidVoANDauctionGoodsVoANDgoodsPaymentVo;
 import com.kpsl.auction.bid.vo.BidVo;
 import com.kpsl.auction.user.vo.GradeVo;
 import com.kpsl.auction.user.vo.UserDetailVo;
@@ -35,6 +39,8 @@ public class MainController {
 	@Autowired private AdPaymentService adPaymentService;
 	@Autowired private AuctionGoodsService auctionGoodsService;
 	@Autowired private BidService bidService;
+	@Autowired private SuccessfullBidService successfullBidService;
+	@Autowired private GoodsPaymentService goodsPaymentService;
 	// 프로젝트 소개페이지 요청
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -119,8 +125,9 @@ public class MainController {
 	
 	// 마이페이지 메인 요청
 	@RequestMapping(value = "/mypage/mypageMain", method = RequestMethod.GET)
-	public String mypage(Model model, HttpSession session, AuctionGoodsVo auctionGoodsVo
-						,BidVo bidvo) {
+	public String mypage(Model model, HttpSession session, AuctionGoodsVo auctionGoodsVo,BidVo bidvo 
+			, SuccessfullBidVoANDauctionGoodsVoANDgoodsPaymentVo successfullbidvoANDauctiongoodsvoANDgoodspaymentvo
+			, GoodsPaymentVoANDAuctionGoodsVoANDSuccessBidVo goodspaymentvoANDauctiongoodsvoANDsuccessbidvo			) {
 		String userId = (String) session.getAttribute("userId");
 		log.info(userId + "<----- page1 확인");
 		session.getAttribute("userLoginInfo");
@@ -145,9 +152,14 @@ public class MainController {
 		int bidIngCount  = Integer.parseInt(bidingcount.getBidCode());
 		model.addAttribute("bidIngCount", bidIngCount);
 		//낙찰완료 갯수 
-		
+		successfullbidvoANDauctiongoodsvoANDgoodspaymentvo.setUserBuyerId(userId);
+		int successBidCount = successfullBidService.getSuccessBidList(successfullbidvoANDauctiongoodsvoANDgoodspaymentvo).size();
+		log.info(successBidCount+"카운트");
+		model.addAttribute("successBidCount", successBidCount);
 		//결재완료 갯수
-		
+		goodspaymentvoANDauctiongoodsvoANDsuccessbidvo.setUserBuyerId(userId);
+		int paymentcount = goodsPaymentService.selectuserpaymentlist(goodspaymentvoANDauctiongoodsvoANDsuccessbidvo).size();
+		model.addAttribute("paymentcount", paymentcount);
 		
 		return "/mypage/mypage_main";
 	}

@@ -18,4 +18,6 @@ public interface SuccessBidDao {
 	List<SuccessfullBidVoANDauctionGoodsVo> selectSuccessbidList(SuccessfullBidVoANDauctionGoodsVoANDgoodsPaymentVo successfullbidvoANDauctiongoodsVoANDgoodspaymentvo);
 	
 	SuccessfullBidVoANDauctionGoodsVo selectSuccessbid(SuccessfullBidVoANDauctionGoodsVo successfullbidVoANDauctiongoodsvo);
+	
+	
 }
