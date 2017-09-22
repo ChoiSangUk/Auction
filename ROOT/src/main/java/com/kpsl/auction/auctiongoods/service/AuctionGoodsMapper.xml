@@ -141,7 +141,7 @@
 	WHERE auction_goods_code = #{auctionGoodsCode}
 	</select>
 	<!-- 입찰 수 증가 -->
-	<update id="updateBidHits" parameterType = "java.util.map">
+	<update id="updateBidHits" parameterType = "java.util.Map">
 		UPDATE auction_goods_tb
 		SET auction_goods_bid_hits = #{auctionGoodsBidHits}
 		WHERE auction_goods_code = #{auctionGoodsCode}

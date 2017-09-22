@@ -1,6 +1,9 @@
 package com.kpsl.auction.bid.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +65,17 @@ public class BidServicelmpl implements BidService {
 	public BidVo getBidCount(BidVo bidvo) {
 		log.info("BidServicelmpl의 getBidCount");
 		return bidDao.slectBidcount(bidvo);
+	}
+	@Override
+	public int updateGoodsBidHits(String auctionGoodsCode) {
+		log.info("updateGoodsBidHits 호출 확인");
+		
+		int a = bidDao.selectGoodsBidHits(auctionGoodsCode);
+		a++;
+		Map map = new HashMap();
+		map.put("auctionGoodsBidHits", a );
+		map.put("auctionGoodsCode", auctionGoodsCode);
+		return bidDao.updateGoodsBidHit(map);
 	}
 
 }

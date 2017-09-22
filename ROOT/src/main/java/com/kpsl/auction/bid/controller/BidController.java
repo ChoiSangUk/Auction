@@ -120,9 +120,9 @@ public class BidController {
  		/**입찰 중복 아이디 계수**/
 		BidVo getOverlapbidUsercount = bidService.getOverlapUser(bidvo);
 		log.info(getOverlapbidUsercount.getUserBuyerId()+ "중복아이디 계수");
-		int i = Integer.parseInt(getOverlapbidUsercount.getUserBuyerId());
-		if(i == 0 ){
-		
+		int userId = Integer.parseInt(getOverlapbidUsercount.getUserBuyerId());
+		/**아이디가 중복이 아닐 때 **/
+		if(userId == 0 ){		
 			/** 입찰 서비스 **/
 		bidService.setBidPrice(bidvo);
 
@@ -156,6 +156,9 @@ public class BidController {
 			/**보증금 차감 안되고 본인 입찰금 수정**/
 			bidService.modifyBidPrcie(bidvo);
 		}
+		
+	/*	int goodsbidhit = bidService.updateGoodsBidHits(auctionGoodsCode);	*/
+		
 		log.info("입찰자 입찰하기");
 		return "redirect:/bid/bidform?auctionGoodsName=" + auctionGoodsName + "&userId=" + userSellerID
 				+ "&auctionGoodsBidUnit=" + auctionGoodsBidUnit + "&auctionGoodsStartPrice=" + auctionGoodsStartPrice

@@ -93,14 +93,15 @@ public class AuctionGoodsController {
         }
          auctionGoodsService.updateAuctionGoods(auctionGoodsVo, imgList);
         
-		return getAuctionGoods(model, auctionGoodsVo.getAuctionGoodsCode());
+		return getAuctionGoods(model, null, auctionGoodsVo.getAuctionGoodsCode());
 	}
 	//선택한 단일 물품 상세 페이지로
 	@RequestMapping(value = "/auctiongoods/auctiongoods_detail", method = RequestMethod.GET)
-	public String getAuctionGoods(Model model,
+	public String getAuctionGoods(Model model, BidVo bidVo,
 			@RequestParam(value = "auctionGoodsCode", required = true) String auctionGoodsCode){
 		
 		 AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods(auctionGoodsCode);
+		 log.info(auctionGoods.getAuctionGoodsBidHits()+"<---  입찰수");
 		 BidVo nowPriceBid = bidService.getBidHighBidPrice(auctionGoodsCode);
 		 if(nowPriceBid == null){
 			 model.addAttribute("nowPrice", auctionGoods.getAuctionGoodsStartPrice());
@@ -109,6 +110,10 @@ public class AuctionGoodsController {
 		 }
 		 
 		 model.addAttribute("auctionGoods", auctionGoods);
+		 
+		 bidVo.setAuctionGoodsCode(auctionGoodsCode);
+		 List<BidVo> goodsbidlist = bidService.getGoodsBidList(bidVo);
+		 model.addAttribute("goodsbidlist", goodsbidlist);
 		 
 		  List<AuctionGoodsImageVo> auctionGoodsImages= auctionGoodsService.getAllAuctionGoodsImages(auctionGoodsCode); 
 		  model.addAttribute("auctionGoodsImages",auctionGoodsImages);

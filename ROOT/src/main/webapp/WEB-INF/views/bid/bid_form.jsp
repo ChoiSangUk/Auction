@@ -26,8 +26,6 @@
 						<div>200만원이상 : 100,000원</div>
 						<tr>
 							<h2>입찰하기</h2>
-							<th>최고가:<fmt:formatNumber value="${highBidPrice}"
-									groupingUsed="true" />원 </th>
 							<th>품목명: ${auctionGoodsName} </th>
 							<th>시작가격:<fmt:formatNumber value="${auctionGoodsStartPrice}"
 									groupingUsed="true" />원
@@ -58,21 +56,9 @@
 								</td>
 							</div>
 						</tr>
-						<tr>
-							<th>입찰자</th>
-							<th>입찰가격</th>
-							<th>입찰시간</th>
-						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="goodsbid" items="${goodsbidlist}">
-							<tr>
-								<td>${goodsbid.userBuyerId}</td>
-								<td><fmt:formatNumber value="${goodsbid.bidPrice}"
-										groupingUsed="true" />원</td>
-								<td>${goodsbid.bidDate}</td>
-							</tr>
-						</c:forEach>
+						
 					</tbody>
 				</table>
 			</div>

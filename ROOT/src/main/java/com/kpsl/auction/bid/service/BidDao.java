@@ -1,6 +1,7 @@
 package com.kpsl.auction.bid.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.ui.Model;
 
@@ -26,4 +27,8 @@ public interface BidDao{
 	BidVo updateBidPrice(BidVo bidvo);
 	/**개인 입찰 갯수 **/
 	BidVo slectBidcount(BidVo bidvo);
+	/**경매물품 하나 당 총 입찰 갯수 **/
+	int selectGoodsBidHits(String auctionGoodsCode);
+	/**입찰 수 증가**/
+	int updateGoodsBidHit(Map map);
 }

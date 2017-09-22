@@ -28,6 +28,7 @@ public interface BidService {
 	BidVo modifyBidPrcie(BidVo bidvo);
 	/**개인 입찰 갯수 **/
 	BidVo getBidCount(BidVo bidvo);
-	
+	/**입찰 수 증가**/
+	int updateGoodsBidHits(String auctionGoodsCode);
 }
 
