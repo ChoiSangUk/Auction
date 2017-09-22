@@ -63,7 +63,8 @@
 			<div style="text-align:center">
 					<h3>
 						<span style="color:blue">현재가 : </span>
-						<span class="nowPrice" style="color:blue">1000(임시) </span>
+						
+						<span class="nowPrice" style="color:blue">${nowPrice}</span>
 					</h3>
 						
 					<h4>	
@@ -318,24 +319,58 @@ $('#questionSubmit').click(function(){
 	    							+'</ul>'
 		    					 	+	'<div class="question" align="center" style="display:none">'+questionObj[i].questionContents+'</div>'
 	    							+'</div>')
-	    	        	}
+				    								var questionCode = $(this).find('#questionCode').text();
+								var questionCodeJson = {
+			    			 "questionCode" : questionCode
+			    			 }
+							 //답변 확인
+							$.ajax({
+								type: 'get',
+								data : questionCodeJson,
+				    	        datatype : 'json',
+				    	        url: '${pageContext.request.contextPath}/question/getQuestionReply',
+				    	        error : function(request,status,error) {
+				    	        	console.log("답변ajax 에러")
+				    				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+				    				alert('auction goodsList ajax Error');
+				    			},
+				    			success: function(getData){
+				    				var questionReplyObj = jQuery.parseJSON(JSON.stringify(getData));
+				    				console.log('답변추가 ajax까지')
+				    				if(questionReplyObj.questionReplyCode!="0"){
+				    					var qrQuestionCode = questionReplyObj.questionCode
+				    					var questionReplyContents = questionReplyObj.questionReplyContents
+				    					var questionReplyDate = questionReplyObj.questionReplyDate
+				    					console.log('답변 div 추가 되나')
+				    					$('.questionDiv').find('.'+qrQuestionCode+'').append('<div><span><b>답변 내용 :</b></span>'+questionReplyObj.questionReplyContents+'</div>')
+				    				}
+				    			}
+							})
+	    							
+	    	        		}
+	    	        	 
 	    	        	 $('.questionDiv').click(function(){
+	    	        		 var questionCode = $(this).find('#questionCode').text();
+ 							var questionCodeJson = {
+ 	        			 "questionCode" : questionCode
+ 	        			 }
+ 							
+	    	        		 
 	    		     			console.log('물품 버튼')
 	    		     			if($(this).find('.question').css('display') == "none"){
-	    		     				console.log('보여주기');
 	    		     				$(this).find('.question').show();
 	    		     			}else{
 	    		     				$(this).find('.question').hide();
-	    		     				console.log('숨기기')
 	    		     			}
 	    		     		})
 	    	        }
 	    	   });
 	        }
 	   });
-	
+	 
+	$('#doQuestion').hide();
 	 return false; //<- 이 문장으로 새로고침(reload)이 방지됨
-	 $('#doQuestion').dialog('close');
+	
 });
  
 
@@ -397,17 +432,45 @@ var timer = function(){
 							+'<li class="questionCell width270">'+questionObj[i].userBuyerId+'</li>'
 							+'<li class="questionCell width180">'+questionObj[i].questionDate+'</li>'
 							+'</ul>'
-					 	+'<div class="question" style="display:none"><hr><span>'+questionObj[i].questionContents+'</span></div>'
+					 	+'<div class="question '+questionObj[i].questionCode+'" style="display:none"><hr><span>'+questionObj[i].questionContents+'</span></div>'
 					 +'</div>')
+					 			
 	        	}
+	        	var questionCode = $(this).find('#questionCode').text();
+				var questionCodeJson = {
+			 "questionCode" : questionCode
+			 }
+			 //답변 확인
+			$.ajax({
+				type: 'get',
+				data : questionCodeJson,
+    	        datatype : 'json',
+    	        url: '${pageContext.request.contextPath}/question/getQuestionReply',
+    	        error : function(request,status,error) {
+    	        	console.log("답변ajax 에러")
+    				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+    				alert('auction goodsList ajax Error');
+    			},
+    			success: function(getData){
+    				var questionReplyObj = jQuery.parseJSON(JSON.stringify(getData));
+    				console.log('답변추가 ajax까지')
+    				if(questionReplyObj.questionReplyCode!="0"){
+    					var qrQuestionCode = questionReplyObj.questionCode
+    					var questionReplyContents = questionReplyObj.questionReplyContents
+    					var questionReplyDate = questionReplyObj.questionReplyDate
+    					console.log('답변 div 추가 되나')
+    					$('.questionDiv').find('.'+qrQuestionCode+'').append('<div><span><b>답변 내용 :</b></span>'+questionReplyObj.questionReplyContents+'</div>')
+    				}
+    			}
+			})
 	        	$('.questionDiv').click(function(){
+	        	
+	        		
 	     			console.log('물품 버튼')
 	     			if($(this).find('.question').css('display') == "none"){
-	     				console.log('보여주기')
 	     				$(this).find('.question').show()
 	     			}else{
 	     				$(this).find('.question').hide()
-	     				console.log('숨기기')
 	     			}
 	     		})
 	            
@@ -419,13 +482,13 @@ var timer = function(){
 			$('#questioner').val('guest');
 		}
 		//즉시구매 
-		var auctionGoodsInstantBuyPrice = $('#instantBuySpan').text();
+		/* var auctionGoodsInstantBuyPrice = $('#instantBuySpan').text();
 		if(auctionGoodsInstantBuyPrice == 0){
 			$('#instantBuy').text("즉시구매 불가능");
 		}else{
 			$('#instantBuy').text(auctionGoodsInstantBuyPrice);
 			$('#instantBuy').append('<a class="btn btn-primary" id="bidButton" href="#"> 즉시구매</a>');
-		}
+		} */
 		
 		//경매 방식
 		var auctionGoodsSys = $('#SysSpan').text();

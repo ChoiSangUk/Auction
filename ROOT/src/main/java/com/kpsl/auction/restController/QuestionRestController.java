@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.kpsl.auction.question.service.QuestionService;
+import com.kpsl.auction.question.vo.QuestionReplyVo;
 import com.kpsl.auction.question.vo.QuestionVo;
 
 @RestController
@@ -34,4 +35,19 @@ public class QuestionRestController {
 		Gson gson = new Gson();
 		return gson.toJson(questionList);
 	}
+	
+	@RequestMapping(value = "/question/getQuestionReply", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	public String getQuestionReply(Model model,
+			@RequestParam(value = "questionCode", required = true) String questionCode){
+				System.out.println("문의 받아오기 컨트롤러");
+				QuestionReplyVo questionReply = questionService.getQuestionReply(questionCode);
+				System.out.println(questionReply.toString());
+				 
+				System.out.println("물품문의 리스트 컨트롤러");
+				System.out.println(questionReply.toString());
+		Gson gson = new Gson();
+		return gson.toJson(questionReply);
+	}
+	
+	
 }

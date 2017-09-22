@@ -1,1 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.kpsl.auction.question.service.QuestionReplyMapper">
+	<resultMap type="com.kpsl.auction.question.vo.QuestionReplyVo"
+		id="QuestionReply">
+		<id property="questionReplyCode" column="question_reply_code" />
+		<id property="questionCode" column="question_code" />
+		<id property="questionReplyContents" column="question_reply_contents" />
+		<id property="questionReplyDate" column="question_reply_date" />
+	</resultMap>
+
+
+	<insert id="insertQuestionReply" parameterType="com.kpsl.auction.question.vo.QuestionReplyVo"
+		useGeneratedKeys="true" keyProperty="questionReplyCode">
+		<selectKey keyProperty="questionReplyCode" resultType="string"
+			order="BEFORE">
+			SELECT CONCAT("qc",MAX(CAST(substring(question_code,3)+1
+			AS DECIMAL)))
+			FROM question_tb
+		</selectKey>
+		INSERT INTO question_tb
+		(
+		question_code,
+		auction_goods_code,
+		question_title,
+		user_seller_id,
+		user_buyer_id,
+		question_type,
+		question_contents,
+		question_state,
+		question_reply_state,
+		question_date
+		)
+		VALUES (
+		#{questionCode},
+		#{auctionGoodsCode},
+		#{questionTitle},
+		#{userSellerId},
+		#{userBuyerId},
+		#{questionType},
+		#{questionContents},
+		#{questionState},
+		'답변대기',
+		NOW() <!-- 등록 날짜 시간 -->
+		);
+	</insert>
+	
+	<select id="selectQuestionReply" parameterType="String"
+		resultMap="QuestionReply">
+		SELECT question_reply_code,
+		question_code,
+		question_reply_contents,
+		question_reply_date
+		FROM question_reply_tb
+		WHERE
+		question_code=#{questionCode};
+	</select>
+	
+	<select id="questionReplyExist" parameterType="String"
+		resultType="int">
+		SELECT count(*)
+		FROM question_reply_tb
+		WHERE
+		question_code=#{questionCode};
+	</select>
+
+</mapper>
+  

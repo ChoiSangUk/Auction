@@ -137,6 +137,7 @@
             	<value>classpath:com/kpsl/auction/successfullBid/service/SuccessfullBidMapper.xml</value>            	
             	<value>classpath:com/kpsl/auction/question/service/QuestionMapper.xml</value>
             	<value>classpath:com/kpsl/auction/goodspayment/service/GoodsPaymentMapper.xml</value>
+            	<value>classpath:com/kpsl/auction/question/service/QuestionReplyMapper.xml</value>
             </list>
         </property>
     </bean>

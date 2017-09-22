@@ -19,6 +19,8 @@ import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
+import com.kpsl.auction.bid.service.BidService;
+import com.kpsl.auction.bid.vo.BidVo;
 import com.kpsl.auction.goodscategory.service.GoodsCategoryService;
 import com.kpsl.auction.goodscategory.vo.LargeCategoryVo;
 import com.kpsl.auction.goodscategory.vo.MiddleCategoryVo;
@@ -31,6 +33,8 @@ public class AuctionGoodsController {
 	private GoodsCategoryService goodsCategoryService;
 	@Autowired
 	private AuctionGoodsService auctionGoodsService;
+	@Autowired
+	private BidService bidService;
 	
 	//내 판매물품
 	@RequestMapping(value = "/auctiongoods/mySalesGoods", method = RequestMethod.GET)
@@ -97,8 +101,15 @@ public class AuctionGoodsController {
 			@RequestParam(value = "auctionGoodsCode", required = true) String auctionGoodsCode){
 		
 		 AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods(auctionGoodsCode);
+		 BidVo nowPriceBid = bidService.getBidHighBidPrice(auctionGoodsCode);
+		 if(nowPriceBid == null){
+			 model.addAttribute("nowPrice", auctionGoods.getAuctionGoodsStartPrice());
+		 }else{
+			 model.addAttribute("nowPrice", nowPriceBid.getBidPrice());
+		 }
+		 
 		 model.addAttribute("auctionGoods", auctionGoods);
-		
+		 
 		  List<AuctionGoodsImageVo> auctionGoodsImages= auctionGoodsService.getAllAuctionGoodsImages(auctionGoodsCode); 
 		  model.addAttribute("auctionGoodsImages",auctionGoodsImages);
 		 System.out.println("이미지 투스트링"+auctionGoodsImages);
