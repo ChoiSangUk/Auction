@@ -199,6 +199,5 @@
 		ON b.user_buyer_id = u.user_id 
 		WHERE b.user_buyer_id = #{userBuyerId} AND b.successful_bid_code=#{successfulBidCode}
 	</select>
-	
 </mapper>
 

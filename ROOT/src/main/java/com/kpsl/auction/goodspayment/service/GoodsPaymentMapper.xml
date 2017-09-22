@@ -55,6 +55,7 @@
 			SET user_totalcash=user_totalcash-#{successfulBidPrice}
 		WHERE user_id = #{userBuyerId}
 	</update>
+	<!--결제 리스트 -->
 	<select id="selectuserpaymentlist" parameterType="com.kpsl.auction.goodspayment.vo.GoodsPaymentVoANDAuctionGoodsVoANDSuccessBidVo"
 	resultMap = "GoodsPaymentVoANDAuctionGoodsVoANDSuccessBidVo"  >
 		SELECT a.auction_goods_name
