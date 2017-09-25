@@ -162,4 +162,11 @@
 			</if>
 		</trim> 
 	</select>
+	
+	<update id="updateAdPaymentState" parameterType="com.kpsl.auction.ad.vo.AdPaymentVo">
+		UPDATE ad_payment_tb
+		SET
+			ad_payment_state='환불완료'
+		WHERE ad_payment_code=#{adPaymentCode}
+	</update>
 </mapper>

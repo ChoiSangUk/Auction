@@ -79,10 +79,10 @@
 	<!--재입찰시 중복아이디 체크(1 or null) -->
 	<select id="selectbiduercount" parameterType="com.kpsl.auction.bid.vo.BidVo"
 		resultMap="Bid">
-		SELECT COUNT(user_buyer_id = #{userBuyerId}) AS
+		SELECT COUNT(user_buyer_id) AS
 		user_buyer_id
-		FROM bid_tb WHERE auction_goods_code =
-		#{auctionGoodsCode}
+		FROM bid_tb WHERE auction_goods_code = #{auctionGoodsCode}
+		AND user_buyer_id = #{userBuyerId}
 	</select>
 	<!--재입찰시에 수정될 입찰금액 -->
 	<update id="updateRebid" parameterType="com.kpsl.auction.bid.vo.BidVo">
