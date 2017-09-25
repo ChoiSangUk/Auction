@@ -116,16 +116,16 @@
 						<th>입찰단위</th>
 						<th>${auctionGoods.auctionGoodsBidUnit}</th>
 					</tr>
-				<c:choose>
-				<c:when test="${auctionGoods.auctionGoodsBidSys eq 'normal'}" >
-					<tr>
-						<th>입찰 수</th>
-						<th>${auctionGoods.auctionGoodsBidHits}&nbsp;&nbsp;&nbsp;
-								<button type="button"
-								class="btn btn-info btn-sm" data-toggle="modal"
-								data-target="#myModal">경매기록보기</button></th>
-					</tr>
-					</c:when>
+					<c:choose>
+						<c:when test="${auctionGoods.auctionGoodsBidSys eq 'normal'}">
+							<tr>
+								<th>입찰 수</th>
+								<th>${auctionGoods.auctionGoodsBidHits}&nbsp;&nbsp;&nbsp;
+									<button type="button" class="btn btn-info btn-sm"
+										data-toggle="modal" data-target="#myModal">경매기록보기</button>
+								</th>
+							</tr>
+						</c:when>
 					</c:choose>
 				</tbody>
 			</table>
@@ -136,8 +136,8 @@
 								&userId=${auctionGoods.userId}
 								&auctionGoodsBidUnit=${auctionGoods.auctionGoodsBidUnit}
 								&auctionGoodsStartPrice=${auctionGoods.auctionGoodsStartPrice}
-								&auctionGoodsCode=${auctionGoods.auctionGoodsCode}" = >입찰하기
-				
+								&auctionGoodsCode=${auctionGoods.auctionGoodsCode}"= >입찰하기
+
 				</a> <a class="btn btn-default btn-lg questionBtn" href="#questionMain"
 					data-toggle="modal" data-target="#doQuestion">문의하기 </a>
 			</div>
@@ -148,46 +148,50 @@
 		<!-- 오른쪽 물품 정보(내용) end -->
 	</div>
 	<!-- 물품 정보 end -->
-	
+
 	<!--입찰자 리스트 modal.Start  -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">입찰자 리스트</h4>
-      </div>
-      <div class="modal-body">
-        <div class="table-responsive">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>입찰자</th>
-							<th>입찰가격</th>
-							<th>입찰시간</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="goodsbid" items="${goodsbidlist}">
-							<tr>
-								<td>${goodsbid.userBuyerId}</td>
-								<td><fmt:formatNumber value="${goodsbid.bidPrice}"
-										groupingUsed="true" />원</td>
-								<td>${goodsbid.bidDate}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" id="closeBtn" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">입찰자 리스트</h4>
+				</div>
+				<div class="modal-body">
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>입찰자</th>
+									<th>입찰가격</th>
+									<th>입찰시간</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="goodsbid" items="${goodsbidlist}">
+									<tr>
+										<td>${goodsbid.userBuyerId}</td>
+										<td><fmt:formatNumber value="${goodsbid.bidPrice}"
+												groupingUsed="true" />원</td>
+										<td>${goodsbid.bidDate}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+				</div>
 			</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-<!--입찰자 리스트 modal.End  -->
+		</div>
+	</div>
+	<!--입찰자 리스트 modal.End  -->
 
 	<!-- 물품 상세정보 -->
 	<div class="row content">
@@ -333,13 +337,11 @@
 	}
 
 	//물품문의 등록
-	$('#questionSubmit')
-			.click(
+	$('#questionSubmit').click(
 					function() {
 						var params = $('#questionForm').serialize();
 						console.log(params)
-						$
-								.ajax({
+						$.ajax({
 									type : 'post',
 									data : params,
 									url : '${pageContext.request.contextPath}/question/questionInsert',
@@ -349,18 +351,15 @@
 											"auctionGoodsCode" : auctionGoodsCode
 										}
 										console.log(auctionGoodsCode)
-										$
-												.ajax({
+										$.ajax({
 													type : 'get',
 													data : auctionGoodsCodeJson,
 													datatype : 'json',
 													url : '${pageContext.request.contextPath}/question/getQuestion',
 													error : function(request,
 															status, error) {
-														console
-																.log("물품받기ajax 에러")
-														console
-																.log("code:"
+														console.log("물품받기ajax 에러")
+														console.log("code:"
 																		+ request.status
 																		+ "\n"
 																		+ "message:"
@@ -407,11 +406,7 @@
 																					+ questionObj[i].questionContents
 																					+ '</div>'
 																					+ '</div>')
-															var questionCode = $(
-																	this)
-																	.find(
-																			'#questionCode')
-																	.text();
+															var questionCode = $(this).find('#questionCode').text();
 															var questionCodeJson = {
 																"questionCode" : questionCode
 															}
@@ -505,8 +500,8 @@
 												});
 									}
 								});
-
-						$('#doQuestion').hide();
+						
+						 alert('문의 등록 완료!! \n 닫기를 눌러주세요') 
 						return false; //<- 이 문장으로 새로고침(reload)이 방지됨
 
 					});

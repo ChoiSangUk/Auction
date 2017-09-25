@@ -65,7 +65,8 @@ public class AuctionGoodsController {
 	@RequestMapping(value = "/auctiongoods/auctiongoodsupdate", method = RequestMethod.GET)
 	public String updateAuctionGoods(Model model, 
 			@RequestParam(value = "auctionGoodsCode", required = true) String auctionGoodsCode){
-			
+		log.info("물품 수정 get 부분");	
+		log.info("물품 수정 get 부분 옥션굿즈 코드 :"+auctionGoodsCode);	
 		List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
 		model.addAttribute("largeCategory", largeCategory);
 		
@@ -92,8 +93,9 @@ public class AuctionGoodsController {
             //System.out.println(matcher.group(1));
         }
          auctionGoodsService.updateAuctionGoods(auctionGoodsVo, imgList);
-        
-		return getAuctionGoods(model, null, auctionGoodsVo.getAuctionGoodsCode());
+         BidVo bidVo = new BidVo();
+         bidVo.setAuctionGoodsCode(auctionGoodsVo.getAuctionGoodsCode());
+		return getAuctionGoods(model, bidVo, auctionGoodsVo.getAuctionGoodsCode());
 	}
 	//선택한 단일 물품 상세 페이지로
 	@RequestMapping(value = "/auctiongoods/auctiongoods_detail", method = RequestMethod.GET)
