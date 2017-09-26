@@ -13,7 +13,6 @@
 			<div class="panel panel-default">
   				<div class="panel-heading">
   				<button class="btn btn-default">월별 매입매출</button>
-  				<button class="btn btn-default">년별 매입매출</button>
   				</div>
   				<div class="panel-body">
 					<div id="curve_chart" style="width: 100%; height: 700px; margin: auto;"></div>

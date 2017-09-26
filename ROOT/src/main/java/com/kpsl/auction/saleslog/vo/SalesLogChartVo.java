@@ -6,8 +6,8 @@ package com.kpsl.auction.saleslog.vo;
 public class SalesLogChartVo {
 
 	private String chartDate;
-	private int salesPrice;
-	private int expensesPrice;
+	private long salesPrice;
+	private long expensesPrice;
 	
 	public String getChartDate() {
 		return chartDate;
@@ -15,16 +15,16 @@ public class SalesLogChartVo {
 	public void setChartDate(String chartDate) {
 		this.chartDate = chartDate;
 	}
-	public int getSalesPrice() {
+	public long getSalesPrice() {
 		return salesPrice;
 	}
-	public void setSalesPrice(int salesPrice) {
+	public void setSalesPrice(long salesPrice) {
 		this.salesPrice = salesPrice;
 	}
-	public int getExpensesPrice() {
+	public long getExpensesPrice() {
 		return expensesPrice;
 	}
-	public void setExpensesPrice(int expensesPrice) {
+	public void setExpensesPrice(long expensesPrice) {
 		this.expensesPrice = expensesPrice;
 	}	
 }

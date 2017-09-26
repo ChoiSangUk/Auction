@@ -24,7 +24,6 @@ public class SalesRestController {
 		for(int i=0; i<chartExpensesList.size(); i++) {
 			chartSalesList.get(i).setExpensesPrice(chartExpensesList.get(i).getExpensesPrice()) ;
 		}				
-		log.info(chartExpensesList.get(0).getChartDate());
 		
 		return chartSalesList;
 	}
