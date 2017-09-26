@@ -209,7 +209,11 @@ var categoryCode = {
 					var bottomDivTag = $('<div class="bottom"></div>');
 					var auctionGoodsNameDivTag = $('<div class="auctionGoodsName">'+auctionGoodsName+'</div>');
 					var auctionGoodsSysTag = $('<div class="auctionGoodsSys">'+auctionGoodsSys+'</div>');
-					var nowPriceDivTag = $('<div class="nowPrice">'+'현재가 <strong>'+nowPrice +'원(입찰가로)</strong></div>');
+					if(auctionGoodsSys=="블라인드경매"){
+						var nowPriceDivTag = $('<div class="nowPrice"><strong>비공개 경매</strong></div>');
+					}else{
+						var nowPriceDivTag = $('<div class="nowPrice">'+'현재가 <strong>'+nowPrice +'원</strong></div>');
+					}
 					var remainingTimeDivTag = $('<div class="remainingTime"><strong>'+resultDate+'일'+resultHours+'시'+resultMin+'분'+'</strong></div>');
 					if(resultDate == "0" && resultHours == "00" && resultMin == "00"){
 						remainingTimeDivTag = $('<div class="remainingTime" style="color:red"><strong>판매 종료</strong></div>');
@@ -287,10 +291,8 @@ var categoryCode = {
 					var auctionGoodsBidHits=obj[i].auctionGoodsVo.auctionGoodsBidHits;
 					var auctionGoodsImagePath=obj[i].auctionGoodsImageVo.auctionGoodsImagePath;
 					console.log('입찰수'+auctionGoodsBidHits)
-					var nowPrice=null;
-					if(nowPrice == null){
-						nowPrice=auctionGoodsStartPrice
-					};
+					var nowPrice=obj[i].nowPrice;
+					
 					//즉시구매가가 존재하면 태그를 추가
 					if(auctionGoodsInstantBuyPrice!='0'){
 						var auctionGoodsInstantBuyPriceTag = $('<div class="auctionGoodsInstantBuyPrice">'+'즉시구매가 : <strong>'+auctionGoodsInstantBuyPrice +'원</strong></div>');	
@@ -319,7 +321,12 @@ var categoryCode = {
 					var bottomDivTag = $('<div class="bottom"></div>');
 					var auctionGoodsNameDivTag = $('<div class="auctionGoodsName">'+auctionGoodsName+'</div>');
 					var auctionGoodsSysTag = $('<div class="auctionGoodsSys">'+auctionGoodsSys+'</div>');
-					var nowPriceDivTag = $('<div class="nowPrice">'+'현재가 <strong>'+nowPrice +'원(입찰가로)</strong></div>');
+					if(auctionGoodsSys=="블라인드경매"){
+						var nowPriceDivTag = $('<div class="nowPrice"><strong>비공개 경매</strong></div>');
+					}else{
+						var nowPriceDivTag = $('<div class="nowPrice">'+'현재가 <strong>'+nowPrice +'원</strong></div>');
+					}
+					
 					var remainingTimeDivTag = $('<div class="remainingTime"><strong>'+resultDate+'일'+resultHours+'시'+resultMin+'분'+'</strong></div>');
 					if(resultDate == "0" && resultHours == "00" && resultMin == "00"){
 						remainingTimeDivTag = $('<div class="remainingTime" style="color:red"><strong>판매 종료</strong></div>');

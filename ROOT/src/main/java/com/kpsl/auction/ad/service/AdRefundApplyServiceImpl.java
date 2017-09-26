@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kpsl.auction.ad.vo.AdApplyAndAdImageAndAdUnitPriceAndAuctionGoodsVo;
+import com.kpsl.auction.ad.vo.AdPaymentVo;
 import com.kpsl.auction.ad.vo.AdRefundApplyVo;
 import com.kpsl.auction.saleslog.service.SalesLogDao;
 import com.kpsl.auction.saleslog.vo.SalesLogVo;
@@ -17,6 +18,7 @@ public class AdRefundApplyServiceImpl implements AdRefundApplyService {
 	Logger log = Logger.getLogger(this.getClass());
 	
 	@Autowired AdRefundApplyDao adRefundApplyDao;
+	@Autowired AdPaymentDao adPaymentDao;
 	@Autowired SalesLogDao salesLogDao;
 	
 	@Override
@@ -26,7 +28,7 @@ public class AdRefundApplyServiceImpl implements AdRefundApplyService {
 		
 		return adRefundApplyDao.selectAdRefundListByAdPaymentCode(adPaymentCode);
 	}
-
+	
 	@Override
 	public int addAdRefundApply(AdRefundApplyVo adRefundApplyVo) {
 		
@@ -92,6 +94,11 @@ public class AdRefundApplyServiceImpl implements AdRefundApplyService {
 		log.info("adRefundApplyAndUserTotalCashAndSalesLogTransaction 호출 확인");
 		modifyRefundApply(adRefundApplyVo);
 		modifyUserTotalCashByUserId(adRefundApplyVo);
+		
+		AdPaymentVo adPaymentVo = new AdPaymentVo();
+		String adPaymentCode = adRefundApplyVo.getAdPaymentCode();
+		adPaymentVo.setAdPaymentCode(adPaymentCode);
+		adPaymentDao.updateAdPaymentState(adPaymentVo);
 		String salesLogRelationCode = adRefundApplyVo.getAdRefundApplyCode();
 		String salesLogRelation = "ad_refund_apply_tb";
 		String salesLogDepositAndWithdrawal = "출금";

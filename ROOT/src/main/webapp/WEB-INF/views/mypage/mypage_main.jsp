@@ -183,9 +183,9 @@ a:hover {text-decoration: underline; color: #000000;} */
 							<td><a
 								href="${pageContext.request.contextPath}/bid/bidusergoodsbidlist">${bidIngCount}</a></td>
 							<td><a
-								href="${pageContext.request.contextPath}/bid/bidsuccessfull">2</a></td>
+								href="${pageContext.request.contextPath}/bid/bidsuccessfull">${successBidCount}</a></td>
 							<td><a
-								href="${pageContext.request.contextPath}/goodsPaymentlist">3</a></td>
+								href="${pageContext.request.contextPath}/goodsPaymentlist">${paymentcount}</a></td>
 						</tr>
 					</tbody>
 				</table>

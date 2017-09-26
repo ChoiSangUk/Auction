@@ -134,6 +134,20 @@
 	WHERE user_id = #{userId}
 	</select>
 	
+	<!-- 입찰 수 가져오기 -->
+	<select id = "selectBidHits" parameterType = "String" resultType="int">
+	SELECT auction_goods_bid_hits
+	FROM auction_goods_tb
+	WHERE auction_goods_code = #{auctionGoodsCode}
+	</select>
+	<!-- 입찰 수 증가 -->
+	<update id="updateBidHits" parameterType = "java.util.Map">
+		UPDATE auction_goods_tb
+		SET auction_goods_bid_hits = #{auctionGoodsBidHits}
+		WHERE auction_goods_code = #{auctionGoodsCode}
+	</update>
+	 
+	
 	<!--  물품의 보증금 가져오기 -->
 	<select id="selectDepositPrice" parameterType="String" resultType="int">
 	SELECT auction_goods_deposit_price

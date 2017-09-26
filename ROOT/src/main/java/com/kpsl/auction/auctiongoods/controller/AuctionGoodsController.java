@@ -19,6 +19,8 @@ import com.kpsl.auction.auctiongoods.service.AuctionGoodsService;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsAndFirstImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsImageVo;
 import com.kpsl.auction.auctiongoods.vo.AuctionGoodsVo;
+import com.kpsl.auction.bid.service.BidService;
+import com.kpsl.auction.bid.vo.BidVo;
 import com.kpsl.auction.goodscategory.service.GoodsCategoryService;
 import com.kpsl.auction.goodscategory.vo.LargeCategoryVo;
 import com.kpsl.auction.goodscategory.vo.MiddleCategoryVo;
@@ -31,6 +33,8 @@ public class AuctionGoodsController {
 	private GoodsCategoryService goodsCategoryService;
 	@Autowired
 	private AuctionGoodsService auctionGoodsService;
+	@Autowired
+	private BidService bidService;
 	
 	//내 판매물품
 	@RequestMapping(value = "/auctiongoods/mySalesGoods", method = RequestMethod.GET)
@@ -61,7 +65,8 @@ public class AuctionGoodsController {
 	@RequestMapping(value = "/auctiongoods/auctiongoodsupdate", method = RequestMethod.GET)
 	public String updateAuctionGoods(Model model, 
 			@RequestParam(value = "auctionGoodsCode", required = true) String auctionGoodsCode){
-			
+		log.info("물품 수정 get 부분");	
+		log.info("물품 수정 get 부분 옥션굿즈 코드 :"+auctionGoodsCode);	
 		List<LargeCategoryVo> largeCategory = goodsCategoryService.getAllLargeCategory();
 		model.addAttribute("largeCategory", largeCategory);
 		
@@ -88,17 +93,30 @@ public class AuctionGoodsController {
             //System.out.println(matcher.group(1));
         }
          auctionGoodsService.updateAuctionGoods(auctionGoodsVo, imgList);
-        
-		return getAuctionGoods(model, auctionGoodsVo.getAuctionGoodsCode());
+         BidVo bidVo = new BidVo();
+         bidVo.setAuctionGoodsCode(auctionGoodsVo.getAuctionGoodsCode());
+		return getAuctionGoods(model, bidVo, auctionGoodsVo.getAuctionGoodsCode());
 	}
 	//선택한 단일 물품 상세 페이지로
 	@RequestMapping(value = "/auctiongoods/auctiongoods_detail", method = RequestMethod.GET)
-	public String getAuctionGoods(Model model,
+	public String getAuctionGoods(Model model, BidVo bidVo,
 			@RequestParam(value = "auctionGoodsCode", required = true) String auctionGoodsCode){
 		
 		 AuctionGoodsVo auctionGoods = auctionGoodsService.getAuctionGoods(auctionGoodsCode);
+		 log.info(auctionGoods.getAuctionGoodsBidHits()+"<---  입찰수");
+		 BidVo nowPriceBid = bidService.getBidHighBidPrice(auctionGoodsCode);
+		 if(nowPriceBid == null){
+			 model.addAttribute("nowPrice", auctionGoods.getAuctionGoodsStartPrice());
+		 }else{
+			 model.addAttribute("nowPrice", nowPriceBid.getBidPrice());
+		 }
+		 
 		 model.addAttribute("auctionGoods", auctionGoods);
-		
+		 
+		 bidVo.setAuctionGoodsCode(auctionGoodsCode);
+		 List<BidVo> goodsbidlist = bidService.getGoodsBidList(bidVo);
+		 model.addAttribute("goodsbidlist", goodsbidlist);
+		 
 		  List<AuctionGoodsImageVo> auctionGoodsImages= auctionGoodsService.getAllAuctionGoodsImages(auctionGoodsCode); 
 		  model.addAttribute("auctionGoodsImages",auctionGoodsImages);
 		 System.out.println("이미지 투스트링"+auctionGoodsImages);

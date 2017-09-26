@@ -42,7 +42,7 @@ th {
 							<th class="col-sm-2 active">광고결제코드</th>
 							<td>
 								<div class="col-sm-10">
-									<input class="form-control" type="text" name="" 
+									<input class="form-control" type="text" name="adPaymentCode" 
 									value="${adRefundDetailList.adRefundApplyVo.adPaymentCode}" readonly="readonly">
 								</div>
 							</td>
