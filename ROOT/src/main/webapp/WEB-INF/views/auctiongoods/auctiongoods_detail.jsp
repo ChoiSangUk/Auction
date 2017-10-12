@@ -136,8 +136,7 @@
 								&userId=${auctionGoods.userId}
 								&auctionGoodsBidUnit=${auctionGoods.auctionGoodsBidUnit}
 								&auctionGoodsStartPrice=${auctionGoods.auctionGoodsStartPrice}
-								&auctionGoodsCode=${auctionGoods.auctionGoodsCode}"= >입찰하기
-
+								&auctionGoodsCode=${auctionGoods.auctionGoodsCode}">입찰하기
 				</a> <a class="btn btn-default btn-lg questionBtn" href="#questionMain"
 					data-toggle="modal" data-target="#doQuestion">문의하기 </a>
 			</div>
